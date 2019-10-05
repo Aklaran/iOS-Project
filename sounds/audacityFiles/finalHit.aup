@@ -1,0 +1,146 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="finalHit_data" version="1.3.0" audacityversion="2.3.2" sel0="0.0000000000" sel1="4.1975625000" vpos="464" h="0.0000000000" zoom="187.2513922037" rate="48000.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags>
+		<tag name="YEAR" value="2018"/>
+		<tag name="TRACKNUMBER" value="1"/>
+	</tags>
+	<wavetrack name="483397__abacagi__bat-swarm-sfx" channel="0" linked="1" mute="1" solo="0" height="150" minimized="0" isSelected="0" rate="48000" gain="0.025119" pan="0.0" colorindex="0">
+		<waveclip offset="0.55006250" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="482688">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808a92.au" len="262144" min="-0.862307" max="0.828483" rms="0.108557"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e08085e4.au" len="220544" min="-0.721386" max="0.703698" rms="0.103986"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="4">
+				<controlpoint t="2.242974143654" val="1.000000000000"/>
+				<controlpoint t="2.456590712958" val="0.859154939651"/>
+				<controlpoint t="3.583418116038" val="0.084507048130"/>
+				<controlpoint t="3.770332614180" val="0.000000100000"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="483397__abacagi__bat-swarm-sfx" channel="1" linked="0" mute="1" solo="0" height="150" minimized="0" isSelected="0" rate="48000" gain="0.025119" pan="0.0" colorindex="0">
+		<waveclip offset="0.55006250" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="482688">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808984.au" len="262144" min="-0.769993" max="0.759925" rms="0.109853"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e080816c.au" len="220544" min="-0.728581" max="0.715371" rms="0.10467"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="4">
+				<controlpoint t="2.242974143654" val="1.000000000000"/>
+				<controlpoint t="2.456590712958" val="0.859154939651"/>
+				<controlpoint t="3.583418116038" val="0.084507048130"/>
+				<controlpoint t="3.770332614180" val="0.000000100000"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="wings-inconsistent-flutter" channel="0" linked="1" mute="1" solo="0" height="150" minimized="0" isSelected="1" rate="48000" gain="10.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.21362500" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="429917">
+				<waveblock start="0">
+					<simpleblockfile filename="e080871a.au" len="262144" min="-0.050873" max="0.055878" rms="0.012177"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e08086b3.au" len="167773" min="-0.031677" max="0.034668" rms="0.006489"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="3">
+				<controlpoint t="2.296369689326" val="1.000000000000"/>
+				<controlpoint t="2.606113714817" val="1.000000000000"/>
+				<controlpoint t="4.149493428040" val="0.028169035912"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="wings-inconsistent-flutter" channel="1" linked="0" mute="1" solo="0" height="150" minimized="0" isSelected="1" rate="48000" gain="10.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.21362500" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="429917">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808e47.au" len="262144" min="-0.050995" max="0.055847" rms="0.012177"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e0808716.au" len="167773" min="-0.031433" max="0.034729" rms="0.00649"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="3">
+				<controlpoint t="2.296369689326" val="1.000000000000"/>
+				<controlpoint t="2.606113714817" val="1.000000000000"/>
+				<controlpoint t="4.149493428040" val="0.028169035912"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="thud-harder" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="12.589254" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="19968">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808683.au" len="19968" min="-0.957642" max="0.856018" rms="0.203674"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="483397__abacagi__bat-swarm-sfx" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="48000" gain="0.025119" pan="0.0" colorindex="0">
+		<waveclip offset="0.55006250" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="175080">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808701.au" len="175080" min="-0.694699" max="0.691181" rms="0.102103"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="4">
+				<controlpoint t="2.242974143654" val="1.000000000000"/>
+				<controlpoint t="2.456590712958" val="0.859154939651"/>
+				<controlpoint t="3.583418116038" val="0.084507048130"/>
+				<controlpoint t="3.647500000000" val="0.000785078778"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="483397__abacagi__bat-swarm-sfx" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="48000" gain="0.025119" pan="0.0" colorindex="0">
+		<waveclip offset="0.55006250" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="175080">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808196.au" len="175080" min="-0.680594" max="0.741751" rms="0.103149"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="4">
+				<controlpoint t="2.242974143654" val="1.000000000000"/>
+				<controlpoint t="2.456590712958" val="0.859154939651"/>
+				<controlpoint t="3.583418116038" val="0.084507048130"/>
+				<controlpoint t="3.647500000000" val="0.000785078778"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="wings-inconsistent-flutter" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="48000" gain="10.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.21362500" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="191229">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808251.au" len="191229" min="-0.050873" max="0.055878" rms="0.01281"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="3">
+				<controlpoint t="2.296369689326" val="1.000000000000"/>
+				<controlpoint t="2.606113714817" val="1.000000000000"/>
+				<controlpoint t="3.983937500000" val="0.041310696598"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="wings-inconsistent-flutter" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="48000" gain="10.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.21362500" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="191229">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808fe5.au" len="191229" min="-0.050995" max="0.055847" rms="0.01281"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="3">
+				<controlpoint t="2.296369689326" val="1.000000000000"/>
+				<controlpoint t="2.606113714817" val="1.000000000000"/>
+				<controlpoint t="3.983937500000" val="0.041310696598"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+</project>
