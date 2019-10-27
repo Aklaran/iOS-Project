@@ -8,19 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		4D35D08323651639008445BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D08223651639008445BE /* AppDelegate.swift */; };
-		4D35D08523651639008445BE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D08423651639008445BE /* GameScene.sks */; };
 		4D35D08723651639008445BE /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D08623651639008445BE /* Actions.sks */; };
 		4D35D08923651639008445BE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D08823651639008445BE /* GameScene.swift */; };
 		4D35D08B23651639008445BE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D08A23651639008445BE /* GameViewController.swift */; };
 		4D35D08E23651639008445BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D08C23651639008445BE /* Main.storyboard */; };
 		4D35D0902365163D008445BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D08F2365163D008445BE /* Assets.xcassets */; };
 		4D35D0932365163D008445BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D0912365163D008445BE /* LaunchScreen.storyboard */; };
+		4D35D09C23651834008445BE /* lab9images in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D09B23651834008445BE /* lab9images */; };
+		4D35D09E2365195B008445BE /* StartGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D09D2365195B008445BE /* StartGameScene.swift */; };
+		4D35D0A023651B1D008445BE /* Invader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D09F23651B1D008445BE /* Invader.swift */; };
+		4D35D0A223651B7E008445BE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0A123651B7E008445BE /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D35D07F23651639008445BE /* Space Destgroyers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space Destgroyers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D35D08223651639008445BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4D35D08423651639008445BE /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		4D35D08623651639008445BE /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		4D35D08823651639008445BE /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		4D35D08A23651639008445BE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +30,10 @@
 		4D35D08F2365163D008445BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D35D0922365163D008445BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D35D0942365163D008445BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D35D09B23651834008445BE /* lab9images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lab9images; sourceTree = SOURCE_ROOT; };
+		4D35D09D2365195B008445BE /* StartGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameScene.swift; sourceTree = "<group>"; };
+		4D35D09F23651B1D008445BE /* Invader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invader.swift; sourceTree = "<group>"; };
+		4D35D0A123651B7E008445BE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,16 +67,27 @@
 			isa = PBXGroup;
 			children = (
 				4D35D08223651639008445BE /* AppDelegate.swift */,
-				4D35D08423651639008445BE /* GameScene.sks */,
 				4D35D08623651639008445BE /* Actions.sks */,
+				4D35D09D2365195B008445BE /* StartGameScene.swift */,
 				4D35D08823651639008445BE /* GameScene.swift */,
 				4D35D08A23651639008445BE /* GameViewController.swift */,
+				4D35D09A23651761008445BE /* Models */,
 				4D35D08C23651639008445BE /* Main.storyboard */,
 				4D35D08F2365163D008445BE /* Assets.xcassets */,
+				4D35D09B23651834008445BE /* lab9images */,
 				4D35D0912365163D008445BE /* LaunchScreen.storyboard */,
 				4D35D0942365163D008445BE /* Info.plist */,
 			);
 			path = "Space Destgroyers";
+			sourceTree = "<group>";
+		};
+		4D35D09A23651761008445BE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4D35D09F23651B1D008445BE /* Invader.swift */,
+				4D35D0A123651B7E008445BE /* Player.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,8 +149,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D35D08E23651639008445BE /* Main.storyboard in Resources */,
-				4D35D08523651639008445BE /* GameScene.sks in Resources */,
 				4D35D0902365163D008445BE /* Assets.xcassets in Resources */,
+				4D35D09C23651834008445BE /* lab9images in Resources */,
 				4D35D0932365163D008445BE /* LaunchScreen.storyboard in Resources */,
 				4D35D08723651639008445BE /* Actions.sks in Resources */,
 			);
@@ -147,7 +164,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D35D08923651639008445BE /* GameScene.swift in Sources */,
+				4D35D09E2365195B008445BE /* StartGameScene.swift in Sources */,
+				4D35D0A023651B1D008445BE /* Invader.swift in Sources */,
 				4D35D08B23651639008445BE /* GameViewController.swift in Sources */,
+				4D35D0A223651B7E008445BE /* Player.swift in Sources */,
 				4D35D08323651639008445BE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
