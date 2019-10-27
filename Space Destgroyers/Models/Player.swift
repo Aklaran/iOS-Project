@@ -52,6 +52,23 @@ class Player: SKSpriteNode {
   }
   
   func fireBullet(scene: SKScene){
-    // to be implemented later, once we have bullets...
+    if !canFire {
+      return
+    } else {
+      canFire = false   // if we comment out or set to true, rapid firing is possible
+      let bullet = PlayerBullet(imageName: "laser.png" ,bulletSound: "laser-sound.mp3")
+      bullet.position.x = self.position.x
+      bullet.position.y = self.position.y + self.size.height/2
+      scene.addChild(bullet)
+      let moveBulletAction = SKAction.move(to: CGPoint(x:self.position.x,y:scene.size.height + bullet.size.height), duration: 1.0)
+      let removeBulletAction = SKAction.removeFromParent()
+      bullet.run(SKAction.sequence([moveBulletAction,removeBulletAction]))
+      // our delay to stop rapid firing...
+      let waitToEnableFire = SKAction.wait(forDuration: 0.5)
+      run(waitToEnableFire,completion:{
+        self.canFire = true
+      })
+    }
   }
+  
 }

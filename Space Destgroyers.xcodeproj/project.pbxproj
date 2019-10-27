@@ -12,12 +12,15 @@
 		4D35D08923651639008445BE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D08823651639008445BE /* GameScene.swift */; };
 		4D35D08B23651639008445BE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D08A23651639008445BE /* GameViewController.swift */; };
 		4D35D08E23651639008445BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D08C23651639008445BE /* Main.storyboard */; };
-		4D35D0902365163D008445BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D08F2365163D008445BE /* Assets.xcassets */; };
 		4D35D0932365163D008445BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D0912365163D008445BE /* LaunchScreen.storyboard */; };
 		4D35D09C23651834008445BE /* lab9images in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D09B23651834008445BE /* lab9images */; };
 		4D35D09E2365195B008445BE /* StartGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D09D2365195B008445BE /* StartGameScene.swift */; };
 		4D35D0A023651B1D008445BE /* Invader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D09F23651B1D008445BE /* Invader.swift */; };
 		4D35D0A223651B7E008445BE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0A123651B7E008445BE /* Player.swift */; };
+		4D35D0A423651F76008445BE /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0A323651F76008445BE /* Bullet.swift */; };
+		4D35D0A62365206D008445BE /* PlayerBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0A52365206C008445BE /* PlayerBullet.swift */; };
+		4D35D0A823652099008445BE /* InvaderBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0A723652099008445BE /* InvaderBullet.swift */; };
+		4D35D0A923652383008445BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D08F2365163D008445BE /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		4D35D09D2365195B008445BE /* StartGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameScene.swift; sourceTree = "<group>"; };
 		4D35D09F23651B1D008445BE /* Invader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invader.swift; sourceTree = "<group>"; };
 		4D35D0A123651B7E008445BE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		4D35D0A323651F76008445BE /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		4D35D0A52365206C008445BE /* PlayerBullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBullet.swift; sourceTree = "<group>"; };
+		4D35D0A723652099008445BE /* InvaderBullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvaderBullet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,9 @@
 			children = (
 				4D35D09F23651B1D008445BE /* Invader.swift */,
 				4D35D0A123651B7E008445BE /* Player.swift */,
+				4D35D0A323651F76008445BE /* Bullet.swift */,
+				4D35D0A723652099008445BE /* InvaderBullet.swift */,
+				4D35D0A52365206C008445BE /* PlayerBullet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -149,10 +158,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D35D08E23651639008445BE /* Main.storyboard in Resources */,
-				4D35D0902365163D008445BE /* Assets.xcassets in Resources */,
 				4D35D09C23651834008445BE /* lab9images in Resources */,
 				4D35D0932365163D008445BE /* LaunchScreen.storyboard in Resources */,
 				4D35D08723651639008445BE /* Actions.sks in Resources */,
+				4D35D0A923652383008445BE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +174,10 @@
 			files = (
 				4D35D08923651639008445BE /* GameScene.swift in Sources */,
 				4D35D09E2365195B008445BE /* StartGameScene.swift in Sources */,
+				4D35D0A62365206D008445BE /* PlayerBullet.swift in Sources */,
+				4D35D0A823652099008445BE /* InvaderBullet.swift in Sources */,
 				4D35D0A023651B1D008445BE /* Invader.swift in Sources */,
+				4D35D0A423651F76008445BE /* Bullet.swift in Sources */,
 				4D35D08B23651639008445BE /* GameViewController.swift in Sources */,
 				4D35D0A223651B7E008445BE /* Player.swift in Sources */,
 				4D35D08323651639008445BE /* AppDelegate.swift in Sources */,
