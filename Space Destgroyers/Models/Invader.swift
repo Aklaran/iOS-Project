@@ -6,12 +6,17 @@ class Invader: SKSpriteNode{
   var invaderRow = 0
   var invaderColumn = 0
   
+  let sound = SKAudioNode(fileNamed: "lab9images/beep.mp3")
+  
   init() {
     // we have three types of invader images so randomly chose among these
     let randNum = Int(arc4random_uniform(3) + 1)
     let texture = SKTexture(imageNamed: "invader\(randNum)")
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     self.name = "invader"
+    
+    // matt - make invaders have positional sound
+    addChild(sound)
     
     // preparing invaders for collisions once we add physics...
     

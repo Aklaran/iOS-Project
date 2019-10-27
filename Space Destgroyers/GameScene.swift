@@ -170,10 +170,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var canMove = true
   func moveInvaders(){
     if (canMove) {
-      print("can move")
+//      print("can move")
       var changeDirection = false
       enumerateChildNodes(withName: "invader") { node, stop in
-        print("enumerating")
+//        print("enumerating")
         let invader = node as! SKSpriteNode
         let invaderHalfWidth = invader.size.width/2
         invader.position.x -= CGFloat(self.invaderSpeed)
@@ -185,7 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        }
       }
       if(changeDirection == true){
-        print("changing direction")
+//        print("changing direction")
         self.invaderSpeed *= -1
         self.enumerateChildNodes(withName: "invader") { node, stop in
           let invader = node as! SKSpriteNode
