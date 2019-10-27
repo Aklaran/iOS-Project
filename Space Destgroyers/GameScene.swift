@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import CoreMotion
 
 var levelNum = 1
 
@@ -20,8 +21,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var invadersWhoCanFire:[Invader] = [Invader]()  // will increase with each level
   let player:Player = Player()
   let maxLevels = 3
-  var backgroundMusic : SKAudioNode!
-    
+//  var backgroundMusic : SKAudioNode!
+  var motionManager: CMMotionManager = CMMotionManager()
+  var accelerationX: CGFloat = 0.0
+  
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
@@ -35,6 +38,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       self.physicsWorld.contactDelegate = self as SKPhysicsContactDelegate
       self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
       self.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
+      
+      setupAccelerometer()
       
       // audio node test
 //      let music = SKAudioNode(fileNamed: "beeps")
@@ -111,6 +116,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
       moveInvaders()
+      
+      if let accelerometerData = motionManager.accelerometerData {
+        accelerationX = CGFloat(accelerometerData.acceleration.x)
+      }
     }
   
   // MARK: - Game Management Methods
@@ -292,5 +301,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func findIndex<T : Equatable>(array : [T], valueToFind : T) -> Int? {
     return array.firstIndex(where: { $0 == valueToFind })
   }
+  
+  // MARK: Core Motion
+  func setupAccelerometer(){
+    motionManager = CMMotionManager()
+    motionManager.startAccelerometerUpdates()
+  }
+  
+  override func didSimulatePhysics() {
+    player.physicsBody?.velocity = CGVector(dx: accelerationX * 600, dy: 0)
+  }
+  
   
 }
