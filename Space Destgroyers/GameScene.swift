@@ -25,6 +25,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var motionManager: CMMotionManager = CMMotionManager()
   var accelerationX: CGFloat = 0.0
   
+  var invader : Invader? = nil
+  
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
@@ -97,7 +99,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-      player.fireBullet(scene: self)
+//      player.fireBullet(scene: self)
+      invader?.position = touches.first?.location(in: self) as! CGPoint
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -160,6 +163,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tempInvader.invaderRow = invaderRow
         tempInvader.invaderColumn = invaderColumn
         addChild(tempInvader)
+        invader = tempInvader // my addition
         if(i == rowsOfInvaders){
           invadersWhoCanFire.append(tempInvader)
         }
