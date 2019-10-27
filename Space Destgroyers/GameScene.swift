@@ -147,9 +147,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var invaderRow = 0;
     var invaderColumn = 0;
     let numberOfInvaders = levelNum * 2 + 1
-    for i in 1...rowsOfInvaders {
+    for i in 1...1 {
+//      for i in 1...rowsOfInvaders {
       invaderRow = i
-      for j in 1...numberOfInvaders {
+      for j in 1...1 {
+//        for j in 1...numberOfInvaders {
         invaderColumn = j
         let tempInvader:Invader = Invader()
         let invaderHalfWidth:CGFloat = tempInvader.size.width/2
@@ -168,16 +170,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var canMove = true
   func moveInvaders(){
     if (canMove) {
+      print("can move")
       var changeDirection = false
       enumerateChildNodes(withName: "invader") { node, stop in
+        print("enumerating")
         let invader = node as! SKSpriteNode
         let invaderHalfWidth = invader.size.width/2
         invader.position.x -= CGFloat(self.invaderSpeed)
-        if(invader.position.x > self.rightBounds - invaderHalfWidth || invader.position.x < self.leftBounds + invaderHalfWidth){
+        if (invader.position.x > 360 || invader.position.x < 20) {
           changeDirection = true
         }
+//        if(invader.position.x > self.rightBounds - invaderHalfWidth || invader.position.x < self.leftBounds + invaderHalfWidth){
+//          changeDirection = true
+//        }
       }
       if(changeDirection == true){
+        print("changing direction")
         self.invaderSpeed *= -1
         self.enumerateChildNodes(withName: "invader") { node, stop in
           let invader = node as! SKSpriteNode
@@ -185,11 +193,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         changeDirection = false
       }
-      canMove = false
-      let waitToEnableMove = SKAction.wait(forDuration: 0.2)
-      run(waitToEnableMove,completion:{
-        self.canMove = true
-      })
+//      canMove = false
+//      let waitToEnableMove = SKAction.wait(forDuration: 0.2)
+//      run(waitToEnableMove,completion:{
+//        self.canMove = true
+//      })
     }
   }
   
