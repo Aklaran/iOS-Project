@@ -1,12 +1,30 @@
 import UIKit
 import SpriteKit
 
+//extension CGPoint {
+//
+//  var xChanged = { print("x changed") }
+//
+//  override var X {
+//    didSet {
+//      xChanged()
+//    }
+//  }
+//}
+
 class Invader: SKSpriteNode{
   // we will determine the invader's row/column later, set to (0,0) for now
   var invaderRow = 0
   var invaderColumn = 0
   
+  
   let sound = SKAudioNode(fileNamed: "lab9images/beep.mp3")
+  override var position : CGPoint {
+    didSet {
+      sound.position = position
+    }
+  }
+  
   
   init() {
     // we have three types of invader images so randomly chose among these
@@ -16,6 +34,7 @@ class Invader: SKSpriteNode{
     self.name = "invader"
     
     // matt - make invaders have positional sound
+    sound.isPositional = true
     addChild(sound)
     
     // preparing invaders for collisions once we add physics...
