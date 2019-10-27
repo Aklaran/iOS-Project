@@ -28,8 +28,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // my stuff
   var invader : Invader? = nil
   
-  private var _listener : SKNode? // not sure why it needs to be this complicated
-  override weak var listener: SKNode? { get {return _listener} set { _listener = newValue }}
+//  private var _listener : SKNode? // not sure why it needs to be this complicated
+//  override weak var listener: SKNode? { get {return _listener} set { _listener = newValue }}
   
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
