@@ -21,6 +21,8 @@
 		4D35D0A62365206D008445BE /* PlayerBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0A52365206C008445BE /* PlayerBullet.swift */; };
 		4D35D0A823652099008445BE /* InvaderBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0A723652099008445BE /* InvaderBullet.swift */; };
 		4D35D0A923652383008445BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D08F2365163D008445BE /* Assets.xcassets */; };
+		4D35D0AB2365262A008445BE /* CollisionCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0AA2365262A008445BE /* CollisionCategories.swift */; };
+		4D35D0AD2365294F008445BE /* LevelCompleteScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0AC2365294F008445BE /* LevelCompleteScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		4D35D0A323651F76008445BE /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		4D35D0A52365206C008445BE /* PlayerBullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBullet.swift; sourceTree = "<group>"; };
 		4D35D0A723652099008445BE /* InvaderBullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvaderBullet.swift; sourceTree = "<group>"; };
+		4D35D0AA2365262A008445BE /* CollisionCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategories.swift; sourceTree = "<group>"; };
+		4D35D0AC2365294F008445BE /* LevelCompleteScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCompleteScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,10 +95,12 @@
 			isa = PBXGroup;
 			children = (
 				4D35D09F23651B1D008445BE /* Invader.swift */,
+				4D35D0AA2365262A008445BE /* CollisionCategories.swift */,
 				4D35D0A123651B7E008445BE /* Player.swift */,
 				4D35D0A323651F76008445BE /* Bullet.swift */,
 				4D35D0A723652099008445BE /* InvaderBullet.swift */,
 				4D35D0A52365206C008445BE /* PlayerBullet.swift */,
+				4D35D0AC2365294F008445BE /* LevelCompleteScene.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,7 +181,9 @@
 				4D35D08923651639008445BE /* GameScene.swift in Sources */,
 				4D35D09E2365195B008445BE /* StartGameScene.swift in Sources */,
 				4D35D0A62365206D008445BE /* PlayerBullet.swift in Sources */,
+				4D35D0AD2365294F008445BE /* LevelCompleteScene.swift in Sources */,
 				4D35D0A823652099008445BE /* InvaderBullet.swift in Sources */,
+				4D35D0AB2365262A008445BE /* CollisionCategories.swift in Sources */,
 				4D35D0A023651B1D008445BE /* Invader.swift in Sources */,
 				4D35D0A423651F76008445BE /* Bullet.swift in Sources */,
 				4D35D08B23651639008445BE /* GameViewController.swift in Sources */,

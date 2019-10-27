@@ -11,7 +11,7 @@ import GameplayKit
 
 var levelNum = 1
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let rowsOfInvaders = 4
   var invaderSpeed = 2
@@ -29,6 +29,12 @@ class GameScene: SKScene {
       backgroundColor = SKColor.black
       setupInvaders()
       setupPlayer()
+      
+      self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+      self.physicsWorld.contactDelegate = self as SKPhysicsContactDelegate
+      self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+      self.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
+      
       
 //        // Get label node from scene and store it for use later
 //        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
@@ -85,6 +91,26 @@ class GameScene: SKScene {
         // Called before each frame is rendered
       moveInvaders()
     }
+  
+  // MARK: - Game Management Methods
+  func levelComplete(){
+    if(levelNum <= maxLevels){
+      let levelCompleteScene = LevelCompleteScene(size: size)
+      levelCompleteScene.scaleMode = scaleMode
+      let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
+      view?.presentScene(levelCompleteScene,transition: transitionType)
+    } else {
+      levelNum = 1
+      newGame()
+    }
+  }
+  
+  func newGame(){
+    let gameOverScene = StartGameScene(size: size)
+    gameOverScene.scaleMode = scaleMode
+    let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
+    view?.presentScene(gameOverScene,transition: transitionType)
+  }
   
   // MARK: - Invader Methods
   func setupInvaders(){
@@ -143,6 +169,7 @@ class GameScene: SKScene {
     if(invadersWhoCanFire.isEmpty){
       levelNum += 1
       // Complete the level later by adding its method here! (Part 5)
+      levelComplete()
     }else{
       let randomInvader = invadersWhoCanFire.randomElement()!
       randomInvader.fireBullet(scene: self)
@@ -153,6 +180,88 @@ class GameScene: SKScene {
   func setupPlayer() {
     player.position = CGPoint(x: self.frame.midX, y:player.size.height/2 + 10)
     addChild(player)
+  }
+  
+  // MARK: - Implementing SKPhysicsContactDelegate protocol
+  func didBegin(_ contact: SKPhysicsContact) {
+    
+    var firstBody: SKPhysicsBody
+    var secondBody: SKPhysicsBody
+    if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+      firstBody = contact.bodyA
+      secondBody = contact.bodyB
+    } else {
+      firstBody = contact.bodyB
+      secondBody = contact.bodyA
+    }
+    
+    if ((firstBody.categoryBitMask & CollisionCategories.Invader != 0) &&
+      (secondBody.categoryBitMask & CollisionCategories.PlayerBullet != 0)){
+      if (contact.bodyA.node?.parent == nil || contact.bodyB.node?.parent == nil) {
+        return
+      }
+      
+      let theInvader = firstBody.node as! Invader
+      let newInvaderRow = theInvader.invaderRow - 1
+      let newInvaderColumn = theInvader.invaderColumn
+      if(newInvaderRow >= 1){
+        self.enumerateChildNodes(withName: "invader") { node, stop in
+          let invader = node as! Invader
+          if invader.invaderRow == newInvaderRow && invader.invaderColumn == newInvaderColumn{
+            self.invadersWhoCanFire.append(invader)
+            // stop.memory = true --> Deprecated code to check leaks
+          }
+        }
+      }
+      
+      let invaderIndex = findIndex(array: invadersWhoCanFire,valueToFind: theInvader)
+      if(invaderIndex != nil){
+        invadersWhoCanFire.remove(at: invaderIndex!)
+      }
+      theInvader.removeFromParent()
+      secondBody.node?.removeFromParent()
+    }
+    
+    if ((firstBody.categoryBitMask & CollisionCategories.Player != 0) &&
+      (secondBody.categoryBitMask & CollisionCategories.InvaderBullet != 0)) {
+      player.die()
+    }
+    
+    if ((firstBody.categoryBitMask & CollisionCategories.Invader != 0) &&
+      (secondBody.categoryBitMask & CollisionCategories.Player != 0)) {
+      player.kill()
+    }
+    
+    if ((firstBody.categoryBitMask & CollisionCategories.Invader != 0) &&
+      (secondBody.categoryBitMask & CollisionCategories.PlayerBullet != 0)){
+      if (contact.bodyA.node?.parent == nil || contact.bodyB.node?.parent == nil) {
+        return
+      }
+      
+      let theInvader = firstBody.node as! Invader
+      let newInvaderRow = theInvader.invaderRow - 1
+      let newInvaderColumn = theInvader.invaderColumn
+      if(newInvaderRow >= 1){
+        self.enumerateChildNodes(withName: "invader") { node, stop in
+          let invader = node as! Invader
+          if invader.invaderRow == newInvaderRow && invader.invaderColumn == newInvaderColumn{
+            self.invadersWhoCanFire.append(invader)
+            // stop.memory = true --> Deprecated code to check leaks
+          }
+        }
+      }
+      let invaderIndex = findIndex(array: invadersWhoCanFire,valueToFind: firstBody.node as! Invader)
+      if(invaderIndex != nil){
+        invadersWhoCanFire.remove(at: invaderIndex!)
+      }
+      theInvader.removeFromParent()
+      secondBody.node?.removeFromParent()
+    }
+  }
+  
+  // MARK: Matt's Helpers
+  func findIndex<T : Equatable>(array : [T], valueToFind : T) -> Int? {
+    return array.firstIndex(where: { $0 == valueToFind })
   }
   
 }

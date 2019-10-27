@@ -41,14 +41,31 @@ class Player: SKSpriteNode {
   
   func die (){
     // logic to be determined shortly
+    if (!invincible) {
+      lives -= 1
+    }
   }
   
   func kill(){
     // logic to be determined shortly
+    levelNum = 1
+    let gameOverScene = StartGameScene(size: self.scene!.size)
+    gameOverScene.scaleMode = self.scene!.scaleMode
+    let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
+    self.scene!.view!.presentScene(gameOverScene,transition: transitionType)
   }
   
   func respawn(){
     // logic to be determined shortly
+    invincible = true
+    let fadeOutAction = SKAction.fadeOut(withDuration: 0.4)
+    let fadeInAction = SKAction.fadeIn(withDuration: 0.4)
+    let fadeOutIn = SKAction.sequence([fadeOutAction,fadeInAction])
+    let fadeOutInAction = SKAction.repeat(fadeOutIn, count: 5)
+    let setInvicibleFalse = SKAction.run(){
+      self.invincible = false
+    }
+    run(SKAction.sequence([fadeOutInAction,setInvicibleFalse]))
   }
   
   func fireBullet(scene: SKScene){
