@@ -73,7 +73,7 @@ class Player: SKSpriteNode {
       return
     } else {
       canFire = false   // if we comment out or set to true, rapid firing is possible
-      let bullet = PlayerBullet(imageName: "laser.png" ,bulletSound: "laser-sound.mp3")
+      let bullet = PlayerBullet(imageName: "laser.png" ,bulletSound: "lab9images/laser-sound.mp3")
       bullet.position.x = self.position.x
       bullet.position.y = self.position.y + self.size.height/2
       scene.addChild(bullet)
