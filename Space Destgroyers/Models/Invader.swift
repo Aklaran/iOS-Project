@@ -1,7 +1,7 @@
 import UIKit
 import SpriteKit
 
-class Invader: SKSpriteNode {
+class Invader: SKSpriteNode{
   // we will determine the invader's row/column later, set to (0,0) for now
   var invaderRow = 0
   var invaderColumn = 0

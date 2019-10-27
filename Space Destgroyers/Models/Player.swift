@@ -80,6 +80,15 @@ class Player: SKSpriteNode {
       let moveBulletAction = SKAction.move(to: CGPoint(x:self.position.x,y:scene.size.height + bullet.size.height), duration: 1.0)
       let removeBulletAction = SKAction.removeFromParent()
       bullet.run(SKAction.sequence([moveBulletAction,removeBulletAction]))
+      
+      // for sound
+      
+      let soundNode = SKAudioNode(fileNamed: "laser-sound.mp3")
+      soundNode.isPositional = true // should be the default
+      soundNode.position.x = self.position.x
+      soundNode.position.y = self.position.y
+      addChild(soundNode)
+      
       // our delay to stop rapid firing...
       let waitToEnableFire = SKAction.wait(forDuration: 0.5)
       run(waitToEnableFire,completion:{
