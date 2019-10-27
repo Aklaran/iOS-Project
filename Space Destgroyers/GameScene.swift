@@ -20,6 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var invadersWhoCanFire:[Invader] = [Invader]()  // will increase with each level
   let player:Player = Player()
   let maxLevels = 3
+  var backgroundMusic : SKAudioNode!
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
@@ -34,6 +35,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       self.physicsWorld.contactDelegate = self as SKPhysicsContactDelegate
       self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
       self.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
+      
+      // audio node test
+//      let music = SKAudioNode(fileNamed: "beeps")
+//      music.run(SKAction.play())
+//      addChild(music)
+      
+//      print("outside the if")
+//      if let musicURL = Bundle.main.url(forResource: "laser-sound", withExtension: "mp3") {
+//        print(musicURL)
+//        backgroundMusic = SKAudioNode(url: musicURL)
+//        backgroundMusic.run(SKAction.play())
+//        addChild(backgroundMusic)
+//      } else {
+//        print("in the else")
+//      }
+      
+      // this works (commented for sanity):
+//      let audioNode = SKAudioNode(fileNamed: "lab9images/laser-sound.mp3")
+//      audioNode.isPositional = false
+//      addChild(audioNode)
       
       
 //        // Get label node from scene and store it for use later
