@@ -25,7 +25,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var motionManager: CMMotionManager = CMMotionManager()
   var accelerationX: CGFloat = 0.0
   
+  // my stuff
   var invader : Invader? = nil
+  
+  private var _listener : SKNode? // not sure why it needs to be this complicated
+  override weak var listener: SKNode? { get {return _listener} set { _listener = newValue }}
   
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
@@ -230,6 +234,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func setupPlayer() {
     player.position = CGPoint(x: self.frame.midX, y:player.size.height/2 + 10)
     addChild(player)
+    listener = player
   }
   
   // MARK: - Implementing SKPhysicsContactDelegate protocol
