@@ -135,23 +135,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
   
+  var canMove = true
   func moveInvaders(){
-    var changeDirection = false
-    enumerateChildNodes(withName: "invader") { node, stop in
-      let invader = node as! SKSpriteNode
-      let invaderHalfWidth = invader.size.width/2
-      invader.position.x -= CGFloat(self.invaderSpeed)
-      if(invader.position.x > self.rightBounds - invaderHalfWidth || invader.position.x < self.leftBounds + invaderHalfWidth){
-        changeDirection = true
-      }
-    }
-    if(changeDirection == true){
-      self.invaderSpeed *= -1
-      self.enumerateChildNodes(withName: "invader") { node, stop in
+    if (canMove) {
+      var changeDirection = false
+      enumerateChildNodes(withName: "invader") { node, stop in
         let invader = node as! SKSpriteNode
-        invader.position.y -= CGFloat(46)
+        let invaderHalfWidth = invader.size.width/2
+        invader.position.x -= CGFloat(self.invaderSpeed)
+        if(invader.position.x > self.rightBounds - invaderHalfWidth || invader.position.x < self.leftBounds + invaderHalfWidth){
+          changeDirection = true
+        }
       }
-      changeDirection = false
+      if(changeDirection == true){
+        self.invaderSpeed *= -1
+        self.enumerateChildNodes(withName: "invader") { node, stop in
+          let invader = node as! SKSpriteNode
+          invader.position.y -= CGFloat(46)
+        }
+        changeDirection = false
+      }
+      canMove = false
+      let waitToEnableMove = SKAction.wait(forDuration: 0.2)
+      run(waitToEnableMove,completion:{
+        self.canMove = true
+      })
     }
   }
   
