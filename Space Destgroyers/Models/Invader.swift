@@ -1,5 +1,6 @@
 import UIKit
 import SpriteKit
+import AVFoundation
 
 //extension CGPoint {
 //
@@ -16,12 +17,14 @@ class Invader: SKSpriteNode{
   // we will determine the invader's row/column later, set to (0,0) for now
   var invaderRow = 0
   var invaderColumn = 0
+  let player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: "lab9images/beep.mp3"))
   
   
   let sound = SKAudioNode(fileNamed: "lab9images/beep.mp3")
   override var position : CGPoint {
     didSet {
       sound.position = position
+      player.pan = Float(position.x/UIScreen.main.bounds.width)
     }
   }
   
@@ -35,7 +38,9 @@ class Invader: SKSpriteNode{
     
     // matt - make invaders have positional sound
     sound.isPositional = true
-    addChild(sound)
+    //addChild(sound)
+    
+    player.play()
     
     // preparing invaders for collisions once we add physics...
     

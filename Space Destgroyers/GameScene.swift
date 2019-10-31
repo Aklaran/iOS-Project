@@ -15,7 +15,7 @@ var levelNum = 1
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let rowsOfInvaders = 4
-  var invaderSpeed = 2
+  var invaderSpeed = 0.3
   let leftBounds = CGFloat(30)
   var rightBounds = CGFloat(0)
   var invadersWhoCanFire:[Invader] = [Invader]()  // will increase with each level
@@ -179,27 +179,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func moveInvaders(){
     if (canMove) {
 //      print("can move")
-      var changeDirection = false
+      var changeDirection = true
       enumerateChildNodes(withName: "invader") { node, stop in
 //        print("enumerating")
         let invader = node as! SKSpriteNode
         let invaderHalfWidth = invader.size.width/2
-        invader.position.x -= CGFloat(self.invaderSpeed)
-        if (invader.position.x > 360 || invader.position.x < 20) {
-          changeDirection = true
-        }
+        // invader.position.x -= CGFloat(self.invaderSpeed)
+        //if (invader.position.x > 360 || invader.position.x < 20) {
+        //  changeDirection = true
+        //}
 //        if(invader.position.x > self.rightBounds - invaderHalfWidth || invader.position.x < self.leftBounds + invaderHalfWidth){
 //          changeDirection = true
 //        }
       }
       if(changeDirection == true){
 //        print("changing direction")
-        self.invaderSpeed *= -1
+        // self.invaderSpeed *= -0.3
         self.enumerateChildNodes(withName: "invader") { node, stop in
           let invader = node as! SKSpriteNode
-          invader.position.y -= CGFloat(46)
+          invader.position.y -= CGFloat(2)
         }
-        changeDirection = false
+        // changeDirection = false
       }
 //      canMove = false
 //      let waitToEnableMove = SKAction.wait(forDuration: 0.2)
