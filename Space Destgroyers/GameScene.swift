@@ -47,6 +47,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       
       setupAccelerometer()
       
+      addChild(Bat())
+      
       // audio node test
 //      let music = SKAudioNode(fileNamed: "beeps")
 //      music.run(SKAction.play())

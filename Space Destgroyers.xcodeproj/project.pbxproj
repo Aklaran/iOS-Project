@@ -23,6 +23,7 @@
 		4D35D0A923652383008445BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D08F2365163D008445BE /* Assets.xcassets */; };
 		4D35D0AB2365262A008445BE /* CollisionCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0AA2365262A008445BE /* CollisionCategories.swift */; };
 		4D35D0AD2365294F008445BE /* LevelCompleteScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0AC2365294F008445BE /* LevelCompleteScene.swift */; };
+		4DF98DCF236BC37D008DE5B8 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF98DCE236BC37D008DE5B8 /* Bat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		4D35D0A723652099008445BE /* InvaderBullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvaderBullet.swift; sourceTree = "<group>"; };
 		4D35D0AA2365262A008445BE /* CollisionCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategories.swift; sourceTree = "<group>"; };
 		4D35D0AC2365294F008445BE /* LevelCompleteScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCompleteScene.swift; sourceTree = "<group>"; };
+		4DF98DCE236BC37D008DE5B8 /* Bat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				4D35D0A723652099008445BE /* InvaderBullet.swift */,
 				4D35D0A52365206C008445BE /* PlayerBullet.swift */,
 				4D35D0AC2365294F008445BE /* LevelCompleteScene.swift */,
+				4DF98DCE236BC37D008DE5B8 /* Bat.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				4D35D0A823652099008445BE /* InvaderBullet.swift in Sources */,
 				4D35D0AB2365262A008445BE /* CollisionCategories.swift in Sources */,
 				4D35D0A023651B1D008445BE /* Invader.swift in Sources */,
+				4DF98DCF236BC37D008DE5B8 /* Bat.swift in Sources */,
 				4D35D0A423651F76008445BE /* Bullet.swift in Sources */,
 				4D35D08B23651639008445BE /* GameViewController.swift in Sources */,
 				4D35D0A223651B7E008445BE /* Player.swift in Sources */,
