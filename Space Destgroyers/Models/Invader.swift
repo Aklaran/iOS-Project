@@ -25,7 +25,7 @@ class Invader: SKSpriteNode{
   override var position : CGPoint {
     didSet {
       sound.position = position
-      //player.pan = Float(position.x/UIScreen.main.bounds.width)
+      player.pan = Float((position.x - UIScreen.main.bounds.width / 2)/(UIScreen.main.bounds.width/2))
     }
   }
   
