@@ -33,7 +33,7 @@ class Invader: SKSpriteNode{
   init() {
     // we have three types of invader images so randomly chose among these
     let randNum = Int(arc4random_uniform(3) + 1)
-    let texture = SKTexture(imageNamed: "invader\(randNum)")
+    let texture = SKTexture(imageNamed: "bat")
     
     
     
