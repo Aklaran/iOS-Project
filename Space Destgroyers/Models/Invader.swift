@@ -48,7 +48,7 @@ class Invader: SKSpriteNode{
     let url = URL(fileURLWithPath: path)
     player = try! AVAudioPlayer(contentsOf: url)
     player.numberOfLoops = -1 // makes it loop forever
-    player.play()
+//    player.play()
 //    player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: "beep-1"))
     
     

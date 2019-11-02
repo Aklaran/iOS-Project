@@ -24,6 +24,8 @@
 		4D35D0AB2365262A008445BE /* CollisionCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0AA2365262A008445BE /* CollisionCategories.swift */; };
 		4D35D0AD2365294F008445BE /* LevelCompleteScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0AC2365294F008445BE /* LevelCompleteScene.swift */; };
 		4DF98DCF236BC37D008DE5B8 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF98DCE236BC37D008DE5B8 /* Bat.swift */; };
+		4DF98DD2236DBA6E008DE5B8 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF98DD1236DBA6E008DE5B8 /* AudioManager.swift */; };
+		4DF98DD4236DBAA0008DE5B8 /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF98DD3236DBAA0008DE5B8 /* Emitter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		4D35D0AA2365262A008445BE /* CollisionCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategories.swift; sourceTree = "<group>"; };
 		4D35D0AC2365294F008445BE /* LevelCompleteScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCompleteScene.swift; sourceTree = "<group>"; };
 		4DF98DCE236BC37D008DE5B8 /* Bat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bat.swift; sourceTree = "<group>"; };
+		4DF98DD1236DBA6E008DE5B8 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		4DF98DD3236DBAA0008DE5B8 /* Emitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emitter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				4D35D09F23651B1D008445BE /* Invader.swift */,
+				4DF98DD0236DBA3A008DE5B8 /* Audio */,
 				4D35D0AA2365262A008445BE /* CollisionCategories.swift */,
 				4D35D0A123651B7E008445BE /* Player.swift */,
 				4D35D0A323651F76008445BE /* Bullet.swift */,
@@ -106,6 +111,15 @@
 				4DF98DCE236BC37D008DE5B8 /* Bat.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4DF98DD0236DBA3A008DE5B8 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				4DF98DD1236DBA6E008DE5B8 /* AudioManager.swift */,
+				4DF98DD3236DBAA0008DE5B8 /* Emitter.swift */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,10 +203,12 @@
 				4D35D0AB2365262A008445BE /* CollisionCategories.swift in Sources */,
 				4D35D0A023651B1D008445BE /* Invader.swift in Sources */,
 				4DF98DCF236BC37D008DE5B8 /* Bat.swift in Sources */,
+				4DF98DD4236DBAA0008DE5B8 /* Emitter.swift in Sources */,
 				4D35D0A423651F76008445BE /* Bullet.swift in Sources */,
 				4D35D08B23651639008445BE /* GameViewController.swift in Sources */,
 				4D35D0A223651B7E008445BE /* Player.swift in Sources */,
 				4D35D08323651639008445BE /* AppDelegate.swift in Sources */,
+				4DF98DD2236DBA6E008DE5B8 /* AudioManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

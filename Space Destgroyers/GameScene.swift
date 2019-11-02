@@ -14,6 +14,9 @@ var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
+  // stuff for the real game
+  let audioManager = AudioManager()
+  
   let rowsOfInvaders = 4
   var invaderSpeed = 0.3
   let leftBounds = CGFloat(30)
@@ -47,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       
       setupAccelerometer()
       
-      addChild(Bat())
+      addChild(Bat(audioManager: audioManager))
       
       // audio node test
 //      let music = SKAudioNode(fileNamed: "beeps")
