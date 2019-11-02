@@ -14,8 +14,8 @@ var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
-  let initialBatZ: CGFloat = 100
-  let finalBatZ: CGFloat = -100
+  let initialBatZ: CGFloat = 300
+  let finalBatZ: CGFloat = -300
   let audioManager = AudioManager()
   var bats : [Bat] = [Bat]()
   var rider: Rider? = nil
@@ -35,8 +35,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       self.bats.append(bat)
       self.addChild(bat)
     }
-    let sequence = SKAction.sequence([wait, spawn])
-    run(SKAction.repeatForever(sequence))
+    run(spawn) // just spawn one for now
+//    let sequence = SKAction.sequence([wait, spawn])
+//    run(SKAction.repeatForever(sequence))
   
   }
   
