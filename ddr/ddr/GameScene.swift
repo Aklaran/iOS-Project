@@ -16,6 +16,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let maxLevels = 3
   
+  let initialBatZ: CGFloat = 100
+  let finalBatZ: CGFloat = -100
+  
   let audioManager = AudioManager()
   let motionManager = CMMotionManager()
   
@@ -23,8 +26,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var bats : [Bat] = [Bat]()
   
   var rider: Rider? = nil
-  
-  var lastSpawnTime: TimeInterval? = nil
   
   override func didMove(to view: SKView) {
     backgroundColor = SKColor.black
@@ -36,11 +37,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let wait = SKAction.wait(forDuration: 3, withRange: 2)
     let spawn = SKAction.run {
       let bat = Bat(audioManager: self.audioManager)
+      bat.z = self.initialBatZ
       self.bats.append(bat)
-      bat.position = CGPoint(
-        x: Int.random(in: 0...Int(UIScreen.main.bounds.width)),
-        y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
-      )
       self.addChild(bat)
     }
     let sequence = SKAction.sequence([wait, spawn])
