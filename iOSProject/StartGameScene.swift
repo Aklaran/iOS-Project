@@ -1,5 +1,5 @@
 //
-//  LevelCompleteScene.swift
+//  StartGameScene.swift
 //  Space Destgroyers
 //
 //  Created by Matt Kern on 10/26/19.
@@ -8,14 +8,20 @@
 
 import UIKit
 import SpriteKit
+import UIKit
 
-class LevelCompleteScene: SKScene {
+class StartGameScene: SKScene {
   
   override func didMove(to view: SKView) {
-    self.backgroundColor = SKColor.black
-    let startGameButton = SKSpriteNode(imageNamed: "nextlevelbtn")
+    backgroundColor = SKColor.black
+    let background = SKSpriteNode(imageNamed: "background")
+    background.anchorPoint = CGPoint(x: 0.5, y: 0)
+    background.position = CGPoint(x: size.width/2, y: 0)
+    addChild(background)
+    
+    let startGameButton = SKSpriteNode(imageNamed: "newgamebtn")
     startGameButton.position = CGPoint(x: size.width/2, y: size.height/2 - 100)
-    startGameButton.name = "nextlevel"
+    startGameButton.name = "startgame"
     addChild(startGameButton)
   }
   
@@ -23,10 +29,10 @@ class LevelCompleteScene: SKScene {
     let touch = touches.first! as UITouch
     let touchLocation = touch.location(in: self)
     let touchedNode = self.atPoint(touchLocation)
-    if(touchedNode.name == "nextlevel"){
+    if touchedNode.name == "startgame" {
       let gameOverScene = GameScene(size: size)
       gameOverScene.scaleMode = scaleMode
-      let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
+      let transitionType = SKTransition.flipHorizontal(withDuration: 1.0)
       view?.presentScene(gameOverScene,transition: transitionType)
     }
   }
