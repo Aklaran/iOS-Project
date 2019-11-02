@@ -22,6 +22,9 @@ class AudioManager {
   
   func updateListenerPosition(to newPosition: CGPoint) {
     listenerPosition = newPosition
+    for emitter in emitters {
+      emitter.updateDestination(listenerPosition)
+    }
   }
   
 }

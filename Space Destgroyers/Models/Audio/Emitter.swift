@@ -47,7 +47,7 @@ class Emitter {
     recalibrate()
   }
   
-  func updateDestinationl(_ cgpt: CGPoint) {
+  func updateDestination(_ cgpt: CGPoint) {
     destination = cgpt
     recalibrate()
   }
