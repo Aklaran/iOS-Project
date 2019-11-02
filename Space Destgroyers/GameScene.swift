@@ -19,7 +19,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let leftBounds = CGFloat(30)
   var rightBounds = CGFloat(0)
   var invadersWhoCanFire:[Invader] = [Invader]()  // will increase with each level
-  let player:Player = Player()
+  let player:Rider = Rider()
   let maxLevels = 3
 //  var backgroundMusic : SKAudioNode!
   var motionManager: CMMotionManager = CMMotionManager()
@@ -31,23 +31,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //  private var _listener : SKNode? // not sure why it needs to be this complicated
 //  override weak var listener: SKNode? { get {return _listener} set { _listener = newValue }}
   
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+  private var label : SKLabelNode?
+  private var spinnyNode : SKShapeNode?
     
-    override func didMove(to view: SKView) {
+  override func didMove(to view: SKView) {
       
-      backgroundColor = SKColor.black
-      setupInvaders()
-      setupPlayer()
-      
-      self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
-      self.physicsWorld.contactDelegate = self as SKPhysicsContactDelegate
-      self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-      self.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
-      
-      setupAccelerometer()
-      
-      addChild(Bat())
+    backgroundColor = SKColor.black
+    setupInvaders()
+    setupPlayer()
+    
+    self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+    self.physicsWorld.contactDelegate = self as SKPhysicsContactDelegate
+    self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+    self.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
+    
+    addChild(Bat())
+    
+    startDeviceMotionUpdates()
       
       // audio node test
 //      let music = SKAudioNode(fileNamed: "beeps")
@@ -90,7 +90,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //                                              SKAction.removeFromParent()]))
 //        }
     }
-    
     
     func touchDown(atPoint pos : CGPoint) {
       
@@ -281,12 +280,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     if ((firstBody.categoryBitMask & CollisionCategories.Player != 0) &&
       (secondBody.categoryBitMask & CollisionCategories.InvaderBullet != 0)) {
-      player.die()
+      player.loseLife()
     }
     
     if ((firstBody.categoryBitMask & CollisionCategories.Invader != 0) &&
       (secondBody.categoryBitMask & CollisionCategories.Player != 0)) {
-      player.kill()
+      player.loseGame()
     }
     
     if ((firstBody.categoryBitMask & CollisionCategories.Invader != 0) &&
@@ -322,13 +321,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   // MARK: Core Motion
-  func setupAccelerometer(){
-    motionManager = CMMotionManager()
-    motionManager.startAccelerometerUpdates()
-  }
-  
-  override func didSimulatePhysics() {
-    player.physicsBody?.velocity = CGVector(dx: accelerationX * 600, dy: 0)
+  func startDeviceMotionUpdates() {
+    if motionManager.isDeviceMotionAvailable {
+      motionManager.deviceMotionUpdateInterval = 0.01
+      
+      let queue = OperationQueue()
+      motionManager.startDeviceMotionUpdates(to: queue) { [weak self] (data, error) in
+        // motion processing
+        guard let data = data, error == nil else {
+          // handle the errors somehow
+          print("Device Motion Data unavailable.")
+          return
+        }
+        
+        let x = data.rotationRate.x
+        let y = data.rotationRate.y
+        let z = data.rotationRate.z
+        
+        
+        print(z)
+        
+        DispatchQueue.main.async {
+          // update UI here
+        }
+      }
+    }
   }
   
   
