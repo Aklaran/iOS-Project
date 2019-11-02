@@ -107,9 +107,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4D35D07E23651639008445BE /* Space Destgroyers */ = {
+		4D35D07E23651639008445BE /* iOSProject */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4D35D0972365163D008445BE /* Build configuration list for PBXNativeTarget "Space Destgroyers" */;
+			buildConfigurationList = 4D35D0972365163D008445BE /* Build configuration list for PBXNativeTarget "iOSProject" */;
 			buildPhases = (
 				4D35D07B23651639008445BE /* Sources */,
 				4D35D07C23651639008445BE /* Frameworks */,
@@ -119,7 +119,7 @@
 			);
 			dependencies = (
 			);
-			name = "Space Destgroyers";
+			name = iOSProject;
 			productName = "Space Destgroyers";
 			productReference = 4D35D07F23651639008445BE /* iOSProject.app */;
 			productType = "com.apple.product-type.application";
@@ -152,7 +152,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4D35D07E23651639008445BE /* Space Destgroyers */,
+				4D35D07E23651639008445BE /* iOSProject */,
 			);
 		};
 /* End PBXProject section */
@@ -374,7 +374,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4D35D0972365163D008445BE /* Build configuration list for PBXNativeTarget "Space Destgroyers" */ = {
+		4D35D0972365163D008445BE /* Build configuration list for PBXNativeTarget "iOSProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D35D0982365163D008445BE /* Debug */,
