@@ -8,11 +8,13 @@
 
 import Foundation
 import SpriteKit
+import CoreMotion
 
 class Rider: SKSpriteNode {
   private var invincible = false
-  let audioManager: AudioManager?
   
+  let audioManager: AudioManager?
+  let motionManager: CMMotionManager?
   
   override var position: CGPoint {
     didSet {
@@ -30,15 +32,22 @@ class Rider: SKSpriteNode {
     }
   }
   
-  init(audioManager: AudioManager) {
+  init(audioManager: AudioManager, motionManager: CMMotionManager) {
     let texture = SKTexture(imageNamed: "player1")
+    
     self.audioManager = audioManager
+    self.motionManager = motionManager
+    
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
+    
+    beginMotionUpdates()
     // preparing player for collisions once we add physics...
   }
   
   required init?(coder aDecoder: NSCoder) {
     audioManager = nil
+    motionManager = nil
+    
     super.init(coder: aDecoder)
   }
   
@@ -70,34 +79,34 @@ class Rider: SKSpriteNode {
     run(SKAction.sequence([fadeOutInAction,setInvicibleFalse]))
   }
   
-  // MARK: - Core Motion
+// MARK: - Core Motion
 
-//  func beginMotionUpdates() {
-//    let queue = OperationQueue()
-//
-//    guard let motionManager = motionManager else {
-//      print("Motion Manager unavailable")
-//      return
-//    }
-//
-//    if motionManager.isDeviceMotionAvailable {
-//      motionManager.startDeviceMotionUpdates(to: queue) { [weak self] (data, error) in
-//        guard let data = data, error == nil else {
-//          print("motion data unavailable")
-//          return
-//        }
-//
-//        let rotation = CGFloat(data.gravity.z)
-//
-//        let halfScreenWidth = UIScreen.main.bounds.width
-//
-//        let playerPosition = halfScreenWidth + rotation * halfScreenWidth
-//
-//        DispatchQueue.main.async {
-//          self?.position.x = playerPosition
-//        }
-//      }
-//    }
-//  }
-  
+  func beginMotionUpdates() {
+    let queue = OperationQueue()
+
+    guard let motionManager = motionManager else {
+      print("Motion Manager unavailable")
+      return
+    }
+
+    if motionManager.isDeviceMotionAvailable {
+      motionManager.startDeviceMotionUpdates(to: queue) { [weak self] (data, error) in
+        guard let data = data, error == nil else {
+          print("Motion data unavailable")
+          return
+        }
+
+        let rotation = CGFloat(data.gravity.y)
+        print(rotation)
+
+        let halfScreenWidth = UIScreen.main.bounds.width / 2
+
+        let playerPosition = halfScreenWidth + rotation * halfScreenWidth
+
+        DispatchQueue.main.async {
+          self?.position.x = playerPosition
+        }
+      }
+    }
+  }
 }

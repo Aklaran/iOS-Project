@@ -1,9 +1,9 @@
 //
 //  GameScene.swift
-//  Space Destgroyers
+//  ddr
 //
 //  Created by Matt Kern on 10/26/19.
-//  Copyright © 2019 Matt Kern. All rights reserved.
+//  Copyright © 2019 the3amigos. All rights reserved.
 //
 
 import SpriteKit
@@ -14,17 +14,20 @@ var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
+  let maxLevels = 3
+  
   let audioManager = AudioManager()
+  let motionManager = CMMotionManager()
+  
   var bat : Bat? = nil
   var rider: Rider? = nil
-  let maxLevels = 3
-  var motionManager: CMMotionManager = CMMotionManager()
+  
   override func didMove(to view: SKView) {
     
     backgroundColor = SKColor.black
       
     bat = Bat(audioManager: audioManager)
-    rider = Rider(audioManager: audioManager)
+    rider = Rider(audioManager: audioManager, motionManager: motionManager)
     addChild(bat!)
     addChild(rider!)
   }
