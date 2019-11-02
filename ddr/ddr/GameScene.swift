@@ -1,9 +1,9 @@
 //
 //  GameScene.swift
-//  Space Destgroyers
+//  ddr
 //
 //  Created by Matt Kern on 10/26/19.
-//  Copyright © 2019 Matt Kern. All rights reserved.
+//  Copyright © 2019 the3amigos. All rights reserved.
 //
 
 import SpriteKit
@@ -14,19 +14,35 @@ var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
-  let audioManager = AudioManager()
-  var bat : Bat? = nil
-  var rider: Rider? = nil
   let maxLevels = 3
-  var motionManager: CMMotionManager = CMMotionManager()
+  
+  let initialBatZ: CGFloat = 100
+  let finalBatZ: CGFloat = -100
+  
+  let audioManager = AudioManager()
+  let motionManager = CMMotionManager()
+  
+  var bat : Bat? = nil
+  var bats : [Bat] = [Bat]()
+  
+  var rider: Rider? = nil
+  
   override func didMove(to view: SKView) {
-    
     backgroundColor = SKColor.black
-      
-    bat = Bat(audioManager: audioManager)
-    rider = Rider(audioManager: audioManager)
-    addChild(bat!)
+    
+    rider = Rider(audioManager: audioManager, motionManager: motionManager)
     addChild(rider!)
+    
+    // for spawning the bats
+    let wait = SKAction.wait(forDuration: 3, withRange: 2)
+    let spawn = SKAction.run {
+      let bat = Bat(audioManager: self.audioManager)
+      bat.z = self.initialBatZ
+      self.bats.append(bat)
+      self.addChild(bat)
+    }
+    let sequence = SKAction.sequence([wait, spawn])
+    run(SKAction.repeatForever(sequence))
   }
   
   func touchDown(atPoint pos : CGPoint) {
@@ -42,7 +58,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    bat!.position = touches.first?.location(in: self) as! CGPoint
   }
   
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -58,7 +73,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func update(_ currentTime: TimeInterval) {
-      // Called before each frame is rendered
+    // // Called before each frame is rendered
+    //    if (lastSpawnTime == nil || lastSpawnTime! - currentTime > 5) {
+    //      print("spawning")
+    //      lastSpawnTime = currentTime
+    //    }
+    //    else {
+    //    }
   }
   
   // MARK: - Game Management Methods
