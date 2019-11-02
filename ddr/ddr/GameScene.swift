@@ -14,6 +14,8 @@ var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
+  let THIRD_SCREEN_WIDTH = UIScreen.main.bounds.width / 3
+  
   let maxLevels = 3
   
   let initialBatZ: CGFloat = 100
@@ -73,13 +75,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func update(_ currentTime: TimeInterval) {
-    // // Called before each frame is rendered
+    // Called before each frame is rendered
+    
     //    if (lastSpawnTime == nil || lastSpawnTime! - currentTime > 5) {
     //      print("spawning")
     //      lastSpawnTime = currentTime
     //    }
     //    else {
     //    }
+    
+    if bats.count > 1 {
+      print(bats[1].z)
+    }
+    
+    guard let rider = rider else {
+      print("No rider!")
+      return
+    }
+    
+    for bat in bats {
+      bat.updatePosition()
+      if bat.z == 0 {
+        checkCollision(bat: bat, rider: rider)
+      }
+    }
+  }
+  
+  func checkCollision(bat: Bat, rider: Rider) {
+    let batThird = floor(bat.position.x / THIRD_SCREEN_WIDTH)
+    let riderThird = floor(rider.x / THIRD_SCREEN_WIDTH)
+    
+    if batThird == riderThird {
+      // play hit sound, decrement lives
+      rider.loseLife()
+    }
   }
   
   // MARK: - Game Management Methods

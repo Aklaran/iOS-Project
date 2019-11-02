@@ -16,6 +16,8 @@ class Bat: SKSpriteNode {
   
   var z : CGFloat = 0
   
+  var velocity : CGFloat = -1
+  
   // override to update emitter(s)
   override var position : CGPoint {
     didSet {
@@ -45,6 +47,10 @@ class Bat: SKSpriteNode {
   required init?(coder aDecoder: NSCoder) {
     flapping = nil
     super.init(coder: aDecoder)
+  }
+  
+  func updatePosition() {
+    z += velocity
   }
   
 }

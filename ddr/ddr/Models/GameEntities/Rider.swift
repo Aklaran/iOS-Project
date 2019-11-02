@@ -16,6 +16,10 @@ class Rider: SKSpriteNode {
   let audioManager: AudioManager?
   let motionManager: CMMotionManager?
   
+  let z : CGFloat = 0
+  
+  var x : CGFloat = 0
+  
   private var invincible = false
   
   override var position: CGPoint {
@@ -60,6 +64,7 @@ class Rider: SKSpriteNode {
     // logic to be determined shortly
     if (!invincible) {
       lives -= 1
+      print("Lost a life!!")
     }
   }
   
@@ -111,9 +116,17 @@ class Rider: SKSpriteNode {
         // FIXME: rotation only works for 1 orientation (home button left)
         let rotation = CGFloat(data.gravity.y)
 
-        let playerPosition = Rider.HALF_SCREEN_WIDTH + ((rotation / 2) * Rider.HALF_SCREEN_WIDTH)
+        // playerPosition for collision calculations
+        // spritePosition for spritenode updates
+        let playerPosition = Rider.HALF_SCREEN_WIDTH + (rotation * Rider.HALF_SCREEN_WIDTH)
+        let spritePosition = Rider.HALF_SCREEN_WIDTH + ((rotation / 2) * Rider.HALF_SCREEN_WIDTH)
         DispatchQueue.main.async {
-          self?.position.x = playerPosition
+          
+          // collision var updates
+          self?.x = playerPosition
+          
+          // spriteNode updates
+          self?.position.x = spritePosition
           self?.rotate(rotationMultiplier: rotation)
         }
       }
