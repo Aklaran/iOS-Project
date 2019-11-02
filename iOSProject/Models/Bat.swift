@@ -13,6 +13,7 @@ class Bat: SKSpriteNode {
   
   // instance vars
   let flapping : Emitter?
+  var z : CGFloat = 0
   
   // override to update emitter(s)
   override var position : CGPoint {
@@ -21,7 +22,7 @@ class Bat: SKSpriteNode {
     }
   }
   
-  init(audioManager : AudioManager) {
+  init(audioManager: AudioManager) {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat")
     flapping = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "lab9images/beep.mp3", ofType: nil)!)

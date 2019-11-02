@@ -14,7 +14,8 @@ var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
-  var lastSpawnTime: TimeInterval? = nil
+  let initialBatZ: CGFloat = 100
+  let finalBatZ: CGFloat = -100
   let audioManager = AudioManager()
   var bats : [Bat] = [Bat]()
   var rider: Rider? = nil
@@ -30,6 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let wait = SKAction.wait(forDuration: 3, withRange: 2)
     let spawn = SKAction.run {
       let bat = Bat(audioManager: self.audioManager)
+      bat.z = self.initialBatZ
       self.bats.append(bat)
       self.addChild(bat)
     }
