@@ -12,12 +12,16 @@ import SpriteKit
 class AudioManager {
   
   var emitters = [Emitter]()
-  let listenerPosition = CGPoint(x: 0, y: 0)
+  private var listenerPosition = CGPoint(x: 0, y: 0)
   
   func createEmitter(soundFile: String) -> Emitter {
     let emitter = Emitter(soundFile: soundFile)
     emitters.append(emitter)
     return emitter
+  }
+  
+  func updateListenerPosition(to newPosition: CGPoint) {
+    listenerPosition = newPosition
   }
   
 }

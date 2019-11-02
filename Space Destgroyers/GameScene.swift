@@ -23,7 +23,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let leftBounds = CGFloat(30)
   var rightBounds = CGFloat(0)
   var invadersWhoCanFire:[Invader] = [Invader]()  // will increase with each level
-  let player:Rider = Rider()
+  var rider: Rider? = nil
   let maxLevels = 3
 //  var backgroundMusic : SKAudioNode!
   var motionManager: CMMotionManager = CMMotionManager()
@@ -42,7 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       
       backgroundColor = SKColor.black
       setupInvaders()
-      setupPlayer()
+      
       
       self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
       self.physicsWorld.contactDelegate = self as SKPhysicsContactDelegate
@@ -52,6 +52,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //      setupAccelerometer()
       
       bat = Bat(audioManager: audioManager)
+    rider = Rider(audioManager: audioManager)
+    setupPlayer()
       addChild(bat!)
     
     startDeviceMotionUpdates()
@@ -121,7 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-      
+      rider!.position = touches.first?.location(in: self) as! CGPoint
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -241,9 +243,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // MARK - Player Methods
   func setupPlayer() {
-    player.position = CGPoint(x: self.frame.midX, y:player.size.height/2 + 10)
-    addChild(player)
-    listener = player
+    rider?.position = CGPoint(x: self.frame.midX, y:rider!.size.height/2 + 10)
+    addChild(rider!)
+    listener = rider
   }
   
   // MARK: - Implementing SKPhysicsContactDelegate protocol
@@ -288,12 +290,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     if ((firstBody.categoryBitMask & CollisionCategories.Player != 0) &&
       (secondBody.categoryBitMask & CollisionCategories.InvaderBullet != 0)) {
-      player.loseLife()
+      rider?.loseLife()
     }
     
     if ((firstBody.categoryBitMask & CollisionCategories.Invader != 0) &&
       (secondBody.categoryBitMask & CollisionCategories.Player != 0)) {
-      player.loseGame()
+      rider?.loseGame()
     }
     
     if ((firstBody.categoryBitMask & CollisionCategories.Invader != 0) &&

@@ -11,6 +11,17 @@ import SpriteKit
 
 class Rider: SKSpriteNode {
   private var invincible = false
+  let audioManager: AudioManager?
+  
+  override var position: CGPoint {
+    set {
+      super.position = newValue
+      audioManager?.updateListenerPosition(to: position)
+    }
+    get {
+      return super.position
+    }
+  }
   
   private var lives:Int = 3 {
     didSet {
@@ -22,13 +33,15 @@ class Rider: SKSpriteNode {
     }
   }
   
-  init() {
+  init(audioManager: AudioManager) {
     let texture = SKTexture(imageNamed: "player1")
+    self.audioManager = audioManager
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     // preparing player for collisions once we add physics...
   }
   
   required init?(coder aDecoder: NSCoder) {
+    audioManager = nil
     super.init(coder: aDecoder)
   }
   
