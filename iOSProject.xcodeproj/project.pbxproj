@@ -16,14 +16,7 @@
 		4D35D0932365163D008445BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D0912365163D008445BE /* LaunchScreen.storyboard */; };
 		4D35D09C23651834008445BE /* lab9images in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D09B23651834008445BE /* lab9images */; };
 		4D35D09E2365195B008445BE /* StartGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D09D2365195B008445BE /* StartGameScene.swift */; };
-		4D35D0A023651B1D008445BE /* Invader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D09F23651B1D008445BE /* Invader.swift */; };
-		4D35D0A223651B7E008445BE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0A123651B7E008445BE /* Player.swift */; };
-		4D35D0A423651F76008445BE /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0A323651F76008445BE /* Bullet.swift */; };
-		4D35D0A62365206D008445BE /* PlayerBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0A52365206C008445BE /* PlayerBullet.swift */; };
-		4D35D0A823652099008445BE /* InvaderBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0A723652099008445BE /* InvaderBullet.swift */; };
 		4D35D0A923652383008445BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D35D08F2365163D008445BE /* Assets.xcassets */; };
-		4D35D0AB2365262A008445BE /* CollisionCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0AA2365262A008445BE /* CollisionCategories.swift */; };
-		4D35D0AD2365294F008445BE /* LevelCompleteScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35D0AC2365294F008445BE /* LevelCompleteScene.swift */; };
 		4DF98DCF236BC37D008DE5B8 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF98DCE236BC37D008DE5B8 /* Bat.swift */; };
 		4DF98DD2236DBA6E008DE5B8 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF98DD1236DBA6E008DE5B8 /* AudioManager.swift */; };
 		4DF98DD4236DBAA0008DE5B8 /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF98DD3236DBAA0008DE5B8 /* Emitter.swift */; };
@@ -31,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		1E06D281236DC899002563D5 /* Rider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rider.swift; sourceTree = "<group>"; };
-		4D35D07F23651639008445BE /* Space Destgroyers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space Destgroyers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D35D07F23651639008445BE /* iOSProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D35D08223651639008445BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D35D08623651639008445BE /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		4D35D08823651639008445BE /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -42,13 +35,6 @@
 		4D35D0942365163D008445BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D35D09B23651834008445BE /* lab9images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lab9images; sourceTree = SOURCE_ROOT; };
 		4D35D09D2365195B008445BE /* StartGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameScene.swift; sourceTree = "<group>"; };
-		4D35D09F23651B1D008445BE /* Invader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invader.swift; sourceTree = "<group>"; };
-		4D35D0A123651B7E008445BE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		4D35D0A323651F76008445BE /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
-		4D35D0A52365206C008445BE /* PlayerBullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBullet.swift; sourceTree = "<group>"; };
-		4D35D0A723652099008445BE /* InvaderBullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvaderBullet.swift; sourceTree = "<group>"; };
-		4D35D0AA2365262A008445BE /* CollisionCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategories.swift; sourceTree = "<group>"; };
-		4D35D0AC2365294F008445BE /* LevelCompleteScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCompleteScene.swift; sourceTree = "<group>"; };
 		4DF98DCE236BC37D008DE5B8 /* Bat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bat.swift; sourceTree = "<group>"; };
 		4DF98DD1236DBA6E008DE5B8 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		4DF98DD3236DBAA0008DE5B8 /* Emitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emitter.swift; sourceTree = "<group>"; };
@@ -76,7 +62,7 @@
 		4D35D08023651639008445BE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4D35D07F23651639008445BE /* Space Destgroyers.app */,
+				4D35D07F23651639008445BE /* iOSProject.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,14 +88,7 @@
 		4D35D09A23651761008445BE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4D35D09F23651B1D008445BE /* Invader.swift */,
 				4DF98DD0236DBA3A008DE5B8 /* Audio */,
-				4D35D0AA2365262A008445BE /* CollisionCategories.swift */,
-				4D35D0A123651B7E008445BE /* Player.swift */,
-				4D35D0A323651F76008445BE /* Bullet.swift */,
-				4D35D0A723652099008445BE /* InvaderBullet.swift */,
-				4D35D0A52365206C008445BE /* PlayerBullet.swift */,
-				4D35D0AC2365294F008445BE /* LevelCompleteScene.swift */,
 				4DF98DCE236BC37D008DE5B8 /* Bat.swift */,
 				1E06D281236DC899002563D5 /* Rider.swift */,
 			);
@@ -142,7 +121,7 @@
 			);
 			name = "Space Destgroyers";
 			productName = "Space Destgroyers";
-			productReference = 4D35D07F23651639008445BE /* Space Destgroyers.app */;
+			productReference = 4D35D07F23651639008445BE /* iOSProject.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -201,16 +180,9 @@
 				4D35D08923651639008445BE /* GameScene.swift in Sources */,
 				4D35D09E2365195B008445BE /* StartGameScene.swift in Sources */,
 				1E06D282236DC899002563D5 /* Rider.swift in Sources */,
-				4D35D0A62365206D008445BE /* PlayerBullet.swift in Sources */,
-				4D35D0AD2365294F008445BE /* LevelCompleteScene.swift in Sources */,
-				4D35D0A823652099008445BE /* InvaderBullet.swift in Sources */,
-				4D35D0AB2365262A008445BE /* CollisionCategories.swift in Sources */,
-				4D35D0A023651B1D008445BE /* Invader.swift in Sources */,
 				4DF98DCF236BC37D008DE5B8 /* Bat.swift in Sources */,
 				4DF98DD4236DBAA0008DE5B8 /* Emitter.swift in Sources */,
-				4D35D0A423651F76008445BE /* Bullet.swift in Sources */,
 				4D35D08B23651639008445BE /* GameViewController.swift in Sources */,
-				4D35D0A223651B7E008445BE /* Player.swift in Sources */,
 				4D35D08323651639008445BE /* AppDelegate.swift in Sources */,
 				4DF98DD2236DBA6E008DE5B8 /* AudioManager.swift in Sources */,
 			);
@@ -365,8 +337,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-7442.Space-Destgroyers";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "-7442.iosProject";
+				PRODUCT_NAME = iOSProject;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -383,8 +355,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-7442.Space-Destgroyers";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "-7442.iosProject";
+				PRODUCT_NAME = iOSProject;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
