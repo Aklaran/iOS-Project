@@ -53,7 +53,10 @@ class Emitter {
   }
   
   private func recalibrate() {
-    player.pan = Float((destination.x - x) / UIScreen.main.bounds.width)
+    var distance = x - destination.x
+    let sign = distance / abs(distance)
+    distance = abs(distance)
+    player.pan = Float(sign * sqrt(distance / UIScreen.main.bounds.width))
   }
   
 }

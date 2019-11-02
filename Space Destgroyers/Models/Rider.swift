@@ -14,12 +14,8 @@ class Rider: SKSpriteNode {
   let audioManager: AudioManager?
   
   override var position: CGPoint {
-    set {
-      super.position = newValue
+    didSet {
       audioManager?.updateListenerPosition(to: position)
-    }
-    get {
-      return super.position
     }
   }
   
