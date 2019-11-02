@@ -31,10 +31,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let spawn = SKAction.run {
       let bat = Bat(audioManager: self.audioManager)
       self.bats.append(bat)
-      bat.position = CGPoint(
-        x: Int.random(in: 0...Int(UIScreen.main.bounds.width)),
-        y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
-      )
       self.addChild(bat)
     }
     let sequence = SKAction.sequence([wait, spawn])

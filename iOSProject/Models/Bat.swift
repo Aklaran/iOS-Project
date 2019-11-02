@@ -32,7 +32,11 @@ class Bat: SKSpriteNode {
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
     // update super vars
-    position = CGPoint(x: 200, y: 200)
+    position = CGPoint(
+      x: CGFloat(Int.random(in: 0...Int(UIScreen.main.bounds.width))),
+      y: 3 * UIScreen.main.bounds.height / 4
+//      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
+    )
   }
   
   // annoying but required - doing the minimum to compile
