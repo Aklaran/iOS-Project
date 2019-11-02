@@ -54,6 +54,8 @@ class Invader: SKSpriteNode{
     
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     self.name = "invader"
+    
+    
     // preparing invaders for collisions once we add physics...
     
   }

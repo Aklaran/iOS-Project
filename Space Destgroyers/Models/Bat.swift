@@ -11,7 +11,15 @@ import SpriteKit
 
 class Bat: SKSpriteNode {
   
+  // instance vars
   let flapping : Emitter?
+  
+  // override to update emitter(s)
+  override var position : CGPoint {
+    didSet {
+      flapping?.updatePosition(position)
+    }
+  }
   
   init(audioManager : AudioManager) {
     // my instance vars

@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // stuff for the real game
   let audioManager = AudioManager()
+  var bat : Bat?
   
   let rowsOfInvaders = 4
   var invaderSpeed = 0.3
@@ -50,7 +51,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       
       setupAccelerometer()
       
-      addChild(Bat(audioManager: audioManager))
+      bat = Bat(audioManager: audioManager)
+      addChild(bat!)
       
       // audio node test
 //      let music = SKAudioNode(fileNamed: "beeps")
@@ -110,6 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //      player.fireBullet(scene: self)
       invader?.position = touches.first?.location(in: self) as! CGPoint
+      bat!.position = touches.first?.location(in: self) as! CGPoint
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -171,7 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tempInvader.position = CGPoint(x:xPositionStart + ((tempInvader.size.width+CGFloat(10))*(CGFloat(j-1))), y:CGFloat(self.size.height - CGFloat(i) * 46))
         tempInvader.invaderRow = invaderRow
         tempInvader.invaderColumn = invaderColumn
-        addChild(tempInvader)
+        //addChild(tempInvader)
         invader = tempInvader // my addition
         if(i == rowsOfInvaders){
           invadersWhoCanFire.append(tempInvader)
