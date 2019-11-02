@@ -11,10 +11,12 @@ import SpriteKit
 import CoreMotion
 
 class Rider: SKSpriteNode {
-  private var invincible = false
+  static let HALF_SCREEN_WIDTH = UIScreen.main.bounds.width / 2
   
   let audioManager: AudioManager?
   let motionManager: CMMotionManager?
+  
+  private var invincible = false
   
   override var position: CGPoint {
     didSet {
@@ -33,12 +35,15 @@ class Rider: SKSpriteNode {
   }
   
   init(audioManager: AudioManager, motionManager: CMMotionManager) {
-    let texture = SKTexture(imageNamed: "player1")
+    let texture = SKTexture(imageNamed: "profH")
     
     self.audioManager = audioManager
     self.motionManager = motionManager
     
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
+    
+    self.setScale(0.4)
+    self.position.x = Rider.HALF_SCREEN_WIDTH
     
     beginMotionUpdates()
     // preparing player for collisions once we add physics...
@@ -78,6 +83,13 @@ class Rider: SKSpriteNode {
     }
     run(SKAction.sequence([fadeOutInAction,setInvicibleFalse]))
   }
+
+// MARK: - Sprite/Visual Functionality
+  
+  //Zrotation starts at 0.0 and rotates counter clockwise
+  func rotate(rotationMultiplier:CGFloat) {
+    self.zRotation = CGFloat(-Double.pi) * rotationMultiplier * 0.5
+  }
   
 // MARK: - Core Motion
 
@@ -95,16 +107,14 @@ class Rider: SKSpriteNode {
           print("Motion data unavailable")
           return
         }
-
+        
+        // FIXME: rotation only works for 1 orientation (home button left)
         let rotation = CGFloat(data.gravity.y)
-        print(rotation)
 
-        let halfScreenWidth = UIScreen.main.bounds.width / 2
-
-        let playerPosition = halfScreenWidth + rotation * halfScreenWidth
-
+        let playerPosition = Rider.HALF_SCREEN_WIDTH + ((rotation / 2) * Rider.HALF_SCREEN_WIDTH)
         DispatchQueue.main.async {
           self?.position.x = playerPosition
+          self?.rotate(rotationMultiplier: rotation)
         }
       }
     }
