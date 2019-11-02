@@ -69,5 +69,24 @@ class Rider: SKSpriteNode {
     run(SKAction.sequence([fadeOutInAction,setInvicibleFalse]))
   }
   
+  //Zrotation starts at 0.0 and rotates counter clockwise
+  func rotate(playerPosition:CGFloat) {
+    let width = CGFloat(UIScreen.main.bounds.width);
+    var angle:Float
+    let rightBounds = 3.14 / 2
+    let leftBounds = -3.14 / 2
+    print("PLAYER POSITION IS", playerPosition)
+    print("WIDTH IS", width)
+    if (playerPosition >= width / 2) {
+      angle = Float((playerPosition - width/2) * CGFloat(rightBounds))
+    }
+    else {
+      angle = Float((width/2 - playerPosition) * CGFloat(leftBounds))
+    }
+    
+    self.zRotation = CGFloat(angle);
+  }
+
+  
   
 }

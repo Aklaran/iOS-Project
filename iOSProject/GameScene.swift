@@ -27,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     rider = Rider(audioManager: audioManager)
     addChild(bat!)
     addChild(rider!)
+    rider?.rotate(playerPosition: CGFloat(UIScreen.main.bounds.width/4))
   
   }
   
