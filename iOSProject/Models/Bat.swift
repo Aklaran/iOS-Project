@@ -23,7 +23,7 @@ class Bat: SKSpriteNode {
   
   init(audioManager : AudioManager) {
     // my instance vars
-    let texture = SKTexture(imageNamed: "invader1")
+    let texture = SKTexture(imageNamed: "bat")
     flapping = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "lab9images/beep.mp3", ofType: nil)!)
     flapping?.isRepeated = true
     flapping?.start()
