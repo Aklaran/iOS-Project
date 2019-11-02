@@ -14,19 +14,31 @@ var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
+  var lastSpawnTime: TimeInterval? = nil
   let audioManager = AudioManager()
-  var bat : Bat? = nil
+  var bats : [Bat] = [Bat]()
   var rider: Rider? = nil
   let maxLevels = 3
   var motionManager: CMMotionManager = CMMotionManager()
   override func didMove(to view: SKView) {
     
     backgroundColor = SKColor.black
-      
-    bat = Bat(audioManager: audioManager)
     rider = Rider(audioManager: audioManager)
-    addChild(bat!)
     addChild(rider!)
+    
+    // for spawning the bats
+    let wait = SKAction.wait(forDuration: 3, withRange: 2)
+    let spawn = SKAction.run {
+      let bat = Bat(audioManager: self.audioManager)
+      self.bats.append(bat)
+      bat.position = CGPoint(
+        x: Int.random(in: 0...Int(UIScreen.main.bounds.width)),
+        y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
+      )
+      self.addChild(bat)
+    }
+    let sequence = SKAction.sequence([wait, spawn])
+    run(SKAction.repeatForever(sequence))
   
   }
   
@@ -43,7 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    bat!.position = touches.first?.location(in: self) as! CGPoint
+    
   }
   
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -59,7 +71,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func update(_ currentTime: TimeInterval) {
-      // Called before each frame is rendered
+//      // Called before each frame is rendered
+//    if (lastSpawnTime == nil || lastSpawnTime! - currentTime > 5) {
+//      print("spawning")
+//      lastSpawnTime = currentTime
+//    }
+//    else {
+//    }
   }
   
   // MARK: - Game Management Methods
