@@ -10,6 +10,7 @@ import UIKit
 import SpriteKit
 
 class Bat: SKSpriteNode {
+  static let SCREEN_HEIGHT = UIScreen.main.bounds.height
   
   // instance vars
   let flapping : Emitter?
@@ -38,7 +39,7 @@ class Bat: SKSpriteNode {
     // update super vars
        position = CGPoint(
           x: CGFloat(Int.random(in: 0...Int(UIScreen.main.bounds.width))),
-          y: 3 * UIScreen.main.bounds.height / 4
+          y: Bat.SCREEN_HEIGHT
     //      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
         )
   }
@@ -51,6 +52,9 @@ class Bat: SKSpriteNode {
   
   func updatePosition() {
     z += velocity
+    
+    // dropping the bats FOR DEBUG ONLY SORRY MATT
+    self.position.y = (z * Bat.SCREEN_HEIGHT) / 100
   }
   
 }

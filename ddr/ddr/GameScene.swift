@@ -84,10 +84,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //    else {
     //    }
     
-    if bats.count > 1 {
-      print(bats[1].z)
-    }
-    
     guard let rider = rider else {
       print("No rider!")
       return
@@ -104,6 +100,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func checkCollision(bat: Bat, rider: Rider) {
     let batThird = floor(bat.position.x / THIRD_SCREEN_WIDTH)
     let riderThird = floor(rider.x / THIRD_SCREEN_WIDTH)
+    
+    print("bat third: ", batThird)
+    print("rider third: ", riderThird)
     
     if batThird == riderThird {
       // play hit sound, decrement lives
