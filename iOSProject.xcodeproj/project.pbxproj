@@ -54,7 +54,7 @@
 		4D35D07623651639008445BE = {
 			isa = PBXGroup;
 			children = (
-				4D35D08123651639008445BE /* Space Destgroyers */,
+				4D35D08123651639008445BE /* iOSProject */,
 				4D35D08023651639008445BE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,7 +67,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4D35D08123651639008445BE /* Space Destgroyers */ = {
+		4D35D08123651639008445BE /* iOSProject */ = {
 			isa = PBXGroup;
 			children = (
 				4D35D08223651639008445BE /* AppDelegate.swift */,
@@ -82,7 +82,7 @@
 				4D35D0912365163D008445BE /* LaunchScreen.storyboard */,
 				4D35D0942365163D008445BE /* Info.plist */,
 			);
-			path = "Space Destgroyers";
+			path = iOSProject;
 			sourceTree = "<group>";
 		};
 		4D35D09A23651761008445BE /* Models */ = {
@@ -139,7 +139,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4D35D07A23651639008445BE /* Build configuration list for PBXProject "Space Destgroyers" */;
+			buildConfigurationList = 4D35D07A23651639008445BE /* Build configuration list for PBXProject "iOSProject" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -332,7 +332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 753255PBHL;
-				INFOPLIST_FILE = "Space Destgroyers/Info.plist";
+				INFOPLIST_FILE = iOSProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -350,7 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 753255PBHL;
-				INFOPLIST_FILE = "Space Destgroyers/Info.plist";
+				INFOPLIST_FILE = iOSProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -365,7 +365,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4D35D07A23651639008445BE /* Build configuration list for PBXProject "Space Destgroyers" */ = {
+		4D35D07A23651639008445BE /* Build configuration list for PBXProject "iOSProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D35D0952365163D008445BE /* Debug */,
