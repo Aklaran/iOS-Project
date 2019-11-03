@@ -15,7 +15,7 @@ class Bat: SKSpriteNode {
   static let maxZMagnitude : CGFloat = 100
   
   // instance vars
-  var velocity : CGFloat = -1
+  var velocity : CGFloat = -3
   let flapping : Emitter?
   
   var z : CGFloat {
