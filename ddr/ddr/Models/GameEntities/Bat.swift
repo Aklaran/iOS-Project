@@ -12,9 +12,15 @@ import SpriteKit
 class Bat: SKSpriteNode {
   
   // instance vars
+  var velocity : CGFloat = -5
   let flapping : Emitter?
   
-  var z : CGFloat = 0
+  var z : CGFloat = 0 {
+    didSet {
+      xScale = abs(z) / 300
+      yScale = xScale
+    }
+  }
   
   // override to update emitter(s)
   override var position : CGPoint {
@@ -45,6 +51,10 @@ class Bat: SKSpriteNode {
   required init?(coder aDecoder: NSCoder) {
     flapping = nil
     super.init(coder: aDecoder)
+  }
+  
+  func move() {
+    z += velocity
   }
   
 }

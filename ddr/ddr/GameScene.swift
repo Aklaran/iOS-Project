@@ -22,8 +22,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let audioManager = AudioManager()
   let motionManager = CMMotionManager()
   
-  var bat : Bat? = nil
-  var bats : [Bat] = [Bat]()
+  var bats = [Bat]()
   
   var rider: Rider? = nil
   
@@ -73,13 +72,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func update(_ currentTime: TimeInterval) {
-    // // Called before each frame is rendered
-    //    if (lastSpawnTime == nil || lastSpawnTime! - currentTime > 5) {
-    //      print("spawning")
-    //      lastSpawnTime = currentTime
-    //    }
-    //    else {
-    //    }
+    // Called before each frame is rendered
+    var toRemove = [Bat]()
+    for bat in bats {
+      bat.move()
+      if bat.z > finalBatZ {
+        toRemove.append(bat)
+      }
+    }
+    removeChildren(in: toRemove)
+    bats.removeAll(where: {
+      toRemove.contains($0)
+    })
   }
   
   // MARK: - Game Management Methods
