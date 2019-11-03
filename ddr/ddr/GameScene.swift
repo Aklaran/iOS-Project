@@ -16,9 +16,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let maxLevels = 3
   
-  let initialBatZ: CGFloat = 100
-  let finalBatZ: CGFloat = -100
-  
   let audioManager = AudioManager()
   let motionManager = CMMotionManager()
   
@@ -36,7 +33,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let wait = SKAction.wait(forDuration: 3, withRange: 2)
     let spawn = SKAction.run {
       let bat = Bat(audioManager: self.audioManager)
-      bat.z = self.initialBatZ
       self.bats.append(bat)
       self.addChild(bat)
     }
@@ -76,8 +72,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var toRemove = [Bat]()
     for bat in bats {
       bat.move()
-      if bat.z > finalBatZ {
+      if bat.isGone() {
         toRemove.append(bat)
+        bat.die()
       }
     }
     removeChildren(in: toRemove)
