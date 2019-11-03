@@ -13,7 +13,7 @@ class Bat: SKSpriteNode {
   
   // Bat Constants
   static let maxZMagnitude : CGFloat = 100
-  static let flapVelocityConversion : CGFloat = 6 // bigger is slower
+  static let flapVelocityConversion : CGFloat = 6 // bigger is faster
   
   // instance vars
   var velocity : CGFloat = -3

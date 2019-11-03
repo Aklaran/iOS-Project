@@ -21,8 +21,6 @@
 		1E4487EF236E2A8C0080AA21 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487E9236E2A8C0080AA21 /* Bat.swift */; };
 		1E4487F0236E2A8C0080AA21 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487E9236E2A8C0080AA21 /* Bat.swift */; };
 		1E4487F1236E2A8C0080AA21 /* Rider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487EA236E2A8C0080AA21 /* Rider.swift */; };
-		1E4487F2236E2A8C0080AA21 /* Rider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487EA236E2A8C0080AA21 /* Rider.swift */; };
-		1E4487F3236E2A8C0080AA21 /* Rider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487EA236E2A8C0080AA21 /* Rider.swift */; };
 		1E4487F4236E2A8C0080AA21 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487EC236E2A8C0080AA21 /* AudioManager.swift */; };
 		1E4487F5236E2A8C0080AA21 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487EC236E2A8C0080AA21 /* AudioManager.swift */; };
 		1E4487F6236E2A8C0080AA21 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487EC236E2A8C0080AA21 /* AudioManager.swift */; };
@@ -30,12 +28,11 @@
 		1E4487F8236E2A8C0080AA21 /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487ED236E2A8C0080AA21 /* Emitter.swift */; };
 		1E4487F9236E2A8C0080AA21 /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487ED236E2A8C0080AA21 /* Emitter.swift */; };
 		1E4487FB236E2B530080AA21 /* StartGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487FA236E2B530080AA21 /* StartGameScene.swift */; };
-		1E4487FC236E2B530080AA21 /* StartGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487FA236E2B530080AA21 /* StartGameScene.swift */; };
-		1E4487FD236E2B530080AA21 /* StartGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487FA236E2B530080AA21 /* StartGameScene.swift */; };
 		1E448800236E2D880080AA21 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487FF236E2D880080AA21 /* beep.mp3 */; };
 		1E448801236E2D880080AA21 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487FF236E2D880080AA21 /* beep.mp3 */; };
 		1E448802236E2D880080AA21 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487FF236E2D880080AA21 /* beep.mp3 */; };
 		4DE33441236E5DAC00A179DB /* singleFlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DE33440236E5DAC00A179DB /* singleFlap.mp3 */; };
+		4DE33443236F8A5000A179DB /* BatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33442236F8A5000A179DB /* BatTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +76,7 @@
 		1E4487FA236E2B530080AA21 /* StartGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameScene.swift; sourceTree = "<group>"; };
 		1E4487FF236E2D880080AA21 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		4DE33440236E5DAC00A179DB /* singleFlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleFlap.mp3; sourceTree = "<group>"; };
+		4DE33442236F8A5000A179DB /* BatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +148,7 @@
 			children = (
 				1E4487BE236E29BC0080AA21 /* ddrTests.swift */,
 				1E4487C0236E29BC0080AA21 /* Info.plist */,
+				4DE33442236F8A5000A179DB /* BatTest.swift */,
 			);
 			path = ddrTests;
 			sourceTree = "<group>";
@@ -352,11 +351,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E4487BF236E29BC0080AA21 /* ddrTests.swift in Sources */,
-				1E4487FC236E2B530080AA21 /* StartGameScene.swift in Sources */,
+				4DE33443236F8A5000A179DB /* BatTest.swift in Sources */,
 				1E4487EF236E2A8C0080AA21 /* Bat.swift in Sources */,
 				1E4487F5236E2A8C0080AA21 /* AudioManager.swift in Sources */,
 				1E4487F8236E2A8C0080AA21 /* Emitter.swift in Sources */,
-				1E4487F2236E2A8C0080AA21 /* Rider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,11 +363,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E4487CA236E29BC0080AA21 /* ddrUITests.swift in Sources */,
-				1E4487FD236E2B530080AA21 /* StartGameScene.swift in Sources */,
 				1E4487F0236E2A8C0080AA21 /* Bat.swift in Sources */,
 				1E4487F6236E2A8C0080AA21 /* AudioManager.swift in Sources */,
 				1E4487F9236E2A8C0080AA21 /* Emitter.swift in Sources */,
-				1E4487F3236E2A8C0080AA21 /* Rider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
