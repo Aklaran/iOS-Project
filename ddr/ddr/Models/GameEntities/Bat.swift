@@ -13,7 +13,7 @@ class Bat: SKSpriteNode {
   
   // Bat Constants
   static let maxZMagnitude : CGFloat = 100
-//  static let flapSpeedConversion : CGFloat = 6
+  static let flapVelocityConversion : CGFloat = 6 // bigger is slower
   
   // instance vars
   var velocity : CGFloat = -3
@@ -42,6 +42,7 @@ class Bat: SKSpriteNode {
     let texture = SKTexture(imageNamed: "bat")
     flapping = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
     flapping?.isRepeated = true
+    flapping?.speed = Bat.flapVelocityConversion / abs(velocity)
     z = Bat.maxZMagnitude
     flapping?.start()
     

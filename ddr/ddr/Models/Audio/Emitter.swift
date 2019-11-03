@@ -20,8 +20,15 @@ class Emitter {
   private var y = CGFloat(0)
   private var z = CGFloat(0)
   
+  var speed : CGFloat = 1 {
+    didSet {
+      player.rate = Float(speed)
+    }
+  }
+  
   init(soundFile: String, maxZMagnitude: CGFloat) {
     self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundFile))
+    player.enableRate = true
     self.maxZMagnitude = maxZMagnitude
   }
   
