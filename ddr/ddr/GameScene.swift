@@ -30,13 +30,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addChild(rider!)
     
     // for spawning the bats
-    let wait = SKAction.wait(forDuration: 3, withRange: 2)
+    let wait = SKAction.wait(forDuration: 5, withRange: 2)
     let spawn = SKAction.run {
       let bat = Bat(audioManager: self.audioManager)
       self.bats.append(bat)
       self.addChild(bat)
     }
     let sequence = SKAction.sequence([wait, spawn])
+//    run(spawn) // for testing only generate one bat
     run(SKAction.repeatForever(sequence))
   }
   

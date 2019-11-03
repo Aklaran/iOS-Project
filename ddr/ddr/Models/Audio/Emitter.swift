@@ -15,12 +15,14 @@ class Emitter {
   let player : AVAudioPlayer
   var isRepeated = false
   var destination =  CGPoint(x: 0, y: 0)
+  var maxZMagnitude : CGFloat
   private var x = CGFloat(0)
   private var y = CGFloat(0)
   private var z = CGFloat(0)
   
-  init(soundFile: String) {
+  init(soundFile: String, maxZMagnitude: CGFloat) {
     self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundFile))
+    self.maxZMagnitude = maxZMagnitude
   }
   
   func start() {
@@ -53,10 +55,17 @@ class Emitter {
   }
   
   private func recalibrate() {
-    var distance = x - destination.x
-    let sign = distance / abs(distance)
-    distance = abs(distance)
-    player.pan = Float(sign * sqrt(distance / UIScreen.main.bounds.width))
+    
+    // setup pan for left/right
+    var dx = x - destination.x
+    let sign = dx / abs(dx)
+    dx = abs(dx)
+    player.pan = Float(sign * sqrt(dx / UIScreen.main.bounds.width))
+    
+    // setup volume for z (and maybe later for y)
+    let dz = abs(z) // because the listener is assument to have z = 0
+    player.volume = Float((maxZMagnitude - dz) / maxZMagnitude)
+    
   }
   
 }
