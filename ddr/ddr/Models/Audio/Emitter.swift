@@ -16,9 +16,10 @@ class Emitter {
   var isRepeated = false
   var destination =  CGPoint(x: 0, y: 0)
   var maxZMagnitude : CGFloat
-  private var x = CGFloat(0)
-  private var y = CGFloat(0)
-  private var z = CGFloat(0)
+  
+  var x = CGFloat(0)
+  var y = CGFloat(0)
+  var z = CGFloat(0)
   
   var speed : CGFloat = 1 {
     didSet {

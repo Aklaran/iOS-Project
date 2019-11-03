@@ -73,7 +73,7 @@ class Bat: SKSpriteNode {
   }
   
   func isGone() -> Bool {
-    return z <= Bat.maxZMagnitude * -1 // maybe also if it is less than the min, but should not matter for this game
+    return abs(z) >= Bat.maxZMagnitude
   }
   
   func die() {
