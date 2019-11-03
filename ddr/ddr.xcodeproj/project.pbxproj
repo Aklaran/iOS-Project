@@ -35,6 +35,7 @@
 		1E448800236E2D880080AA21 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487FF236E2D880080AA21 /* beep.mp3 */; };
 		1E448801236E2D880080AA21 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487FF236E2D880080AA21 /* beep.mp3 */; };
 		1E448802236E2D880080AA21 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487FF236E2D880080AA21 /* beep.mp3 */; };
+		4DE33441236E5DAC00A179DB /* singleFlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DE33440236E5DAC00A179DB /* singleFlap.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		1E4487ED236E2A8C0080AA21 /* Emitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emitter.swift; sourceTree = "<group>"; };
 		1E4487FA236E2B530080AA21 /* StartGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameScene.swift; sourceTree = "<group>"; };
 		1E4487FF236E2D880080AA21 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
+		4DE33440236E5DAC00A179DB /* singleFlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleFlap.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 		1E4487FE236E2D880080AA21 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				4DE33440236E5DAC00A179DB /* singleFlap.mp3 */,
 				1E4487FF236E2D880080AA21 /* beep.mp3 */,
 			);
 			path = Sounds;
@@ -301,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E4487AF236E29BB0080AA21 /* Main.storyboard in Resources */,
+				4DE33441236E5DAC00A179DB /* singleFlap.mp3 in Resources */,
 				1E4487A6236E29BB0080AA21 /* GameScene.sks in Resources */,
 				1E448800236E2D880080AA21 /* beep.mp3 in Resources */,
 				1E4487B1236E29BC0080AA21 /* Assets.xcassets in Resources */,
