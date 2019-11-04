@@ -12,10 +12,24 @@ import SpriteKit
 class Bat: SKSpriteNode {
   static let SCREEN_HEIGHT = UIScreen.main.bounds.height
   
+  // Bat Constants
+  static let maxZMagnitude : CGFloat = 100
+  static let flapVelocityConversion : CGFloat = 6 // bigger is faster
+  
   // instance vars
+  var velocity : CGFloat = -3
   let flapping : Emitter?
   
-  var z : CGFloat = 0
+  var z : CGFloat {
+    didSet {
+      // update sound
+      flapping?.updateZ(z)
+      
+      // update visual
+      xScale = (Bat.maxZMagnitude - abs(z)) / Bat.maxZMagnitude
+      yScale = xScale
+    }
+  }
   
   var velocity : CGFloat = -1
   
@@ -29,32 +43,43 @@ class Bat: SKSpriteNode {
   init(audioManager: AudioManager) {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat")
-    flapping = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "beep.mp3", ofType: nil)!)
+    flapping = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
     flapping?.isRepeated = true
+    flapping?.speed = Bat.flapVelocityConversion / abs(velocity)
+    z = Bat.maxZMagnitude
     flapping?.start()
     
     // init super vars
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
-    // update super vars
-       position = CGPoint(
-          x: CGFloat(Int.random(in: 0...Int(UIScreen.main.bounds.width))),
-          y: Bat.SCREEN_HEIGHT
-    //      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
-        )
+    position = CGPoint(
+      x: CGFloat(Int.random(in: 0...Int(UIScreen.main.bounds.width))),
+      y: 3 * UIScreen.main.bounds.height / 4
+      //      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
+    )
+    
+    // these are not set in the first update of z because super has not been inited yet
+    xScale = 0
+    yScale = 0
   }
   
   // annoying but required - doing the minimum to compile
   required init?(coder aDecoder: NSCoder) {
     flapping = nil
+    z = Bat.maxZMagnitude
     super.init(coder: aDecoder)
   }
   
-  func updatePosition() {
+  func move() {
     z += velocity
-    
-    // dropping the bats FOR DEBUG ONLY SORRY MATT
-    self.position.y = (z * Bat.SCREEN_HEIGHT) / 100
+  }
+  
+  func isGone() -> Bool {
+    return abs(z) >= Bat.maxZMagnitude
+  }
+  
+  func die() {
+    flapping?.stop()
   }
   
 }

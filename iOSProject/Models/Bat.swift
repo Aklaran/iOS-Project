@@ -13,6 +13,7 @@ class Bat: SKSpriteNode {
   
   // instance vars
   let flapping : Emitter?
+  var z : CGFloat = 0
   
   // override to update emitter(s)
   override var position : CGPoint {
@@ -21,7 +22,7 @@ class Bat: SKSpriteNode {
     }
   }
   
-  init(audioManager : AudioManager) {
+  init(audioManager: AudioManager) {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat")
     flapping = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "lab9images/beep.mp3", ofType: nil)!)
@@ -32,7 +33,11 @@ class Bat: SKSpriteNode {
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
     // update super vars
-    position = CGPoint(x: 200, y: 200)
+    position = CGPoint(
+      x: CGFloat(Int.random(in: 0...Int(UIScreen.main.bounds.width))),
+      y: 3 * UIScreen.main.bounds.height / 4
+//      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
+    )
   }
   
   // annoying but required - doing the minimum to compile

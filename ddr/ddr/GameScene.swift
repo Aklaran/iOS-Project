@@ -18,14 +18,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let maxLevels = 3
   
-  let initialBatZ: CGFloat = 100
-  let finalBatZ: CGFloat = -100
-  
   let audioManager = AudioManager()
   let motionManager = CMMotionManager()
   
-  var bat : Bat? = nil
-  var bats : [Bat] = [Bat]()
+  var bats = [Bat]()
   
   var rider: Rider? = nil
   
@@ -36,14 +32,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addChild(rider!)
     
     // for spawning the bats
-    let wait = SKAction.wait(forDuration: 3, withRange: 2)
+    let wait = SKAction.wait(forDuration: 5, withRange: 2)
     let spawn = SKAction.run {
       let bat = Bat(audioManager: self.audioManager)
-      bat.z = self.initialBatZ
       self.bats.append(bat)
       self.addChild(bat)
     }
     let sequence = SKAction.sequence([wait, spawn])
+//    run(spawn) // for testing only generate one bat
     run(SKAction.repeatForever(sequence))
   }
   
@@ -77,24 +73,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   override func update(_ currentTime: TimeInterval) {
     // Called before each frame is rendered
     
-    //    if (lastSpawnTime == nil || lastSpawnTime! - currentTime > 5) {
-    //      print("spawning")
-    //      lastSpawnTime = currentTime
-    //    }
-    //    else {
-    //    }
-    
     guard let rider = rider else {
       print("No rider!")
       return
     }
     
+    // move all bats forward and check collisions
     for bat in bats {
       bat.updatePosition()
       if bat.z == 0 {
         checkCollision(bat: bat, rider: rider)
       }
     }
+    
+    // clean-up obsolete bats
+    var toRemove = [Bat]()
+    for bat in bats {
+      bat.move()
+      if bat.isGone() {
+        toRemove.append(bat)
+        bat.die()
+      }
+    }
+    removeChildren(in: toRemove)
+    bats.removeAll(where: {
+      toRemove.contains($0)
+    })
   }
   
   func checkCollision(bat: Bat, rider: Rider) {

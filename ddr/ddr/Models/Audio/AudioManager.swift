@@ -14,8 +14,8 @@ class AudioManager {
   var emitters = [Emitter]()
   private var listenerPosition = CGPoint(x: 0, y: 0)
   
-  func createEmitter(soundFile: String) -> Emitter {
-    let emitter = Emitter(soundFile: soundFile)
+  func createEmitter(soundFile: String, maxZMagnitude: CGFloat) -> Emitter {
+    let emitter = Emitter(soundFile: soundFile, maxZMagnitude: maxZMagnitude)
     emitters.append(emitter)
     return emitter
   }
