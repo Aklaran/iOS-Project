@@ -15,6 +15,7 @@ var levelNum = 1
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let THIRD_SCREEN_WIDTH = UIScreen.main.bounds.width / 3
+  let GOLDEN_RATIO = CGFloat(1.61803398875)
   
   let maxLevels = 3
   
@@ -41,7 +42,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     background.anchorPoint = CGPoint(x: 0.5, y: 0)
     background.position = CGPoint(x: size.width/2, y: 0)
     background.zPosition = -999
-    background.size.height = self.frame.size.height;
+    // Sets background vanishing point to below half the screen for 3D depth
+    background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
     addChild(background)
   }
   
@@ -54,7 +56,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for i in 0 ..< rider!.lives {
       let newHeart = SKSpriteNode(imageNamed: "heart");
       newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0.5))
-      newHeart.position = CGPoint(x: CGFloat(i * 100), y: (size.height - newHeart.size.height));
+      newHeart.position = CGPoint(x: CGFloat(50 + i * 100), y: (size.height - newHeart.size.height));
       lives.append(newHeart)
       addChild(newHeart)
     }
