@@ -10,13 +10,14 @@ import UIKit
 import SpriteKit
 
 class Bat: SKSpriteNode {
+  static let SCREEN_HEIGHT = UIScreen.main.bounds.height
   
   // Bat Constants
   static let maxZMagnitude : CGFloat = 100
   static let flapVelocityConversion : CGFloat = 6 // bigger is faster
   
   // instance vars
-  var velocity : CGFloat = -3
+  var velocity : CGFloat = -1
   let flapping : Emitter?
   
   var z : CGFloat {
@@ -49,7 +50,6 @@ class Bat: SKSpriteNode {
     // init super vars
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
-    // update super vars
     position = CGPoint(
       x: CGFloat(Int.random(in: 0...Int(UIScreen.main.bounds.width))),
       y: 3 * UIScreen.main.bounds.height / 4

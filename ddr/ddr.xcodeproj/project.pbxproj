@@ -168,8 +168,8 @@
 		1E4487E7236E2A8C0080AA21 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1E4487E8236E2A8C0080AA21 /* GameEntities */,
 				1E4487EB236E2A8C0080AA21 /* Audio */,
+				1E4487E8236E2A8C0080AA21 /* GameEntities */,
 			);
 			path = Models;
 			sourceTree = "<group>";

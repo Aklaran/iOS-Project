@@ -14,6 +14,8 @@ var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
+  let THIRD_SCREEN_WIDTH = UIScreen.main.bounds.width / 3
+  
   let maxLevels = 3
   
   let audioManager = AudioManager()
@@ -70,18 +72,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   override func update(_ currentTime: TimeInterval) {
     // Called before each frame is rendered
+    
+    guard let rider = rider else {
+      print("No rider!")
+      return
+    }
+    
+    // clean-up obsolete bats
     var toRemove = [Bat]()
     for bat in bats {
       bat.move()
+      
+      if bat.z == 0 {
+        checkCollision(bat: bat, rider: rider)
+      }
+      
       if bat.isGone() {
         toRemove.append(bat)
         bat.die()
       }
     }
+    
     removeChildren(in: toRemove)
     bats.removeAll(where: {
       toRemove.contains($0)
     })
+  }
+  
+  func checkCollision(bat: Bat, rider: Rider) {
+    let batThird = floor(bat.position.x / THIRD_SCREEN_WIDTH)
+    let riderThird = floor(rider.x / THIRD_SCREEN_WIDTH)
+    
+    print("bat third: ", batThird)
+    print("rider third: ", riderThird)
+    
+    if batThird == riderThird {
+      // play hit sound, decrement lives
+      rider.loseLife()
+    }
   }
   
   // MARK: - Game Management Methods
