@@ -40,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let background = SKSpriteNode(imageNamed: "background")
     background.anchorPoint = CGPoint(x: 0.5, y: 0)
     background.position = CGPoint(x: size.width/2, y: 0)
+    background.zPosition = -999
     background.size.height = self.frame.size.height;
     addChild(background)
   }
