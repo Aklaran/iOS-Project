@@ -37,7 +37,7 @@ class Emitter {
     if isRepeated {
       player.numberOfLoops = -1
     } else {
-      player.numberOfLoops = 1
+      player.numberOfLoops = 0
     }
     player.play()
   }
