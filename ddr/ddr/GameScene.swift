@@ -18,6 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let maxLevels = 3
   
+  var lives = [SKSpriteNode]();
+  
   let audioManager = AudioManager()
   let motionManager = CMMotionManager()
   
@@ -26,10 +28,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var rider: Rider? = nil
   
   override func didMove(to view: SKView) {
-    backgroundColor = SKColor.black
+    
+    let background = SKSpriteNode(imageNamed: "background")
+    background.anchorPoint = CGPoint(x: 0.5, y: 0)
+    background.position = CGPoint(x: size.width/2, y: 0)
+    background.size.height = self.frame.size.height;
+    addChild(background)
     
     rider = Rider(audioManager: audioManager, motionManager: motionManager)
     addChild(rider!)
+    
+    for var i in 0 ..< rider!.lives {
+       var newHeart = SKSpriteNode(imageNamed: "heart");
+       newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0.5))
+       newHeart.position = CGPoint(x: CGFloat(i * 100), y: (size.height - newHeart.size.height));
+       lives.append(newHeart)
+       addChild(newHeart)
+       print(i)
+       i += 1
+     }
     
     // for spawning the bats
     let wait = SKAction.wait(forDuration: 5, withRange: 2)

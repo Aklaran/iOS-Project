@@ -28,7 +28,7 @@ class Rider: SKSpriteNode {
     }
   }
   
-  private var lives:Int = 3 {
+  var lives:Int = 3 {
     didSet {
       if (lives < 1) {
         loseGame()
