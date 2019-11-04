@@ -16,7 +16,6 @@ class StartGameScene: SKScene {
     backgroundColor = SKColor(red:0.00, green:0.59, blue:0.63, alpha:1.0)
 
     let backgroundPicture = SKSpriteNode(imageNamed: "ddr")
-//    backgroundPicture.size.height = self.frame.size.height;
     backgroundPicture.anchorPoint = CGPoint(x: 0.5, y: 0.5);
     backgroundPicture.position = CGPoint(x: size.width/2, y: size.height - backgroundPicture.size.height)
 

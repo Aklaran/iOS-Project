@@ -38,7 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for var i in 0 ..< maxLives {
       var newHeart = SKSpriteNode(imageNamed: "heart");
       newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0.5))
-      newHeart.position = CGPoint(x: CGFloat(i * 100), y: (size.height - newHeart.size.height));
+      newHeart.position = CGPoint(x: CGFloat((i * 100) + 60), y: (size.height - newHeart.size.height));
       lives.append(newHeart)
       addChild(newHeart)
       print(i)
