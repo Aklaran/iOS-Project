@@ -30,7 +30,7 @@ class Rider: SKSpriteNode {
   
   var lives:Int = 3 {
     didSet {
-      if (lives < 1) {
+      if (lives == 0) {
         loseGame()
       } else {
         respawn()

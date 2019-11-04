@@ -84,7 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
+
   }
   
   override func update(_ currentTime: TimeInterval) {
@@ -126,6 +126,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     if batThird == riderThird {
       // play hit sound, decrement lives
       rider.loseLife()
+      
+      let life = lives.popLast()
+      life?.removeFromParent()
     }
   }
   
