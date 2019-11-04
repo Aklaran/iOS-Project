@@ -14,19 +14,49 @@ var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
+  let initialBatZ: CGFloat = 300
+  let finalBatZ: CGFloat = -300
   let audioManager = AudioManager()
-  var bat : Bat? = nil
+  var bats : [Bat] = [Bat]()
   var rider: Rider? = nil
   let maxLevels = 3
+  let maxLives = 3;
+  var lives = [SKSpriteNode]();
   var motionManager: CMMotionManager = CMMotionManager()
   override func didMove(to view: SKView) {
-    
     backgroundColor = SKColor.black
-      
-    bat = Bat(audioManager: audioManager)
+    
+    let background = SKSpriteNode(imageNamed: "background")
+    background.anchorPoint = CGPoint(x: 0.5, y: 0)
+    background.position = CGPoint(x: size.width/2, y: 0)
+    background.size.height = self.frame.size.height;
+    addChild(background)
+    
     rider = Rider(audioManager: audioManager)
-    addChild(bat!)
     addChild(rider!)
+    
+    for var i in 0 ..< maxLives {
+      var newHeart = SKSpriteNode(imageNamed: "heart");
+      newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0.5))
+      newHeart.position = CGPoint(x: CGFloat((i * 100) + 60), y: (size.height - newHeart.size.height));
+      lives.append(newHeart)
+      addChild(newHeart)
+      print(i)
+      i += 1
+    }
+    
+    // for spawning the bats
+    let wait = SKAction.wait(forDuration: 3, withRange: 2)
+    let spawn = SKAction.run {
+      let bat = Bat(audioManager: self.audioManager)
+      bat.z = self.initialBatZ
+      self.bats.append(bat)
+      self.addChild(bat)
+    }
+    run(spawn) // just spawn one for now
+//    let sequence = SKAction.sequence([wait, spawn])
+//    run(SKAction.repeatForever(sequence))
+  
   }
   
   func touchDown(atPoint pos : CGPoint) {
@@ -42,7 +72,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    bat!.position = touches.first?.location(in: self) as! CGPoint
+    
   }
   
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -58,7 +88,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func update(_ currentTime: TimeInterval) {
-      // Called before each frame is rendered
+//      // Called before each frame is rendered
+//    if (lastSpawnTime == nil || lastSpawnTime! - currentTime > 5) {
+//      print("spawning")
+//      lastSpawnTime = currentTime
+//    }
+//    else {
+//    }
   }
   
   // MARK: - Game Management Methods

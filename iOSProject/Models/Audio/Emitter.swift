@@ -56,7 +56,7 @@ class Emitter {
     var distance = x - destination.x
     let sign = distance / abs(distance)
     distance = abs(distance)
-    player.pan = Float(sign * sqrt(distance / UIScreen.main.bounds.width))
+    player.pan = -Float(sign * sqrt(distance / UIScreen.main.bounds.width))
   }
   
 }

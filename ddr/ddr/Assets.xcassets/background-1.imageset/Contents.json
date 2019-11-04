@@ -21,7 +21,6 @@
     "author" : "xcode"
   },
   "properties" : {
-    "localizable" : true,
-    "auto-scaling" : "auto"
+    "localizable" : true
   }
 }

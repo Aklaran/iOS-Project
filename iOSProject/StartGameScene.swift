@@ -13,12 +13,14 @@ import UIKit
 class StartGameScene: SKScene {
   
   override func didMove(to view: SKView) {
-    backgroundColor = SKColor.black
-    let background = SKSpriteNode(imageNamed: "background")
-    background.anchorPoint = CGPoint(x: 0.5, y: 0)
-    background.position = CGPoint(x: size.width/2, y: 0)
-    addChild(background)
-    
+    backgroundColor = SKColor(red:0.00, green:0.59, blue:0.63, alpha:1.0)
+
+    let backgroundPicture = SKSpriteNode(imageNamed: "ddr")
+    backgroundPicture.anchorPoint = CGPoint(x: 0.5, y: 0.5);
+    backgroundPicture.position = CGPoint(x: size.width/2, y: size.height - backgroundPicture.size.height)
+
+
+    addChild(backgroundPicture)
     let startGameButton = SKSpriteNode(imageNamed: "newgamebtn")
     startGameButton.position = CGPoint(x: size.width/2, y: size.height/2 - 100)
     startGameButton.name = "startgame"
