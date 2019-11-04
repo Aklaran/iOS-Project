@@ -78,23 +78,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       return
     }
     
-    // move all bats forward and check collisions
-    for bat in bats {
-      bat.updatePosition()
-      if bat.z == 0 {
-        checkCollision(bat: bat, rider: rider)
-      }
-    }
-    
     // clean-up obsolete bats
     var toRemove = [Bat]()
     for bat in bats {
       bat.move()
+      
+      if bat.z == 0 {
+        checkCollision(bat: bat, rider: rider)
+      }
+      
       if bat.isGone() {
         toRemove.append(bat)
         bat.die()
       }
     }
+    
     removeChildren(in: toRemove)
     bats.removeAll(where: {
       toRemove.contains($0)

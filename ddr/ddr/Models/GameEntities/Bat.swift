@@ -17,7 +17,7 @@ class Bat: SKSpriteNode {
   static let flapVelocityConversion : CGFloat = 6 // bigger is faster
   
   // instance vars
-  var velocity : CGFloat = -3
+  var velocity : CGFloat = -1
   let flapping : Emitter?
   
   var z : CGFloat {
@@ -30,8 +30,6 @@ class Bat: SKSpriteNode {
       yScale = xScale
     }
   }
-  
-  var velocity : CGFloat = -1
   
   // override to update emitter(s)
   override var position : CGPoint {
