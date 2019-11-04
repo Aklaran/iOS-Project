@@ -54,7 +54,6 @@ class Bat: SKSpriteNode {
     // randomly assign to a screen third
     let third = Int.random(in: 0...2)
     
-    
     position = CGPoint(
       x: Bat.SIXTH_SCREEN_WIDTH + (2 * CGFloat(third) * Bat.SIXTH_SCREEN_WIDTH),
       y: 3 * UIScreen.main.bounds.height / 4

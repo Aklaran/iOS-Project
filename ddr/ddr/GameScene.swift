@@ -132,11 +132,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let riderThird = floor(rider.x / THIRD_SCREEN_WIDTH)
     
     if batThird == riderThird {
-      // play hit sound, decrement lives
+      // decrement lives
       rider.loseLife()
       
+      // update ui to reflect lost life
       let life = lives.popLast()
       life?.removeFromParent()
+      
+      // kill the bat too (to stop sound)
+      bat.die()
+      bats.removeAll(where: { $0 == bat })
+      bat.removeFromParent()
     }
   }
   
