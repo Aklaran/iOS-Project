@@ -11,6 +11,7 @@ import SpriteKit
 
 class Bat: SKSpriteNode {
   static let SCREEN_HEIGHT = UIScreen.main.bounds.height
+  static let SIXTH_SCREEN_WIDTH = UIScreen.main.bounds.width / 6
   
   // Bat Constants
   static let maxZMagnitude : CGFloat = 100
@@ -50,8 +51,11 @@ class Bat: SKSpriteNode {
     // init super vars
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
+    // randomly assign to a screen third
+    let third = Int.random(in: 0...2)
+    
     position = CGPoint(
-      x: CGFloat(Int.random(in: 0...Int(UIScreen.main.bounds.width))),
+      x: Bat.SIXTH_SCREEN_WIDTH + (2 * CGFloat(third) * Bat.SIXTH_SCREEN_WIDTH),
       y: 3 * UIScreen.main.bounds.height / 4
       //      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
     )

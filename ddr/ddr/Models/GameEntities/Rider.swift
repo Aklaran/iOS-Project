@@ -13,8 +13,10 @@ import CoreMotion
 class Rider: SKSpriteNode {
   static let HALF_SCREEN_WIDTH = UIScreen.main.bounds.width / 2
   
-  let audioManager: AudioManager?
-  let motionManager: CMMotionManager?
+  let audioManager : AudioManager?
+  let motionManager : CMMotionManager?
+  
+  let hitSound : Emitter?
   
   let z : CGFloat = 0
   
@@ -30,7 +32,7 @@ class Rider: SKSpriteNode {
   
   var lives:Int = 3 {
     didSet {
-      if (lives < 1) {
+      if (lives == 0) {
         loseGame()
       } else {
         respawn()
@@ -44,28 +46,31 @@ class Rider: SKSpriteNode {
     self.audioManager = audioManager
     self.motionManager = motionManager
     
+    self.hitSound = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "impact-kick.wav", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
+    
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
     self.setScale(0.4)
     self.position.x = Rider.HALF_SCREEN_WIDTH
     
     beginMotionUpdates()
-    // preparing player for collisions once we add physics...
   }
   
   required init?(coder aDecoder: NSCoder) {
     audioManager = nil
     motionManager = nil
+    hitSound = nil
     
     super.init(coder: aDecoder)
   }
   
   func loseLife() {
-    // logic to be determined shortly
     if (!invincible) {
       lives -= 1
       print("Lost a life!!")
     }
+    
+    self.hitSound?.start()
   }
   
   func loseGame(){
@@ -82,7 +87,7 @@ class Rider: SKSpriteNode {
     let fadeOutAction = SKAction.fadeOut(withDuration: 0.4)
     let fadeInAction = SKAction.fadeIn(withDuration: 0.4)
     let fadeOutIn = SKAction.sequence([fadeOutAction,fadeInAction])
-    let fadeOutInAction = SKAction.repeat(fadeOutIn, count: 5)
+    let fadeOutInAction = SKAction.repeat(fadeOutIn, count: 3)
     let setInvicibleFalse = SKAction.run(){
       self.invincible = false
     }
