@@ -19,6 +19,7 @@ class Bat: SKSpriteNode {
   
   // instance vars
   var velocity : CGFloat = -1
+  let audioManager : AudioManager
   let flapping : Emitter?
   
   var z : CGFloat {
@@ -42,7 +43,8 @@ class Bat: SKSpriteNode {
   init(audioManager: AudioManager) {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat")
-    flapping = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
+    self.audioManager = audioManager
+    flapping = self.audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
     flapping?.isRepeated = true
     flapping?.speed = Bat.flapVelocityConversion / abs(velocity)
     z = Bat.maxZMagnitude
@@ -68,6 +70,7 @@ class Bat: SKSpriteNode {
   // annoying but required - doing the minimum to compile
   required init?(coder aDecoder: NSCoder) {
     flapping = nil
+    audioManager = AudioManager()
     z = Bat.maxZMagnitude
     super.init(coder: aDecoder)
   }
@@ -82,6 +85,18 @@ class Bat: SKSpriteNode {
   
   func die() {
     flapping?.stop()
+    removeFromParent()
+  }
+  
+  func hit() {
+    // play sound to hit the player
+    let hitSound = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "impact-kick.wav", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
+    hitSound.updatePosition(self.position)
+    hitSound.start()
+  }
+  
+  func pass() {
+    // play whoosh sound to pass the player
   }
   
 }

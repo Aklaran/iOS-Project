@@ -14,9 +14,7 @@ class Rider: SKSpriteNode {
   static let HALF_SCREEN_WIDTH = UIScreen.main.bounds.width / 2
   
   let audioManager : AudioManager?
-  let motionManager : CMMotionManager?
-  
-  let hitSound : Emitter?
+  let motionManager : CMMotionManager? 
   
   let z : CGFloat = 0
   
@@ -46,8 +44,6 @@ class Rider: SKSpriteNode {
     self.audioManager = audioManager
     self.motionManager = motionManager
     
-    self.hitSound = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "impact-kick.wav", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
-    
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
     self.setScale(0.4)
@@ -59,7 +55,6 @@ class Rider: SKSpriteNode {
   required init?(coder aDecoder: NSCoder) {
     audioManager = nil
     motionManager = nil
-    hitSound = nil
     
     super.init(coder: aDecoder)
   }
@@ -67,10 +62,7 @@ class Rider: SKSpriteNode {
   func loseLife() {
     if (!invincible) {
       lives -= 1
-      print("Lost a life!!")
     }
-    
-    self.hitSound?.start()
   }
   
   func loseGame(){
