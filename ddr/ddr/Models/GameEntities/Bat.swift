@@ -104,6 +104,8 @@ class Bat: SKSpriteNode {
     // play whoosh sound to pass the player
     let whooshSound = audioManager.createEmitter(soundFile: Bat.swooshFile, maxZMagnitude: Bat.maxZMagnitude)
     whooshSound.updatePosition(self.position)
+    whooshSound.volume = 0.3
+    whooshSound.speed = 2
     whooshSound.start()
   }
   
