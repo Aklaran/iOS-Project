@@ -9,6 +9,7 @@
 import XCTest
 import CoreMotion
 import ddr
+import SceneKit
 @testable import ddr
 
 class SneakyAudioManager : AudioManager {
@@ -42,6 +43,12 @@ class RiderTest: XCTestCase {
     XCTAssertEqual(0, rider?.zRotation)
     rider?.rotate(rotationMultiplier: 2)
     XCTAssertNotEqual(0, rider?.zRotation)
+  }
+  
+  func testLoseLife() {
+    rider!.lives = 3
+    rider?.loseLife()
+    XCTAssertEqual(2, rider!.lives)
   }
 
 }
