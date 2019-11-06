@@ -50,5 +50,16 @@ class RiderTest: XCTestCase {
     rider?.loseLife()
     XCTAssertEqual(2, rider!.lives)
   }
+  
+  func testIsDead() {
+    guard let rider = rider else {
+      print("this can't happen")
+      return
+    }
+    rider.lives = 1
+    XCTAssertFalse(rider.isDead())
+    rider.lives = 0
+    XCTAssertTrue(rider.isDead())
+  }
 
 }
