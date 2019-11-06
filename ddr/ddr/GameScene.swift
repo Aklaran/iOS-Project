@@ -191,6 +191,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       bat.hit()
       bat.die()
       bats.removeAll(where: { $0 == bat })
+      
+      // check game over
+      if rider.isDead() {
+        let gameOverScene = StartGameScene(size: self.scene!.size)
+        gameOverScene.scaleMode = self.scene!.scaleMode
+        let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
+        self.scene!.view!.presentScene(gameOverScene,transition: transitionType)
+        
+        // kill all the bats
+        for bat in bats {
+          bat.die()
+        }
+        bats = []
+      }
     }
     else {
       bat.pass()
