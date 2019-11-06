@@ -45,11 +45,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
     addChild(background)
+    background.isHidden = true // no sight by default
   }
   
   func initializeRider() {
     rider = Rider(audioManager: audioManager, motionManager: motionManager)
     addChild(rider!)
+    rider?.isHidden = true // no sight by default
   }
   
   func initializeHearts() {
@@ -115,7 +117,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       bat.move()
       
       if bat.z <= abs(bat.velocity) && bat.z >= -1 * abs(bat.velocity) {
-      //if bat.z == 0 {
         checkCollision(bat: bat, rider: rider)
       }
       
