@@ -88,8 +88,8 @@ class Rider: SKSpriteNode {
 
 // MARK: - Sprite/Visual Functionality
   
-  //Zrotation starts at 0.0 and rotates counter clockwise
   func rotate(rotationMultiplier:CGFloat) {
+    // matt's turn for a hacky -1 multiplier
     self.zRotation = CGFloat(-Double.pi) * rotationMultiplier * 0.5
   }
   

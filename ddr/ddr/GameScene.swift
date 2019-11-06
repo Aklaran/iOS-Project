@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 import CoreMotion
+import AVFoundation
 
 var levelNum = 1
 
@@ -17,7 +18,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let THIRD_SCREEN_WIDTH = UIScreen.main.bounds.width / 3
   let GOLDEN_RATIO = CGFloat(1.61803398875)
   
+  static let tracksSoundFile = Bundle.main.path(forResource: "tracks.mp3", ofType: nil)!
+  
   let maxLevels = 3
+  var meters : CGFloat = 0 {
+    didSet {
+      progressLabel!.text = String(Int(meters)) + " meters"
+    }
+  }
+  var velocity : CGFloat = 0.01
   
   let audioManager = AudioManager()
   let motionManager = CMMotionManager()
@@ -26,6 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   var bats = [Bat]()
   var rider: Rider? = nil
+  var progressLabel : SKLabelNode? = nil
   
   override func didMove(to view: SKView) {
     initializeBackground()
@@ -34,7 +44,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     initializeHearts()
     
+    initializeSounds()
+    
+    initializeProgressFeedback()
+    
     beginSpawningBats()
+  }
+  
+  func initializeProgressFeedback() {
+    progressLabel = SKLabelNode(text: " meters")
+    progressLabel?.position = CGPoint(x: THIRD_SCREEN_WIDTH * 2, y: 19 * UIScreen.main.bounds.height / 20)
+    addChild(progressLabel!)
+  }
+  
+  func initializeSounds() {
+    let tracksSound = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: GameScene.tracksSoundFile))
+    tracksSound.numberOfLoops = -1
+    tracksSound.volume = 0.05
+    tracksSound.play()
+    //tracksSound.numberOfLoops = -1
+//    tracksSound.volume = 0.1
+//    tracksSound.play()
+    
+//    var e = audioManager.createEmitter(soundFile: GameScene.tracksSoundFile, maxZMagnitude: 10)
+////    e = Emitter(soundFile: GameScene.tracksSoundFile, maxZMagnitude: 10)
+//    e.isRepeated = true
+//    e.volume = 0.05
+//    e.start()
+//    e.updatePosition(rider!.position)
+    
   }
   
   func initializeBackground() {
@@ -51,7 +89,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func initializeRider() {
     rider = Rider(audioManager: audioManager, motionManager: motionManager)
     addChild(rider!)
-    rider?.isHidden = true // no sight by default
+    rider?.isHidden = false
+//    rider?.isHidden = true // no sight by default
   }
   
   func initializeHearts() {
@@ -65,7 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func beginSpawningBats() {
-      let wait = SKAction.wait(forDuration: 5, withRange: 2)
+      let wait = SKAction.wait(forDuration: 2, withRange: 2)
       let spawn = SKAction.run {
         let bat = Bat(audioManager: self.audioManager)
         self.bats.append(bat)
@@ -128,6 +167,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     bats.removeAll(where: {
       toRemove.contains($0)
     })
+    
+    // move the cart
+    meters = meters + velocity
+    
   }
   
   func checkCollision(bat: Bat, rider: Rider) {

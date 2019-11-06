@@ -28,6 +28,7 @@
 		1E6435AA2370DCBD00851B2A /* impact-kick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6435A92370DCBD00851B2A /* impact-kick.wav */; };
 		4D3801C82371FBE80081D336 /* RiderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3801C72371FBE80081D336 /* RiderTest.swift */; };
 		4D3801CA237320FF0081D336 /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801C9237320FF0081D336 /* swoosh.mp3 */; };
+		4D3801CE2373255D0081D336 /* tracks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801CD2373255C0081D336 /* tracks.mp3 */; };
 		4DE33443236F8A5000A179DB /* BatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33442236F8A5000A179DB /* BatTest.swift */; };
 		4DE33447236F953700A179DB /* AudioManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33446236F953700A179DB /* AudioManagerTest.swift */; };
 		4DE3344A236F9A5000A179DB /* singleFlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DE33440236E5DAC00A179DB /* singleFlap.mp3 */; };
@@ -76,6 +77,7 @@
 		1E6435A92370DCBD00851B2A /* impact-kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "impact-kick.wav"; sourceTree = "<group>"; };
 		4D3801C72371FBE80081D336 /* RiderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderTest.swift; sourceTree = "<group>"; };
 		4D3801C9237320FF0081D336 /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
+		4D3801CD2373255C0081D336 /* tracks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tracks.mp3; sourceTree = "<group>"; };
 		4DE33440236E5DAC00A179DB /* singleFlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleFlap.mp3; sourceTree = "<group>"; };
 		4DE33442236F8A5000A179DB /* BatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatTest.swift; sourceTree = "<group>"; };
 		4DE33446236F953700A179DB /* AudioManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTest.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 		1E4487FE236E2D880080AA21 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				4D3801CD2373255C0081D336 /* tracks.mp3 */,
 				4D3801C9237320FF0081D336 /* swoosh.mp3 */,
 				4DE33440236E5DAC00A179DB /* singleFlap.mp3 */,
 				1E4487FF236E2D880080AA21 /* beep.mp3 */,
@@ -310,6 +313,7 @@
 			files = (
 				1E6435AA2370DCBD00851B2A /* impact-kick.wav in Resources */,
 				1E4487AF236E29BB0080AA21 /* Main.storyboard in Resources */,
+				4D3801CE2373255D0081D336 /* tracks.mp3 in Resources */,
 				4DE3344A236F9A5000A179DB /* singleFlap.mp3 in Resources */,
 				4D3801CA237320FF0081D336 /* swoosh.mp3 in Resources */,
 				1E4487A6236E29BB0080AA21 /* GameScene.sks in Resources */,

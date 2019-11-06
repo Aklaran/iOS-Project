@@ -19,7 +19,7 @@ class Bat: SKSpriteNode {
   static let flapVelocityConversion : CGFloat = 1 // smaller
   
   // instance vars
-  var velocity : CGFloat = -2
+  var velocity : CGFloat = -1.5
   let audioManager : AudioManager
   let flapping : Emitter?
   
@@ -63,7 +63,7 @@ class Bat: SKSpriteNode {
       //      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
     )
     
-    isHidden = true // we should not be able to see anything by default
+    isHidden = false // we should not be able to see anything by default
     
     // these are not set in the first update of z because super has not been inited yet
     xScale = 0
