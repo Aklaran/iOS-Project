@@ -33,7 +33,7 @@ class Rider: SKSpriteNode {
       if (lives == 0) {
         loseGame()
       } else {
-        respawn()
+//        respawn()
       }
     }
   }
@@ -73,18 +73,18 @@ class Rider: SKSpriteNode {
     self.scene!.view!.presentScene(gameOverScene,transition: transitionType)
   }
   
-  func respawn(){
-    // logic to be determined shortly
-    invincible = true
-    let fadeOutAction = SKAction.fadeOut(withDuration: 0.4)
-    let fadeInAction = SKAction.fadeIn(withDuration: 0.4)
-    let fadeOutIn = SKAction.sequence([fadeOutAction,fadeInAction])
-    let fadeOutInAction = SKAction.repeat(fadeOutIn, count: 3)
-    let setInvicibleFalse = SKAction.run(){
-      self.invincible = false
-    }
-    run(SKAction.sequence([fadeOutInAction,setInvicibleFalse]))
-  }
+//  func respawn(){
+//    // logic to be determined shortly
+//    invincible = true
+//    let fadeOutAction = SKAction.fadeOut(withDuration: 0.4)
+//    let fadeInAction = SKAction.fadeIn(withDuration: 0.4)
+//    let fadeOutIn = SKAction.sequence([fadeOutAction,fadeInAction])
+//    let fadeOutInAction = SKAction.repeat(fadeOutIn, count: 3)
+//    let setInvicibleFalse = SKAction.run(){
+//      self.invincible = false
+//    }
+//    run(SKAction.sequence([fadeOutInAction,setInvicibleFalse]))
+//  }
 
 // MARK: - Sprite/Visual Functionality
   

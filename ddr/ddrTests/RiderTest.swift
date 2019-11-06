@@ -38,6 +38,10 @@ class RiderTest: XCTestCase {
     XCTAssert(RiderTest.listenerPositionUpdated)
   }
   
-  
+  func testRotate() {
+    XCTAssertEqual(0, rider?.zRotation)
+    rider?.rotate(rotationMultiplier: 2)
+    XCTAssertNotEqual(0, rider?.zRotation)
+  }
 
 }
