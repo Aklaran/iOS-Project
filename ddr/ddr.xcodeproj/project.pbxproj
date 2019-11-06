@@ -18,15 +18,9 @@
 		1E4487BF236E29BC0080AA21 /* ddrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487BE236E29BC0080AA21 /* ddrTests.swift */; };
 		1E4487CA236E29BC0080AA21 /* ddrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487C9236E29BC0080AA21 /* ddrUITests.swift */; };
 		1E4487EE236E2A8C0080AA21 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487E9236E2A8C0080AA21 /* Bat.swift */; };
-		1E4487EF236E2A8C0080AA21 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487E9236E2A8C0080AA21 /* Bat.swift */; };
-		1E4487F0236E2A8C0080AA21 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487E9236E2A8C0080AA21 /* Bat.swift */; };
 		1E4487F1236E2A8C0080AA21 /* Rider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487EA236E2A8C0080AA21 /* Rider.swift */; };
 		1E4487F4236E2A8C0080AA21 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487EC236E2A8C0080AA21 /* AudioManager.swift */; };
-		1E4487F5236E2A8C0080AA21 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487EC236E2A8C0080AA21 /* AudioManager.swift */; };
-		1E4487F6236E2A8C0080AA21 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487EC236E2A8C0080AA21 /* AudioManager.swift */; };
 		1E4487F7236E2A8C0080AA21 /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487ED236E2A8C0080AA21 /* Emitter.swift */; };
-		1E4487F8236E2A8C0080AA21 /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487ED236E2A8C0080AA21 /* Emitter.swift */; };
-		1E4487F9236E2A8C0080AA21 /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487ED236E2A8C0080AA21 /* Emitter.swift */; };
 		1E4487FB236E2B530080AA21 /* StartGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487FA236E2B530080AA21 /* StartGameScene.swift */; };
 		1E448800236E2D880080AA21 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487FF236E2D880080AA21 /* beep.mp3 */; };
 		1E448801236E2D880080AA21 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487FF236E2D880080AA21 /* beep.mp3 */; };
@@ -362,11 +356,8 @@
 			files = (
 				1E4487BF236E29BC0080AA21 /* ddrTests.swift in Sources */,
 				4DE33443236F8A5000A179DB /* BatTest.swift in Sources */,
-				1E4487EF236E2A8C0080AA21 /* Bat.swift in Sources */,
-				1E4487F5236E2A8C0080AA21 /* AudioManager.swift in Sources */,
 				4DE33447236F953700A179DB /* AudioManagerTest.swift in Sources */,
 				4D3801C82371FBE80081D336 /* RiderTest.swift in Sources */,
-				1E4487F8236E2A8C0080AA21 /* Emitter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,9 +366,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E4487CA236E29BC0080AA21 /* ddrUITests.swift in Sources */,
-				1E4487F0236E2A8C0080AA21 /* Bat.swift in Sources */,
-				1E4487F6236E2A8C0080AA21 /* AudioManager.swift in Sources */,
-				1E4487F9236E2A8C0080AA21 /* Emitter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

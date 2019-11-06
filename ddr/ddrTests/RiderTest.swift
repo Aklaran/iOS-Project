@@ -7,27 +7,37 @@
 //
 
 import XCTest
+import CoreMotion
+import ddr
+@testable import ddr
+
+class SneakyAudioManager : AudioManager {
+  override func updateListenerPosition(to newPosition: CGPoint) {
+    super.updateListenerPosition(to: newPosition)
+    RiderTest.listenerPositionUpdated = true
+  }
+}
 
 class RiderTest: XCTestCase {
+  
+  var motionManager : CMMotionManager? = nil
+  var audioManager : AudioManager? = nil
+  var rider : Rider? = nil
+  
+  static var listenerPositionUpdated = false
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+  override func setUp() {
+    RiderTest.listenerPositionUpdated = false
+    motionManager = CMMotionManager()
+    audioManager = SneakyAudioManager()
+    rider = Rider(audioManager: audioManager!, motionManager: motionManager!)
+  }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+  func testUpdatePosition() {
+    rider?.position.x = 0
+    XCTAssert(RiderTest.listenerPositionUpdated)
+  }
+  
+  
 
 }
