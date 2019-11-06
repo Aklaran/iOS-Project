@@ -26,7 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       progressLabel!.text = String(Int(meters)) + " meters"
     }
   }
-  var velocity : CGFloat = 0.01
+  var velocity : CGFloat = 0.02
   
   let audioManager = AudioManager()
   let motionManager = CMMotionManager()
@@ -53,7 +53,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func initializeProgressFeedback() {
     progressLabel = SKLabelNode(text: " meters")
-    progressLabel?.position = CGPoint(x: THIRD_SCREEN_WIDTH * 2, y: 19 * UIScreen.main.bounds.height / 20)
+    progressLabel?.position = CGPoint(
+      x: UIScreen.main.bounds.width / 7 * 6,
+      y: 9 * UIScreen.main.bounds.height / 10
+    )
     addChild(progressLabel!)
   }
   
@@ -89,8 +92,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func initializeRider() {
     rider = Rider(audioManager: audioManager, motionManager: motionManager)
     addChild(rider!)
-    rider?.isHidden = false
-//    rider?.isHidden = true // no sight by default
+    rider?.isHidden = true // no sight by default
   }
   
   func initializeHearts() {

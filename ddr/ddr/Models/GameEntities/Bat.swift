@@ -63,7 +63,7 @@ class Bat: SKSpriteNode {
       //      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
     )
     
-    isHidden = false // we should not be able to see anything by default
+    isHidden = true // we should not be able to see anything by default
     
     // these are not set in the first update of z because super has not been inited yet
     xScale = 0
