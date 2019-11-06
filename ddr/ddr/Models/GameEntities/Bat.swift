@@ -12,6 +12,7 @@ import SpriteKit
 class Bat: SKSpriteNode {
   static let SCREEN_HEIGHT = UIScreen.main.bounds.height
   static let SIXTH_SCREEN_WIDTH = UIScreen.main.bounds.width / 6
+  static let swooshFile = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
   
   // Bat Constants
   static let maxZMagnitude : CGFloat = 100
@@ -101,6 +102,9 @@ class Bat: SKSpriteNode {
   func pass() {
     isHidden = true
     // play whoosh sound to pass the player
+    let whooshSound = audioManager.createEmitter(soundFile: Bat.swooshFile, maxZMagnitude: Bat.maxZMagnitude)
+    whooshSound.updatePosition(self.position)
+    whooshSound.start()
   }
   
 }
