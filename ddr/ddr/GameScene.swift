@@ -114,7 +114,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for bat in bats {
       bat.move()
       
-      if bat.z <= abs(bat.velocity) || bat.z >= -1 * abs(bat.velocity) {
+      if bat.z <= abs(bat.velocity) && bat.z >= -1 * abs(bat.velocity) {
+      //if bat.z == 0 {
         checkCollision(bat: bat, rider: rider)
       }
       
@@ -140,10 +141,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       let life = lives.popLast()
       life?.removeFromParent()
       
-      // kill the bat too (to stop sound)
+      // kill the bat too
       bat.hit()
       bat.die()
       bats.removeAll(where: { $0 == bat })
+    }
+    else {
+      bat.pass()
     }
   }
   

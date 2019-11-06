@@ -62,6 +62,8 @@ class Bat: SKSpriteNode {
       //      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
     )
     
+    isHidden = false
+    
     // these are not set in the first update of z because super has not been inited yet
     xScale = 0
     yScale = 0
@@ -89,6 +91,7 @@ class Bat: SKSpriteNode {
   }
   
   func hit() {
+    isHidden = true
     // play sound to hit the player
     let hitSound = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "impact-kick.wav", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
     hitSound.updatePosition(self.position)
@@ -96,6 +99,7 @@ class Bat: SKSpriteNode {
   }
   
   func pass() {
+    isHidden = true
     // play whoosh sound to pass the player
   }
   
