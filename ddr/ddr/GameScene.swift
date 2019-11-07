@@ -99,7 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for i in 0 ..< rider!.lives {
       let newHeart = SKSpriteNode(imageNamed: "heart");
       newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0.5))
-      newHeart.position = CGPoint(x: CGFloat(50 + i * 100), y: (size.height - newHeart.size.height));
+      newHeart.position = CGPoint(x: CGFloat(newHeart.size.width/2 + CGFloat(i) * 100), y: (size.height - newHeart.size.height));
       lives.append(newHeart)
       addChild(newHeart)
     }
@@ -108,7 +108,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func beginSpawningBats() {
       let wait = SKAction.wait(forDuration: 2, withRange: 2)
       let spawn = SKAction.run {
-        let bat = Bat(audioManager: self.audioManager)
+        let bat = Bat(audioManager: self.audioManager, pos: nil)
         self.bats.append(bat)
         self.addChild(bat)
       }
