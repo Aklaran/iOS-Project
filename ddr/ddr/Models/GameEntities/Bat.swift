@@ -12,13 +12,15 @@ import SpriteKit
 class Bat: SKSpriteNode {
   static let SCREEN_HEIGHT = UIScreen.main.bounds.height
   static let SIXTH_SCREEN_WIDTH = UIScreen.main.bounds.width / 6
+  static let swooshFile = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
   
   // Bat Constants
   static let maxZMagnitude : CGFloat = 100
-  static let flapVelocityConversion : CGFloat = 6 // bigger is faster
+  static let flapVelocityConversion : CGFloat = 1 // smaller
   
   // instance vars
-  var velocity : CGFloat = -1
+  var velocity : CGFloat = -1.5
+  let audioManager : AudioManager
   let flapping : Emitter?
   
   var z : CGFloat {
@@ -42,9 +44,10 @@ class Bat: SKSpriteNode {
   init(audioManager: AudioManager, pos: Int?) {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat")
-    flapping = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
+    self.audioManager = audioManager
+    flapping = self.audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
     flapping?.isRepeated = true
-    flapping?.speed = Bat.flapVelocityConversion / abs(velocity)
+    flapping?.speed = abs(velocity) / Bat.flapVelocityConversion
     z = Bat.maxZMagnitude
     flapping?.start()
     
@@ -66,6 +69,8 @@ class Bat: SKSpriteNode {
       //      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
     )
     
+    isHidden = true // we should not be able to see anything by default
+    
     // these are not set in the first update of z because super has not been inited yet
     xScale = 0
     yScale = 0
@@ -74,6 +79,7 @@ class Bat: SKSpriteNode {
   // annoying but required - doing the minimum to compile
   required init?(coder aDecoder: NSCoder) {
     flapping = nil
+    audioManager = AudioManager()
     z = Bat.maxZMagnitude
     super.init(coder: aDecoder)
   }
@@ -88,6 +94,25 @@ class Bat: SKSpriteNode {
   
   func die() {
     flapping?.stop()
+    removeFromParent()
+  }
+  
+  func hit() {
+    isHidden = true
+    // play sound to hit the player
+    let hitSound = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "impact-kick.wav", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
+    hitSound.updatePosition(self.position)
+    hitSound.start()
+  }
+  
+  func pass() {
+    isHidden = true
+    // play whoosh sound to pass the player
+    let whooshSound = audioManager.createEmitter(soundFile: Bat.swooshFile, maxZMagnitude: Bat.maxZMagnitude)
+    whooshSound.updatePosition(self.position)
+    whooshSound.volume = 0.3
+    whooshSound.speed = 2
+    whooshSound.start()
   }
   
 }
