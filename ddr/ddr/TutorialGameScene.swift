@@ -10,9 +10,9 @@ import SpriteKit
 import GameplayKit
 import CoreMotion
 
-var levelNum = 1
+//var levelNum = 1
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
   
   let THIRD_SCREEN_WIDTH = UIScreen.main.bounds.width / 3
   let GOLDEN_RATIO = CGFloat(1.61803398875)
@@ -27,13 +27,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var bats = [Bat]()
   var rider: Rider? = nil
   
+  var instructions = [
+    "Dodge bats by tilting your phone the other way! This one's coming up on the left, swing right!",
+    "Watch out, sometimes they come from the front!",
+    "Last one!"
+  ]
+  
+  
+  var actionInfo = SKLabelNode(fontNamed: "Chalkduster")
+  
+  var instructionNum = 0
+  
   override func didMove(to view: SKView) {
     initializeBackground()
     
     initializeRider()
-    
-    initializeHearts()
-    
+        
     beginSpawningBats()
   }
   
@@ -44,7 +53,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     background.zPosition = -999
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
+    
+    var tutorialText: SKLabelNode!
+    tutorialText = SKLabelNode(fontNamed: "Chalkduster")
+    tutorialText.text = "Tutorial"
+    tutorialText.fontSize = 60
+    tutorialText.fontColor = UIColor.white
+    tutorialText.horizontalAlignmentMode = .right
+    tutorialText.position = CGPoint(x: size.width/2 + 120, y: size.height - 60)
+    
+    actionInfo.lineBreakMode = NSLineBreakMode.byWordWrapping
+
+    actionInfo.numberOfLines = 3
+
+    actionInfo.preferredMaxLayoutWidth = THIRD_SCREEN_WIDTH
+    
     addChild(background)
+    addChild(tutorialText)
+    addChild(actionInfo)
   }
   
   func initializeRider() {
@@ -52,28 +78,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addChild(rider!)
   }
   
-  func initializeHearts() {
-    for i in 0 ..< rider!.lives {
-      let newHeart = SKSpriteNode(imageNamed: "heart");
-      newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0.5))
-      newHeart.position = CGPoint(x: CGFloat(newHeart.size.width/2 + CGFloat(i) * 100), y: (size.height - newHeart.size.height));
-      lives.append(newHeart)
-      addChild(newHeart)
-    }
-  }
-  
   func beginSpawningBats() {
       let wait = SKAction.wait(forDuration: 5, withRange: 2)
       let spawn = SKAction.run {
-        let bat = Bat(audioManager: self.audioManager, pos: nil)
-        self.bats.append(bat)
-        self.addChild(bat)
+        self.actionInfo.text = self.instructions[self.instructionNum]
+        self.actionInfo.fontSize = 20
+        self.actionInfo.fontColor = UIColor.white
+        self.actionInfo.horizontalAlignmentMode = .right
+        let offset = {self.instructionNum != 2 ? CGFloat(self.THIRD_SCREEN_WIDTH) : CGFloat(0)}
+        self.actionInfo.position = CGPoint(x: (CGFloat(self.THIRD_SCREEN_WIDTH)*CGFloat(self.instructionNum) + offset()), y: self.size.height/2 - 20)
+        
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { // Change `2.0` to the desired number of seconds.
+          let bat = Bat(audioManager: self.audioManager, pos: self.instructionNum)
+          self.bats.append(bat)
+          self.addChild(bat)
+          self.instructionNum += 1;
+          self.actionInfo.text = ""
+        }
+      
       }
-      let sequence = SKAction.sequence([wait, spawn])
-      // run(spawn) // for testing only generate one bat
-      run(SKAction.repeatForever(sequence))
-  }
-  
+      let repeatAction = SKAction.repeat(SKAction.sequence([wait,spawn]), count: instructions.count)
+
+      self.run(repeatAction)
+    }
+
   func touchDown(atPoint pos : CGPoint) {
     
   }
@@ -87,6 +116,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    let touch = touches.first! as UITouch
+    let touchLocation = touch.location(in: self)
+    let touchedNode = self.atPoint(touchLocation)
+    if touchedNode.name == "startgame" {
+      let newGameScene = GameScene(size: size)
+      newGameScene.scaleMode = scaleMode
+      let transitionType = SKTransition.flipHorizontal(withDuration: 1.0)
+      view?.presentScene(newGameScene,transition: transitionType)
+    }
   }
   
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -103,6 +141,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   override func update(_ currentTime: TimeInterval) {
     // Called before each frame is rendered
+    
+    if (instructionNum == 3) {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { // Change `2.0` to the desired number of seconds.
+        let startGameButton = SKSpriteNode(imageNamed: "start_btn")
+        startGameButton.position = CGPoint(x: self.size.width/2, y: self.size.height/2 - 100)
+        startGameButton.name = "startgame"
+        startGameButton.zPosition = 1000
+        self.addChild(startGameButton)
+      }
+    }
     
     guard let rider = rider else {
       print("No rider!")
@@ -147,21 +195,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       bats.removeAll(where: { $0 == bat })
       bat.removeFromParent()
     }
-  }
-  
-  // MARK: - Game Management Methods
-  func levelComplete(){
-    if(levelNum <= maxLevels){
-    } else {
-      levelNum = 1
-      newGame()
-    }
-  }
-  
-  func newGame(){
-    let gameOverScene = StartGameScene(size: size)
-    gameOverScene.scaleMode = scaleMode
-    let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
-    view?.presentScene(gameOverScene,transition: transitionType)
   }
 }

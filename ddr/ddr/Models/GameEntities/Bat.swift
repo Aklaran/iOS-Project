@@ -39,7 +39,7 @@ class Bat: SKSpriteNode {
     }
   }
   
-  init(audioManager: AudioManager) {
+  init(audioManager: AudioManager, pos: Int?) {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat")
     flapping = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
@@ -52,7 +52,13 @@ class Bat: SKSpriteNode {
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
     // randomly assign to a screen third
-    let third = Int.random(in: 0...2)
+    var third: Int;
+    print(pos)
+    if pos != nil {
+      third = pos!
+    } else {
+        third = Int.random(in: 0...2)
+    }
     
     position = CGPoint(
       x: Bat.SIXTH_SCREEN_WIDTH + (2 * CGFloat(third) * Bat.SIXTH_SCREEN_WIDTH),
