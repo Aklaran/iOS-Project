@@ -14,9 +14,7 @@ class Rider: SKSpriteNode {
   static let HALF_SCREEN_WIDTH = UIScreen.main.bounds.width / 2
   
   let audioManager : AudioManager?
-  let motionManager : CMMotionManager?
-  
-  let hitSound : Emitter?
+  let motionManager : CMMotionManager? 
   
   let z : CGFloat = 0
   
@@ -30,23 +28,23 @@ class Rider: SKSpriteNode {
     }
   }
   
-  var lives:Int = 3 {
-    didSet {
-      if (lives == 0) {
-        loseGame()
-      } else {
-        respawn()
-      }
-    }
-  }
+  var lives:Int = 3
+//  {
+//    didSet {
+//      if (lives == 0) {
+//        isDead = true
+////        loseGame()
+//      } else {
+////        respawn()
+//      }
+//    }
+//  }
   
   init(audioManager: AudioManager, motionManager: CMMotionManager) {
     let texture = SKTexture(imageNamed: "profH")
     
     self.audioManager = audioManager
     self.motionManager = motionManager
-    
-    self.hitSound = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "impact-kick.wav", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
     
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
@@ -59,7 +57,6 @@ class Rider: SKSpriteNode {
   required init?(coder aDecoder: NSCoder) {
     audioManager = nil
     motionManager = nil
-    hitSound = nil
     
     super.init(coder: aDecoder)
   }
@@ -67,37 +64,38 @@ class Rider: SKSpriteNode {
   func loseLife() {
     if (!invincible) {
       lives -= 1
-      print("Lost a life!!")
     }
-    
-    self.hitSound?.start()
   }
   
-  func loseGame(){
-    // logic to be determined shortly
-    let gameOverScene = StartGameScene(size: self.scene!.size)
-    gameOverScene.scaleMode = self.scene!.scaleMode
-    let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
-    self.scene!.view!.presentScene(gameOverScene,transition: transitionType)
+  func isDead() -> Bool {
+    return lives <= 0
   }
   
-  func respawn(){
-    // logic to be determined shortly
-    invincible = true
-    let fadeOutAction = SKAction.fadeOut(withDuration: 0.4)
-    let fadeInAction = SKAction.fadeIn(withDuration: 0.4)
-    let fadeOutIn = SKAction.sequence([fadeOutAction,fadeInAction])
-    let fadeOutInAction = SKAction.repeat(fadeOutIn, count: 3)
-    let setInvicibleFalse = SKAction.run(){
-      self.invincible = false
-    }
-    run(SKAction.sequence([fadeOutInAction,setInvicibleFalse]))
-  }
+//  func loseGame(){
+//    // logic to be determined shortly
+//    let gameOverScene = StartGameScene(size: self.scene!.size)
+//    gameOverScene.scaleMode = self.scene!.scaleMode
+//    let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
+//    self.scene!.view!.presentScene(gameOverScene,transition: transitionType)
+//  }
+  
+//  func respawn(){
+//    // logic to be determined shortly
+//    invincible = true
+//    let fadeOutAction = SKAction.fadeOut(withDuration: 0.4)
+//    let fadeInAction = SKAction.fadeIn(withDuration: 0.4)
+//    let fadeOutIn = SKAction.sequence([fadeOutAction,fadeInAction])
+//    let fadeOutInAction = SKAction.repeat(fadeOutIn, count: 3)
+//    let setInvicibleFalse = SKAction.run(){
+//      self.invincible = false
+//    }
+//    run(SKAction.sequence([fadeOutInAction,setInvicibleFalse]))
+//  }
 
 // MARK: - Sprite/Visual Functionality
   
-  //Zrotation starts at 0.0 and rotates counter clockwise
   func rotate(rotationMultiplier:CGFloat) {
+    // matt's turn for a hacky -1 multiplier
     self.zRotation = CGFloat(-Double.pi) * rotationMultiplier * 0.5
   }
   

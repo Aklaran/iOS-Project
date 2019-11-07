@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 import CoreMotion
+import AVFoundation
 
 var levelNum = 1
 
@@ -17,7 +18,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let THIRD_SCREEN_WIDTH = UIScreen.main.bounds.width / 3
   let GOLDEN_RATIO = CGFloat(1.61803398875)
   
+  static let tracksSoundFile = Bundle.main.path(forResource: "tracks.mp3", ofType: nil)!
+  
   let maxLevels = 3
+  var meters : CGFloat = 0 {
+    didSet {
+      progressLabel!.text = String(Int(meters)) + " meters"
+    }
+  }
+  var velocity : CGFloat = 0.02
   
   let audioManager = AudioManager()
   let motionManager = CMMotionManager()
@@ -26,6 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   var bats = [Bat]()
   var rider: Rider? = nil
+  var progressLabel : SKLabelNode? = nil
   
   override func didMove(to view: SKView) {
     initializeBackground()
@@ -34,7 +44,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     initializeHearts()
     
+    initializeSounds()
+    
+    initializeProgressFeedback()
+    
     beginSpawningBats()
+  }
+  
+  func initializeProgressFeedback() {
+    progressLabel = SKLabelNode(text: " meters")
+    progressLabel?.position = CGPoint(
+      x: UIScreen.main.bounds.width / 7 * 6,
+      y: 9 * UIScreen.main.bounds.height / 10
+    )
+    addChild(progressLabel!)
+  }
+  
+  func initializeSounds() {
+    let tracksSound = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: GameScene.tracksSoundFile))
+    tracksSound.numberOfLoops = -1
+    tracksSound.volume = 0.05
+    tracksSound.play()
+    //tracksSound.numberOfLoops = -1
+//    tracksSound.volume = 0.1
+//    tracksSound.play()
+    
+//    var e = audioManager.createEmitter(soundFile: GameScene.tracksSoundFile, maxZMagnitude: 10)
+////    e = Emitter(soundFile: GameScene.tracksSoundFile, maxZMagnitude: 10)
+//    e.isRepeated = true
+//    e.volume = 0.05
+//    e.start()
+//    e.updatePosition(rider!.position)
+    
   }
   
   func initializeBackground() {
@@ -45,11 +86,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
     addChild(background)
+    background.isHidden = true // no sight by default
   }
   
   func initializeRider() {
     rider = Rider(audioManager: audioManager, motionManager: motionManager)
     addChild(rider!)
+    rider?.isHidden = true // no sight by default
   }
   
   func initializeHearts() {
@@ -63,7 +106,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func beginSpawningBats() {
-      let wait = SKAction.wait(forDuration: 5, withRange: 2)
+      let wait = SKAction.wait(forDuration: 2, withRange: 2)
       let spawn = SKAction.run {
         let bat = Bat(audioManager: self.audioManager)
         self.bats.append(bat)
@@ -114,7 +157,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for bat in bats {
       bat.move()
       
-      if bat.z == 0 {
+      if bat.z <= abs(bat.velocity) && bat.z >= -1 * abs(bat.velocity) {
         checkCollision(bat: bat, rider: rider)
       }
       
@@ -123,11 +166,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bat.die()
       }
     }
-    
-    removeChildren(in: toRemove)
     bats.removeAll(where: {
       toRemove.contains($0)
     })
+    
+    // move the cart
+    meters = meters + velocity
+    
   }
   
   func checkCollision(bat: Bat, rider: Rider) {
@@ -142,10 +187,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       let life = lives.popLast()
       life?.removeFromParent()
       
-      // kill the bat too (to stop sound)
+      // kill the bat too
+      bat.hit()
       bat.die()
       bats.removeAll(where: { $0 == bat })
-      bat.removeFromParent()
+      
+      // check game over
+      if rider.isDead() {
+        let gameOverScene = StartGameScene(size: self.scene!.size)
+        gameOverScene.scaleMode = self.scene!.scaleMode
+        let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
+        self.scene!.view!.presentScene(gameOverScene,transition: transitionType)
+        
+        // kill all the bats
+        for bat in bats {
+          bat.die()
+        }
+        bats = []
+      }
+    }
+    else {
+      bat.pass()
     }
   }
   

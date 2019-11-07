@@ -27,6 +27,12 @@ class Emitter {
     }
   }
   
+  var volume : CGFloat = 1 {
+    didSet {
+      recalibrate()
+    }
+  }
+  
   init(soundFile: String, maxZMagnitude: CGFloat) {
     self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundFile))
     player.enableRate = true
@@ -72,7 +78,7 @@ class Emitter {
     
     // setup volume for z (and maybe later for y)
     let dz = abs(z) // because the listener is assument to have z = 0
-    player.volume = Float((maxZMagnitude - dz) / maxZMagnitude)
+    player.volume = Float((maxZMagnitude - dz) / maxZMagnitude * volume)
     
   }
   

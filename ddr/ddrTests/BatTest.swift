@@ -59,5 +59,23 @@ class BatTest: XCTestCase {
     bat1!.die()
     XCTAssertFalse(bat1!.flapping!.player.isPlaying)
   }
+  
+  func testHit() {
+    guard let bat = bat1 else {
+      return
+    }
+    bat.isHidden = false
+    bat.hit()
+    XCTAssertTrue(bat.isHidden)
+  }
+  
+  func testPass() {
+    guard let bat = bat1 else {
+      return
+    }
+    bat.isHidden = false
+    bat.pass()
+    XCTAssertTrue(bat.isHidden)
+  }
 
 }
