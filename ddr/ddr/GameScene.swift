@@ -194,10 +194,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       
       // check game over
       if rider.isDead() {
-        let gameOverScene = StartGameScene(size: self.scene!.size)
-        gameOverScene.scaleMode = self.scene!.scaleMode
-        let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
-        self.scene!.view!.presentScene(gameOverScene,transition: transitionType)
+        endGame()
         
         // kill all the bats
         for bat in bats {
@@ -212,15 +209,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   // MARK: - Game Management Methods
-  func levelComplete(){
+  func levelComplete() {
     if(levelNum <= maxLevels){
     } else {
       levelNum = 1
-      newGame()
+      ()
     }
   }
   
-  func newGame(){
+  func endGame() {
+    let gameOverScene = GameOverScene(size: size)
+    gameOverScene.scaleMode = scaleMode
+    
+    gameOverScene.distance = meters // pass distance traveled for the leaderboard
+
+    let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
+    view?.presentScene(gameOverScene,transition: transitionType)
+  }
+  
+  func newGame() {
     let gameOverScene = StartGameScene(size: size)
     gameOverScene.scaleMode = scaleMode
     let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
