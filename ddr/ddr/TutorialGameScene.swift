@@ -20,10 +20,11 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
   let maxLevels = 3
   
   let background:Background = Background()
-
   
   let audioManager = AudioManager()
   let motionManager = CMMotionManager()
+  
+  let startTutorialButton = SKSpriteNode(imageNamed: "start_btn")
   
   var lives = [SKSpriteNode]();
   
@@ -36,6 +37,8 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
     "Last one!"
   ]
   
+  var pausedForInstructions = false
+  
   var sceneEnded = false
   
   var actionInfo = SKLabelNode(fontNamed: "Chalkduster")
@@ -45,8 +48,7 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
   var tutorialTitleText: SKLabelNode!
   var tutorialSubText: SKLabelNode!
   
-  let startTutorialButton = SKSpriteNode(imageNamed: "start_btn")
-  
+  var tutorialBegan = false
   
   override func didMove(to view: SKView) {
     initializeBackground()
@@ -102,30 +104,27 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
     addChild(rider!)
   }
   
-  func beginSpawningBats() {
-      let wait = SKAction.wait(forDuration: 5)
-      let spawn = SKAction.run {
-        self.actionInfo.text = self.instructions[self.instructionNum]
-        self.actionInfo.fontSize = 20
-        self.actionInfo.fontColor = UIColor.white
-        self.actionInfo.horizontalAlignmentMode = .right
-        let offset = {self.instructionNum != 2 ? CGFloat(self.THIRD_SCREEN_WIDTH) : CGFloat(0)}
-        self.actionInfo.position = CGPoint(x: (CGFloat(self.THIRD_SCREEN_WIDTH)*CGFloat(self.instructionNum) + offset()), y: self.size.height/2 - 20)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { // Change `2.0` to the desired number of seconds.
-          let bat = Bat(audioManager: self.audioManager, pos: self.instructionNum, hide: false)
+  func spawn() {
+    self.actionInfo.text = self.instructions[self.instructionNum]
+    self.actionInfo.fontSize = 20
+    self.actionInfo.fontColor = UIColor.white
+    self.actionInfo.horizontalAlignmentMode = .right
+    let offset = {self.instructionNum != 2 ? CGFloat(self.THIRD_SCREEN_WIDTH) : CGFloat(0)}
+    self.actionInfo.position = CGPoint(x: (CGFloat(self.THIRD_SCREEN_WIDTH)*CGFloat(self.instructionNum) + offset()), y: self.size.height/2 - 20)
+  
+    let bat = Bat(audioManager: self.audioManager, pos: self.instructionNum, hide: false)
 
-          self.bats.append(bat)
-          self.addChild(bat)
-          self.instructionNum += 1;
-          self.actionInfo.text = ""
-        }
-      
-      }
-      let repeatAction = SKAction.repeat(SKAction.sequence([wait,spawn]), count: instructions.count)
-
-      self.run(repeatAction)
+    self.bats.append(bat)
+    self.addChild(bat)
+    
+    // pause bat movement to allow player to perform correct dodge
+    self.pausedForInstructions = true
+    // print("paused for instruction")
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { // Change `2.0` to the desired number of seconds.
+      self.actionInfo.text = ""
     }
+  }
 
   func touchDown(atPoint pos : CGPoint) {
     
@@ -151,12 +150,11 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     else if touchedNode.name == "next" {
-      print("we got it")
       tutorialSubText.removeFromParent()
       tutorialSubText.removeFromParent()
       startTutorialButton.removeFromParent()
-      beginSpawningBats()
-
+      
+      self.tutorialBegan = true
     }
   }
   
@@ -191,23 +189,55 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
       return
     }
     
-    // clean-up obsolete bats
-    var toRemove = [Bat]()
-    for bat in bats {
-      bat.move()
-      
-      if bat.z <= abs(bat.velocity) && bat.z >= -1 * abs(bat.velocity) {
-        checkCollision(bat: bat, rider: rider)
+    // only check for the dodge if currently paused, meaning player only has to perform dodge action once
+    if self.pausedForInstructions {
+      self.pausedForInstructions = checkTutorialDodge(rider: rider, instructionStep: instructionNum)
+    }
+    
+    if self.pausedForInstructions == false && self.tutorialBegan == true {
+      // clean-up obsolete bats
+      var toRemove = [Bat]()
+      for bat in bats {
+        bat.move()
+        
+        if bat.z <= abs(bat.velocity) && bat.z >= -1 * abs(bat.velocity) {
+          checkCollision(bat: bat, rider: rider)
+        }
+        
+        if bat.isGone() {
+          toRemove.append(bat)
+          bat.die()
+          self.instructionNum += 1 // set up to spawn the next bat
+        }
       }
+      bats.removeAll(where: {
+        toRemove.contains($0)
+      })
       
-      if bat.isGone() {
-        toRemove.append(bat)
-        bat.die()
+      if bats.count == 0 && instructionNum < 3 {
+        print("calling spawn")
+        spawn()
       }
     }
-    bats.removeAll(where: {
-      toRemove.contains($0)
-    })
+  }
+  
+  // checks whether the player performs the correct action given the current tutorial step
+  // returns true if tutorial should remain paused, false if it should resume
+  func checkTutorialDodge(rider: Rider, instructionStep: Int) -> Bool {
+    let riderThird = floor(rider.x / THIRD_SCREEN_WIDTH)
+    
+    print("instruction step ", instructionStep)
+    
+    switch instructionStep {
+    case 0:
+      return riderThird != 2 // unpause if player leans to the right
+    case 1:
+      return riderThird == 1 // unpause if player leans either direction
+    case 2:
+      return riderThird != 0 // unpause if player leans to the left
+    default:
+      return false
+    }
   }
   
   func checkCollision(bat: Bat, rider: Rider) {
