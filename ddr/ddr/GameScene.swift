@@ -20,12 +20,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   static let tracksSoundFile = Bundle.main.path(forResource: "tracks.mp3", ofType: nil)!
   
+  let background:Background = Background()
+  
   let maxLevels = 3
   var meters : CGFloat = 0 {
     didSet {
       progressLabel!.text = String(Int(meters)) + " meters"
     }
   }
+  
   var velocity : CGFloat = 0.02
   
   let audioManager = AudioManager()
@@ -79,14 +82,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func initializeBackground() {
-    let background = SKSpriteNode(imageNamed: "background")
     background.anchorPoint = CGPoint(x: 0.5, y: 0)
     background.position = CGPoint(x: size.width/2, y: 0)
     background.zPosition = -999
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
     addChild(background)
-    background.isHidden = true // no sight by default
+//    background.isHidden = true // no sight by default
   }
   
   func initializeRider() {
@@ -108,7 +110,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func beginSpawningBats() {
       let wait = SKAction.wait(forDuration: 2, withRange: 2)
       let spawn = SKAction.run {
-        let bat = Bat(audioManager: self.audioManager, pos: nil)
+        let bat = Bat(audioManager: self.audioManager, pos: nil, hide: nil)
         self.bats.append(bat)
         self.addChild(bat)
       }

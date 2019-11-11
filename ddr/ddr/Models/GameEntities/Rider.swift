@@ -41,7 +41,7 @@ class Rider: SKSpriteNode {
 //  }
   
   init(audioManager: AudioManager, motionManager: CMMotionManager) {
-    let texture = SKTexture(imageNamed: "profH")
+    let texture = SKTexture(imageNamed: "rider")
     
     self.audioManager = audioManager
     self.motionManager = motionManager
