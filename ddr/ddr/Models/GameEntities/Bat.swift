@@ -41,7 +41,7 @@ class Bat: SKSpriteNode {
     }
   }
   
-  init(audioManager: AudioManager, pos: Int?) {
+  init(audioManager: AudioManager, pos: Int?, hide: Bool?) {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat")
     self.audioManager = audioManager
@@ -69,7 +69,13 @@ class Bat: SKSpriteNode {
       //      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
     )
     
-    isHidden = true // we should not be able to see anything by default
+    //hide is false --> mk
+    if hide != nil {
+      isHidden = hide!;
+    } else {
+      // we should not be able to see anything by default
+      isHidden = true
+    }
     
     // these are not set in the first update of z because super has not been inited yet
     xScale = 0

@@ -19,6 +19,9 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
   
   let maxLevels = 3
   
+  let background:Background = Background()
+
+  
   let audioManager = AudioManager()
   let motionManager = CMMotionManager()
   
@@ -33,44 +36,65 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
     "Last one!"
   ]
   
+  var sceneEnded = false
   
   var actionInfo = SKLabelNode(fontNamed: "Chalkduster")
   
   var instructionNum = 0
   
+  var tutorialTitleText: SKLabelNode!
+  var tutorialSubText: SKLabelNode!
+  
+  let startTutorialButton = SKSpriteNode(imageNamed: "start_btn")
+  
+  
   override func didMove(to view: SKView) {
     initializeBackground()
     
     initializeRider()
-        
-    beginSpawningBats()
   }
   
   func initializeBackground() {
-    let background = SKSpriteNode(imageNamed: "background")
     background.anchorPoint = CGPoint(x: 0.5, y: 0)
-    background.position = CGPoint(x: size.width/2, y: 0)
     background.zPosition = -999
-    // Sets background vanishing point to below half the screen for 3D depth
+    background.position = CGPoint(x: size.width/2, y: 0)    // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
     
-    var tutorialText: SKLabelNode!
-    tutorialText = SKLabelNode(fontNamed: "Chalkduster")
-    tutorialText.text = "Tutorial"
-    tutorialText.fontSize = 60
-    tutorialText.fontColor = UIColor.white
-    tutorialText.horizontalAlignmentMode = .right
-    tutorialText.position = CGPoint(x: size.width/2 + 120, y: size.height - 60)
+    addChild(background)
+    
+    tutorialTitleText = SKLabelNode(fontNamed: "Chalkduster")
+    tutorialTitleText.text = "Tutorial"
+    tutorialTitleText.fontSize = 60
+    tutorialTitleText.fontColor = UIColor.white
+    tutorialTitleText.horizontalAlignmentMode = .right
+    tutorialTitleText.position = CGPoint(x: size.width/2 + 120, y: size.height - 60)
+    
+    tutorialSubText = SKLabelNode(fontNamed: "Chalkduster")
+    tutorialSubText.text = "This is a sensory game. Use your ears to guide you through a mineshaft, and tilt your phone to dodge bats coming your way. See how far you can make it! You'll see bats in the tutorial, but in the real game, it'll be too dark to use your eyes!"
+    tutorialSubText.fontSize = 20
+    tutorialSubText.fontColor = UIColor.white
+    tutorialSubText.verticalAlignmentMode = .center
+    tutorialSubText.horizontalAlignmentMode = .center
+    tutorialSubText.position = CGPoint(x: size.width/2, y: size.height/2)
+    
+    tutorialSubText.lineBreakMode = NSLineBreakMode.byWordWrapping
+
+    tutorialSubText.numberOfLines = 3
+
+    tutorialSubText.preferredMaxLayoutWidth = THIRD_SCREEN_WIDTH * 1.5
+
+    startTutorialButton.position = CGPoint(x: self.size.width - self.size.width/4, y: 50)
+    startTutorialButton.name = "next"
+    startTutorialButton.zPosition = 1000
     
     actionInfo.lineBreakMode = NSLineBreakMode.byWordWrapping
-
     actionInfo.numberOfLines = 3
-
     actionInfo.preferredMaxLayoutWidth = THIRD_SCREEN_WIDTH
     
-    addChild(background)
-    addChild(tutorialText)
+    addChild(tutorialTitleText)
     addChild(actionInfo)
+    addChild(tutorialSubText)
+    addChild(startTutorialButton)
   }
   
   func initializeRider() {
@@ -79,7 +103,7 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func beginSpawningBats() {
-      let wait = SKAction.wait(forDuration: 5, withRange: 2)
+      let wait = SKAction.wait(forDuration: 5)
       let spawn = SKAction.run {
         self.actionInfo.text = self.instructions[self.instructionNum]
         self.actionInfo.fontSize = 20
@@ -89,8 +113,8 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
         self.actionInfo.position = CGPoint(x: (CGFloat(self.THIRD_SCREEN_WIDTH)*CGFloat(self.instructionNum) + offset()), y: self.size.height/2 - 20)
         
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { // Change `2.0` to the desired number of seconds.
-          let bat = Bat(audioManager: self.audioManager, pos: self.instructionNum)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { // Change `2.0` to the desired number of seconds.
+          let bat = Bat(audioManager: self.audioManager, pos: self.instructionNum, hide: false)
           self.bats.append(bat)
           self.addChild(bat)
           self.instructionNum += 1;
@@ -125,6 +149,15 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
       let transitionType = SKTransition.flipHorizontal(withDuration: 1.0)
       view?.presentScene(newGameScene,transition: transitionType)
     }
+    
+    else if touchedNode.name == "next" {
+      print("we got it")
+      tutorialSubText.removeFromParent()
+      tutorialSubText.removeFromParent()
+      startTutorialButton.removeFromParent()
+      beginSpawningBats()
+
+    }
   }
   
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -142,8 +175,9 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
   override func update(_ currentTime: TimeInterval) {
     // Called before each frame is rendered
     
-    if (instructionNum == 3) {
+    if (instructionNum == 3 && sceneEnded == false) {
       DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { // Change `2.0` to the desired number of seconds.
+        self.sceneEnded = true;
         let startGameButton = SKSpriteNode(imageNamed: "start_btn")
         startGameButton.position = CGPoint(x: self.size.width/2, y: self.size.height/2 - 100)
         startGameButton.name = "startgame"
