@@ -112,9 +112,9 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
         let offset = {self.instructionNum != 2 ? CGFloat(self.THIRD_SCREEN_WIDTH) : CGFloat(0)}
         self.actionInfo.position = CGPoint(x: (CGFloat(self.THIRD_SCREEN_WIDTH)*CGFloat(self.instructionNum) + offset()), y: self.size.height/2 - 20)
         
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { // Change `2.0` to the desired number of seconds.
           let bat = Bat(audioManager: self.audioManager, pos: self.instructionNum, hide: false)
+
           self.bats.append(bat)
           self.addChild(bat)
           self.instructionNum += 1;
@@ -196,7 +196,7 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
     for bat in bats {
       bat.move()
       
-      if bat.z == 0 {
+      if bat.z <= abs(bat.velocity) && bat.z >= -1 * abs(bat.velocity) {
         checkCollision(bat: bat, rider: rider)
       }
       
@@ -205,8 +205,6 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
         bat.die()
       }
     }
-    
-    removeChildren(in: toRemove)
     bats.removeAll(where: {
       toRemove.contains($0)
     })
@@ -217,17 +215,34 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
     let riderThird = floor(rider.x / THIRD_SCREEN_WIDTH)
     
     if batThird == riderThird {
-      // decrement lives
-      rider.loseLife()
+      // don't decrement lives in tutorial, but show the flashing
+      rider.respawn()
       
       // update ui to reflect lost life
-      let life = lives.popLast()
-      life?.removeFromParent()
+      // let life = lives.popLast()
+      // life?.removeFromParent()
       
-      // kill the bat too (to stop sound)
+      // kill the bat tho
+      bat.hit()
       bat.die()
       bats.removeAll(where: { $0 == bat })
-      bat.removeFromParent()
+      
+      // check game over
+      if rider.isDead() {
+        let gameOverScene = StartGameScene(size: self.scene!.size)
+        gameOverScene.scaleMode = self.scene!.scaleMode
+        let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
+        self.scene!.view!.presentScene(gameOverScene,transition: transitionType)
+        
+        // kill all the bats
+        for bat in bats {
+          bat.die()
+        }
+        bats = []
+      }
+    }
+    else {
+      bat.pass()
     }
   }
 }
