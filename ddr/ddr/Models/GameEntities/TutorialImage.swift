@@ -17,7 +17,7 @@ class TutorialImage: SKSpriteNode {
   let rotationDuration = 0.5
   let waitDuration = 0.5
   
-  init(third: Int, rotateRight: Bool) {
+  init(third: Int, rotateRight: Bool = false, alternate: Bool = false) {
     // rotateRight param decides texture and args to rotation fn
     let texture = rotateRight ? SKTexture(imageNamed: "rotate_right") : SKTexture(imageNamed: "rotate_left")
     
@@ -32,12 +32,34 @@ class TutorialImage: SKSpriteNode {
       y: UIScreen.main.bounds.height / 2
     )
     
-    beginRotation(rotateRight: rotateRight)
+    // alternate overrides right rotation
+    if alternate {
+      beginAlternatingRotation()
+    } else {
+      beginRotation(rotateRight: rotateRight)
+    }
   }
   
   // annoying but required - doing the minimum to compile
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+  }
+  
+  func beginAlternatingRotation() {
+    let useLeftImage = SKAction.setTexture(SKTexture(imageNamed: "rotate_left"))
+    let rotateLeft = SKAction.rotate(byAngle: deg2rad(rotationDegrees), duration: rotationDuration)
+    let resetLeft = SKAction.rotate(byAngle: deg2rad(-rotationDegrees), duration: 0)
+
+    let wait = SKAction.wait(forDuration: waitDuration)
+    
+    let useRightImage = SKAction.setTexture(SKTexture(imageNamed: "rotate_right"))
+    let rotateRight = SKAction.rotate(byAngle: deg2rad(-rotationDegrees), duration: rotationDuration)
+    let resetRight = SKAction.rotate(byAngle: deg2rad(rotationDegrees), duration: 0)
+    
+    let sequence = SKAction.sequence([useLeftImage, rotateLeft, wait, resetLeft,
+                                      useRightImage, rotateRight, wait, resetRight])
+    
+    run(SKAction.repeatForever(sequence))
   }
   
   func beginRotation(rotateRight: Bool) {

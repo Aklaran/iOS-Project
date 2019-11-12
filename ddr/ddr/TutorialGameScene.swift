@@ -48,6 +48,8 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
   var tutorialTitleText: SKLabelNode!
   var tutorialSubText: SKLabelNode!
   
+  var tutorialImage: SKSpriteNode?
+  
   var tutorialBegan = false
   
   override func didMove(to view: SKView) {
@@ -112,8 +114,20 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
     let offset = {self.instructionNum != 2 ? CGFloat(self.THIRD_SCREEN_WIDTH) : CGFloat(0)}
     self.actionInfo.position = CGPoint(x: (CGFloat(self.THIRD_SCREEN_WIDTH)*CGFloat(self.instructionNum) + offset()), y: self.size.height/2 - 20)
     
-    let tutorialImage = TutorialImage(third: self.instructionNum, rotateRight: true)
-    self.addChild(tutorialImage)
+    // super janky arguments to tutorial image initializer
+    var alternating = false
+    var rotateRight = false
+    switch self.instructionNum {
+    case 0:
+      rotateRight = true
+    case 1:
+      alternating = true
+    default:
+      rotateRight = false
+    }
+    
+    self.tutorialImage = TutorialImage(third: self.instructionNum, rotateRight: rotateRight, alternate: alternating)
+    self.addChild(self.tutorialImage!)
     
     let bat = Bat(audioManager: self.audioManager, pos: self.instructionNum, hide: false)
 
@@ -198,6 +212,9 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     if self.pausedForInstructions == false && self.tutorialBegan == true {
+      // hide the tutorial image upon successful tilt
+      self.tutorialImage?.removeFromParent()
+      
       // clean-up obsolete bats
       var toRemove = [Bat]()
       for bat in bats {
