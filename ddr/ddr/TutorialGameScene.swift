@@ -126,20 +126,19 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
       rotateRight = false
     }
     
-    self.tutorialImage = TutorialImage(third: self.instructionNum, rotateRight: rotateRight, alternate: alternating)
-    self.addChild(self.tutorialImage!)
-    
     let bat = Bat(audioManager: self.audioManager, pos: self.instructionNum, hide: false)
 
     self.bats.append(bat)
     self.addChild(bat)
     
-    // pause bat movement to allow player to perform correct dodge
-    self.pausedForInstructions = true
-    // print("paused for instruction")
     
-    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { // Change `2.0` to the desired number of seconds.
-      self.actionInfo.text = ""
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + Double(Bat.maxZMagnitude / abs(bat.velocity) * 0.75 / 60)) { // Change `2.0` to the desired number of seconds.
+      self.tutorialImage = TutorialImage(third: self.instructionNum, rotateRight: rotateRight, alternate: alternating)
+      self.addChild(self.tutorialImage!)
+      // pause bat movement to allow player to perform correct dodge
+      self.pausedForInstructions = true
+      // print("paused for instruction")
     }
   }
 
@@ -180,7 +179,6 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    rider!.position = touches.first?.location(in: self) as! CGPoint
   }
   
   override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
