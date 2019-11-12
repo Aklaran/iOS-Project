@@ -111,7 +111,10 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
     self.actionInfo.horizontalAlignmentMode = .right
     let offset = {self.instructionNum != 2 ? CGFloat(self.THIRD_SCREEN_WIDTH) : CGFloat(0)}
     self.actionInfo.position = CGPoint(x: (CGFloat(self.THIRD_SCREEN_WIDTH)*CGFloat(self.instructionNum) + offset()), y: self.size.height/2 - 20)
-  
+    
+    let tutorialImage = TutorialImage(third: self.instructionNum, rotateRight: true)
+    self.addChild(tutorialImage)
+    
     let bat = Bat(audioManager: self.audioManager, pos: self.instructionNum, hide: false)
 
     self.bats.append(bat)
