@@ -25,7 +25,7 @@ class Background: SKSpriteNode {
   // we want the player image to alternate between one with and without jet flames so it looks like it's moving
   private func animate(){
     var backgroundTextures:[SKTexture] = []
-    for i in 1...2 {
+    for i in 1...3 {
       backgroundTextures.append(SKTexture(imageNamed: "background\(i)"))
     }
     let backgroundAnimation = SKAction.repeatForever(SKAction.animate(with: backgroundTextures, timePerFrame: 0.1))
