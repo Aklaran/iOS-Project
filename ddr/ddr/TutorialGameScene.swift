@@ -107,7 +107,7 @@ class TutorialGameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func spawn() {
-    self.actionInfo.text = self.instructions[self.instructionNum]
+//    self.actionInfo.text = self.instructions[self.instructionNum]
     self.actionInfo.fontSize = 20
     self.actionInfo.fontColor = UIColor.white
     self.actionInfo.horizontalAlignmentMode = .right

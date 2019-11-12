@@ -88,7 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
     addChild(background)
-//    background.isHidden = true // no sight by default
+    background.isHidden = true // no sight by default
   }
   
   func initializeRider() {
