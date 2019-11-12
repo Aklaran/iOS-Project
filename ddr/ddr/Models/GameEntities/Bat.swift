@@ -56,7 +56,6 @@ class Bat: SKSpriteNode {
     
     // randomly assign to a screen third
     var third: Int;
-    print(pos)
     if pos != nil {
       third = pos!
     } else {

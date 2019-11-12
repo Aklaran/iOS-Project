@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E23DB8A237A2C84008B8711 /* TutorialImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E23DB89237A2C84008B8711 /* TutorialImage.swift */; };
 		1E4487A4236E29BB0080AA21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487A3236E29BB0080AA21 /* AppDelegate.swift */; };
 		1E4487A6236E29BB0080AA21 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487A5236E29BB0080AA21 /* GameScene.sks */; };
 		1E4487A8236E29BB0080AA21 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487A7236E29BB0080AA21 /* Actions.sks */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E23DB89237A2C84008B8711 /* TutorialImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialImage.swift; sourceTree = "<group>"; };
 		1E4487A0236E29BB0080AA21 /* ddr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ddr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E4487A3236E29BB0080AA21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E4487A5236E29BB0080AA21 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			children = (
 				1E4487E9236E2A8C0080AA21 /* Bat.swift */,
 				1E4487EA236E2A8C0080AA21 /* Rider.swift */,
+				1E23DB89237A2C84008B8711 /* TutorialImage.swift */,
 			);
 			path = GameEntities;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				1E4487FB236E2B530080AA21 /* StartGameScene.swift in Sources */,
 				1E4487A4236E29BB0080AA21 /* AppDelegate.swift in Sources */,
 				1E4487EE236E2A8C0080AA21 /* Bat.swift in Sources */,
+				1E23DB8A237A2C84008B8711 /* TutorialImage.swift in Sources */,
 				2C9353192371F9120082FBBC /* TutorialGameScene.swift in Sources */,
 				2C9A7F21237906AA00C01E6D /* background.swift in Sources */,
 			);

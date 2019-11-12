@@ -16,7 +16,7 @@ class BatTest: XCTestCase {
 
   override func setUp() {
     audioManager = AudioManager()
-    bat1 = Bat(audioManager: audioManager!)
+    bat1 = Bat(audioManager: audioManager!, pos: 0, hide: false)
   }
 
   func testUpdateSize() {
