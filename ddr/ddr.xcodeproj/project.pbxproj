@@ -183,7 +183,6 @@
 			children = (
 				1E4487EB236E2A8C0080AA21 /* Audio */,
 				1E4487E8236E2A8C0080AA21 /* GameEntities */,
-				2C9A7F20237906AA00C01E6D /* background.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -191,6 +190,7 @@
 		1E4487E8236E2A8C0080AA21 /* GameEntities */ = {
 			isa = PBXGroup;
 			children = (
+				2C9A7F20237906AA00C01E6D /* background.swift */,
 				1E4487E9236E2A8C0080AA21 /* Bat.swift */,
 				1E4487EA236E2A8C0080AA21 /* Rider.swift */,
 				1E23DB89237A2C84008B8711 /* TutorialImage.swift */,
