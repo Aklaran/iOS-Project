@@ -50,6 +50,8 @@ class Rider: SKSpriteNode {
     
     self.setScale(0.4)
     self.position.x = Rider.HALF_SCREEN_WIDTH
+    self.position.y = 0
+    self.anchorPoint = CGPoint(x: 0.5, y: 0)
     
     beginMotionUpdates()
   }
