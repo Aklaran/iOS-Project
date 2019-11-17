@@ -15,6 +15,7 @@ var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
+  static let FPS = 60
   let THIRD_SCREEN_WIDTH = UIScreen.main.bounds.width / 3
   let GOLDEN_RATIO = CGFloat(1.61803398875)
   
