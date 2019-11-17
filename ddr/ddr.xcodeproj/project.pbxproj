@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		1E23DB8A237A2C84008B8711 /* TutorialImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E23DB89237A2C84008B8711 /* TutorialImage.swift */; };
 		1E4487A4236E29BB0080AA21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487A3236E29BB0080AA21 /* AppDelegate.swift */; };
-		1E4487A6236E29BB0080AA21 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487A5236E29BB0080AA21 /* GameScene.sks */; };
-		1E4487A8236E29BB0080AA21 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487A7236E29BB0080AA21 /* Actions.sks */; };
 		1E4487AA236E29BB0080AA21 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487A9236E29BB0080AA21 /* GameScene.swift */; };
 		1E4487AC236E29BB0080AA21 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4487AB236E29BB0080AA21 /* GameViewController.swift */; };
 		1E4487AF236E29BB0080AA21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487AD236E29BB0080AA21 /* Main.storyboard */; };
@@ -33,6 +31,7 @@
 		4D3801C82371FBE80081D336 /* RiderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3801C72371FBE80081D336 /* RiderTest.swift */; };
 		4D3801CA237320FF0081D336 /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801C9237320FF0081D336 /* swoosh.mp3 */; };
 		4D3801CE2373255D0081D336 /* tracks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801CD2373255C0081D336 /* tracks.mp3 */; };
+		4DB216FF2380E25300D4EDFC /* Oncomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB216FE2380E25300D4EDFC /* Oncomer.swift */; };
 		4DE33443236F8A5000A179DB /* BatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33442236F8A5000A179DB /* BatTest.swift */; };
 		4DE33447236F953700A179DB /* AudioManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33446236F953700A179DB /* AudioManagerTest.swift */; };
 		4DE3344A236F9A5000A179DB /* singleFlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DE33440236E5DAC00A179DB /* singleFlap.mp3 */; };
@@ -59,8 +58,6 @@
 		1E23DB89237A2C84008B8711 /* TutorialImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialImage.swift; sourceTree = "<group>"; };
 		1E4487A0236E29BB0080AA21 /* ddr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ddr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E4487A3236E29BB0080AA21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1E4487A5236E29BB0080AA21 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		1E4487A7236E29BB0080AA21 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		1E4487A9236E29BB0080AA21 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		1E4487AB236E29BB0080AA21 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		1E4487AE236E29BB0080AA21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,6 +83,7 @@
 		4D3801C72371FBE80081D336 /* RiderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderTest.swift; sourceTree = "<group>"; };
 		4D3801C9237320FF0081D336 /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
 		4D3801CD2373255C0081D336 /* tracks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tracks.mp3; sourceTree = "<group>"; };
+		4DB216FE2380E25300D4EDFC /* Oncomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oncomer.swift; sourceTree = "<group>"; };
 		4DE33440236E5DAC00A179DB /* singleFlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleFlap.mp3; sourceTree = "<group>"; };
 		4DE33442236F8A5000A179DB /* BatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatTest.swift; sourceTree = "<group>"; };
 		4DE33446236F953700A179DB /* AudioManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTest.swift; sourceTree = "<group>"; };
@@ -142,8 +140,6 @@
 				1E4487FE236E2D880080AA21 /* Sounds */,
 				1E4487E7236E2A8C0080AA21 /* Models */,
 				1E4487A3236E29BB0080AA21 /* AppDelegate.swift */,
-				1E4487A5236E29BB0080AA21 /* GameScene.sks */,
-				1E4487A7236E29BB0080AA21 /* Actions.sks */,
 				1E4487FA236E2B530080AA21 /* StartGameScene.swift */,
 				1E9CC9122374A6580015D6FC /* GameOverScene.swift */,
 				1E4487A9236E29BB0080AA21 /* GameScene.swift */,
@@ -194,6 +190,7 @@
 				1E4487E9236E2A8C0080AA21 /* Bat.swift */,
 				1E4487EA236E2A8C0080AA21 /* Rider.swift */,
 				1E23DB89237A2C84008B8711 /* TutorialImage.swift */,
+				4DB216FE2380E25300D4EDFC /* Oncomer.swift */,
 			);
 			path = GameEntities;
 			sourceTree = "<group>";
@@ -328,11 +325,9 @@
 				4D3801CE2373255D0081D336 /* tracks.mp3 in Resources */,
 				4DE3344A236F9A5000A179DB /* singleFlap.mp3 in Resources */,
 				4D3801CA237320FF0081D336 /* swoosh.mp3 in Resources */,
-				1E4487A6236E29BB0080AA21 /* GameScene.sks in Resources */,
 				1E448800236E2D880080AA21 /* beep.mp3 in Resources */,
 				1E4487B1236E29BC0080AA21 /* Assets.xcassets in Resources */,
 				1E4487B4236E29BC0080AA21 /* LaunchScreen.storyboard in Resources */,
-				1E4487A8236E29BB0080AA21 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +364,7 @@
 				1E4487A4236E29BB0080AA21 /* AppDelegate.swift in Sources */,
 				1E4487EE236E2A8C0080AA21 /* Bat.swift in Sources */,
 				1E23DB8A237A2C84008B8711 /* TutorialImage.swift in Sources */,
+				4DB216FF2380E25300D4EDFC /* Oncomer.swift in Sources */,
 				2C9353192371F9120082FBBC /* TutorialGameScene.swift in Sources */,
 				2C9A7F21237906AA00C01E6D /* background.swift in Sources */,
 			);
