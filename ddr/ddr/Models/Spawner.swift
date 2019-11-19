@@ -4,6 +4,7 @@ import SpriteKit
 
 protocol Spawnable {
   func despawn()
+  func equals(other : Spawnable) -> Bool
 }
 
 class Spawner<T : Spawnable> {
@@ -16,6 +17,8 @@ class Spawner<T : Spawnable> {
   private let getNewSpawn: (Spawner) -> T
   
   private var canSapwnAfter: Date
+  private var currentlySpawned: [Spawnable]
+  private var totalSpawned: Int
   
   init(maxSpawned: Int, minSpawned: Int, maxConcurrent: Int, cooldown: TimeInterval, expectedDuration: CGFloat, getNewSpawn: @escaping (Spawner) -> T) throws {
     self.maxSpawned = maxSpawned
@@ -23,7 +26,10 @@ class Spawner<T : Spawnable> {
     self.maxConcurrent = maxConcurrent
     self.getNewSpawn = getNewSpawn
     self.cooldown = cooldown
+    
     self.canSapwnAfter = Date()
+    self.currentlySpawned = []
+    self.totalSpawned = 0
     
     if self.minSpawned > 0 {
       self.pSpawn = CGFloat(self.minSpawned) * (CGFloat(GameScene.FPS) / expectedDuration)
@@ -36,13 +42,18 @@ class Spawner<T : Spawnable> {
   }
   
   func spawn() -> T?{
-    if (Date() > canSapwnAfter) {
-      if CGFloat(Float.random(in: 0...1)) < pSpawn {
-        canSapwnAfter = Date().addingTimeInterval(cooldown)
-        return getNewSpawn(self)
-      }
+    if Date() > canSapwnAfter
+        && currentlySpawned.count < maxConcurrent
+        && totalSpawned < maxSpawned
+        && CGFloat(Float.random(in: 0...1)) < pSpawn {
+      canSapwnAfter = Date().addingTimeInterval(cooldown)
+      return getNewSpawn(self)
     }
     return nil
+  }
+  
+  func despawn(_ spawnable : Spawnable) {
+    currentlySpawned = currentlySpawned.filter({$0.equals(other: spawnable)})
   }
   
 }
