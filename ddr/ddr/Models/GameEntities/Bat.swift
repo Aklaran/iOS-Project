@@ -19,7 +19,7 @@ enum BatPosition: Int, CaseIterable {
   }
 }
 
-class Bat: Oncomer, Spawnable {
+class Bat: Oncomer {
 //  static let SCREEN_HEIGHT = UIScreen.main.bounds.height
 //  static let SIXTH_SCREEN_WIDTH = UIScreen.main.bounds.width / 6
   static let SWOOSH_FILE = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
@@ -51,10 +51,16 @@ class Bat: Oncomer, Spawnable {
     zPosition = GameScene.HORIZON
     flapping.start()
     
-    let foo : Oncomer = self as Oncomer
-    
     // init super vars
-    super.init(spawner: spawner as Spawner<Oncomer>, texture: texture, color: SKColor.clear, size: texture.size())
+    super.init(
+      spawner: spawner as Spawner<Oncomer>,
+      emitters: [flapping], // emitters for passing will need to be here too
+      collisionEffects: [], // todo: add these
+      passEffects: [], // todo: add these
+      texture: texture,
+      color: SKColor.clear,
+      size: texture.size()
+    )
     
     self.position = CGPoint(
       x: position.getX(),
@@ -76,22 +82,22 @@ class Bat: Oncomer, Spawnable {
     super.despawn()
   }
   
-  func hit() {
-    isHidden = true
-    // play sound to hit the player
-    let hitSound = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "impact-kick.wav", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
-    hitSound.updatePosition(self.position)
-    hitSound.start()
-  }
+//  func hit() {
+//    isHidden = true
+//    // play sound to hit the player
+//    let hitSound = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "impact-kick.wav", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
+//    hitSound.updatePosition(self.position)
+//    hitSound.start()
+//  }
   
-  func pass() {
-    isHidden = true
-    // play whoosh sound to pass the player
-    let whooshSound = audioManager.createEmitter(soundFile: Bat.swooshFile, maxZMagnitude: Bat.maxZMagnitude)
-    whooshSound.updatePosition(self.position)
-    whooshSound.volume = 0.3
-    whooshSound.speed = 2
-    whooshSound.start()
-  }
+//  func pass() {
+//    isHidden = true
+//    // play whoosh sound to pass the player
+//    let whooshSound = audioManager.createEmitter(soundFile: Bat.swooshFile, maxZMagnitude: Bat.maxZMagnitude)
+//    whooshSound.updatePosition(self.position)
+//    whooshSound.volume = 0.3
+//    whooshSound.speed = 2
+//    whooshSound.start()
+//  }
   
 }
