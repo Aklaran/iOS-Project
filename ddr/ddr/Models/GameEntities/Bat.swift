@@ -9,37 +9,40 @@
 import UIKit
 import SpriteKit
 
-enum BatPosition: Int{
+enum BatPosition: Int, CaseIterable {
   case LEFT = 0
   case MIDDLE = 1
   case RIGHT = 2
   
-  func getX() {
-    return (CGFloat(self.rawValue) * (GameScene.WIDTH / 3)) + (GameScene.WIDTH / 6)
+  func getX() -> CGFloat{
+    return (CGFloat(self.rawValue) * (GameScene.WIDTH / 3)) + CGFloat(GameScene.WIDTH / 6)
   }
 }
 
-class Bat: Oncomer {
+class Bat: Oncomer, Spawnable {
 //  static let SCREEN_HEIGHT = UIScreen.main.bounds.height
 //  static let SIXTH_SCREEN_WIDTH = UIScreen.main.bounds.width / 6
-  static let swooshFile = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)! // todo: fix name
+  static let SWOOSH_FILE = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
+  static let FLAP_FILE = Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!
   
   // Bat Constants
-  static let maxZMagnitude : CGFloat = 100
-  static let flapVelocityConversion : CGFloat = 1 // smaller
+//  static let maxZMagnitude : CGFloat = 100
+  static let FLAP_VELOCITY_CONVERSION: CGFloat = 1
+  static let DEFAULT_SPEED: CGFloat = 1.5
+  static let DEFAULT_Y: CGFloat = GameScene.HEIGHT * 3 / 4
   
   // instance vars
-  var velocity : CGFloat = -1.5
-  let audioManager : AudioManager
-  let flapping : Emitter?
+//  var velocity : CGFloat = -1.5
+//  let audioManager : AudioManager
+  let flapping: Emitter
   
-  var z : CGFloat {
+  override var zPosition: CGFloat {
     didSet {
       // update sound
-      flapping?.updateZ(z)
+      flapping.updateZ(zPosition)
       
       // update visual
-      xScale = (Bat.maxZMagnitude - abs(z)) / Bat.maxZMagnitude
+      xScale = (GameScene.HORIZON - abs(zPosition)) / GameScene.HORIZON
       yScale = xScale
     }
   }
@@ -47,35 +50,36 @@ class Bat: Oncomer {
   // override to update emitter(s)
   override var position : CGPoint {
     didSet {
-      flapping?.updatePosition(position)
+      flapping.updatePosition(position)
     }
   }
   
-  init(audioManager: AudioManager, pos: Int?, hide: Bool?) {
+  convenience init(spawner: Spawner<Bat>) {
+    self.init(
+      spawner: spawner,
+      position: BatPosition.allCases.randomElement()!,
+      speed: Bat.DEFAULT_SPEED
+    )
+  }
+  
+  init(spawner: Spawner<Bat>, position: BatPosition, speed: CGFloat) {
     // my instance vars
-    let texture = SKTexture(imageNamed: "bat")
-    self.audioManager = audioManager
-    flapping = self.audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
-    flapping?.isRepeated = true
-    flapping?.speed = abs(velocity) / Bat.flapVelocityConversion
-    z = Bat.maxZMagnitude
-    flapping?.start()
+    let texture = SKTexture(imageNamed: "bat") // should be updated somehow whne bats are made to flap
+    
+    flapping = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.FLAP_FILE, maxZMagnitude: GameScene.HORIZON)
+    flapping.isRepeated = true
+    flapping.speed = speed / Bat.FLAP_VELOCITY_CONVERSION
+    zPosition = GameScene.HORIZON
+    flapping.start()
+    
+    let foo : Oncomer = self as Oncomer
     
     // init super vars
-    super.init(texture: texture, color: SKColor.clear, size: texture.size())
+    super.init(spawner: spawner as Spawner<Oncomer>, texture: texture, color: SKColor.clear, size: texture.size())
     
-    // randomly assign to a screen third
-    var third: Int;
-    if pos != nil {
-      third = pos!
-    } else {
-        third = Int.random(in: 0...2)
-    }
-    
-    position = CGPoint(
-      x: Bat.SIXTH_SCREEN_WIDTH + (2 * CGFloat(third) * Bat.SIXTH_SCREEN_WIDTH),
-      y: 3 * UIScreen.main.bounds.height / 4
-      //      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
+    self.position = CGPoint(
+      x: position.getX(),
+      y: Bat.DEFAULT_Y
     )
     
     // these are not set in the first update of z because super has not been inited yet
@@ -85,23 +89,12 @@ class Bat: Oncomer {
   
   // annoying but required - doing the minimum to compile
   required init?(coder aDecoder: NSCoder) {
-    flapping = nil
-    audioManager = AudioManager()
-    z = Bat.maxZMagnitude
-    super.init(coder: aDecoder)
+    fatalError("init(coder:) has not been implemented")
   }
   
-  func move() {
-    z += velocity
-  }
-  
-  func isGone() -> Bool {
-    return abs(z) >= Bat.maxZMagnitude
-  }
-  
-  func die() {
-    flapping?.stop()
-    removeFromParent()
+  override func despawn() {
+    flapping.stop() // todo: fix audio manager to prevent memory leak in long games
+    super.despawn()
   }
   
   func hit() {

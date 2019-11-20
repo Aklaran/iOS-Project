@@ -36,4 +36,8 @@ class Oncomer: SKSpriteNode, Spawnable {
     self.zPosition = self.zPosition + self.speed + distance
   }
   
+  func isGone() -> Bool {
+    return abs(zPosition) > GameScene.HORIZON
+  }
+  
 }

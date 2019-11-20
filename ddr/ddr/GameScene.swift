@@ -15,9 +15,15 @@ var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
+  // Game Facts
   static let FPS = 60
   static let WIDTH = UIScreen.main.bounds.width
   static let HEIGHT = UIScreen.main.bounds.height
+  
+  // Game Settings
+  static let HORIZON : CGFloat = 100
+  
+  // Game Things
   static let AUDIO_MANAGER = AudioManager()
   
   
