@@ -9,10 +9,20 @@
 import UIKit
 import SpriteKit
 
-class Bat: SKSpriteNode {
-  static let SCREEN_HEIGHT = UIScreen.main.bounds.height
-  static let SIXTH_SCREEN_WIDTH = UIScreen.main.bounds.width / 6
-  static let swooshFile = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
+enum BatPosition: Int{
+  case LEFT = 0
+  case MIDDLE = 1
+  case RIGHT = 2
+  
+  func getX() {
+    return (CGFloat(self.rawValue) * (GameScene.WIDTH / 3)) + (GameScene.WIDTH / 6)
+  }
+}
+
+class Bat: Oncomer {
+//  static let SCREEN_HEIGHT = UIScreen.main.bounds.height
+//  static let SIXTH_SCREEN_WIDTH = UIScreen.main.bounds.width / 6
+  static let swooshFile = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)! // todo: fix name
   
   // Bat Constants
   static let maxZMagnitude : CGFloat = 100
@@ -67,14 +77,6 @@ class Bat: SKSpriteNode {
       y: 3 * UIScreen.main.bounds.height / 4
       //      y: Int.random(in: 0...Int(UIScreen.main.bounds.height))
     )
-    
-    //hide is false --> mk
-    if hide != nil {
-      isHidden = hide!;
-    } else {
-      // we should not be able to see anything by default
-      isHidden = true
-    }
     
     // these are not set in the first update of z because super has not been inited yet
     xScale = 0

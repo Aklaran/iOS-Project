@@ -16,6 +16,11 @@ var levelNum = 1
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
   static let FPS = 60
+  static let WIDTH = UIScreen.main.bounds.width
+  static let HEIGHT = UIScreen.main.bounds.height
+  static let AUDIO_MANAGER = AudioManager()
+  
+  
   let THIRD_SCREEN_WIDTH = UIScreen.main.bounds.width / 3
   let GOLDEN_RATIO = CGFloat(1.61803398875)
   
@@ -32,7 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   var velocity : CGFloat = 0.02
   
-  let audioManager = AudioManager()
+  
   let motionManager = CMMotionManager()
   
   var lives = [SKSpriteNode]();
