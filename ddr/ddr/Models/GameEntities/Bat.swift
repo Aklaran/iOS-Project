@@ -31,28 +31,7 @@ class Bat: Oncomer, Spawnable {
   static let DEFAULT_SPEED: CGFloat = 1.5
   static let DEFAULT_Y: CGFloat = GameScene.HEIGHT * 3 / 4
   
-  // instance vars
-//  var velocity : CGFloat = -1.5
-//  let audioManager : AudioManager
   let flapping: Emitter
-  
-  override var zPosition: CGFloat {
-    didSet {
-      // update sound
-      flapping.updateZ(zPosition)
-      
-      // update visual
-      xScale = (GameScene.HORIZON - abs(zPosition)) / GameScene.HORIZON
-      yScale = xScale
-    }
-  }
-  
-  // override to update emitter(s)
-  override var position : CGPoint {
-    didSet {
-      flapping.updatePosition(position)
-    }
-  }
   
   convenience init(spawner: Spawner<Bat>) {
     self.init(

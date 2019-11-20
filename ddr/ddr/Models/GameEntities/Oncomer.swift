@@ -5,9 +5,38 @@ import SpriteKit
 class Oncomer: SKSpriteNode, Spawnable {
   
   let spawner: Spawner<Oncomer>
+  let emitters: [Emitter]
+  let collisionEffects: [Effect]
   
-  init (spawner: Spawner<Oncomer>, texture: SKTexture?, color: UIColor, size: CGSize) {
+  override var zPosition: CGFloat {
+    didSet {
+      // update sound
+      emitters.forEach({ $0.updateZ(zPosition) })
+      
+      // update visual
+      xScale = (GameScene.HORIZON - abs(zPosition)) / GameScene.HORIZON
+      yScale = xScale
+    }
+  }
+  
+  // override to update emitter(s)
+  override var position : CGPoint {
+    didSet {
+      emitters.forEach({ $0.updatePosition(position) })
+    }
+  }
+  
+  init (
+    spawner: Spawner<Oncomer>,
+    emitters: [Emitter],
+    collisionEffects: [Effect],
+    texture: SKTexture?,
+    color: UIColor,
+    size: CGSize)
+  {
     self.spawner = spawner
+    self.collisionEffects = collisionEffects
+    self.emitters = emitters
     super.init(texture: texture, color: color, size: size)
   }
   
@@ -38,6 +67,16 @@ class Oncomer: SKSpriteNode, Spawnable {
   
   func isGone() -> Bool {
     return abs(zPosition) > GameScene.HORIZON
+  }
+  
+  func applyCollisionEffects(to game: GameScene) {
+    Oncomer.applyAllEffects(collisionEffects, to: game)
+  }
+  
+  private static func applyAllEffects(_ effects: [Effect], to game: GameScene) {
+    for effect in effects {
+      effect.apply(to: game)
+    }
   }
   
 }
