@@ -2,12 +2,11 @@
 import Foundation
 import SpriteKit
 
-protocol Spawnable {
+protocol Spawnable: Hashable {
   func despawn()
-  func equals(other : Spawnable) -> Bool
 }
 
-class Spawner<T : Spawnable> {
+class Spawner<T: Spawnable> {
   
   private let maxSpawned: Int
   private let minSpawned: Int
@@ -17,8 +16,11 @@ class Spawner<T : Spawnable> {
   private let getNewSpawn: (Spawner) -> T
   
   private var canSapwnAfter: Date
-  private var currentlySpawned: [Spawnable]
+  
+  private var currentlySpawned: Set<T>
   private var totalSpawned: Int
+  
+  
   
   init(maxSpawned: Int, minSpawned: Int, maxConcurrent: Int, cooldown: TimeInterval, expectedDuration: CGFloat, getNewSpawn: @escaping (Spawner) -> T) throws {
     self.maxSpawned = maxSpawned
@@ -52,8 +54,12 @@ class Spawner<T : Spawnable> {
     return nil
   }
   
-  func despawn(_ spawnable : Spawnable) {
-    currentlySpawned = currentlySpawned.filter({$0.equals(other: spawnable)})
+  func despawn(_ spawnable: T) {
+    currentlySpawned.remove(spawnable)
+  }
+  
+  func isDone() -> Bool {
+    return totalSpawned >= minSpawned
   }
   
 }
