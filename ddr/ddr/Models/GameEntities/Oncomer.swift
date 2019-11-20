@@ -7,6 +7,7 @@ class Oncomer: SKSpriteNode, Spawnable {
   let spawner: Spawner<Oncomer>
   let emitters: [Emitter]
   let collisionEffects: [Effect]
+  let passEffects: [Effect]
   
   override var zPosition: CGFloat {
     didSet {
@@ -30,12 +31,14 @@ class Oncomer: SKSpriteNode, Spawnable {
     spawner: Spawner<Oncomer>,
     emitters: [Emitter],
     collisionEffects: [Effect],
+    passEffects: [Effect],
     texture: SKTexture?,
     color: UIColor,
     size: CGSize)
   {
     self.spawner = spawner
     self.collisionEffects = collisionEffects
+    self.passEffects = passEffects
     self.emitters = emitters
     super.init(texture: texture, color: color, size: size)
   }
@@ -71,6 +74,10 @@ class Oncomer: SKSpriteNode, Spawnable {
   
   func applyCollisionEffects(to game: GameScene) {
     Oncomer.applyAllEffects(collisionEffects, to: game)
+  }
+  
+  func applyPassEffects(to game: GameScene) {
+    Oncomer.applyAllEffects(passEffects, to: game)
   }
   
   private static func applyAllEffects(_ effects: [Effect], to game: GameScene) {
