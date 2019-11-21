@@ -193,9 +193,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       return
     }
     
-    // get anything newly spawned
-    oncomers = oncomers.union(currentLevel.spawn())
-    
     // for each oncomer
     for oncomer in oncomers {
       
@@ -207,6 +204,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       // check if gone
       
     }
+    
+    // get anything newly spawned
+    let newOncomers = currentLevel.spawn()
+    oncomers = oncomers.union(newOncomers)
+    for oncomer in newOncomers {
+      addChild(oncomer)
+    }
+    
+    
     
     // clean-up obsolete bats
 //    var toRemove = [Bat]()
