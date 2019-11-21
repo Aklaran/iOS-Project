@@ -24,7 +24,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static let HORIZON : CGFloat = 100
   static let LEVELS: [Level] = [
     BoundedLevel(
-      spawners: [],
+      spawners: [
+        try! Spawner(
+          maxSpawned: 6,
+          minSpawned: 5,
+          maxConcurrent: 1,
+          cooldown: 0.5,
+          expectedDuration: 60,
+          getNewSpawn: Bat.init)
+      ],
       cartSpeed: 2
     )
   ]

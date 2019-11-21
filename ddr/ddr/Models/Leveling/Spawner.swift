@@ -22,7 +22,7 @@ class Spawner<T: Spawnable>{
   
   
   
-  init(maxSpawned: Int, minSpawned: Int, maxConcurrent: Int, cooldown: TimeInterval, expectedDuration: CGFloat, getNewSpawn: @escaping (Spawner) -> T) throws {
+  init(maxSpawned: Int, minSpawned: Int, maxConcurrent: Int, cooldown: TimeInterval, expectedDuration: TimeInterval, getNewSpawn: @escaping (Spawner) -> T) throws {
     self.maxSpawned = maxSpawned
     self.minSpawned = minSpawned
     self.maxConcurrent = maxConcurrent
@@ -34,9 +34,9 @@ class Spawner<T: Spawnable>{
     self.totalSpawned = 0
     
     if self.minSpawned > 0 {
-      self.pSpawn = CGFloat(self.minSpawned) * (CGFloat(GameScene.FPS) / expectedDuration)
+      self.pSpawn = CGFloat(self.minSpawned) * (CGFloat(GameScene.FPS) / CGFloat(expectedDuration))
     } else if self.maxSpawned > 0 {
-      self.pSpawn = CGFloat(self.maxSpawned) / 2.0 * (CGFloat(GameScene.FPS) / expectedDuration)
+      self.pSpawn = CGFloat(self.maxSpawned) / 2.0 * (CGFloat(GameScene.FPS) / CGFloat(expectedDuration))
     } else {
       print("please make sure at least one of (maxSpawned, minSpawned) is positive")
       throw NSError()
