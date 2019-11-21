@@ -56,6 +56,7 @@ class Bat: Oncomer {
       emitters: [flapping], // emitters for passing will need to be here too
       collisionEffects: [], // todo: add these
       passEffects: [], // todo: add these
+      goneEffects: [],
       texture: texture,
       color: SKColor.clear,
       size: texture.size()

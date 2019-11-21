@@ -202,6 +202,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       // check collisions
       
       // check if gone
+      if oncomer.isGone() {
+        oncomer.applyGoneEffects(to: self)
+      }
       
     }
     

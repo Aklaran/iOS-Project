@@ -8,6 +8,7 @@ class Oncomer: SKSpriteNode, Spawnable {
   let emitters: [Emitter]
   let collisionEffects: [Effect]
   let passEffects: [Effect]
+  var goneEffects: [Effect]
   
   override var zPosition: CGFloat {
     didSet {
@@ -32,6 +33,7 @@ class Oncomer: SKSpriteNode, Spawnable {
     emitters: [Emitter],
     collisionEffects: [Effect],
     passEffects: [Effect],
+    goneEffects: [Effect],
     texture: SKTexture?,
     color: UIColor,
     size: CGSize)
@@ -39,8 +41,10 @@ class Oncomer: SKSpriteNode, Spawnable {
     self.spawner = spawner
     self.collisionEffects = collisionEffects
     self.passEffects = passEffects
+    self.goneEffects = goneEffects
     self.emitters = emitters
     super.init(texture: texture, color: color, size: size)
+    self.goneEffects = self.goneEffects + [ KillOncomerEffect(oncomer: self) ] // adds default behavior
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -52,7 +56,6 @@ class Oncomer: SKSpriteNode, Spawnable {
   }
   
   func despawn() {
-    removeFromParent()
     spawner.despawn(self)
   }
   
@@ -61,11 +64,11 @@ class Oncomer: SKSpriteNode, Spawnable {
   }
   
   func move() {
-    self.zPosition = self.zPosition + self.speed
+    self.zPosition = self.zPosition - self.speed
   }
   
   func move(withAdditionalDistance distance : CGFloat) {
-    self.zPosition = self.zPosition + self.speed + distance
+    self.zPosition = self.zPosition - self.speed - distance
   }
   
   func isGone() -> Bool {
@@ -78,6 +81,10 @@ class Oncomer: SKSpriteNode, Spawnable {
   
   func applyPassEffects(to game: GameScene) {
     Oncomer.applyAllEffects(passEffects, to: game)
+  }
+  
+  func applyGoneEffects(to game: GameScene) {
+    Oncomer.applyAllEffects(goneEffects, to: game)
   }
   
   private static func applyAllEffects(_ effects: [Effect], to game: GameScene) {
