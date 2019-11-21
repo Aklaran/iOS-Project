@@ -38,6 +38,7 @@
 		4DB217092385C7D900D4EDFC /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB217082385C7D900D4EDFC /* Effect.swift */; };
 		4DB2170B2385C87100D4EDFC /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2170A2385C87100D4EDFC /* SoundEffect.swift */; };
 		4DB2170D2386283A00D4EDFC /* KillOncomerEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2170C2386283A00D4EDFC /* KillOncomerEffect.swift */; };
+		4DB2170F2386F97700D4EDFC /* LoseLifeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2170E2386F97700D4EDFC /* LoseLifeEffect.swift */; };
 		4DE33443236F8A5000A179DB /* BatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33442236F8A5000A179DB /* BatTest.swift */; };
 		4DE33447236F953700A179DB /* AudioManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33446236F953700A179DB /* AudioManagerTest.swift */; };
 		4DE3344A236F9A5000A179DB /* singleFlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DE33440236E5DAC00A179DB /* singleFlap.mp3 */; };
@@ -96,6 +97,7 @@
 		4DB217082385C7D900D4EDFC /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		4DB2170A2385C87100D4EDFC /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffect.swift; sourceTree = "<group>"; };
 		4DB2170C2386283A00D4EDFC /* KillOncomerEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillOncomerEffect.swift; sourceTree = "<group>"; };
+		4DB2170E2386F97700D4EDFC /* LoseLifeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseLifeEffect.swift; sourceTree = "<group>"; };
 		4DE33440236E5DAC00A179DB /* singleFlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleFlap.mp3; sourceTree = "<group>"; };
 		4DE33442236F8A5000A179DB /* BatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatTest.swift; sourceTree = "<group>"; };
 		4DE33446236F953700A179DB /* AudioManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTest.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				4DB217082385C7D900D4EDFC /* Effect.swift */,
 				4DB2170A2385C87100D4EDFC /* SoundEffect.swift */,
 				4DB2170C2386283A00D4EDFC /* KillOncomerEffect.swift */,
+				4DB2170E2386F97700D4EDFC /* LoseLifeEffect.swift */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				4DB217092385C7D900D4EDFC /* Effect.swift in Sources */,
 				4DB217042384753B00D4EDFC /* Level.swift in Sources */,
 				1E23DB8A237A2C84008B8711 /* TutorialImage.swift in Sources */,
+				4DB2170F2386F97700D4EDFC /* LoseLifeEffect.swift in Sources */,
 				4DB216FF2380E25300D4EDFC /* Oncomer.swift in Sources */,
 				2C9353192371F9120082FBBC /* TutorialGameScene.swift in Sources */,
 				4DB2170D2386283A00D4EDFC /* KillOncomerEffect.swift in Sources */,

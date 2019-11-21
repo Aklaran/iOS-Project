@@ -29,7 +29,7 @@ class Bat: Oncomer {
   static let SWOOSH_FILE = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
   static let FLAP_FILE = Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!
   static let FLAP_VELOCITY_CONVERSION: CGFloat = 1
-  static let DEFAULT_SPEED: CGFloat = 1.5
+  static let DEFAULT_SPEED: CGFloat = 1
   static let DEFAULT_Y: CGFloat = GameScene.HEIGHT * 3 / 4
   
   let flapping: Emitter

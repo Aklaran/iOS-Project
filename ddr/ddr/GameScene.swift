@@ -1,10 +1,3 @@
-//
-//  GameScene.swift
-//  ddr
-//
-//  Created by Matt Kern on 10/26/19.
-//  Copyright © 2019 the3amigos. All rights reserved.
-//
 
 import SpriteKit
 import GameplayKit
@@ -22,7 +15,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // Game Settings
   static let HORIZON : CGFloat = 100
-  static let LEVELS: [Level] = [
+  static let LEVELS: [Level] = [ // I am working on improvining initialization of levels and spawners
     BoundedLevel(
       spawners: [
         try! Spawner(
@@ -30,11 +23,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           minSpawned: 5,
           maxConcurrent: 1,
           cooldown: 0.5,
-          expectedDuration: 60,
+          expectedDuration: 600,
           getNewSpawn: Bat.init)
       ],
-      cartSpeed: 2
+      cartSpeed: 0.1
+    ),
+    BoundedLevel(
+      spawners: [
+        try! Spawner(
+          maxSpawned: 1000,
+          minSpawned: 500,
+          maxConcurrent: 2,
+          cooldown: 1,
+          expectedDuration: 6000,
+          getNewSpawn: Bat.init)
+      ],
+      cartSpeed: 0.1
     )
+    // todo: create an unbounded level so that this does not crash
   ]
   
   // Game Things
@@ -61,7 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let background:Background = Background()
   
-  let maxLevels = 3
+//  let maxLevels = 3
   var meters : CGFloat = 0 {
     didSet {
       progressLabel!.text = String(Int(meters)) + " meters"
@@ -146,48 +152,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
   
-//  func beginSpawningBats() {
-//      let wait = SKAction.wait(forDuration: 2, withRange: 2)
-//      let spawn = SKAction.run {
-//        let bat = Bat(audioManager: GameScene.AUDIO_MANAGER, pos: nil, hide: nil)
-//        self.bats.append(bat)
-//        self.addChild(bat)
-//      }
-//      let sequence = SKAction.sequence([wait, spawn])
-//      // run(spawn) // for testing only generate one bat
-//      run(SKAction.repeatForever(sequence))
-//  }
-  
-  func touchDown(atPoint pos : CGPoint) {
-    
-  }
-  
-  func touchMoved(toPoint pos : CGPoint) {
-    
-  }
-  
-  func touchUp(atPoint pos : CGPoint) {
-    
-  }
-  
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-  }
-  
-  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
-  }
-  
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//    rider!.position = touches.first?.location(in: self) as! CGPoint
-  }
-  
-  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-  }
+  func touchDown(atPoint pos : CGPoint) {}
+  func touchMoved(toPoint pos : CGPoint) {}
+  func touchUp(atPoint pos : CGPoint) {}
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {}
+  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {}
   
   override func update(_ currentTime: TimeInterval) {
     // Called before each frame is rendered
     
+    // make sure we have a rider
     guard let rider = rider else {
       print("No rider!")
       return
@@ -202,7 +177,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       // check collisions
       if withinStrikingDistance(of: oncomer) {
         if oncomer.collidesWith(node: rider) {
-          oncomer.applyGoneEffects(to: self)
+          oncomer.applyCollisionEffects(to: self)
         } else {
           oncomer.applyPassEffects(to: self)
         }
@@ -215,6 +190,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       
     }
     
+    // check if game is over
+    if rider.isDead() {
+      endGame()
+    }
+    
+    // check if level is over - if spawning is done and all the oncomers are gone
+    if currentLevel.isDone() && oncomers.count == 0 {
+      currentLevelIndex = currentLevelIndex + 1
+    }
+    
     // get anything newly spawned
     let newOncomers = currentLevel.spawn()
     oncomers = oncomers.union(newOncomers)
@@ -222,71 +207,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       addChild(oncomer)
     }
     
-    
-    
-    // clean-up obsolete bats
-//    var toRemove = [Bat]()
-//    for bat in bats {
-//      bat.move()
-//
-//      if bat.z <= abs(bat.velocity) && bat.z >= -1 * abs(bat.velocity) {
-//        checkCollision(bat: bat, rider: rider)
-//      }
-//
-//      if bat.isGone() {
-//        toRemove.append(bat)
-//        bat.die()
-//      }
-//    }
-//    bats.removeAll(where: {
-//      toRemove.contains($0)
-//    })
-    
     // move the cart
-    meters = meters + velocity
+    meters = meters + velocity // todo: replace with point system
     
-  }
-  
-//  func checkCollision(bat: Bat, rider: Rider) {
-//    let batThird = floor(bat.position.x / THIRD_SCREEN_WIDTH)
-//    let riderThird = floor(rider.x / THIRD_SCREEN_WIDTH)
-//
-//    if batThird == riderThird {
-//      // decrement lives
-//      rider.loseLife()
-//
-//      // update ui to reflect lost life
-//      let life = lives.popLast()
-//      life?.removeFromParent()
-//
-//      // kill the bat too
-//      bat.hit()
-//      bat.die()
-//      bats.removeAll(where: { $0 == bat })
-//
-//      // check game over
-//      if rider.isDead() {
-//        endGame()
-//
-//        // kill all the bats
-//        for bat in bats {
-//          bat.die()
-//        }
-//        bats = []
-//      }
-//    }
-//    else {
-//      bat.pass()
-//    }
-//  }
-  
-  // MARK: - Game Management Methods
-  func levelComplete() {
-    if(levelNum <= maxLevels){
-    } else {
-      levelNum = 1
-      ()
-    }
   }
   
   func endGame() {
