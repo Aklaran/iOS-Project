@@ -49,7 +49,10 @@ class Spawner<T: Spawnable>{
         && totalSpawned < maxSpawned
         && CGFloat(Float.random(in: 0...1)) < pSpawn {
       canSapwnAfter = Date().addingTimeInterval(cooldown)
-      return getNewSpawn(self)
+      let newSpawn = getNewSpawn(self)
+      currentlySpawned.insert(newSpawn)
+      totalSpawned = totalSpawned + 1
+      return newSpawn
     }
     return nil
   }
