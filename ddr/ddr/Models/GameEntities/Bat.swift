@@ -33,7 +33,7 @@ class Bat: Oncomer {
   
   let flapping: Emitter
   
-  convenience init(spawner: Spawner<Bat>) {
+  convenience init(spawner: Spawner<Oncomer>) {
     self.init(
       spawner: spawner,
       position: BatPosition.allCases.randomElement()!,
@@ -41,19 +41,18 @@ class Bat: Oncomer {
     )
   }
   
-  init(spawner: Spawner<Bat>, position: BatPosition, speed: CGFloat) {
+  init(spawner: Spawner<Oncomer>, position: BatPosition, speed: CGFloat) {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat") // should be updated somehow whne bats are made to flap
     
     flapping = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.FLAP_FILE, maxZMagnitude: GameScene.HORIZON)
     flapping.isRepeated = true
     flapping.speed = speed / Bat.FLAP_VELOCITY_CONVERSION
-    zPosition = GameScene.HORIZON
     flapping.start()
     
     // init super vars
     super.init(
-      spawner: spawner as Spawner<Oncomer>,
+      spawner: spawner,
       emitters: [flapping], // emitters for passing will need to be here too
       collisionEffects: [], // todo: add these
       passEffects: [], // todo: add these
@@ -61,6 +60,8 @@ class Bat: Oncomer {
       color: SKColor.clear,
       size: texture.size()
     )
+    
+    zPosition = GameScene.HORIZON
     
     self.position = CGPoint(
       x: position.getX(),

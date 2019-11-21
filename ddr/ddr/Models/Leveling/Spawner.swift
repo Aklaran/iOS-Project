@@ -6,7 +6,7 @@ protocol Spawnable: Hashable {
   func despawn()
 }
 
-class Spawner<T: Spawnable> {
+class Spawner<T: Spawnable>{
   
   private let maxSpawned: Int
   private let minSpawned: Int
