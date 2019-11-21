@@ -59,7 +59,7 @@ class Oncomer: SKSpriteNode, Spawnable {
     spawner.despawn(self)
   }
   
-  func collidesWith(spriteAt pos: CGPoint) -> Bool {
+  func collidesWith(node: SKNode) -> Bool {
     return false;
   }
   

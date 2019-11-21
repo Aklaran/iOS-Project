@@ -200,6 +200,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       oncomer.move(withAdditionalDistance: currentLevel.getCartSpeed())
       
       // check collisions
+      if withinStrikingDistance(of: oncomer) {
+        if oncomer.collidesWith(node: rider) {
+          oncomer.applyGoneEffects(to: self)
+        } else {
+          oncomer.applyPassEffects(to: self)
+        }
+      }
       
       // check if gone
       if oncomer.isGone() {
@@ -297,5 +304,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     gameOverScene.scaleMode = scaleMode
     let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
     view?.presentScene(gameOverScene,transition: transitionType)
+  }
+  
+  private func withinStrikingDistance(of node: SKNode) -> Bool {
+    return abs(node.zPosition) <= node.speed + currentLevel.getCartSpeed()
   }
 }

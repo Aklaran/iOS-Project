@@ -17,16 +17,17 @@ enum BatPosition: Int, CaseIterable {
   func getX() -> CGFloat{
     return (CGFloat(self.rawValue) * (GameScene.WIDTH / 3)) + CGFloat(GameScene.WIDTH / 6)
   }
+  
+  static func of(x: CGFloat) -> BatPosition {
+    return BatPosition(rawValue: min(max(0, Int(GameScene.WIDTH / x)), 2))!
+  }
+  
 }
 
 class Bat: Oncomer {
-//  static let SCREEN_HEIGHT = UIScreen.main.bounds.height
-//  static let SIXTH_SCREEN_WIDTH = UIScreen.main.bounds.width / 6
+  
   static let SWOOSH_FILE = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
   static let FLAP_FILE = Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!
-  
-  // Bat Constants
-//  static let maxZMagnitude : CGFloat = 100
   static let FLAP_VELOCITY_CONVERSION: CGFloat = 1
   static let DEFAULT_SPEED: CGFloat = 1.5
   static let DEFAULT_Y: CGFloat = GameScene.HEIGHT * 3 / 4
@@ -45,6 +46,7 @@ class Bat: Oncomer {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat") // should be updated somehow whne bats are made to flap
     
+    // start flapping
     flapping = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.FLAP_FILE, maxZMagnitude: GameScene.HORIZON)
     flapping.isRepeated = true
     flapping.speed = speed / Bat.FLAP_VELOCITY_CONVERSION
@@ -53,7 +55,7 @@ class Bat: Oncomer {
     // init super vars
     super.init(
       spawner: spawner,
-      emitters: [flapping], // emitters for passing will need to be here too
+      emitters: [flapping],
       collisionEffects: [], // todo: add these
       passEffects: [], // todo: add these
       goneEffects: [],
@@ -82,6 +84,10 @@ class Bat: Oncomer {
   override func despawn() {
     flapping.stop() // todo: fix audio manager to prevent memory leak in long games
     super.despawn()
+  }
+  
+  override func collidesWith(node: SKNode) -> Bool {
+    return BatPosition.of(x: position.x) == BatPosition.of(x: node.position.x)
   }
   
 //  func hit() {
