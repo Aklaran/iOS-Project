@@ -39,6 +39,9 @@ class Rider: SKSpriteNode {
     
     self.setScale(0.4)
     self.headPosition = CGPoint(x: Rider.HALF_SCREEN_WIDTH, y: position.y)
+    self.position.x = Rider.HALF_SCREEN_WIDTH
+    self.position.y = 0
+    self.anchorPoint = CGPoint(x: 0.5, y: 0)
     
     beginMotionUpdates()
   }
@@ -73,7 +76,6 @@ class Rider: SKSpriteNode {
 // MARK: - Sprite/Visual Functionality
   
   func rotate(rotationMultiplier:CGFloat) {
-    // matt's turn for a hacky -1 multiplier
     self.zRotation = CGFloat(-Double.pi) * rotationMultiplier * 0.5
   }
   
