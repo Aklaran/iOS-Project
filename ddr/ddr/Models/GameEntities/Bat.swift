@@ -26,7 +26,7 @@ enum BatPosition: Int, CaseIterable {
 
 class Bat: Oncomer {
   
-  static let WOOSH_FILE = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
+  static let WHOOSH_FILE = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
   static let SPLAT_FILE = Bundle.main.path(forResource: "impact-kick.wav", ofType: nil)!
   static let FLAP_FILE = Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!
   static let FLAP_VELOCITY_CONVERSION: CGFloat = 1
@@ -56,7 +56,9 @@ class Bat: Oncomer {
     flapping.start()
     
     // create emitters for whoosh and splat sounds
-    whoosh = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.WOOSH_FILE, maxZMagnitude: GameScene.HORIZON)
+    whoosh = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.WHOOSH_FILE, maxZMagnitude: GameScene.HORIZON)
+    whoosh.volume = 0.5
+    whoosh.speed = 2
     splat = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.SPLAT_FILE, maxZMagnitude: GameScene.HORIZON)
     
     // init super vars
@@ -101,23 +103,5 @@ class Bat: Oncomer {
   override func collidesWith(position: CGPoint) -> Bool {
     return BatPosition.of(x: self.position.x) == BatPosition.of(x: position.x)
   }
-  
-//  func hit() {
-//    isHidden = true
-//    // play sound to hit the player
-//    let hitSound = audioManager.createEmitter(soundFile: Bundle.main.path(forResource: "impact-kick.wav", ofType: nil)!, maxZMagnitude: Bat.maxZMagnitude)
-//    hitSound.updatePosition(self.position)
-//    hitSound.start()
-//  }
-  
-//  func pass() {
-//    isHidden = true
-//    // play whoosh sound to pass the player
-//    let whooshSound = audioManager.createEmitter(soundFile: Bat.swooshFile, maxZMagnitude: Bat.maxZMagnitude)
-//    whooshSound.updatePosition(self.position)
-//    whooshSound.volume = 0.3
-//    whooshSound.speed = 2
-//    whooshSound.start()
-//  }
   
 }
