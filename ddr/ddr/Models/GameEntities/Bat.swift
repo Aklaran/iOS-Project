@@ -19,9 +19,6 @@ enum BatPosition: Int, CaseIterable {
   }
   
   static func of(x: CGFloat) -> BatPosition {
-    print(x / (GameScene.WIDTH / 3))
-    print(Int(x / (GameScene.WIDTH / 3)))
-    print(BatPosition(rawValue: Int(x / (GameScene.WIDTH / 3)))!)
     return BatPosition(rawValue: Int(x / (GameScene.WIDTH / 3)))!
   }
   
@@ -29,13 +26,16 @@ enum BatPosition: Int, CaseIterable {
 
 class Bat: Oncomer {
   
-  static let SWOOSH_FILE = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
+  static let WOOSH_FILE = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
+  static let SPLAT_FILE = Bundle.main.path(forResource: "impact-kick.wav", ofType: nil)!
   static let FLAP_FILE = Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!
   static let FLAP_VELOCITY_CONVERSION: CGFloat = 1
   static let DEFAULT_SPEED: CGFloat = 1
   static let DEFAULT_Y: CGFloat = GameScene.HEIGHT * 3 / 4
   
   let flapping: Emitter
+  let whoosh: Emitter
+  let splat: Emitter
   
   convenience init(spawner: Spawner<Oncomer>) {
     self.init(
@@ -55,12 +55,21 @@ class Bat: Oncomer {
     flapping.speed = speed / Bat.FLAP_VELOCITY_CONVERSION
     flapping.start()
     
+    // create emitters for whoosh and splat sounds
+    whoosh = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.WOOSH_FILE, maxZMagnitude: GameScene.HORIZON)
+    splat = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.SPLAT_FILE, maxZMagnitude: GameScene.HORIZON)
+    
     // init super vars
     super.init(
       spawner: spawner,
-      emitters: [flapping],
-      collisionEffects: [], // todo: add these
-      passEffects: [], // todo: add these
+      emitters: [flapping, whoosh, splat],
+      collisionEffects: [
+        SoundEffect(emitter: splat),
+        LoseLifeEffect()
+      ],
+      passEffects: [
+        SoundEffect(emitter: whoosh)
+      ],
       goneEffects: [],
       texture: texture,
       color: SKColor.clear,
@@ -90,7 +99,6 @@ class Bat: Oncomer {
   }
   
   override func collidesWith(position: CGPoint) -> Bool {
-    print("checking")
     return BatPosition.of(x: self.position.x) == BatPosition.of(x: position.x)
   }
   
