@@ -7,7 +7,7 @@ class Oncomer: SKSpriteNode, Spawnable {
   let spawner: Spawner<Oncomer>
   let emitters: [Emitter]
   var collisionEffects: [Effect]
-  let passEffects: [Effect]
+  var passEffects: [Effect]
   var goneEffects: [Effect]
   
   override var zPosition: CGFloat {
@@ -45,6 +45,7 @@ class Oncomer: SKSpriteNode, Spawnable {
     self.emitters = emitters
     super.init(texture: texture, color: color, size: size)
     self.collisionEffects = self.collisionEffects + [ KillOncomerEffect(oncomer: self) ]
+    self.passEffects = self.passEffects + [ HideEffect(nodeToHide: self) ]
     self.goneEffects = self.goneEffects + [ KillOncomerEffect(oncomer: self) ]
   }
   
