@@ -3,13 +3,11 @@ import Foundation
 
 class LoseLifeEffect: Effect {
   func apply(to game: GameScene) {
-    // remove the sprite
+    // remove the heart sprite
     let life = game.lives.popLast()
     life?.removeFromParent()
     
     // record it in rider
-    if let currentLives = game.rider?.lives {
-      game.rider?.lives = currentLives - 1
-    }
+    game.rider?.loseLife()
   }
 }

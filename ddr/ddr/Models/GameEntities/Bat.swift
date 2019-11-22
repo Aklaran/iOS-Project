@@ -19,7 +19,10 @@ enum BatPosition: Int, CaseIterable {
   }
   
   static func of(x: CGFloat) -> BatPosition {
-    return BatPosition(rawValue: min(max(0, Int(GameScene.WIDTH / x)), 2))!
+    print(x / (GameScene.WIDTH / 3))
+    print(Int(x / (GameScene.WIDTH / 3)))
+    print(BatPosition(rawValue: Int(x / (GameScene.WIDTH / 3)))!)
+    return BatPosition(rawValue: Int(x / (GameScene.WIDTH / 3)))!
   }
   
 }
@@ -86,8 +89,9 @@ class Bat: Oncomer {
     super.despawn()
   }
   
-  override func collidesWith(node: SKNode) -> Bool {
-    return BatPosition.of(x: position.x) == BatPosition.of(x: node.position.x)
+  override func collidesWith(position: CGPoint) -> Bool {
+    print("checking")
+    return BatPosition.of(x: self.position.x) == BatPosition.of(x: position.x)
   }
   
 //  func hit() {

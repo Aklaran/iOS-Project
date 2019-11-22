@@ -139,7 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func initializeRider() {
     rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager)
     addChild(rider!)
-    rider?.isHidden = true // no sight by default
+//    rider?.isHidden = true // no sight by default
   }
   
   func initializeHearts() {
@@ -176,7 +176,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       
       // check collisions
       if withinStrikingDistance(of: oncomer) {
-        if oncomer.collidesWith(node: rider) {
+        if oncomer.collidesWith(position: rider.headPosition) {
           oncomer.applyCollisionEffects(to: self)
         } else {
           oncomer.applyPassEffects(to: self)

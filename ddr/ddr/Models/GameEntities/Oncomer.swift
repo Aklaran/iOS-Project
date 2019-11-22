@@ -6,7 +6,7 @@ class Oncomer: SKSpriteNode, Spawnable {
   
   let spawner: Spawner<Oncomer>
   let emitters: [Emitter]
-  let collisionEffects: [Effect]
+  var collisionEffects: [Effect]
   let passEffects: [Effect]
   var goneEffects: [Effect]
   
@@ -44,7 +44,8 @@ class Oncomer: SKSpriteNode, Spawnable {
     self.goneEffects = goneEffects
     self.emitters = emitters
     super.init(texture: texture, color: color, size: size)
-    self.goneEffects = self.goneEffects + [ KillOncomerEffect(oncomer: self) ] // adds default behavior
+    self.collisionEffects = self.collisionEffects + [ KillOncomerEffect(oncomer: self) ]
+    self.goneEffects = self.goneEffects + [ KillOncomerEffect(oncomer: self) ]
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -59,9 +60,14 @@ class Oncomer: SKSpriteNode, Spawnable {
     spawner.despawn(self)
   }
   
-  func collidesWith(node: SKNode) -> Bool {
-    return false;
+  func collidesWith(position: CGPoint) -> Bool {
+    return false
   }
+  
+//  could not use because rider headPosition != rider position
+//  func collidesWith(node: SKNode) -> Bool {
+//    return collidesWith(position: node.position)
+//  }
   
   func move() {
     self.zPosition = self.zPosition - self.speed

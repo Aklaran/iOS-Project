@@ -18,7 +18,7 @@ class Rider: SKSpriteNode {
   
   let z : CGFloat = 0
   
-  var x : CGFloat = 0
+  var headPosition: CGPoint
   
   private var invincible = false
   
@@ -29,36 +29,24 @@ class Rider: SKSpriteNode {
   }
   
   var lives:Int = 3
-//  {
-//    didSet {
-//      if (lives == 0) {
-//        isDead = true
-////        loseGame()
-//      } else {
-////        respawn()
-//      }
-//    }
-//  }
   
   init(audioManager: AudioManager, motionManager: CMMotionManager) {
     let texture = SKTexture(imageNamed: "rider")
     
     self.audioManager = audioManager
     self.motionManager = motionManager
+    self.headPosition = CGPoint(x: 0, y: 0) // will be changed later
     
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
     self.setScale(0.4)
-    self.position.x = Rider.HALF_SCREEN_WIDTH
+    self.headPosition = CGPoint(x: Rider.HALF_SCREEN_WIDTH, y: position.y)
     
     beginMotionUpdates()
   }
   
   required init?(coder aDecoder: NSCoder) {
-    audioManager = nil
-    motionManager = nil
-    
-    super.init(coder: aDecoder)
+    fatalError("not implemented")
   }
   
   func loseLife() {
@@ -70,14 +58,6 @@ class Rider: SKSpriteNode {
   func isDead() -> Bool {
     return lives <= 0
   }
-  
-//  func loseGame(){
-//    // logic to be determined shortly
-//    let gameOverScene = StartGameScene(size: self.scene!.size)
-//    gameOverScene.scaleMode = self.scene!.scaleMode
-//    let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
-//    self.scene!.view!.presentScene(gameOverScene,transition: transitionType)
-//  }
   
   func respawn(){
     // logic to be determined shortly
@@ -126,7 +106,7 @@ class Rider: SKSpriteNode {
         DispatchQueue.main.async {
           
           // collision var updates
-          self?.x = playerPosition
+          self?.headPosition.x = playerPosition
           
           // spriteNode updates
           self?.position.x = spritePosition
