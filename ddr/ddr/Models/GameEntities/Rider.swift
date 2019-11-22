@@ -18,37 +18,27 @@ class Rider: SKSpriteNode {
   
   let z : CGFloat = 0
   
-  var x : CGFloat = 0
-  
-  private var invincible = false
-  
-  override var position: CGPoint {
+  var headPosition: CGPoint {
     didSet {
       audioManager?.updateListenerPosition(to: position)
     }
   }
   
+  private var invincible = false
+  
   var lives:Int = 3
-//  {
-//    didSet {
-//      if (lives == 0) {
-//        isDead = true
-////        loseGame()
-//      } else {
-////        respawn()
-//      }
-//    }
-//  }
   
   init(audioManager: AudioManager, motionManager: CMMotionManager) {
     let texture = SKTexture(imageNamed: "rider")
     
     self.audioManager = audioManager
     self.motionManager = motionManager
+    self.headPosition = CGPoint(x: 0, y: 0) // will be changed later
     
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
     self.setScale(0.4)
+    self.headPosition = CGPoint(x: Rider.HALF_SCREEN_WIDTH, y: position.y)
     self.position.x = Rider.HALF_SCREEN_WIDTH
     self.position.y = 0
     self.anchorPoint = CGPoint(x: 0.5, y: 0)
@@ -57,10 +47,7 @@ class Rider: SKSpriteNode {
   }
   
   required init?(coder aDecoder: NSCoder) {
-    audioManager = nil
-    motionManager = nil
-    
-    super.init(coder: aDecoder)
+    fatalError("not implemented")
   }
   
   func loseLife() {
@@ -72,14 +59,6 @@ class Rider: SKSpriteNode {
   func isDead() -> Bool {
     return lives <= 0
   }
-  
-//  func loseGame(){
-//    // logic to be determined shortly
-//    let gameOverScene = StartGameScene(size: self.scene!.size)
-//    gameOverScene.scaleMode = self.scene!.scaleMode
-//    let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
-//    self.scene!.view!.presentScene(gameOverScene,transition: transitionType)
-//  }
   
   func respawn(){
     // logic to be determined shortly
@@ -97,7 +76,6 @@ class Rider: SKSpriteNode {
 // MARK: - Sprite/Visual Functionality
   
   func rotate(rotationMultiplier:CGFloat) {
-    // matt's turn for a hacky -1 multiplier
     self.zRotation = CGFloat(-Double.pi) * rotationMultiplier * 0.5
   }
   
@@ -128,7 +106,7 @@ class Rider: SKSpriteNode {
         DispatchQueue.main.async {
           
           // collision var updates
-          self?.x = playerPosition
+          self?.headPosition.x = playerPosition
           
           // spriteNode updates
           self?.position.x = spritePosition

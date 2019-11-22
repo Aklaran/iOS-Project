@@ -1,10 +1,3 @@
-//
-//  GameScene.swift
-//  ddr
-//
-//  Created by Matt Kern on 10/26/19.
-//  Copyright © 2019 the3amigos. All rights reserved.
-//
 
 import SpriteKit
 import GameplayKit
@@ -14,7 +7,59 @@ import AVFoundation
 var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+  /* Class Constants */
+  // Game Facts
+  static let FPS = 60
+  static let WIDTH = UIScreen.main.bounds.width
+  static let HEIGHT = UIScreen.main.bounds.height
   
+  // Game Settings
+  static let HORIZON : CGFloat = 100
+  static let LEVELS: [Level] = [ // I am working on improvining initialization of levels and spawners
+    BoundedLevel(
+      spawners: [
+        try! Spawner(
+          maxSpawned: 6,
+          minSpawned: 5,
+          maxConcurrent: 1,
+          cooldown: 0.5,
+          expectedDuration: 600,
+          getNewSpawn: Bat.init)
+      ],
+      cartSpeed: 0.1
+    ),
+    BoundedLevel(
+      spawners: [
+        try! Spawner(
+          maxSpawned: 1000,
+          minSpawned: 500,
+          maxConcurrent: 2,
+          cooldown: 1,
+          expectedDuration: 6000,
+          getNewSpawn: Bat.init)
+      ],
+      cartSpeed: 0.1
+    )
+    // todo: create an unbounded level so that this does not crash
+  ]
+  
+  // Game Things
+  static let AUDIO_MANAGER = AudioManager()
+  
+  /* Instance Variables */
+  // Explict
+  var oncomers: Set<Oncomer> = Set()
+  var currentLevelIndex: Int = 0
+  
+  // Dynamic
+  var currentLevel: Level {
+    get {
+      return GameScene.LEVELS[currentLevelIndex]
+    }
+  }
+  
+  /* ... eh ... */
+  // not sure if these should stay...
   let THIRD_SCREEN_WIDTH = UIScreen.main.bounds.width / 3
   let GOLDEN_RATIO = CGFloat(1.61803398875)
   
@@ -22,7 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let background:Background = Background()
   
-  let maxLevels = 3
+//  let maxLevels = 3
   var meters : CGFloat = 0 {
     didSet {
       progressLabel!.text = String(Int(meters)) + " meters"
@@ -31,12 +76,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   var velocity : CGFloat = 0.02
   
-  let audioManager = AudioManager()
+  
   let motionManager = CMMotionManager()
   
   var lives = [SKSpriteNode]();
   
-  var bats = [Bat]()
   var rider: Rider? = nil
   var progressLabel : SKLabelNode? = nil
   
@@ -51,7 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     initializeProgressFeedback()
     
-    beginSpawningBats()
+//    beginSpawningBats()
   }
   
   func initializeProgressFeedback() {
@@ -92,9 +136,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func initializeRider() {
-    rider = Rider(audioManager: audioManager, motionManager: motionManager)
+    rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager)
     addChild(rider!)
-    rider?.isHidden = true // no sight by default
+//    rider?.isHidden = true // no sight by default
   }
   
   func initializeHearts() {
@@ -107,124 +151,76 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
   
-  func beginSpawningBats() {
-      let wait = SKAction.wait(forDuration: 2, withRange: 2)
-      let spawn = SKAction.run {
-        let bat = Bat(audioManager: self.audioManager, pos: nil, hide: nil)
-        self.bats.append(bat)
-        self.addChild(bat)
-      }
-      let sequence = SKAction.sequence([wait, spawn])
-      // run(spawn) // for testing only generate one bat
-      run(SKAction.repeatForever(sequence))
-  }
-  
-  func touchDown(atPoint pos : CGPoint) {
-    
-  }
-  
-  func touchMoved(toPoint pos : CGPoint) {
-    
-  }
-  
-  func touchUp(atPoint pos : CGPoint) {
-    
-  }
-  
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-  }
-  
-  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
-  }
-  
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    rider!.position = touches.first?.location(in: self) as! CGPoint
-  }
-  
-  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-  }
+  func touchDown(atPoint pos : CGPoint) {}
+  func touchMoved(toPoint pos : CGPoint) {}
+  func touchUp(atPoint pos : CGPoint) {}
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {}
+  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {}
   
   override func update(_ currentTime: TimeInterval) {
     // Called before each frame is rendered
     
+    // make sure we have a rider
     guard let rider = rider else {
       print("No rider!")
       return
     }
     
-    // clean-up obsolete bats
-    var toRemove = [Bat]()
-    for bat in bats {
-      bat.move()
+    // for each oncomer
+    for oncomer in oncomers {
       
-      if bat.z <= abs(bat.velocity) && bat.z >= -1 * abs(bat.velocity) {
-        checkCollision(bat: bat, rider: rider)
+      // move forward
+      oncomer.move(withAdditionalDistance: currentLevel.getCartSpeed())
+      
+      // check collisions
+      if withinStrikingDistance(of: oncomer) {
+        if oncomer.collidesWith(position: rider.headPosition) {
+          oncomer.applyCollisionEffects(to: self)
+        } else {
+          oncomer.applyPassEffects(to: self)
+        }
       }
       
-      if bat.isGone() {
-        toRemove.append(bat)
-        bat.die()
+      // check if gone
+      if oncomer.isGone() {
+        oncomer.applyGoneEffects(to: self)
       }
+      
     }
-    bats.removeAll(where: {
-      toRemove.contains($0)
-    })
+    
+    // check if game is over
+    if rider.isDead() {
+      endGame()
+    }
+    
+    // check if level is over - if spawning is done and all the oncomers are gone
+    if currentLevel.isDone() && oncomers.count == 0 {
+      currentLevelIndex = currentLevelIndex + 1
+    }
+    
+    // get anything newly spawned
+    let newOncomers = currentLevel.spawn()
+    oncomers = oncomers.union(newOncomers)
+    for oncomer in newOncomers {
+      addChild(oncomer)
+    }
     
     // move the cart
-    meters = meters + velocity
+    meters = meters + velocity // todo: replace with point system
     
-  }
-  
-  func checkCollision(bat: Bat, rider: Rider) {
-    let batThird = floor(bat.position.x / THIRD_SCREEN_WIDTH)
-    let riderThird = floor(rider.x / THIRD_SCREEN_WIDTH)
-    
-    if batThird == riderThird {
-      // decrement lives
-      rider.loseLife()
-      
-      // update ui to reflect lost life
-      let life = lives.popLast()
-      life?.removeFromParent()
-      
-      // kill the bat too
-      bat.hit()
-      bat.die()
-      bats.removeAll(where: { $0 == bat })
-      
-      // check game over
-      if rider.isDead() {
-        endGame()
-        
-        // kill all the bats
-        for bat in bats {
-          bat.die()
-        }
-        bats = []
-      }
-    }
-    else {
-      bat.pass()
-    }
-  }
-  
-  // MARK: - Game Management Methods
-  func levelComplete() {
-    if(levelNum <= maxLevels){
-    } else {
-      levelNum = 1
-      ()
-    }
   }
   
   func endGame() {
+    // despawn all the oncomers
+    for oncomer in oncomers {
+      oncomer.despawn()
+    }
+    
+    // transision scenes
     let gameOverScene = GameOverScene(size: size)
     gameOverScene.scaleMode = scaleMode
-    
     gameOverScene.distance = meters // pass distance traveled for the leaderboard
-
     let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
     view?.presentScene(gameOverScene,transition: transitionType)
   }
@@ -234,5 +230,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     gameOverScene.scaleMode = scaleMode
     let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
     view?.presentScene(gameOverScene,transition: transitionType)
+  }
+  
+  private func withinStrikingDistance(of node: SKNode) -> Bool {
+    return abs(node.zPosition) <= node.speed + currentLevel.getCartSpeed()
   }
 }
