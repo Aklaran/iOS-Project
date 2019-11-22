@@ -18,15 +18,13 @@ class Rider: SKSpriteNode {
   
   let z : CGFloat = 0
   
-  var headPosition: CGPoint
-  
-  private var invincible = false
-  
-  override var position: CGPoint {
+  var headPosition: CGPoint {
     didSet {
       audioManager?.updateListenerPosition(to: position)
     }
   }
+  
+  private var invincible = false
   
   var lives:Int = 3
   
