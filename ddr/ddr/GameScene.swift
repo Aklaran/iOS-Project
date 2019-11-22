@@ -81,7 +81,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   var lives = [SKSpriteNode]();
   
-//  var bats = [Bat]()
   var rider: Rider? = nil
   var progressLabel : SKLabelNode? = nil
   
