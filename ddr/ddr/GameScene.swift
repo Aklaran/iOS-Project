@@ -213,11 +213,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func endGame() {
+    // despawn all the oncomers
+    for oncomer in oncomers {
+      oncomer.despawn()
+    }
+    
+    // transision scenes
     let gameOverScene = GameOverScene(size: size)
     gameOverScene.scaleMode = scaleMode
-    
     gameOverScene.distance = meters // pass distance traveled for the leaderboard
-
     let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
     view?.presentScene(gameOverScene,transition: transitionType)
   }
