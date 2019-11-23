@@ -2,6 +2,21 @@
 import Foundation
 import SpriteKit
 
+enum OncomerPosition: Int, CaseIterable {
+  case LEFT = 0
+  case MIDDLE = 1
+  case RIGHT = 2
+  
+  func getX() -> CGFloat{
+    return (CGFloat(self.rawValue) * (GameScene.WIDTH / 3)) + CGFloat(GameScene.WIDTH / 6)
+  }
+  
+  static func of(x: CGFloat) -> OncomerPosition {
+    return OncomerPosition(rawValue: Int(x / (GameScene.WIDTH / 3)))!
+  }
+  
+}
+
 class Oncomer: SKSpriteNode, Spawnable {
   
   let spawner: Spawner<Oncomer>
@@ -16,11 +31,11 @@ class Oncomer: SKSpriteNode, Spawnable {
       emitters.forEach({ $0.updateZ(zPosition) })
       
       // update visual
-      xScale = (GameScene.HORIZON - abs(zPosition)) / GameScene.HORIZON
+      xScale = (GameScene.HORIZON  - abs(zPosition)) / GameScene.HORIZON // [0, 1]
       yScale = xScale
     }
   }
-  
+
   // override to update emitter(s)
   override var position : CGPoint {
     didSet {
@@ -64,7 +79,7 @@ class Oncomer: SKSpriteNode, Spawnable {
   }
   
   func collidesWith(position: CGPoint) -> Bool {
-    return false
+    return OncomerPosition.of(x: self.position.x) == OncomerPosition.of(x: position.x)
   }
   
 //  could not use because rider headPosition != rider position
@@ -72,11 +87,7 @@ class Oncomer: SKSpriteNode, Spawnable {
 //    return collidesWith(position: node.position)
 //  }
   
-  func move() {
-    self.zPosition = self.zPosition - self.speed
-  }
-  
-  func move(withAdditionalDistance distance : CGFloat) {
+  func move(withAdditionalDistance distance : CGFloat = 0) {
     self.zPosition = self.zPosition - self.speed - distance
   }
   
