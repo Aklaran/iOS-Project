@@ -75,7 +75,8 @@ class Bat: Oncomer {
       goneEffects: [],
       texture: texture,
       color: SKColor.clear,
-      size: texture.size()
+      size: texture.size(),
+      lightingBitMask: 0b0001
     )
     
     zPosition = GameScene.HORIZON

@@ -76,12 +76,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   var velocity : CGFloat = 0.02
   
-  
   let motionManager = CMMotionManager()
   
   var lives = [SKSpriteNode]();
   
   var rider: Rider? = nil
+  
   var progressLabel : SKLabelNode? = nil
   
   override func didMove(to view: SKView) {
@@ -95,7 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     initializeProgressFeedback()
     
-//    beginSpawningBats()
+    
   }
   
   func initializeProgressFeedback() {
@@ -132,13 +132,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
     addChild(background)
-    background.isHidden = true // no sight by default
+    self.backgroundColor = .black
+    // background.isHidden = true // no sight by default
   }
   
   func initializeRider() {
     rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager)
     addChild(rider!)
 //    rider?.isHidden = true // no sight by default
+    
+    let lightNode = SKLightNode()
+    lightNode.position = CGPoint(x: GameScene.WIDTH / 2, y: 0)
+    lightNode.categoryBitMask = 0b0001
+    lightNode.lightColor = .yellow
+    lightNode.falloff = 0.1
+    addChild(lightNode)
   }
   
   func initializeHearts() {

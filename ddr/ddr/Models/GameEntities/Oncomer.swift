@@ -36,7 +36,8 @@ class Oncomer: SKSpriteNode, Spawnable {
     goneEffects: [Effect],
     texture: SKTexture?,
     color: UIColor,
-    size: CGSize)
+    size: CGSize,
+    lightingBitMask: UInt32)
   {
     self.spawner = spawner
     self.collisionEffects = collisionEffects
@@ -44,6 +45,7 @@ class Oncomer: SKSpriteNode, Spawnable {
     self.goneEffects = goneEffects
     self.emitters = emitters
     super.init(texture: texture, color: color, size: size)
+    super.lightingBitMask = lightingBitMask
     self.collisionEffects = self.collisionEffects + [ KillOncomerEffect(oncomer: self) ]
     self.passEffects = self.passEffects + [ HideEffect(nodeToHide: self) ]
     self.goneEffects = self.goneEffects + [ KillOncomerEffect(oncomer: self) ]
