@@ -140,13 +140,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager)
     addChild(rider!)
 //    rider?.isHidden = true // no sight by default
-    
-    let lightNode = SKLightNode()
-    lightNode.position = CGPoint(x: GameScene.WIDTH / 2, y: 0)
-    lightNode.categoryBitMask = 0b0001
-    lightNode.lightColor = .yellow
-    lightNode.falloff = 0.1
-    addChild(lightNode)
   }
   
   func initializeHearts() {

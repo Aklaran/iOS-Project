@@ -14,7 +14,9 @@ class Rider: SKSpriteNode {
   static let HALF_SCREEN_WIDTH = UIScreen.main.bounds.width / 2
   
   let audioManager : AudioManager?
-  let motionManager : CMMotionManager? 
+  let motionManager : CMMotionManager?
+  
+  let lightNode : SKLightNode?
   
   let z : CGFloat = 0
   
@@ -34,14 +36,21 @@ class Rider: SKSpriteNode {
     self.audioManager = audioManager
     self.motionManager = motionManager
     self.headPosition = CGPoint(x: 0, y: 0) // will be changed later
+    self.lightNode = SKLightNode()
     
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
     self.setScale(0.4)
-    self.headPosition = CGPoint(x: Rider.HALF_SCREEN_WIDTH, y: position.y)
+    self.headPosition = CGPoint(x: GameScene.WIDTH / 2, y: position.y)
     self.position.x = Rider.HALF_SCREEN_WIDTH
     self.position.y = 0
     self.anchorPoint = CGPoint(x: 0.5, y: 0)
+    
+    self.lightNode?.position.y = GameScene.HEIGHT / 2
+    self.lightNode?.categoryBitMask = 0b0001
+    self.lightNode?.lightColor = .white
+    self.lightNode?.falloff = 0.5
+    addChild(lightNode!)
     
     beginMotionUpdates()
   }
@@ -107,6 +116,7 @@ class Rider: SKSpriteNode {
           
           // collision var updates
           self?.headPosition.x = playerPosition
+          // self?.lightNode?.position.x = playerPosition
           
           // spriteNode updates
           self?.position.x = spritePosition
