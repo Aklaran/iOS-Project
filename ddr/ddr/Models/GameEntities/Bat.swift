@@ -61,10 +61,9 @@ class Bat: Oncomer {
       texture: texture,
       color: SKColor.clear,
       size: texture.size(),
-      lightingBitMask: 0b0001
+      lightingBitMask: 0b0001,
+      collisionThird: position.rawValue
     )
-    
-    super.third = position.rawValue
     
     zPosition = GameScene.HORIZON
     

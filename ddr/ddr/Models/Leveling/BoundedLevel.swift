@@ -6,14 +6,20 @@ class BoundedLevel: Level {
   
   let spawners: [Spawner<Oncomer>]
   let cartSpeed: CGFloat
+  let flashlightDecay: CGFloat
   
-  init (spawners: [Spawner<Oncomer>], cartSpeed: CGFloat) {
+  init (spawners: [Spawner<Oncomer>], cartSpeed: CGFloat, flashlightDecay: CGFloat) {
     self.spawners = spawners
     self.cartSpeed = cartSpeed
+    self.flashlightDecay = flashlightDecay
   }
   
   func getCartSpeed() -> CGFloat {
     return cartSpeed
+  }
+  
+  func getFlashlightDecay() -> CGFloat {
+    return flashlightDecay
   }
   
   func spawn() -> [Oncomer] {

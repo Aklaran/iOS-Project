@@ -16,7 +16,7 @@ class Rider: SKSpriteNode {
   let audioManager : AudioManager?
   let motionManager : CMMotionManager?
   
-  let lightNode : SKLightNode?
+  let flashlight : Flashlight?
   
   let z : CGFloat = 0
   
@@ -30,13 +30,13 @@ class Rider: SKSpriteNode {
   
   var lives:Int = 3
   
-  init(audioManager: AudioManager, motionManager: CMMotionManager) {
+  init(audioManager: AudioManager, motionManager: CMMotionManager, flashlight: Flashlight) {
     let texture = SKTexture(imageNamed: "rider")
     
     self.audioManager = audioManager
     self.motionManager = motionManager
     self.headPosition = CGPoint(x: 0, y: 0) // will be changed later
-    self.lightNode = SKLightNode()
+    self.flashlight = flashlight
     
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
@@ -46,11 +46,9 @@ class Rider: SKSpriteNode {
     self.position.y = 0
     self.anchorPoint = CGPoint(x: 0.5, y: 0)
     
-    self.lightNode?.position.y = GameScene.HEIGHT / 2
-    self.lightNode?.categoryBitMask = 0b0001
-    self.lightNode?.lightColor = .white
-    self.lightNode?.falloff = 0.5
-    addChild(lightNode!)
+    self.flashlight?.categoryBitMask = 0b0001
+    self.flashlight?.lightColor = .white
+    addChild(self.flashlight!)
     
     beginMotionUpdates()
   }

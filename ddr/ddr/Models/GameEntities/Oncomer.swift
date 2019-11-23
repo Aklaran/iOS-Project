@@ -25,19 +25,24 @@ class Oncomer: SKSpriteNode, Spawnable {
   var passEffects: [Effect]
   var goneEffects: [Effect]
   
-  var third: Int
+  var collisionThird: Int
   
   override var zPosition: CGFloat {
     didSet {
       // update sound
       emitters.forEach({ $0.updateZ(zPosition) })
       
-      // update visual
-      xScale = (GameScene.HORIZON  - abs(zPosition)) / GameScene.HORIZON // [0, 1]
+      // progress from horizon to player in (0, 1)
+      let zProgress = (GameScene.HORIZON  - abs(zPosition)) / GameScene.HORIZON
+      
+      // update visual - scale
+      xScale =  zProgress
       yScale = xScale
       
-      let modifier = CGFloat(1 + CGFloat(self.third - 1) * xScale)
-      
+      // update visual - screen position
+      // oncomers move from vanishing pt in middle of screen
+      // and progress to either edge of screen or the middle
+      let modifier = 1 + CGFloat(self.collisionThird - 1) * zProgress
       self.position.x = (GameScene.WIDTH / 2) * modifier
     }
   }
@@ -58,14 +63,15 @@ class Oncomer: SKSpriteNode, Spawnable {
     texture: SKTexture?,
     color: UIColor,
     size: CGSize,
-    lightingBitMask: UInt32)
+    lightingBitMask: UInt32,
+    collisionThird: Int)
   {
     self.spawner = spawner
     self.collisionEffects = collisionEffects
     self.passEffects = passEffects
     self.goneEffects = goneEffects
     self.emitters = emitters
-    self.third = 0
+    self.collisionThird = collisionThird
     super.init(texture: texture, color: color, size: size)
     super.lightingBitMask = lightingBitMask
     self.collisionEffects = self.collisionEffects + [ KillOncomerEffect(oncomer: self) ]

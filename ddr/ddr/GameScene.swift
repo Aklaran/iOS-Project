@@ -26,7 +26,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           expectedDuration: 600,
           getNewSpawn: Bat.init)
       ],
-      cartSpeed: 0.1
+      cartSpeed: 0.1,
+      flashlightDecay: 0.0001
     ),
     BoundedLevel(
       spawners: [
@@ -38,7 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           expectedDuration: 6000,
           getNewSpawn: Bat.init)
       ],
-      cartSpeed: 0.1
+      cartSpeed: 0.1,
+      flashlightDecay: 0.001
     )
     // todo: create an unbounded level so that this does not crash
   ]
@@ -137,7 +139,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func initializeRider() {
-    rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager)
+    let flashlight = Flashlight(battery: CGFloat(1), brightness: 0.1)
+    flashlight.position.y = GameScene.HEIGHT
+    
+    rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager, flashlight: flashlight)
     addChild(rider!)
 //    rider?.isHidden = true // no sight by default
   }
@@ -167,6 +172,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       print("No rider!")
       return
     }
+    
+    // decrease flashlight battery
+    rider.flashlight?.drainBattery(amount: currentLevel.getFlashlightDecay())
     
     // for each oncomer
     for oncomer in oncomers {
