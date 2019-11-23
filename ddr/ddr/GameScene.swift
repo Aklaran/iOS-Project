@@ -52,6 +52,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // Explict
   var oncomers: Set<Oncomer> = Set()
   var currentLevelIndex: Int = 0
+  var backgroundSize: CGFloat = 0;
   
   // Dynamic
   var currentLevel: Level {
@@ -68,6 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static let tracksSoundFile = Bundle.main.path(forResource: "tracks.mp3", ofType: nil)!
   
   let background:Background = Background()
+  let cart:Cart = Cart()
   
 //  let maxLevels = 3
   var meters : CGFloat = 0 {
@@ -97,7 +99,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     initializeProgressFeedback()
     
-    
+    initializeMineCart()
+  }
+  
+  func initializeMineCart() {
+//    let cart = SKSpriteNode(imageNamed: "minecart");
+    cart.anchorPoint = CGPoint(x: 0.5, y: 0);
+    cart.position = CGPoint(x: GameScene.WIDTH/2, y: 0);
+    cart.size.height = backgroundSize * 0.90;
+
+    addChild(cart)
   }
   
   func initializeProgressFeedback() {
@@ -133,6 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     background.zPosition = -999
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
+    backgroundSize = (background.size.height);
     addChild(background)
     self.backgroundColor = .black
     // background.isHidden = true // no sight by default
