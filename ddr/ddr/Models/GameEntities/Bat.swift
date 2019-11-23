@@ -64,6 +64,8 @@ class Bat: Oncomer {
       lightingBitMask: 0b0001
     )
     
+    super.third = position.rawValue
+    
     zPosition = GameScene.HORIZON
     
     self.position = CGPoint(

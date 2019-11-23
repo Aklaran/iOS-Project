@@ -25,6 +25,8 @@ class Oncomer: SKSpriteNode, Spawnable {
   var passEffects: [Effect]
   var goneEffects: [Effect]
   
+  var third: Int
+  
   override var zPosition: CGFloat {
     didSet {
       // update sound
@@ -33,9 +35,13 @@ class Oncomer: SKSpriteNode, Spawnable {
       // update visual
       xScale = (GameScene.HORIZON  - abs(zPosition)) / GameScene.HORIZON // [0, 1]
       yScale = xScale
+      
+      let modifier = CGFloat(1 + CGFloat(self.third - 1) * xScale)
+      
+      self.position.x = (GameScene.WIDTH / 2) * modifier
     }
   }
-
+  
   // override to update emitter(s)
   override var position : CGPoint {
     didSet {
@@ -59,6 +65,7 @@ class Oncomer: SKSpriteNode, Spawnable {
     self.passEffects = passEffects
     self.goneEffects = goneEffects
     self.emitters = emitters
+    self.third = 0
     super.init(texture: texture, color: color, size: size)
     super.lightingBitMask = lightingBitMask
     self.collisionEffects = self.collisionEffects + [ KillOncomerEffect(oncomer: self) ]
