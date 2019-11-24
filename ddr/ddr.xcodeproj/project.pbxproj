@@ -43,6 +43,7 @@
 		4DB2171123875D3100D4EDFC /* HideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2171023875D3100D4EDFC /* HideEffect.swift */; };
 		4DB21713238B216900D4EDFC /* TrainingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB21712238B216900D4EDFC /* TrainingLevel.swift */; };
 		4DB21715238B22B300D4EDFC /* TrainingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB21714238B22B300D4EDFC /* TrainingStep.swift */; };
+		4DB21717238B31FD00D4EDFC /* MessageStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB21716238B31FD00D4EDFC /* MessageStep.swift */; };
 		4DE33443236F8A5000A179DB /* BatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33442236F8A5000A179DB /* BatTest.swift */; };
 		4DE33447236F953700A179DB /* AudioManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33446236F953700A179DB /* AudioManagerTest.swift */; };
 		4DE3344A236F9A5000A179DB /* singleFlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DE33440236E5DAC00A179DB /* singleFlap.mp3 */; };
@@ -106,6 +107,7 @@
 		4DB2171023875D3100D4EDFC /* HideEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideEffect.swift; sourceTree = "<group>"; };
 		4DB21712238B216900D4EDFC /* TrainingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLevel.swift; sourceTree = "<group>"; };
 		4DB21714238B22B300D4EDFC /* TrainingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingStep.swift; sourceTree = "<group>"; };
+		4DB21716238B31FD00D4EDFC /* MessageStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStep.swift; sourceTree = "<group>"; };
 		4DE33440236E5DAC00A179DB /* singleFlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleFlap.mp3; sourceTree = "<group>"; };
 		4DE33442236F8A5000A179DB /* BatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatTest.swift; sourceTree = "<group>"; };
 		4DE33446236F953700A179DB /* AudioManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTest.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				4DB21705238478F900D4EDFC /* BoundedLevel.swift */,
 				4DB21712238B216900D4EDFC /* TrainingLevel.swift */,
 				4DB21714238B22B300D4EDFC /* TrainingStep.swift */,
+				4DB21716238B31FD00D4EDFC /* MessageStep.swift */,
 			);
 			path = Leveling;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				4DB2170F2386F97700D4EDFC /* LoseLifeEffect.swift in Sources */,
 				4DB2171123875D3100D4EDFC /* HideEffect.swift in Sources */,
 				4DB216FF2380E25300D4EDFC /* Oncomer.swift in Sources */,
+				4DB21717238B31FD00D4EDFC /* MessageStep.swift in Sources */,
 				2C9353192371F9120082FBBC /* TutorialGameScene.swift in Sources */,
 				4DB2170D2386283A00D4EDFC /* KillOncomerEffect.swift in Sources */,
 				2C9A7F21237906AA00C01E6D /* background.swift in Sources */,

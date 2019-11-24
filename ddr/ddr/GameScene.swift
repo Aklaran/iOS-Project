@@ -15,7 +15,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // Game Settings
   static let HORIZON : CGFloat = 100
-  static let LEVELS: [Level] = [ // I am working on improvining initialization of levels and spawners
+  
+  // function to allow game levels to be reset
+  static func getLevels() -> [Level] {
+    return [
+    // I am working on improvining initialization of levels and spawners
     BoundedLevel(
       spawners: [
         try! Spawner(
@@ -44,6 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     )
     // todo: create an unbounded level so that this does not crash
   ]
+}
   
   // Game Things
   static let AUDIO_MANAGER = AudioManager()
@@ -51,14 +56,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   /* Instance Variables */
   // Explict
   var oncomers: Set<Oncomer> = Set()
-  var currentLevelIndex: Int = 0
+  var currentLevelIndex: Int
+  var levels: [Level]
+  var levelNodes: [SKNode]
   
   // Dynamic
-  var currentLevel: Level {
-    get {
-      return GameScene.LEVELS[currentLevelIndex]
-    }
-  }
+  var currentLevel: Level
   
   /* ... eh ... */
   // not sure if these should stay...
@@ -92,6 +95,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     initializeHearts()
     initializeSounds()
     initializeProgressFeedback()
+    initializeLevels()
+  }
+  
+  func initializeLevels() {
+    levels = GameScene.getLevels()
+    currentLevelIndex = 0
   }
   
   func initializeProgressFeedback() {
@@ -161,57 +170,77 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   override func update(_ currentTime: TimeInterval) {
     // Called before each frame is rendered
     
-    // make sure we have a rider
-    guard let rider = rider else {
-      print("No rider!")
-      return
-    }
-    
-    // decrease flashlight battery
-    rider.flashlight?.drainBattery(amount: currentLevel.getFlashlightDecay())
-    
-    // for each oncomer
-    for oncomer in oncomers {
+    // only do this if the level does not say we should pause
+    if !currentLevel.shouldWait(self) {
+      currentLevel.alertWaiting() // and let the level know what we do
       
-      // move forward
-      oncomer.move(withAdditionalDistance: currentLevel.getCartSpeed())
+      // make sure we have a rider
+      guard let rider = rider else {
+        print("No rider!")
+        return
+      }
       
-      // check collisions
-      if withinStrikingDistance(of: oncomer) {
-        if oncomer.collidesWith(position: rider.headPosition) {
-          oncomer.applyCollisionEffects(to: self)
-        } else {
-          oncomer.applyPassEffects(to: self)
+      // decrease flashlight battery
+      rider.flashlight?.drainBattery(amount: currentLevel.getFlashlightDecay())
+      
+      // for each oncomer
+      for oncomer in oncomers {
+        
+        // move forward
+        oncomer.move(withAdditionalDistance: currentLevel.getCartSpeed())
+        
+        // check collisions
+        if withinStrikingDistance(of: oncomer) {
+          if oncomer.collidesWith(position: rider.headPosition) {
+            oncomer.applyCollisionEffects(to: self)
+          } else {
+            oncomer.applyPassEffects(to: self)
+          }
         }
+        
+        // check if gone
+        if oncomer.isGone() {
+          oncomer.applyGoneEffects(to: self)
+        }
+        
       }
       
-      // check if gone
-      if oncomer.isGone() {
-        oncomer.applyGoneEffects(to: self)
+      // check if game is over
+      if rider.isDead() {
+        endGame()
       }
       
+      // check if level is over - if spawning is done and all the oncomers are gone
+      if currentLevel.isDone() && oncomers.count == 0 {
+        nextLevel()
+      }
+      
+      // get anything newly spawned
+      let newOncomers = currentLevel.spawn()
+      oncomers = oncomers.union(newOncomers)
+      for oncomer in newOncomers {
+        addChild(oncomer)
+      }
+      
+      // move the cart
+      meters = meters + velocity // todo: replace with point system
+    }
+    else {
+      currentLevel.alertWaiting() // and let the level know if we are wating on it
     }
     
-    // check if game is over
-    if rider.isDead() {
-      endGame()
+  }
+  
+  func nextLevel() {
+    for node in levelNodes {
+      node.removeFromParent()
     }
-    
-    // check if level is over - if spawning is done and all the oncomers are gone
-    if currentLevel.isDone() && oncomers.count == 0 {
-      currentLevelIndex = currentLevelIndex + 1
+    currentLevelIndex = currentLevelIndex + 1
+    currentLevel = levels[currentLevelIndex]
+    levelNodes = currentLevel.nodes()
+    for node in levelNodes {
+      addChild(node)
     }
-    
-    // get anything newly spawned
-    let newOncomers = currentLevel.spawn()
-    oncomers = oncomers.union(newOncomers)
-    for oncomer in newOncomers {
-      addChild(oncomer)
-    }
-    
-    // move the cart
-    meters = meters + velocity // todo: replace with point system
-    
   }
   
   func endGame() {
