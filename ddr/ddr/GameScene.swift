@@ -19,7 +19,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
     return [
-    // I am working on improvining initialization of levels and spawners
+    TrainingLevel(
+      steps: [
+        MessageStep(text: "Game starts in 3 seconds")
+      ],
+      cartSpeed: 0.5,
+      flashlightDecay: 0.05
+    ),
     BoundedLevel(
       spawners: [
         try! Spawner(
@@ -54,14 +60,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static let AUDIO_MANAGER = AudioManager()
   
   /* Instance Variables */
-  // Explict
   var oncomers: Set<Oncomer> = Set()
-  var currentLevelIndex: Int
-  var levels: [Level]
-  var levelNodes: [SKNode]
-  
-  // Dynamic
-  var currentLevel: Level
+  var currentLevelIndex: Int = 0
+  var levels: [Level] = GameScene.getLevels()
+  var levelNodes: [SKNode] = []
+  var currentLevel: Level {
+    get {
+      return levels[currentLevelIndex]
+    }
+  }
   
   /* ... eh ... */
   // not sure if these should stay...
@@ -99,8 +106,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func initializeLevels() {
-    levels = GameScene.getLevels()
-    currentLevelIndex = 0
+    levelNodes = currentLevel.nodes()
+    for node in levelNodes {
+      addChild(node)
+    }
   }
   
   func initializeProgressFeedback() {
@@ -210,11 +219,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endGame()
       }
       
-      // check if level is over - if spawning is done and all the oncomers are gone
-      if currentLevel.isDone() && oncomers.count == 0 {
-        nextLevel()
-      }
-      
       // get anything newly spawned
       let newOncomers = currentLevel.spawn()
       oncomers = oncomers.union(newOncomers)
@@ -229,6 +233,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       currentLevel.alertWaiting() // and let the level know if we are wating on it
     }
     
+    // check if level is over - if spawning is done and all the oncomers are gone
+    if currentLevel.isDone() && oncomers.count == 0 {
+      nextLevel()
+    }
+    
   }
   
   func nextLevel() {
@@ -236,11 +245,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       node.removeFromParent()
     }
     currentLevelIndex = currentLevelIndex + 1
-    currentLevel = levels[currentLevelIndex]
     levelNodes = currentLevel.nodes()
     for node in levelNodes {
       addChild(node)
     }
+    print("now onto next level")
   }
   
   func endGame() {
@@ -258,6 +267,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func newGame() {
+    // reset leveling
+    levels = GameScene.getLevels()
+    currentLevelIndex = -1; // hacky but works
+    nextLevel()
+    
+    // other stuff
     let gameOverScene = StartGameScene(size: size)
     gameOverScene.scaleMode = scaleMode
     let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)

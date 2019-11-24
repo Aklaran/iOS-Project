@@ -9,6 +9,17 @@ class MessageStep: TrainingStep {
   
   var endTime: Date?
   
+  convenience init(
+    text: String,
+    duration: TimeInterval = 3,
+    position: CGPoint = CGPoint(x: 0, y: 0))
+  {
+    let node = SKLabelNode()
+    node.text = text
+    node.position = position
+    self.init(messageNodes: [node], duration: duration)
+  }
+  
   init(messageNodes: [SKNode], duration: TimeInterval) {
     
     self.nodes = messageNodes
@@ -24,12 +35,18 @@ class MessageStep: TrainingStep {
   }
   
   func shouldWait(_ game: GameScene) -> Bool {
-    return endTime == nil || Date() > endTime!
+    guard let endTime = endTime else {
+      return true
+    }
+    return Date() > endTime
   }
   
   func alertWaiting() {
-    endTime = Date() + duration
-    showNodes()
+    guard let _ = endTime else { // because if x == nil does not work...
+      endTime = Date() + duration
+      showNodes()
+      return
+    }
   }
   
   func alertNotWaiting() {
