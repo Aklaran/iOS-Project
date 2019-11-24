@@ -88,16 +88,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   override func didMove(to view: SKView) {
     initializeBackground()
-    
     initializeRider()
-    
     initializeHearts()
-    
     initializeSounds()
-    
     initializeProgressFeedback()
-    
-    
   }
   
   func initializeProgressFeedback() {
