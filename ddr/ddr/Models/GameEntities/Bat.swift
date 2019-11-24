@@ -9,21 +9,6 @@
 import UIKit
 import SpriteKit
 
-enum BatPosition: Int, CaseIterable {
-  case LEFT = 0
-  case MIDDLE = 1
-  case RIGHT = 2
-  
-  func getX() -> CGFloat{
-    return (CGFloat(self.rawValue) * (GameScene.WIDTH / 3)) + CGFloat(GameScene.WIDTH / 6)
-  }
-  
-  static func of(x: CGFloat) -> BatPosition {
-    return BatPosition(rawValue: Int(x / (GameScene.WIDTH / 3)))!
-  }
-  
-}
-
 class Bat: Oncomer {
   
   static let WHOOSH_FILE = Bundle.main.path(forResource: "swoosh.mp3", ofType: nil)!
@@ -40,12 +25,12 @@ class Bat: Oncomer {
   convenience init(spawner: Spawner<Oncomer>) {
     self.init(
       spawner: spawner,
-      position: BatPosition.allCases.randomElement()!,
+      position: OncomerPosition.allCases.randomElement()!,
       speed: Bat.DEFAULT_SPEED
     )
   }
   
-  init(spawner: Spawner<Oncomer>, position: BatPosition, speed: CGFloat) {
+  init(spawner: Spawner<Oncomer>, position: OncomerPosition, speed: CGFloat) {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat") // should be updated somehow whne bats are made to flap
     
@@ -75,7 +60,9 @@ class Bat: Oncomer {
       goneEffects: [],
       texture: texture,
       color: SKColor.clear,
-      size: texture.size()
+      size: texture.size(),
+      lightingBitMask: 0b0001,
+      collisionThird: position.rawValue
     )
     
     zPosition = GameScene.HORIZON
@@ -99,9 +86,4 @@ class Bat: Oncomer {
     flapping.stop() // todo: fix audio manager to prevent memory leak in long games
     super.despawn()
   }
-  
-  override func collidesWith(position: CGPoint) -> Bool {
-    return BatPosition.of(x: self.position.x) == BatPosition.of(x: position.x)
-  }
-  
 }

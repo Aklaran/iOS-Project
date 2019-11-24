@@ -15,7 +15,9 @@ class Background: SKSpriteNode {
     let texture = SKTexture(imageNamed: "background1")
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
-    animate()
+    super.lightingBitMask = 0b0001
+    
+    //animate()
   }
   
   required init?(coder aDecoder: NSCoder) {

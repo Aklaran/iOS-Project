@@ -26,7 +26,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           expectedDuration: 600,
           getNewSpawn: Bat.init)
       ],
-      cartSpeed: 0.1
+      cartSpeed: 0.1,
+      flashlightDecay: 0.0001
     ),
     BoundedLevel(
       spawners: [
@@ -38,7 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           expectedDuration: 6000,
           getNewSpawn: Bat.init)
       ],
-      cartSpeed: 0.1
+      cartSpeed: 0.1,
+      flashlightDecay: 0.001
     )
     // todo: create an unbounded level so that this does not crash
   ]
@@ -76,12 +78,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   var velocity : CGFloat = 0.02
   
-  
   let motionManager = CMMotionManager()
   
   var lives = [SKSpriteNode]();
   
   var rider: Rider? = nil
+  
   var progressLabel : SKLabelNode? = nil
   
   override func didMove(to view: SKView) {
@@ -95,7 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     initializeProgressFeedback()
     
-//    beginSpawningBats()
+    
   }
   
   func initializeProgressFeedback() {
@@ -132,11 +134,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
     addChild(background)
-    background.isHidden = true // no sight by default
+    self.backgroundColor = .black
+    // background.isHidden = true // no sight by default
   }
   
   func initializeRider() {
-    rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager)
+    let flashlight = Flashlight(battery: CGFloat(1), brightness: 0.1)
+    flashlight.position.y = GameScene.HEIGHT
+    
+    rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager, flashlight: flashlight)
     addChild(rider!)
 //    rider?.isHidden = true // no sight by default
   }
@@ -166,6 +172,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       print("No rider!")
       return
     }
+    
+    // decrease flashlight battery
+    rider.flashlight?.drainBattery(amount: currentLevel.getFlashlightDecay())
     
     // for each oncomer
     for oncomer in oncomers {
