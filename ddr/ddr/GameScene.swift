@@ -23,7 +23,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       steps: [
         MessageStep(text: "Game starts in 3 seconds", duration: 1),
         MessageStep(text: "Game starts in 2 seconds", duration: 1),
-        MessageStep(text: "Game starts in 1 second", duration: 1)
+        MessageStep(text: "Game starts in 1 second", duration: 1),
+        OncomerStep(
+          oncomer: Bat(),
+          message: "Dodge the bat...",
+          desireToHit: false
+        )
       ],
       cartSpeed: 0.5,
       flashlightDecay: 0.05

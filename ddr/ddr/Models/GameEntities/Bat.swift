@@ -22,15 +22,15 @@ class Bat: Oncomer {
   let whoosh: Emitter
   let splat: Emitter
   
-  convenience init(spawner: Spawner<Oncomer>) {
+  convenience init(spawner: Spawner<Oncomer>? = nil) {
     self.init(
       spawner: spawner,
-      position: OncomerPosition.allCases.randomElement()!,
+      position: ScreenThird.allCases.randomElement()!,
       speed: Bat.DEFAULT_SPEED
     )
   }
   
-  init(spawner: Spawner<Oncomer>, position: OncomerPosition, speed: CGFloat) {
+  init(spawner: Spawner<Oncomer>? = nil, position: ScreenThird, speed: CGFloat) {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat") // should be updated somehow whne bats are made to flap
     
@@ -62,7 +62,7 @@ class Bat: Oncomer {
       color: SKColor.clear,
       size: texture.size(),
       lightingBitMask: 0b0001,
-      collisionThird: position.rawValue
+      collisionThird: position
     )
     
     zPosition = GameScene.HORIZON

@@ -2,7 +2,7 @@
 import Foundation
 import SpriteKit
 
-enum OncomerPosition: Int, CaseIterable {
+enum ScreenThird: Int, CaseIterable {
   case LEFT = 0
   case MIDDLE = 1
   case RIGHT = 2
@@ -11,21 +11,21 @@ enum OncomerPosition: Int, CaseIterable {
     return (CGFloat(self.rawValue) * (GameScene.WIDTH / 3)) + CGFloat(GameScene.WIDTH / 6)
   }
   
-  static func of(x: CGFloat) -> OncomerPosition {
-    return OncomerPosition(rawValue: Int(x / (GameScene.WIDTH / 3)))!
+  static func of(x: CGFloat) -> ScreenThird {
+    return ScreenThird(rawValue: Int(x / (GameScene.WIDTH / 3)))!
   }
   
 }
 
 class Oncomer: SKSpriteNode, Spawnable {
   
-  let spawner: Spawner<Oncomer>
+  let spawner: Spawner<Oncomer>?
   let emitters: [Emitter]
   var collisionEffects: [Effect]
   var passEffects: [Effect]
   var goneEffects: [Effect]
   
-  var collisionThird: Int
+  var collisionThird: ScreenThird
   
   override var zPosition: CGFloat {
     didSet {
@@ -42,7 +42,7 @@ class Oncomer: SKSpriteNode, Spawnable {
       // update visual - screen position
       // oncomers move from vanishing pt in middle of screen
       // and progress to either edge of screen or the middle
-      let modifier = 1 + CGFloat(self.collisionThird - 1) * zProgress
+      let modifier = 1 + CGFloat(self.collisionThird.rawValue - 1) * zProgress
       self.position.x = (GameScene.WIDTH / 2) * modifier
     }
   }
@@ -55,7 +55,7 @@ class Oncomer: SKSpriteNode, Spawnable {
   }
   
   init (
-    spawner: Spawner<Oncomer>,
+    spawner: Spawner<Oncomer>?,
     emitters: [Emitter],
     collisionEffects: [Effect],
     passEffects: [Effect],
@@ -64,7 +64,7 @@ class Oncomer: SKSpriteNode, Spawnable {
     color: UIColor,
     size: CGSize,
     lightingBitMask: UInt32,
-    collisionThird: Int)
+    collisionThird: ScreenThird)
   {
     self.spawner = spawner
     self.collisionEffects = collisionEffects
@@ -88,11 +88,11 @@ class Oncomer: SKSpriteNode, Spawnable {
   }
   
   func despawn() {
-    spawner.despawn(self)
+    spawner?.despawn(self)
   }
   
   func collidesWith(position: CGPoint) -> Bool {
-    return OncomerPosition.of(x: self.position.x) == OncomerPosition.of(x: position.x)
+    return ScreenThird.of(x: self.position.x) == ScreenThird.of(x: position.x)
   }
   
 //  could not use because rider headPosition != rider position
