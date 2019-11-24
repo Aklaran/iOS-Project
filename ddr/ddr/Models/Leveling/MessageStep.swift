@@ -12,7 +12,7 @@ class MessageStep: TrainingStep {
   convenience init(
     text: String,
     duration: TimeInterval = 3,
-    position: CGPoint = CGPoint(x: 0, y: 0))
+    position: CGPoint = CGPoint(x: GameScene.WIDTH / 2, y: GameScene.HEIGHT / 2))
   {
     let node = SKLabelNode()
     node.text = text
