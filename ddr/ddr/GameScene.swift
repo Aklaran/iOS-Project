@@ -21,7 +21,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     return [
     TrainingLevel(
       steps: [
-        MessageStep(text: "Game starts in 3 seconds")
+        MessageStep(text: "Game starts in 3 seconds", duration: 1),
+        MessageStep(text: "Game starts in 2 seconds", duration: 1),
+        MessageStep(text: "Game starts in 1 second", duration: 1)
       ],
       cartSpeed: 0.5,
       flashlightDecay: 0.05

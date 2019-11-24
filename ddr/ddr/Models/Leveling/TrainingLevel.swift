@@ -60,7 +60,7 @@ class TrainingLevel: Level {
   // I can think of to put this logic
   func isDone() -> Bool {
     if currentStep.isDone() {
-      currentStep.alertWaiting() // just to make sure this gets called
+      currentStep.alertNotWaiting() // just to make sure this gets called
       currentStepIndex = currentStepIndex + 1
       if currentStepIndex >= steps.count {
         return true
