@@ -201,7 +201,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         oncomer.move(withAdditionalDistance: currentLevel.getCartSpeed())
         
         // check collisions
-        if withinStrikingDistance(of: oncomer) {
+        if riderWithinStrikingDistance(of: oncomer) {
           if oncomer.collidesWith(position: rider.headPosition) {
             oncomer.applyCollisionEffects(to: self)
           } else {
@@ -281,7 +281,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     view?.presentScene(gameOverScene,transition: transitionType)
   }
   
-  private func withinStrikingDistance(of node: SKNode) -> Bool {
+  func riderWithinStrikingDistance(of node: SKNode) -> Bool {
     return abs(node.zPosition) <= node.speed + currentLevel.getCartSpeed()
   }
 }
