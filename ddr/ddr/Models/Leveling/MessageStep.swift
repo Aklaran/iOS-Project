@@ -42,7 +42,6 @@ class MessageStep: TrainingStep {
   }
   
   func alertWaiting() {
-    print("waiting")
     guard let _ = endTime else { // because if x == nil does not work...
       endTime = Date(timeIntervalSinceNow: duration)
       showNodes()
@@ -51,7 +50,6 @@ class MessageStep: TrainingStep {
   }
   
   func alertNotWaiting() {
-    print("not waiting")
     hideNodes()
   }
   

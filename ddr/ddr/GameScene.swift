@@ -25,7 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         MessageStep(text: "Game starts in 2 seconds", duration: 1),
         MessageStep(text: "Game starts in 1 second", duration: 1),
         OncomerStep(
-          oncomer: Bat(),
+          oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
           message: "Dodge the bat...",
           desireToHit: false
         )
