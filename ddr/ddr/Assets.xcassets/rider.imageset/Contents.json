@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "person.png",
+      "filename" : "miner_with_pickaxe_2x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "person-big.png",
       "scale" : "2x"
     },
     {
