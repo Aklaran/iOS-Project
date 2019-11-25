@@ -21,14 +21,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     return [
     TrainingLevel(
       steps: [
-        MessageStep(text: "Game starts in 3 seconds", duration: 1),
-        MessageStep(text: "Game starts in 2 seconds", duration: 1),
-        MessageStep(text: "Game starts in 1 second", duration: 1),
+        MessageStep(text: "Lets practice dodging bats...", duration: 3),
         OncomerStep(
           oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-          message: "Dodge the bat...",
+          message: "Lean right to dodge the bat",
           desireToHit: false
-        )
+        ),
+        OncomerStep(
+          oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+          message: "This time lean either way",
+          desireToHit: false
+        ),
+        OncomerStep(
+          oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+          message: "And now lean left",
+          desireToHit: false
+        ),
+        MessageStep(text: "Alright, here comes the real deal!", duration: 3)
       ],
       cartSpeed: 0,
       flashlightDecay: 0
