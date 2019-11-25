@@ -69,6 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static let tracksSoundFile = Bundle.main.path(forResource: "tracks.mp3", ofType: nil)!
   
   let background:Background = Background()
+  
   let cart:Cart = Cart()
   
 //  let maxLevels = 3
@@ -86,6 +87,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   var rider: Rider? = nil
   
+  var battery: BatteryBar? = BatteryBar()
+  
   var progressLabel : SKLabelNode? = nil
   
   override func didMove(to view: SKView) {
@@ -100,15 +103,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     initializeProgressFeedback()
     
     initializeMineCart()
+    
+    initializeBattery()
   }
   
   func initializeMineCart() {
-//    let cart = SKSpriteNode(imageNamed: "minecart");
     cart.anchorPoint = CGPoint(x: 0.5, y: 0);
     cart.position = CGPoint(x: GameScene.WIDTH/2, y: 0);
     cart.size.height = backgroundSize * 0.90;
 
     addChild(cart)
+  }
+  
+  func initializeBattery() {
+    battery?.anchorPoint = CGPoint(x: 0.5, y: 0);
+    battery?.position = CGPoint(x: GameScene.WIDTH/2, y: GameScene.HEIGHT - (battery?.size.height)!/4);
+    battery?.size.height = (battery?.size.height)!/4;
+    battery?.size.width = (battery?.size.width)!/4;
+
+    addChild(battery!)
   }
   
   func initializeProgressFeedback() {
@@ -140,7 +153,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func initializeBackground() {
     background.anchorPoint = CGPoint(x: 0.5, y: 0)
-    background.position = CGPoint(x: size.width/2, y: 0)
+    background.position = CGPoint(x: size.width/2, y: size.height)
     background.zPosition = -999
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
@@ -162,8 +175,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func initializeHearts() {
     for i in 0 ..< rider!.lives {
       let newHeart = SKSpriteNode(imageNamed: "heart");
-      newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0.5))
-      newHeart.position = CGPoint(x: CGFloat(newHeart.size.width/2 + CGFloat(i) * 100), y: (size.height - newHeart.size.height));
+      newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0))
+      newHeart.position = CGPoint(x: CGFloat(newHeart.size.width/2 + CGFloat(i) * 100), y: (GameScene.HEIGHT - newHeart.size.height));
       lives.append(newHeart)
       addChild(newHeart)
     }
