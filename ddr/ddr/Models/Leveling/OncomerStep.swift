@@ -12,6 +12,41 @@ class OncomerStep: TrainingStep {
   var hasSpawned = false
   var endTime: Date?
   
+  convenience init(oncomer: Oncomer, desireToHit: Bool) {
+    var desiredPositions: [ScreenThird]
+    var tutorialImage: TutorialImage
+    if desireToHit {
+      desiredPositions = [oncomer.collisionThird]
+      switch oncomer.collisionThird {
+        case ScreenThird.LEFT: do {
+          tutorialImage = TutorialImage(third: 1, rotateRight: false, alternate: false)
+        }
+        case ScreenThird.MIDDLE: do {
+          fatalError("tutorial images don't support this yet...") // may never come up...
+        }
+        case ScreenThird.RIGHT: do {
+          tutorialImage = TutorialImage(third: 1, rotateRight: true, alternate: false)
+        }
+      }
+    } else {
+      switch oncomer.collisionThird {
+        case ScreenThird.LEFT: do {
+          desiredPositions = [ScreenThird.RIGHT]
+          tutorialImage = TutorialImage(third: 1, rotateRight: true, alternate: false)
+        }
+        case ScreenThird.MIDDLE: do {
+          desiredPositions = [ScreenThird.LEFT, ScreenThird.RIGHT]
+          tutorialImage = TutorialImage(third: 1, rotateRight: true, alternate: true)
+        }
+        case ScreenThird.RIGHT: do {
+          desiredPositions = [ScreenThird.LEFT]
+          tutorialImage = TutorialImage(third: 1, rotateRight: false, alternate: false)
+        }
+      }
+    }
+    self.init(oncomer: oncomer, instructions: [tutorialImage], desiredPositions: desiredPositions)
+  }
+  
   convenience init(oncomer: Oncomer, message: String, desireToHit: Bool) {
     let desiredPositions: [ScreenThird]
     if desireToHit {

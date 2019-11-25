@@ -25,17 +25,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         MessageStep(text: "Lets practice dodging bats...", duration: 3),
         OncomerStep(
           oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-          message: "Lean right to dodge the bat",
           desireToHit: false
         ),
         OncomerStep(
           oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-          message: "This time lean either way",
           desireToHit: false
         ),
         OncomerStep(
           oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
-          message: "And now lean left",
           desireToHit: false
         ),
         MessageStep(text: "Alright, here comes the real deal!", duration: 3)
