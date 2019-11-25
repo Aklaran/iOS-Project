@@ -94,6 +94,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   override func didMove(to view: SKView) {
     initializeBackground()
     
+    initializeMineCart()
+    
     initializeRider()
     
     initializeHearts()
@@ -101,8 +103,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     initializeSounds()
     
     initializeProgressFeedback()
-    
-    initializeMineCart()
     
     initializeBattery()
   }
@@ -168,7 +168,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let flashlight = Flashlight(battery: CGFloat(1), brightness: 0.1)
     flashlight.position.y = GameScene.HEIGHT
     
-    rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager, flashlight: flashlight)
+    rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager, flashlight: flashlight, cartHeight: Int(cart.size.height))
     rider!.zPosition = 2
     addChild(rider!)
 //    rider?.isHidden = true // no sight by default
