@@ -12,7 +12,7 @@ enum ScreenThird: Int, CaseIterable {
   }
   
   static func of(x: CGFloat) -> ScreenThird {
-    return ScreenThird(rawValue: Int(x / (GameScene.WIDTH / 3)))!
+    return ScreenThird(rawValue: min(2, max(0, Int(x / (GameScene.WIDTH / 3)))))!
   }
   
 }

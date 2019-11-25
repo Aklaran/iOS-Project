@@ -30,8 +30,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           desireToHit: false
         )
       ],
-      cartSpeed: 0.5,
-      flashlightDecay: 0.05
+      cartSpeed: 0,
+      flashlightDecay: 0
     ),
     BoundedLevel(
       spawners: [
@@ -286,7 +286,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     view?.presentScene(gameOverScene,transition: transitionType)
   }
   
-  func riderWithinStrikingDistance(of node: SKNode) -> Bool {
-    return abs(node.zPosition) <= node.speed + currentLevel.getCartSpeed()
+  func riderWithinStrikingDistance(of oncomer: Oncomer) -> Bool {
+    return oncomer.zPosition >= 0
+      && oncomer.zPosition <= oncomer.speed + currentLevel.getCartSpeed()
   }
 }
