@@ -20,6 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static func getLevels() -> [Level] {
     return [
     TrainingLevel(
+      id: "BatTraining",
       steps: [
         MessageStep(text: "Lets practice dodging bats...", duration: 3),
         OncomerStep(

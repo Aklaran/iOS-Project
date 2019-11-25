@@ -4,6 +4,11 @@ import SpriteKit
 
 class TrainingLevel: Level {
   
+  // stores the trainings that have been completed
+  // todo: replace with core data for persistence
+  static var completedLevels: [String] = []
+  
+  let id: String
   let cartSpeed: CGFloat
   let flashlightDecay: CGFloat
   let steps: [TrainingStep]
@@ -16,7 +21,8 @@ class TrainingLevel: Level {
     }
   }
   
-  init (steps: [TrainingStep], cartSpeed: CGFloat, flashlightDecay: CGFloat) {
+  init (id: String, steps: [TrainingStep], cartSpeed: CGFloat, flashlightDecay: CGFloat) {
+    self.id = id
     self.cartSpeed = cartSpeed
     self.flashlightDecay = flashlightDecay
     self.steps = steps
@@ -59,10 +65,17 @@ class TrainingLevel: Level {
   // but this is what we have now and this is the best place
   // I can think of to put this logic
   func isDone() -> Bool {
+    
+    // skip level if user has already completed it
+    if TrainingLevel.completedLevels.contains(id) {
+      return true
+    }
+    
     if currentStep.isDone() {
       currentStep.alertNotWaiting() // just to make sure this gets called
       currentStepIndex = currentStepIndex + 1
       if currentStepIndex >= steps.count {
+        TrainingLevel.completedLevels.append(id) // skip this training in the future
         return true
       }
     }

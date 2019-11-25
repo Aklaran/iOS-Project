@@ -1,10 +1,3 @@
-//
-//  Bat.swift
-//  Space Destgroyers
-//
-//  Created by Matt Kern on 10/31/19.
-//  Copyright © 2019 Matt Kern. All rights reserved.
-//
 
 import UIKit
 import SpriteKit
