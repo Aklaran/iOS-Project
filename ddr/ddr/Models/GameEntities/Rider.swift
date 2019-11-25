@@ -43,7 +43,7 @@ class Rider: SKSpriteNode {
     self.setScale(0.4)
     self.headPosition = CGPoint(x: GameScene.WIDTH / 2, y: position.y)
     self.position.x = Rider.HALF_SCREEN_WIDTH
-    self.position.y = 30
+    self.position.y = 50
     self.anchorPoint = CGPoint(x: 0.5, y: 0)
     
     self.flashlight?.categoryBitMask = 0b0001

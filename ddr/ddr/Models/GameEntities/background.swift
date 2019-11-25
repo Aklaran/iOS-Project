@@ -17,7 +17,7 @@ class Background: SKSpriteNode {
     
     super.lightingBitMask = 0b0001
     
-    //animate()
+    animate()
   }
   
   required init?(coder aDecoder: NSCoder) {

@@ -111,6 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     cart.anchorPoint = CGPoint(x: 0.5, y: 0);
     cart.position = CGPoint(x: GameScene.WIDTH/2, y: 0);
     cart.size.height = backgroundSize * 0.90;
+    cart.zPosition = 1
 
     addChild(cart)
   }
@@ -168,6 +169,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     flashlight.position.y = GameScene.HEIGHT
     
     rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager, flashlight: flashlight)
+    rider!.zPosition = 2
     addChild(rider!)
 //    rider?.isHidden = true // no sight by default
   }
