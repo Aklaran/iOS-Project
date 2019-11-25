@@ -29,8 +29,8 @@ class BatteryBar: SKSpriteNode {
   }
   
   func decrement() {
-    if charge < 3 {
-      charge += 1;
+    if charge > 0 {
+      charge -= 1;
       self.batteryTexture = SKTexture(imageNamed: "battery\(charge)")
     }
   }
