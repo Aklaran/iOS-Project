@@ -188,7 +188,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // only do this if the level does not say we should pause
     if !currentLevel.shouldWait(self) {
-      currentLevel.alertWaiting() // and let the level know what we do
+      currentLevel.alertNotWaiting() // and let the level know what we do
       
       // make sure we have a rider
       guard let rider = rider else {

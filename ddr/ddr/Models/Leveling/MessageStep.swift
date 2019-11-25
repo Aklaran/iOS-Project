@@ -38,18 +38,20 @@ class MessageStep: TrainingStep {
     guard let endTime = endTime else {
       return true
     }
-    return Date() > endTime
+    return Date() <= endTime
   }
   
   func alertWaiting() {
+    print("waiting")
     guard let _ = endTime else { // because if x == nil does not work...
-      endTime = Date() + duration
+      endTime = Date(timeIntervalSinceNow: duration)
       showNodes()
       return
     }
   }
   
   func alertNotWaiting() {
+    print("not waiting")
     hideNodes()
   }
   

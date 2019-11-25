@@ -43,9 +43,9 @@ class OncomerStep: TrainingStep {
   }
   
   func shouldWait(_ game: GameScene) -> Bool {
-    return oncomer.zPosition >= 0 // has not passed the rider
-      && game.riderWithinStrikingDistance(of: oncomer)
+    return game.riderWithinStrikingDistance(of: oncomer)
       && !desiredPositions.contains(ScreenThird.of(x: game.rider!.headPosition.x))
+      && oncomer.zPosition >= 0 // has not passed the rider
   }
   
   func alertWaiting() {
@@ -54,7 +54,7 @@ class OncomerStep: TrainingStep {
   
   func alertNotWaiting() {
     hideInstructions()
-    guard let _ = endTime else { // if not nill
+    guard let _ = endTime else { // if nill
       if hasSpawned {
         endTime = Date() + cooldown
       }
