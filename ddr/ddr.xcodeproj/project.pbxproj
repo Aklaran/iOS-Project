@@ -35,7 +35,7 @@
 		4DB216FF2380E25300D4EDFC /* Oncomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB216FE2380E25300D4EDFC /* Oncomer.swift */; };
 		4DB217012380E68000D4EDFC /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB217002380E68000D4EDFC /* Spawner.swift */; };
 		4DB217042384753B00D4EDFC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB217032384753B00D4EDFC /* Level.swift */; };
-		4DB21706238478F900D4EDFC /* BoundedLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB21705238478F900D4EDFC /* BoundedLevel.swift */; };
+		4DB21706238478F900D4EDFC /* StandardLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB21705238478F900D4EDFC /* StandardLevel.swift */; };
 		4DB217092385C7D900D4EDFC /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB217082385C7D900D4EDFC /* Effect.swift */; };
 		4DB2170B2385C87100D4EDFC /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2170A2385C87100D4EDFC /* SoundEffect.swift */; };
 		4DB2170D2386283A00D4EDFC /* KillOncomerEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2170C2386283A00D4EDFC /* KillOncomerEffect.swift */; };
@@ -100,7 +100,7 @@
 		4DB216FE2380E25300D4EDFC /* Oncomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oncomer.swift; sourceTree = "<group>"; };
 		4DB217002380E68000D4EDFC /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
 		4DB217032384753B00D4EDFC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
-		4DB21705238478F900D4EDFC /* BoundedLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundedLevel.swift; sourceTree = "<group>"; };
+		4DB21705238478F900D4EDFC /* StandardLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardLevel.swift; sourceTree = "<group>"; };
 		4DB217082385C7D900D4EDFC /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		4DB2170A2385C87100D4EDFC /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffect.swift; sourceTree = "<group>"; };
 		4DB2170C2386283A00D4EDFC /* KillOncomerEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillOncomerEffect.swift; sourceTree = "<group>"; };
@@ -250,7 +250,7 @@
 			children = (
 				4DB217002380E68000D4EDFC /* Spawner.swift */,
 				4DB217032384753B00D4EDFC /* Level.swift */,
-				4DB21705238478F900D4EDFC /* BoundedLevel.swift */,
+				4DB21705238478F900D4EDFC /* StandardLevel.swift */,
 				4DB21712238B216900D4EDFC /* TrainingLevel.swift */,
 				4DB21714238B22B300D4EDFC /* TrainingStep.swift */,
 				4DB21716238B31FD00D4EDFC /* MessageStep.swift */,
@@ -417,7 +417,7 @@
 				1E4487AC236E29BB0080AA21 /* GameViewController.swift in Sources */,
 				4DB21713238B216900D4EDFC /* TrainingLevel.swift in Sources */,
 				4DB2171B238B448700D4EDFC /* OncomerStep.swift in Sources */,
-				4DB21706238478F900D4EDFC /* BoundedLevel.swift in Sources */,
+				4DB21706238478F900D4EDFC /* StandardLevel.swift in Sources */,
 				1E4487F1236E2A8C0080AA21 /* Rider.swift in Sources */,
 				4DB2170B2385C87100D4EDFC /* SoundEffect.swift in Sources */,
 				1E4487FB236E2B530080AA21 /* StartGameScene.swift in Sources */,

@@ -21,6 +21,8 @@ class Spawner<T: Spawnable>{
   // a infinite level might want to change this
   var pSpawn: CGFloat // the probability that the spawner should spawn at any given update
   
+  // NOTE: a negative maxSpawned value makes the spawner infinite. The min spawned value will be ignored
+  // in this case and the isDone() will always return false
   init(
     maxSpawned: Int,
     minSpawned: Int,

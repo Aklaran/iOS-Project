@@ -2,7 +2,7 @@
 import Foundation
 import SpriteKit
 
-class BoundedLevel: Level {
+class StandardLevel: Level {
   
   let spawners: [Spawner<Oncomer>]
   let cartSpeed: CGFloat

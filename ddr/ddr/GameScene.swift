@@ -19,13 +19,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
     return [
-      BoundedLevel(
-        spawners: [
-          Spawner(maxSpawned: -1, minSpawned: 0, maxConcurrent: 3, cooldown: 0.75, getNewSpawn: Bat.init, pSpawn: 0.015)
-        ],
-        cartSpeed: 0.15,
-        flashlightDecay: 0.01
-      ),
       TrainingLevel(
         id: "BatTraining",
         steps: [
@@ -47,7 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cartSpeed: 0,
         flashlightDecay: 0
       ),
-      BoundedLevel(
+      StandardLevel(
         spawners: [
           try! Spawner(
             maxSpawned: 6,
@@ -58,22 +51,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             getNewSpawn: Bat.init)
         ],
         cartSpeed: 0.1,
-        flashlightDecay: 0.0001
+        flashlightDecay: 0.0003
       ),
-      BoundedLevel(
+      StandardLevel(
         spawners: [
-          try! Spawner(
-            maxSpawned: 1000,
-            minSpawned: 500,
-            maxConcurrent: 2,
-            cooldown: 1,
-            expectedDuration: 6000,
-            getNewSpawn: Bat.init)
+          Spawner(maxSpawned: -1, minSpawned: 0, maxConcurrent: 3, cooldown: 0.75, getNewSpawn: Bat.init, pSpawn: 0.015)
         ],
-        cartSpeed: 0.1,
-        flashlightDecay: 0.001
+        cartSpeed: 0.15,
+        flashlightDecay: 0.007
       )
-    // todo: create an unbounded level so that this does not crash
   ]
 }
   
