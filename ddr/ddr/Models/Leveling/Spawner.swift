@@ -76,7 +76,7 @@ class Spawner<T: Spawnable>{
   func spawn() -> T?{
     if Date() > canSpawnAfter
         && currentlySpawned.count < maxConcurrent
-        && totalSpawned < maxSpawned
+        && (maxSpawned < 0 || totalSpawned < maxSpawned)
         && CGFloat(Float.random(in: 0...1)) < pSpawn {
       canSpawnAfter = Date().addingTimeInterval(cooldown)
       let newSpawn = getNewSpawn(self)
@@ -92,7 +92,7 @@ class Spawner<T: Spawnable>{
   }
   
   func isDone() -> Bool {
-    return totalSpawned >= minSpawned
+    return totalSpawned >= minSpawned && maxSpawned > 0 // infinte spawners never finish
   }
   
 }

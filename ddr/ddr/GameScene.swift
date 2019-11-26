@@ -19,53 +19,60 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
     return [
-    TrainingLevel(
-      id: "BatTraining",
-      steps: [
-        MessageStep(text: "Lets practice dodging bats...", duration: 3),
-        OncomerStep(
-          oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-          desireToHit: false
-        ),
-        OncomerStep(
-          oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-          desireToHit: false
-        ),
-        OncomerStep(
-          oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
-          desireToHit: false
-        ),
-        MessageStep(text: "Alright, here comes the real deal!", duration: 3)
-      ],
-      cartSpeed: 0,
-      flashlightDecay: 0
-    ),
-    BoundedLevel(
-      spawners: [
-        try! Spawner(
-          maxSpawned: 6,
-          minSpawned: 5,
-          maxConcurrent: 1,
-          cooldown: 0.5,
-          expectedDuration: 600,
-          getNewSpawn: Bat.init)
-      ],
-      cartSpeed: 0.1,
-      flashlightDecay: 0.0001
-    ),
-    BoundedLevel(
-      spawners: [
-        try! Spawner(
-          maxSpawned: 1000,
-          minSpawned: 500,
-          maxConcurrent: 2,
-          cooldown: 1,
-          expectedDuration: 6000,
-          getNewSpawn: Bat.init)
-      ],
-      cartSpeed: 0.1,
-      flashlightDecay: 0.001
-    )
+      BoundedLevel(
+        spawners: [
+          Spawner(maxSpawned: -1, minSpawned: 0, maxConcurrent: 3, cooldown: 0.75, getNewSpawn: Bat.init, pSpawn: 0.015)
+        ],
+        cartSpeed: 0.15,
+        flashlightDecay: 0.01
+      ),
+      TrainingLevel(
+        id: "BatTraining",
+        steps: [
+          MessageStep(text: "Lets practice dodging bats...", duration: 3),
+          OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+            desireToHit: false
+          ),
+          OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+            desireToHit: false
+          ),
+          OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+            desireToHit: false
+          ),
+          MessageStep(text: "Alright, here comes the real deal!", duration: 3)
+        ],
+        cartSpeed: 0,
+        flashlightDecay: 0
+      ),
+      BoundedLevel(
+        spawners: [
+          try! Spawner(
+            maxSpawned: 6,
+            minSpawned: 5,
+            maxConcurrent: 1,
+            cooldown: 0.5,
+            expectedDuration: 600,
+            getNewSpawn: Bat.init)
+        ],
+        cartSpeed: 0.1,
+        flashlightDecay: 0.0001
+      ),
+      BoundedLevel(
+        spawners: [
+          try! Spawner(
+            maxSpawned: 1000,
+            minSpawned: 500,
+            maxConcurrent: 2,
+            cooldown: 1,
+            expectedDuration: 6000,
+            getNewSpawn: Bat.init)
+        ],
+        cartSpeed: 0.1,
+        flashlightDecay: 0.001
+      )
     // todo: create an unbounded level so that this does not crash
   ]
 }
