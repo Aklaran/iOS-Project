@@ -69,8 +69,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   /* Instance Variables */
   var oncomers: Set<Oncomer> = Set()
   var currentLevelIndex: Int = 0
-  var levels: [Level] = GameScene.getLevels()
-  var levelNodes: [SKNode] = []
+  var backgroundSize: CGFloat = 0;
+  
+  // Dynamic
   var currentLevel: Level {
     get {
       return levels[currentLevelIndex]
@@ -85,6 +86,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static let tracksSoundFile = Bundle.main.path(forResource: "tracks.mp3", ofType: nil)!
   
   let background:Background = Background()
+  
+  let cart:Cart = Cart()
   
 //  let maxLevels = 3
   var meters : CGFloat = 0 {
@@ -101,22 +104,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   var rider: Rider? = nil
   
+  var battery: BatteryBar? = BatteryBar()
+  
   var progressLabel : SKLabelNode? = nil
   
   override func didMove(to view: SKView) {
     initializeBackground()
+    
+    initializeMineCart()
+    
     initializeRider()
     initializeHearts()
     initializeSounds()
     initializeProgressFeedback()
-    initializeLevels()
+    
+    initializeBattery()
   }
   
-  func initializeLevels() {
-    levelNodes = currentLevel.nodes()
-    for node in levelNodes {
-      addChild(node)
-    }
+  func initializeMineCart() {
+    cart.anchorPoint = CGPoint(x: 0.5, y: 0);
+    cart.position = CGPoint(x: GameScene.WIDTH/2, y: 0);
+    cart.size.height = backgroundSize * 0.90;
+    cart.zPosition = 1
+
+    addChild(cart)
+  }
+  
+  func initializeBattery() {
+    battery?.anchorPoint = CGPoint(x: 0.5, y: 0);
+    battery?.position = CGPoint(x: GameScene.WIDTH/2, y: GameScene.HEIGHT - (battery?.size.height)!/4);
+    battery?.size.height = (battery?.size.height)!/4;
+    battery?.size.width = (battery?.size.width)!/4;
+
+    addChild(battery!)
   }
   
   func initializeProgressFeedback() {
@@ -148,10 +168,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func initializeBackground() {
     background.anchorPoint = CGPoint(x: 0.5, y: 0)
-    background.position = CGPoint(x: size.width/2, y: 0)
+    background.position = CGPoint(x: size.width/2, y: size.height)
     background.zPosition = -999
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
+    backgroundSize = (background.size.height);
     addChild(background)
     self.backgroundColor = .black
     // background.isHidden = true // no sight by default
@@ -161,7 +182,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let flashlight = Flashlight(battery: CGFloat(1), brightness: 0.1)
     flashlight.position.y = GameScene.HEIGHT
     
-    rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager, flashlight: flashlight)
+    rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager, flashlight: flashlight, cartHeight: Int(cart.size.height))
+    rider!.zPosition = 2
     addChild(rider!)
 //    rider?.isHidden = true // no sight by default
   }
@@ -169,8 +191,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func initializeHearts() {
     for i in 0 ..< rider!.lives {
       let newHeart = SKSpriteNode(imageNamed: "heart");
-      newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0.5))
-      newHeart.position = CGPoint(x: CGFloat(newHeart.size.width/2 + CGFloat(i) * 100), y: (size.height - newHeart.size.height));
+      newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0))
+      newHeart.position = CGPoint(x: CGFloat(newHeart.size.width/2 + CGFloat(i) * 100), y: (GameScene.HEIGHT - newHeart.size.height));
       lives.append(newHeart)
       addChild(newHeart)
     }

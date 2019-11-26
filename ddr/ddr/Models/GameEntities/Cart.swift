@@ -9,13 +9,11 @@
 import UIKit
 import SpriteKit
 
-class Background: SKSpriteNode {
+class Cart: SKSpriteNode {
   
   init() {
-    let texture = SKTexture(imageNamed: "background1")
+    let texture = SKTexture(imageNamed: "cart1")
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
-    
-    super.lightingBitMask = 0b0001
     
     animate()
   }
@@ -28,7 +26,7 @@ class Background: SKSpriteNode {
   private func animate(){
     var backgroundTextures:[SKTexture] = []
     for i in 1...3 {
-      backgroundTextures.append(SKTexture(imageNamed: "background\(i)"))
+      backgroundTextures.append(SKTexture(imageNamed: "cart\(i)"))
     }
     let backgroundAnimation = SKAction.repeatForever(SKAction.animate(with: backgroundTextures, timePerFrame: 0.1))
     self.run(backgroundAnimation)

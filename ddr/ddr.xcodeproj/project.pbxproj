@@ -29,6 +29,8 @@
 		1E9CC9132374A6580015D6FC /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9CC9122374A6580015D6FC /* GameOverScene.swift */; };
 		2C9353192371F9120082FBBC /* TutorialGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9353182371F9120082FBBC /* TutorialGameScene.swift */; };
 		2C9A7F21237906AA00C01E6D /* background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A7F20237906AA00C01E6D /* background.swift */; };
+		2C9C0190238C2F54006EF685 /* BatteryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C018F238C2F54006EF685 /* BatteryBar.swift */; };
+		2CE73FD52389C5C9008EA915 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE73FD42389C5C9008EA915 /* Cart.swift */; };
 		4D3801C82371FBE80081D336 /* RiderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3801C72371FBE80081D336 /* RiderTest.swift */; };
 		4D3801CA237320FF0081D336 /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801C9237320FF0081D336 /* swoosh.mp3 */; };
 		4D3801CE2373255D0081D336 /* tracks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801CD2373255C0081D336 /* tracks.mp3 */; };
@@ -94,6 +96,8 @@
 		1E9CC9122374A6580015D6FC /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		2C9353182371F9120082FBBC /* TutorialGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialGameScene.swift; sourceTree = "<group>"; };
 		2C9A7F20237906AA00C01E6D /* background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = background.swift; sourceTree = "<group>"; };
+		2C9C018F238C2F54006EF685 /* BatteryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryBar.swift; sourceTree = "<group>"; };
+		2CE73FD42389C5C9008EA915 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		4D3801C72371FBE80081D336 /* RiderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderTest.swift; sourceTree = "<group>"; };
 		4D3801C9237320FF0081D336 /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
 		4D3801CD2373255C0081D336 /* tracks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tracks.mp3; sourceTree = "<group>"; };
@@ -217,9 +221,11 @@
 				2C9A7F20237906AA00C01E6D /* background.swift */,
 				1E4487E9236E2A8C0080AA21 /* Bat.swift */,
 				1E4487EA236E2A8C0080AA21 /* Rider.swift */,
+				2CE73FD42389C5C9008EA915 /* Cart.swift */,
 				1E2B5CC823898C68007D029C /* Flashlight.swift */,
 				1E23DB89237A2C84008B8711 /* TutorialImage.swift */,
 				4DB216FE2380E25300D4EDFC /* Oncomer.swift */,
+				2C9C018F238C2F54006EF685 /* BatteryBar.swift */,
 			);
 			path = GameEntities;
 			sourceTree = "<group>";
@@ -412,6 +418,7 @@
 				4DB217012380E68000D4EDFC /* Spawner.swift in Sources */,
 				1E9CC9132374A6580015D6FC /* GameOverScene.swift in Sources */,
 				1E4487F4236E2A8C0080AA21 /* AudioManager.swift in Sources */,
+				2C9C0190238C2F54006EF685 /* BatteryBar.swift in Sources */,
 				1E4487F7236E2A8C0080AA21 /* Emitter.swift in Sources */,
 				1E4487AA236E29BB0080AA21 /* GameScene.swift in Sources */,
 				1E4487AC236E29BB0080AA21 /* GameViewController.swift in Sources */,
@@ -423,7 +430,7 @@
 				1E4487FB236E2B530080AA21 /* StartGameScene.swift in Sources */,
 				1E4487A4236E29BB0080AA21 /* AppDelegate.swift in Sources */,
 				1E4487EE236E2A8C0080AA21 /* Bat.swift in Sources */,
-				4DB21715238B22B300D4EDFC /* TrainingStep.swift in Sources */,
+				2CE73FD52389C5C9008EA915 /* Cart.swift in Sources */,
 				4DB217092385C7D900D4EDFC /* Effect.swift in Sources */,
 				4DB217042384753B00D4EDFC /* Level.swift in Sources */,
 				1E2B5CC923898C68007D029C /* Flashlight.swift in Sources */,
