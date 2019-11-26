@@ -69,6 +69,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   /* Instance Variables */
   var oncomers: Set<Oncomer> = Set()
   var currentLevelIndex: Int = 0
+<<<<<<< HEAD
+=======
+  var levels: [Level] = GameScene.getLevels()
+  var levelNodes: [SKNode] = []
+>>>>>>> 55f3f007f923749632f2df08499884c39c6fb3ed
   var backgroundSize: CGFloat = 0;
   
   // Dynamic
@@ -110,14 +115,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   override func didMove(to view: SKView) {
     initializeBackground()
+<<<<<<< HEAD
     
     initializeMineCart()
     
+=======
+    initializeMineCart()
+>>>>>>> 55f3f007f923749632f2df08499884c39c6fb3ed
     initializeRider()
     initializeHearts()
     initializeSounds()
     initializeProgressFeedback()
+<<<<<<< HEAD
     
+=======
+    initializeLevels()
+  }
+  
+  func initializeLevels() {
+    levelNodes = currentLevel.nodes()
+    for node in levelNodes {
+      addChild(node)
+    }
+>>>>>>> 55f3f007f923749632f2df08499884c39c6fb3ed
     initializeBattery()
   }
   

@@ -430,6 +430,10 @@
 				1E4487FB236E2B530080AA21 /* StartGameScene.swift in Sources */,
 				1E4487A4236E29BB0080AA21 /* AppDelegate.swift in Sources */,
 				1E4487EE236E2A8C0080AA21 /* Bat.swift in Sources */,
+<<<<<<< HEAD
+=======
+				4DB21715238B22B300D4EDFC /* TrainingStep.swift in Sources */,
+>>>>>>> 55f3f007f923749632f2df08499884c39c6fb3ed
 				2CE73FD52389C5C9008EA915 /* Cart.swift in Sources */,
 				4DB217092385C7D900D4EDFC /* Effect.swift in Sources */,
 				4DB217042384753B00D4EDFC /* Level.swift in Sources */,
