@@ -2,7 +2,7 @@
 import Foundation
 import SpriteKit
 
-class BoundedLevel: Level {
+class StandardLevel: Level {
   
   let spawners: [Spawner<Oncomer>]
   let cartSpeed: CGFloat
@@ -40,4 +40,12 @@ class BoundedLevel: Level {
   func isDone() -> Bool {
     return spawners.allSatisfy({ $0.isDone() })
   }
+
+  func shouldWait(_ game: GameScene) -> Bool {
+    return false
+  }
+
+  func alertWaiting() {}
+
+  func alertNotWaiting() {}
 }
