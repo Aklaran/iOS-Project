@@ -87,7 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   var rider: Rider? = nil
   
-  var battery: BatteryBar? = BatteryBar()
+  var battery: BatteryBar? = BatteryBar(maxCharge: 3)
   
   var progressLabel : SKLabelNode? = nil
   
@@ -97,14 +97,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     initializeMineCart()
     
     initializeRider()
+    // also inits flashlight and battery
     
     initializeHearts()
     
     initializeSounds()
     
     initializeProgressFeedback()
-    
-    initializeBattery()
   }
   
   func initializeMineCart() {
@@ -165,7 +164,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func initializeRider() {
-    let flashlight = Flashlight(battery: CGFloat(1), brightness: 0.1)
+    initializeBattery()
+    
+    var flashlight : Flashlight
+    
+    if let battery = battery {
+      print("flaslight w/ batt")
+      flashlight = Flashlight(battery: battery, maxBattery: CGFloat(1), brightness: 0.1)
+    } else {
+      print("flashlight w/ no batt")
+      flashlight = Flashlight(maxBattery: CGFloat(1), brightness: 0.1)
+    }
+    
     flashlight.position.y = GameScene.HEIGHT
     
     rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager, flashlight: flashlight, cartHeight: Int(cart.size.height))
