@@ -69,7 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   /* Instance Variables */
   var oncomers: Set<Oncomer> = Set()
   var currentLevelIndex: Int = 0
-
+  
   var levels: [Level] = GameScene.getLevels()
   var levelNodes: [SKNode] = []
 
@@ -119,13 +119,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     initializeRider()
     // also inits flashlight and battery
-    
+
     initializeHearts()
     
     initializeSounds()
     
     initializeProgressFeedback()
-    
+
     initializeLevels()
   }
   
@@ -183,7 +183,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func initializeBackground() {
     background.anchorPoint = CGPoint(x: 0.5, y: 0)
-    background.position = CGPoint(x: size.width/2, y: size.height)
+    background.position = CGPoint(x: size.width/2, y: 0)
     background.zPosition = -999
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
