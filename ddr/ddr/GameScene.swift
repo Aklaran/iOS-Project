@@ -111,6 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     initializeSounds()
     initializeProgressFeedback()
     initializeLevels()
+    initializeBattery()
   }
   
   func initializeLevels() {
@@ -118,7 +119,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for node in levelNodes {
       addChild(node)
     }
-    initializeBattery()
   }
   
   func initializeMineCart() {
