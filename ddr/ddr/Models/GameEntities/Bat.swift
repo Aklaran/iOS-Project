@@ -55,7 +55,8 @@ class Bat: Oncomer {
         LoseLifeEffect()
       ],
       passEffects: [
-        SoundEffect(emitter: whoosh)
+        SoundEffect(emitter: whoosh),
+        ScoreEffect(delta: speed * GameScene.BAT_SPEED_POINT_CONVERSION)
       ],
       goneEffects: [],
       texture: texture,

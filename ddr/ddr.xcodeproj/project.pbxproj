@@ -47,6 +47,7 @@
 		4DB21715238B22B300D4EDFC /* TrainingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB21714238B22B300D4EDFC /* TrainingStep.swift */; };
 		4DB21717238B31FD00D4EDFC /* MessageStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB21716238B31FD00D4EDFC /* MessageStep.swift */; };
 		4DB2171B238B448700D4EDFC /* OncomerStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2171A238B448700D4EDFC /* OncomerStep.swift */; };
+		4DCF0A5A2394A2AB000448E6 /* ScoreEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCF0A592394A2AB000448E6 /* ScoreEffect.swift */; };
 		4DE33443236F8A5000A179DB /* BatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33442236F8A5000A179DB /* BatTest.swift */; };
 		4DE33447236F953700A179DB /* AudioManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33446236F953700A179DB /* AudioManagerTest.swift */; };
 		4DE3344A236F9A5000A179DB /* singleFlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DE33440236E5DAC00A179DB /* singleFlap.mp3 */; };
@@ -114,6 +115,7 @@
 		4DB21714238B22B300D4EDFC /* TrainingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingStep.swift; sourceTree = "<group>"; };
 		4DB21716238B31FD00D4EDFC /* MessageStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStep.swift; sourceTree = "<group>"; };
 		4DB2171A238B448700D4EDFC /* OncomerStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OncomerStep.swift; sourceTree = "<group>"; };
+		4DCF0A592394A2AB000448E6 /* ScoreEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreEffect.swift; sourceTree = "<group>"; };
 		4DE33440236E5DAC00A179DB /* singleFlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleFlap.mp3; sourceTree = "<group>"; };
 		4DE33442236F8A5000A179DB /* BatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatTest.swift; sourceTree = "<group>"; };
 		4DE33446236F953700A179DB /* AudioManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTest.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				4DB2171023875D3100D4EDFC /* HideEffect.swift */,
 				4DB2170A2385C87100D4EDFC /* SoundEffect.swift */,
 				4DB2170C2386283A00D4EDFC /* KillOncomerEffect.swift */,
+				4DCF0A592394A2AB000448E6 /* ScoreEffect.swift */,
 				4DB2170E2386F97700D4EDFC /* LoseLifeEffect.swift */,
 			);
 			path = Effects;
@@ -435,6 +438,7 @@
 				4DB217092385C7D900D4EDFC /* Effect.swift in Sources */,
 				4DB217042384753B00D4EDFC /* Level.swift in Sources */,
 				1E2B5CC923898C68007D029C /* Flashlight.swift in Sources */,
+				4DCF0A5A2394A2AB000448E6 /* ScoreEffect.swift in Sources */,
 				1E23DB8A237A2C84008B8711 /* TutorialImage.swift in Sources */,
 				4DB2170F2386F97700D4EDFC /* LoseLifeEffect.swift in Sources */,
 				4DB2171123875D3100D4EDFC /* HideEffect.swift in Sources */,
@@ -618,6 +622,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 753255PBHL;
 				INFOPLIST_FILE = ddr/Info.plist;
@@ -627,6 +632,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "three-amigos.ddr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -636,6 +642,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 753255PBHL;
 				INFOPLIST_FILE = ddr/Info.plist;
@@ -645,6 +652,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "three-amigos.ddr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

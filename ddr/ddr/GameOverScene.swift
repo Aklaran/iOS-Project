@@ -12,12 +12,12 @@ import UIKit
 
 class GameOverScene: SKScene {
   
-  var distance: CGFloat?
+  var score: CGFloat?
 
   override func didMove(to view: SKView) {
     backgroundColor = SKColor(red:0.00, green:0.59, blue:0.63, alpha:1.0)
 
-    let progressLabel = SKLabelNode(text: "You made it " + String(Int(distance!)) + " meters")
+    let progressLabel = SKLabelNode(text: "You made it " + String(Int(score!)) + " meters")
     progressLabel.position = CGPoint(x: size.width/2, y: size.height - size.height / 1.618)
     addChild(progressLabel)
     
