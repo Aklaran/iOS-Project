@@ -75,7 +75,7 @@ class Spawner<T: Spawnable>{
     )
   }
   
-  func spawn() -> T?{
+  func spawn() -> T? {
     if Date() > canSpawnAfter
         && currentlySpawned.count < maxConcurrent
         && (maxSpawned < 0 || totalSpawned < maxSpawned)
