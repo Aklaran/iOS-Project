@@ -79,7 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var backgroundSize: CGFloat = 0;
   var lives = [SKSpriteNode]();
   var rider: Rider? = nil
-  var battery: BatteryBar? = BatteryBar()
+  var battery: BatteryBar? = BatteryBar(maxCharge: 3)
   var scoreLabel: SKLabelNode? = nil
   var score: CGFloat = 0 {
     didSet {
