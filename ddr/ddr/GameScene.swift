@@ -318,7 +318,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // MARK: helper functions
   func riderWithinStrikingDistance(of oncomer: Oncomer) -> Bool {
     return oncomer.zPosition >= 0
-      && oncomer.zPosition <= oncomer.speed + currentLevel.getCartSpeed()
+      && oncomer.zPosition < oncomer.speed + currentLevel.getCartSpeed()
   }
   
 }
