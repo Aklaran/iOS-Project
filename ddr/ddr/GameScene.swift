@@ -192,11 +192,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var flashlight : Flashlight
     
+    // give the flashlight the battery indicator if it exists
     if let battery = battery {
-      print("flaslight w/ batt")
       flashlight = Flashlight(battery: battery, maxBattery: CGFloat(1), brightness: 0.1)
     } else {
-      print("flashlight w/ no batt")
       flashlight = Flashlight(maxBattery: CGFloat(1), brightness: 0.1)
     }
     
@@ -248,7 +247,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         oncomer.move(withAdditionalDistance: currentLevel.getCartSpeed())
         
         // check collisions
-        if riderWithinStrikingDistance(of: oncomer) {
+        if riderWithinStrikingDistance(of: oncomer) && !currentLevel.shouldWait(self) {
           if oncomer.collidesWith(position: rider.headPosition) {
             oncomer.applyCollisionEffects(to: self)
           } else {

@@ -26,7 +26,7 @@ class MessageStep: TrainingStep {
     self.duration = duration
     
     self.nodes.forEach{ body in
-      body.zPosition = 999
+      body.zPosition = 999 // show the tutorial text above everything else
     }
     
     // make sure all the nodes are hidden

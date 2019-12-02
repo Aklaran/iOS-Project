@@ -29,9 +29,8 @@ class BatteryBar: SKSpriteNode {
   }
   
   func update(percentCharge: CGFloat) {
-    print("battery update w/ \(percentCharge)")
     let charge = getCharge(from: percentCharge)
-    print(charge)
+    
     if charge != currCharge {
       currCharge = charge
       setTexture(to: currCharge)
