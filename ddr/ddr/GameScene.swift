@@ -69,11 +69,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   /* Instance Variables */
   var oncomers: Set<Oncomer> = Set()
   var currentLevelIndex: Int = 0
-<<<<<<< HEAD
-=======
   var levels: [Level] = GameScene.getLevels()
   var levelNodes: [SKNode] = []
->>>>>>> 55f3f007f923749632f2df08499884c39c6fb3ed
   var backgroundSize: CGFloat = 0;
   
   // Dynamic
@@ -115,21 +112,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   override func didMove(to view: SKView) {
     initializeBackground()
-<<<<<<< HEAD
-    
     initializeMineCart()
-    
-=======
-    initializeMineCart()
->>>>>>> 55f3f007f923749632f2df08499884c39c6fb3ed
     initializeRider()
     initializeHearts()
     initializeSounds()
     initializeProgressFeedback()
-<<<<<<< HEAD
-    
-=======
     initializeLevels()
+    initializeBattery()
   }
   
   func initializeLevels() {
@@ -137,8 +126,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for node in levelNodes {
       addChild(node)
     }
->>>>>>> 55f3f007f923749632f2df08499884c39c6fb3ed
-    initializeBattery()
   }
   
   func initializeMineCart() {
@@ -188,7 +175,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func initializeBackground() {
     background.anchorPoint = CGPoint(x: 0.5, y: 0)
-    background.position = CGPoint(x: size.width/2, y: size.height)
+    background.position = CGPoint(x: size.width/2, y: 0)
     background.zPosition = -999
     // Sets background vanishing point to below half the screen for 3D depth
     background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
