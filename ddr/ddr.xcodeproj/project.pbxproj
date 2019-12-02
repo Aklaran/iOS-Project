@@ -27,7 +27,6 @@
 		1E448802236E2D880080AA21 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487FF236E2D880080AA21 /* beep.mp3 */; };
 		1E6435AA2370DCBD00851B2A /* impact-kick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6435A92370DCBD00851B2A /* impact-kick.wav */; };
 		1E9CC9132374A6580015D6FC /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9CC9122374A6580015D6FC /* GameOverScene.swift */; };
-		2C9353192371F9120082FBBC /* TutorialGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9353182371F9120082FBBC /* TutorialGameScene.swift */; };
 		2C9A7F21237906AA00C01E6D /* background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A7F20237906AA00C01E6D /* background.swift */; };
 		2C9C0190238C2F54006EF685 /* BatteryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C018F238C2F54006EF685 /* BatteryBar.swift */; };
 		2CE73FD52389C5C9008EA915 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE73FD42389C5C9008EA915 /* Cart.swift */; };
@@ -94,7 +93,6 @@
 		1E4487FF236E2D880080AA21 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		1E6435A92370DCBD00851B2A /* impact-kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "impact-kick.wav"; sourceTree = "<group>"; };
 		1E9CC9122374A6580015D6FC /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
-		2C9353182371F9120082FBBC /* TutorialGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialGameScene.swift; sourceTree = "<group>"; };
 		2C9A7F20237906AA00C01E6D /* background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = background.swift; sourceTree = "<group>"; };
 		2C9C018F238C2F54006EF685 /* BatteryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryBar.swift; sourceTree = "<group>"; };
 		2CE73FD42389C5C9008EA915 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 				1E4487B0236E29BC0080AA21 /* Assets.xcassets */,
 				1E4487B2236E29BC0080AA21 /* LaunchScreen.storyboard */,
 				1E4487B5236E29BC0080AA21 /* Info.plist */,
-				2C9353182371F9120082FBBC /* TutorialGameScene.swift */,
 			);
 			path = ddr;
 			sourceTree = "<group>";
@@ -440,7 +437,6 @@
 				4DB2171123875D3100D4EDFC /* HideEffect.swift in Sources */,
 				4DB216FF2380E25300D4EDFC /* Oncomer.swift in Sources */,
 				4DB21717238B31FD00D4EDFC /* MessageStep.swift in Sources */,
-				2C9353192371F9120082FBBC /* TutorialGameScene.swift in Sources */,
 				4DB2170D2386283A00D4EDFC /* KillOncomerEffect.swift in Sources */,
 				2C9A7F21237906AA00C01E6D /* background.swift in Sources */,
 			);
