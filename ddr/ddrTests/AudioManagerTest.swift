@@ -29,7 +29,7 @@ class AudioManagerTest: XCTestCase {
   func testCreateEmitter() {
     XCTAssertEqual(0, am!.emitters.count)
     let zMax = CGFloat(99)
-    let soundFile = game.tracks
+    let soundFile = GameScene.tracksSoundFile
     let e = am!.createEmitter(soundFile: soundFile, maxZMagnitude: zMax)
     XCTAssertEqual(1, am!.emitters.count)
     XCTAssertEqual(zMax, e.maxZMagnitude)
