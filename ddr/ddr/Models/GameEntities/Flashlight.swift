@@ -10,6 +10,9 @@ import Foundation
 import SpriteKit
 
 class Flashlight: SKLightNode {
+  // UI representation of charge left
+  let batteryIndicator : BatteryBar?
+  
   let maxBattery : CGFloat
   
   // lower value = brighter light
@@ -19,12 +22,16 @@ class Flashlight: SKLightNode {
     didSet {
       // apparently you can do CGFloat division by 0...
       super.falloff = maxBrightness + (1 / batteryLife)
+      
+      batteryIndicator?.update(percentCharge: batteryLife / maxBattery)
     }
   }
   
-  init(battery: CGFloat, brightness: CGFloat) {
-    self.maxBattery = battery
-    self.batteryLife = battery
+  init(battery: BatteryBar? = nil, maxBattery: CGFloat, brightness: CGFloat) {
+    self.batteryIndicator = battery
+    
+    self.maxBattery = maxBattery
+    self.batteryLife = maxBattery
     
     self.maxBrightness = brightness
     

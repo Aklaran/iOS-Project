@@ -26,8 +26,8 @@
 		1E448801236E2D880080AA21 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487FF236E2D880080AA21 /* beep.mp3 */; };
 		1E448802236E2D880080AA21 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4487FF236E2D880080AA21 /* beep.mp3 */; };
 		1E6435AA2370DCBD00851B2A /* impact-kick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6435A92370DCBD00851B2A /* impact-kick.wav */; };
+		1E9161612394D38300FCCE76 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9161602394D38300FCCE76 /* PlayerData.swift */; };
 		1E9CC9132374A6580015D6FC /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9CC9122374A6580015D6FC /* GameOverScene.swift */; };
-		2C9353192371F9120082FBBC /* TutorialGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9353182371F9120082FBBC /* TutorialGameScene.swift */; };
 		2C9A7F21237906AA00C01E6D /* background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A7F20237906AA00C01E6D /* background.swift */; };
 		2C9C0190238C2F54006EF685 /* BatteryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C018F238C2F54006EF685 /* BatteryBar.swift */; };
 		2CE73FD52389C5C9008EA915 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE73FD42389C5C9008EA915 /* Cart.swift */; };
@@ -47,6 +47,7 @@
 		4DB21715238B22B300D4EDFC /* TrainingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB21714238B22B300D4EDFC /* TrainingStep.swift */; };
 		4DB21717238B31FD00D4EDFC /* MessageStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB21716238B31FD00D4EDFC /* MessageStep.swift */; };
 		4DB2171B238B448700D4EDFC /* OncomerStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB2171A238B448700D4EDFC /* OncomerStep.swift */; };
+		4DCF0A5A2394A2AB000448E6 /* ScoreEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCF0A592394A2AB000448E6 /* ScoreEffect.swift */; };
 		4DE33443236F8A5000A179DB /* BatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33442236F8A5000A179DB /* BatTest.swift */; };
 		4DE33447236F953700A179DB /* AudioManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE33446236F953700A179DB /* AudioManagerTest.swift */; };
 		4DE3344A236F9A5000A179DB /* singleFlap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DE33440236E5DAC00A179DB /* singleFlap.mp3 */; };
@@ -93,8 +94,8 @@
 		1E4487FA236E2B530080AA21 /* StartGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameScene.swift; sourceTree = "<group>"; };
 		1E4487FF236E2D880080AA21 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		1E6435A92370DCBD00851B2A /* impact-kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "impact-kick.wav"; sourceTree = "<group>"; };
+		1E9161602394D38300FCCE76 /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
 		1E9CC9122374A6580015D6FC /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
-		2C9353182371F9120082FBBC /* TutorialGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialGameScene.swift; sourceTree = "<group>"; };
 		2C9A7F20237906AA00C01E6D /* background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = background.swift; sourceTree = "<group>"; };
 		2C9C018F238C2F54006EF685 /* BatteryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryBar.swift; sourceTree = "<group>"; };
 		2CE73FD42389C5C9008EA915 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 		4DB21714238B22B300D4EDFC /* TrainingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingStep.swift; sourceTree = "<group>"; };
 		4DB21716238B31FD00D4EDFC /* MessageStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStep.swift; sourceTree = "<group>"; };
 		4DB2171A238B448700D4EDFC /* OncomerStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OncomerStep.swift; sourceTree = "<group>"; };
+		4DCF0A592394A2AB000448E6 /* ScoreEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreEffect.swift; sourceTree = "<group>"; };
 		4DE33440236E5DAC00A179DB /* singleFlap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleFlap.mp3; sourceTree = "<group>"; };
 		4DE33442236F8A5000A179DB /* BatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatTest.swift; sourceTree = "<group>"; };
 		4DE33446236F953700A179DB /* AudioManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTest.swift; sourceTree = "<group>"; };
@@ -178,7 +180,6 @@
 				1E4487B0236E29BC0080AA21 /* Assets.xcassets */,
 				1E4487B2236E29BC0080AA21 /* LaunchScreen.storyboard */,
 				1E4487B5236E29BC0080AA21 /* Info.plist */,
-				2C9353182371F9120082FBBC /* TutorialGameScene.swift */,
 			);
 			path = ddr;
 			sourceTree = "<group>";
@@ -207,6 +208,7 @@
 		1E4487E7236E2A8C0080AA21 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1E91615F2394D36F00FCCE76 /* Data */,
 				4DB217072385C7B000D4EDFC /* Effects */,
 				4DB217022384751A00D4EDFC /* Leveling */,
 				1E4487EB236E2A8C0080AA21 /* Audio */,
@@ -251,6 +253,14 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		1E91615F2394D36F00FCCE76 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1E9161602394D38300FCCE76 /* PlayerData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		4DB217022384751A00D4EDFC /* Leveling */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +282,7 @@
 				4DB2171023875D3100D4EDFC /* HideEffect.swift */,
 				4DB2170A2385C87100D4EDFC /* SoundEffect.swift */,
 				4DB2170C2386283A00D4EDFC /* KillOncomerEffect.swift */,
+				4DCF0A592394A2AB000448E6 /* ScoreEffect.swift */,
 				4DB2170E2386F97700D4EDFC /* LoseLifeEffect.swift */,
 			);
 			path = Effects;
@@ -421,6 +432,7 @@
 				2C9C0190238C2F54006EF685 /* BatteryBar.swift in Sources */,
 				1E4487F7236E2A8C0080AA21 /* Emitter.swift in Sources */,
 				1E4487AA236E29BB0080AA21 /* GameScene.swift in Sources */,
+				1E9161612394D38300FCCE76 /* PlayerData.swift in Sources */,
 				1E4487AC236E29BB0080AA21 /* GameViewController.swift in Sources */,
 				4DB21713238B216900D4EDFC /* TrainingLevel.swift in Sources */,
 				4DB2171B238B448700D4EDFC /* OncomerStep.swift in Sources */,
@@ -435,12 +447,12 @@
 				4DB217092385C7D900D4EDFC /* Effect.swift in Sources */,
 				4DB217042384753B00D4EDFC /* Level.swift in Sources */,
 				1E2B5CC923898C68007D029C /* Flashlight.swift in Sources */,
+				4DCF0A5A2394A2AB000448E6 /* ScoreEffect.swift in Sources */,
 				1E23DB8A237A2C84008B8711 /* TutorialImage.swift in Sources */,
 				4DB2170F2386F97700D4EDFC /* LoseLifeEffect.swift in Sources */,
 				4DB2171123875D3100D4EDFC /* HideEffect.swift in Sources */,
 				4DB216FF2380E25300D4EDFC /* Oncomer.swift in Sources */,
 				4DB21717238B31FD00D4EDFC /* MessageStep.swift in Sources */,
-				2C9353192371F9120082FBBC /* TutorialGameScene.swift in Sources */,
 				4DB2170D2386283A00D4EDFC /* KillOncomerEffect.swift in Sources */,
 				2C9A7F21237906AA00C01E6D /* background.swift in Sources */,
 			);
@@ -618,6 +630,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 753255PBHL;
 				INFOPLIST_FILE = ddr/Info.plist;
@@ -627,6 +640,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "three-amigos.ddr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -636,6 +650,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 753255PBHL;
 				INFOPLIST_FILE = ddr/Info.plist;
@@ -645,6 +660,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "three-amigos.ddr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

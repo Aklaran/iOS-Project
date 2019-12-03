@@ -4,7 +4,6 @@ import GameplayKit
 import CoreMotion
 import AVFoundation
 
-var levelNum = 1
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   /* Class Constants */
@@ -14,7 +13,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static let HEIGHT = UIScreen.main.bounds.height
   
   // Game Settings
-  static let HORIZON : CGFloat = 100
+  static let HORIZON: CGFloat = 100
+  static let CART_SPEED_POINT_CONVERSION: CGFloat = 10
+  static let BAT_SPEED_POINT_CONVERSION: CGFloat = 100
   
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
@@ -66,12 +67,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // Game Things
   static let AUDIO_MANAGER = AudioManager()
   
+  let background: Background = Background()
+  let cart: Cart = Cart()
+  let motionManager = CMMotionManager()
+  
   /* Instance Variables */
   var oncomers: Set<Oncomer> = Set()
   var currentLevelIndex: Int = 0
+  
   var levels: [Level] = GameScene.getLevels()
   var levelNodes: [SKNode] = []
+
   var backgroundSize: CGFloat = 0;
+  var lives = [SKSpriteNode]();
+  var rider: Rider? = nil
+  var battery: BatteryBar? = BatteryBar(maxCharge: 3)
+  var scoreLabel: SKLabelNode? = nil
+  var score: CGFloat = 0 {
+    didSet {
+      scoreLabel?.text = "\(Int(score)) points"
+    }
+  }
   
   // Dynamic
   var currentLevel: Level {
@@ -86,39 +102,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let GOLDEN_RATIO = CGFloat(1.61803398875)
   
   static let tracksSoundFile = Bundle.main.path(forResource: "tracks.mp3", ofType: nil)!
+  //...
   
-  let background:Background = Background()
-  
-  let cart:Cart = Cart()
-  
-//  let maxLevels = 3
-  var meters : CGFloat = 0 {
-    didSet {
-      progressLabel!.text = String(Int(meters)) + " meters"
-    }
-  }
-  
-  var velocity : CGFloat = 0.02
-  
-  let motionManager = CMMotionManager()
-  
-  var lives = [SKSpriteNode]();
-  
-  var rider: Rider? = nil
-  
-  var battery: BatteryBar? = BatteryBar()
-  
-  var progressLabel : SKLabelNode? = nil
+  // MARK: Initialization
   
   override func didMove(to view: SKView) {
     initializeBackground()
+
     initializeMineCart()
+
     initializeRider()
+    // also inits flashlight and battery
+
     initializeHearts()
+    
     initializeSounds()
+    
     initializeProgressFeedback()
+
     initializeLevels()
-    initializeBattery()
   }
   
   func initializeLevels() {
@@ -147,12 +149,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func initializeProgressFeedback() {
-    progressLabel = SKLabelNode(text: " meters")
-    progressLabel?.position = CGPoint(
+    scoreLabel = SKLabelNode(text: "0 points")
+    scoreLabel?.position = CGPoint(
       x: UIScreen.main.bounds.width / 7 * 6,
       y: 9 * UIScreen.main.bounds.height / 10
     )
-    addChild(progressLabel!)
+    addChild(scoreLabel!)
   }
   
   func initializeSounds() {
@@ -186,7 +188,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func initializeRider() {
-    let flashlight = Flashlight(battery: CGFloat(1), brightness: 0.1)
+    initializeBattery()
+    
+    var flashlight : Flashlight
+    
+    // give the flashlight the battery indicator if it exists
+    if let battery = battery {
+      flashlight = Flashlight(battery: battery, maxBattery: CGFloat(1), brightness: 0.1)
+    } else {
+      flashlight = Flashlight(maxBattery: CGFloat(1), brightness: 0.1)
+    }
+    
     flashlight.position.y = GameScene.HEIGHT
     
     rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager, flashlight: flashlight, cartHeight: Int(cart.size.height))
@@ -205,6 +217,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
   
+  // MARK: builtin scene kit functions
   func touchDown(atPoint pos : CGPoint) {}
   func touchMoved(toPoint pos : CGPoint) {}
   func touchUp(atPoint pos : CGPoint) {}
@@ -212,6 +225,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {}
   override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {}
   
+  // MARK: the update loop
   override func update(_ currentTime: TimeInterval) {
     // Called before each frame is rendered
     
@@ -235,7 +249,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         oncomer.move(withAdditionalDistance: currentLevel.getCartSpeed())
         
         // check collisions
-        if riderWithinStrikingDistance(of: oncomer) {
+        if riderWithinStrikingDistance(of: oncomer) && !currentLevel.shouldWait(self) {
           if oncomer.collidesWith(position: rider.headPosition) {
             oncomer.applyCollisionEffects(to: self)
           } else {
@@ -262,8 +276,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(oncomer)
       }
       
-      // move the cart
-      meters = meters + velocity // todo: replace with point system
+      // update the score
+      score += GameScene.CART_SPEED_POINT_CONVERSION * currentLevel.getCartSpeed()
+      
     }
     else {
       currentLevel.alertWaiting() // and let the level know if we are wating on it
@@ -276,6 +291,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
   }
   
+  // MARK: game managment
   func nextLevel() {
     for node in levelNodes {
       node.removeFromParent()
@@ -297,7 +313,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // transision scenes
     let gameOverScene = GameOverScene(size: size)
     gameOverScene.scaleMode = scaleMode
-    gameOverScene.distance = meters // pass distance traveled for the leaderboard
+    gameOverScene.score = score // pass distance traveled for the leaderboard
     let transitionType = SKTransition.flipHorizontal(withDuration: 0.5)
     view?.presentScene(gameOverScene,transition: transitionType)
   }
@@ -308,6 +324,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     currentLevelIndex = -1; // hacky but works
     nextLevel()
     
+    // reset score
+    score = 0
+    
     // other stuff
     let gameOverScene = StartGameScene(size: size)
     gameOverScene.scaleMode = scaleMode
@@ -315,8 +334,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     view?.presentScene(gameOverScene,transition: transitionType)
   }
   
+  // MARK: helper functions
   func riderWithinStrikingDistance(of oncomer: Oncomer) -> Bool {
     return oncomer.zPosition >= 0
-      && oncomer.zPosition <= oncomer.speed + currentLevel.getCartSpeed()
+      && oncomer.zPosition < oncomer.speed + currentLevel.getCartSpeed()
   }
+  
 }
