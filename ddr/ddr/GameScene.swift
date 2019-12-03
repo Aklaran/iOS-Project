@@ -74,8 +74,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   /* Instance Variables */
   var oncomers: Set<Oncomer> = Set()
   var currentLevelIndex: Int = 0
+  
   var levels: [Level] = GameScene.getLevels()
   var levelNodes: [SKNode] = []
+
   var backgroundSize: CGFloat = 0;
   var lives = [SKSpriteNode]();
   var rider: Rider? = nil
@@ -106,12 +108,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   override func didMove(to view: SKView) {
     initializeBackground()
+
     initializeMineCart()
+
     initializeRider()
     // also inits flashlight and battery
 
     initializeHearts()
+    
     initializeSounds()
+    
     initializeProgressFeedback()
 
     initializeLevels()
