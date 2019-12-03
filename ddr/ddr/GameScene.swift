@@ -11,6 +11,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static let FPS = 60
   static let WIDTH = UIScreen.main.bounds.width
   static let HEIGHT = UIScreen.main.bounds.height
+  static let TRACKS_FILE = Bundle.main.path(forResource: "tracks.mp3", ofType: nil)!
   
   // Game Settings
   static let HORIZON: CGFloat = 100
@@ -79,6 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var levelNodes: [SKNode] = []
 
   var backgroundSize: CGFloat = 0;
+  var tracksSound: AVAudioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: GameScene.TRACKS_FILE))
   var lives = [SKSpriteNode]();
   var rider: Rider? = nil
   var battery: BatteryBar? = BatteryBar(maxCharge: 3)
@@ -100,9 +102,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // not sure if these should stay...
   let THIRD_SCREEN_WIDTH = UIScreen.main.bounds.width / 3
   let GOLDEN_RATIO = CGFloat(1.61803398875)
-  
-  static let tracksSoundFile = Bundle.main.path(forResource: "tracks.mp3", ofType: nil)!
-  //...
   
   // MARK: Initialization
   
@@ -158,21 +157,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func initializeSounds() {
-    let tracksSound = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: GameScene.tracksSoundFile))
-    tracksSound.numberOfLoops = -1
     tracksSound.volume = 0.05
     tracksSound.play()
-    //tracksSound.numberOfLoops = -1
-//    tracksSound.volume = 0.1
-//    tracksSound.play()
-    
-//    var e = audioManager.createEmitter(soundFile: GameScene.tracksSoundFile, maxZMagnitude: 10)
-////    e = Emitter(soundFile: GameScene.tracksSoundFile, maxZMagnitude: 10)
-//    e.isRepeated = true
-//    e.volume = 0.05
-//    e.start()
-//    e.updatePosition(rider!.position)
-    
   }
   
   func initializeBackground() {
