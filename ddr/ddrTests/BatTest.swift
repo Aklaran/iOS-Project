@@ -85,5 +85,10 @@ class BatTest: XCTestCase {
     bat.applyPassEffects(to: game)
     XCTAssertTrue(bat.isHidden)
   }
+  
+  func testGetTrainingBat() {
+    let bat = Bat.getTrainingBat(position: ScreenThird.LEFT)
+    XCTAssertEqual(ScreenThird.LEFT, ScreenThird.of(x: bat.position.x))
+  }
 
 }
