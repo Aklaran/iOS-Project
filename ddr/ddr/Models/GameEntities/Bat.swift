@@ -22,11 +22,18 @@ class Bat: Oncomer {
     return bat
   }
   
-  convenience init(spawner: Spawner<Oncomer>? = nil) {
+  static func spawningFunc(speed: CGFloat = Bat.DEFAULT_SPEED) -> (Spawner<Oncomer>?) -> Bat {
+    return { spawner in {
+        Bat(spawner: spawner, speed: speed)
+      }()
+    }
+  }
+  
+  convenience init(spawner: Spawner<Oncomer>? = nil, speed: CGFloat = Bat.DEFAULT_SPEED) {
     self.init(
       spawner: spawner,
       position: ScreenThird.allCases.randomElement()!,
-      speed: Bat.DEFAULT_SPEED
+      speed: speed
     )
   }
   
@@ -55,7 +62,8 @@ class Bat: Oncomer {
         LoseLifeEffect()
       ],
       passEffects: [
-        SoundEffect(emitter: whoosh)
+        SoundEffect(emitter: whoosh),
+        ScoreEffect(delta: speed * GameScene.BAT_SPEED_POINT_CONVERSION)
       ],
       goneEffects: [],
       texture: texture,

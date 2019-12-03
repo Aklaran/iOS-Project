@@ -10,28 +10,39 @@ import SpriteKit
 
 class BatteryBar: SKSpriteNode {
   
-  private var charge = 3;
+  private var maxCharge: Int
+  private var currCharge: Int;
   private var batteryTexture = SKTexture(imageNamed: "battery0")
   
-  init() {
+  init(maxCharge: Int) {
+    // always initialized with full battery
+    self.maxCharge = maxCharge
+    self.currCharge = maxCharge
+        
     super.init(texture: batteryTexture, color: SKColor.clear, size: batteryTexture.size())
+    
+    setTexture(to: currCharge) // set texture to show full battery
   }
   
   required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
+    fatalError("init(coder:) has not been implemented")
   }
   
-  func increment() {
-    if charge < 3 {
-      charge += 1;
-      self.batteryTexture = SKTexture(imageNamed: "battery\(charge)")
+  func update(percentCharge: CGFloat) {
+    let charge = getCharge(from: percentCharge)
+    
+    if charge != currCharge {
+      currCharge = charge
+      setTexture(to: currCharge)
     }
   }
   
-  func decrement() {
-    if charge > 0 {
-      charge -= 1;
-      self.batteryTexture = SKTexture(imageNamed: "battery\(charge)")
-    }
+  func getCharge(from percentage: CGFloat) -> Int {
+    return Int(ceil(percentage * CGFloat(maxCharge)))
+  }
+  
+  func setTexture(to charge: Int) {
+    batteryTexture = SKTexture(imageNamed: "battery\(charge)")
+    self.texture = batteryTexture
   }
 }
