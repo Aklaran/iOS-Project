@@ -10,6 +10,7 @@ import XCTest
 import CoreMotion
 import ddr
 import SceneKit
+import SpriteKit
 @testable import ddr
 
 class SneakyAudioManager : AudioManager {
@@ -20,6 +21,8 @@ class SneakyAudioManager : AudioManager {
 }
 
 class RiderTest: XCTestCase {
+
+  let game = GameScene(size: UIScreen.main.bounds.size)
   
   var motionManager : CMMotionManager? = nil
   var audioManager : AudioManager? = nil
@@ -28,10 +31,11 @@ class RiderTest: XCTestCase {
   static var listenerPositionUpdated = false
 
   override func setUp() {
-    RiderTest.listenerPositionUpdated = false
-    motionManager = CMMotionManager()
-    audioManager = SneakyAudioManager()
-    rider = Rider(audioManager: audioManager!, motionManager: motionManager!)
+//    RiderTest.listenerPositionUpdated = false
+//    motionManager = CMMotionManager()
+//    audioManager = SneakyAudioManager()
+    game.didMove(to: SKView())
+    rider = game.rider
   }
 
   func testUpdatePosition() {
