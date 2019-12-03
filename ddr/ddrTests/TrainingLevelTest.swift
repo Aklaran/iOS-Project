@@ -50,6 +50,10 @@ class TrainingLevelTest: XCTestCase {
     XCTAssertFalse(level.isDone())
     TrainingLevel.completedLevels.append("testLevel")
     XCTAssert(level.isDone())
+    TrainingLevel.completedLevels = []
+    level = TrainingLevel(id: "testLevel", steps: [MessageStep(messageNodes: [], duration: 0)], cartSpeed: 1, flashlightDecay: 0)
+    level.alertWaiting()
+    XCTAssert(level.isDone())
   }
   
   func testAlerts() {
@@ -67,6 +71,10 @@ class TrainingLevelTest: XCTestCase {
     XCTAssertFalse(testNode.isHidden)
     level.alertNotWaiting()
     XCTAssert(testNode.isHidden)
+  }
+  
+  func testShouldWait() {
+    XCTAssert(level.shouldWait(game))
   }
   
 }
