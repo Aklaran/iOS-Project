@@ -90,5 +90,10 @@ class BatTest: XCTestCase {
     let bat = Bat.getTrainingBat(position: ScreenThird.LEFT)
     XCTAssertEqual(ScreenThird.LEFT, ScreenThird.of(x: bat.position.x))
   }
+  
+  func testSpawningFunc() {
+    let f = Bat.spawningFunc(speed: 0)
+    XCTAssertNotNil(f(nil))
+  }
 
 }
