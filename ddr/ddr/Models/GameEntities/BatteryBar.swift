@@ -37,13 +37,6 @@ class BatteryBar: SKSpriteNode {
     }
   }
   
-  func addOne() {
-    if currCharge < maxCharge {
-      currCharge += 1
-      setTexture(to: currCharge)
-    }
-  }
-  
   func getCharge(from percentage: CGFloat) -> Int {
     return Int(ceil(percentage * CGFloat(maxCharge)))
   }
