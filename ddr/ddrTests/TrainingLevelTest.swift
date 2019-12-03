@@ -13,7 +13,7 @@ class TrainingLevelTest: XCTestCase {
     _game = GameScene(size: UIScreen.main.bounds.size)
     _game?.didMove(to: SKView())
     game = _game!
-    level = TrainingLevel(id: "testLevel", steps: [MessageStep(messageNodes: [], duration: 1)], cartSpeed: 1, flashlightDecay: 0)
+    level = TrainingLevel(id: "testLevel", steps: [MessageStep(messageNodes: [], duration: 0.1)], cartSpeed: 1, flashlightDecay: 0)
   }
 
   func testGetCartSpeed() {
@@ -44,6 +44,29 @@ class TrainingLevelTest: XCTestCase {
       flashlightDecay: 0
     )
     XCTAssertEqual([testNode], level.nodes())
+  }
+  
+  func testIsDone() {
+    XCTAssertFalse(level.isDone())
+    TrainingLevel.completedLevels.append("testLevel")
+    XCTAssert(level.isDone())
+  }
+  
+  func testAlerts() {
+    let testNode = SKNode()
+    level = TrainingLevel(
+      id: "testLevel",
+      steps: [
+        MessageStep(messageNodes: [testNode], duration: 2)
+      ],
+      cartSpeed: 1,
+      flashlightDecay: 0
+    )
+    XCTAssert(testNode.isHidden)
+    level.alertWaiting()
+    XCTAssertFalse(testNode.isHidden)
+    level.alertNotWaiting()
+    XCTAssert(testNode.isHidden)
   }
   
 }
