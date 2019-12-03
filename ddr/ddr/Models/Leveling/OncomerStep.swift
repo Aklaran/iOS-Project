@@ -22,7 +22,8 @@ class OncomerStep: TrainingStep {
           tutorialImage = TutorialImage(third: 1, rotateRight: false, alternate: false)
         }
         case ScreenThird.MIDDLE: do {
-          fatalError("tutorial images don't support this yet...") // may never come up...
+          print("tutorial images don't support this yet...") // may never come up...
+          tutorialImage = TutorialImage(third: 1, rotateRight: false, alternate: false)
         }
         case ScreenThird.RIGHT: do {
           tutorialImage = TutorialImage(third: 1, rotateRight: true, alternate: false)
