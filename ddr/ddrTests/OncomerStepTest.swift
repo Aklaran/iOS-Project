@@ -13,6 +13,8 @@ class OncomerStepTest: XCTestCase {
   var step4 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
   var step5 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
   var step6 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
+  var step7 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
+  var step8 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
   var bat = Bat.init()
 
   override func setUp() {
@@ -27,28 +29,33 @@ class OncomerStepTest: XCTestCase {
     )
     step2 = OncomerStep(
       oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-      message: "lean right",
       desireToHit: false
     )
     step3 = OncomerStep(
       oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
-      message: "lean right",
       desireToHit: false
     )
     step4 = OncomerStep(
       oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-      message: "lean right",
       desireToHit: true
     )
     step5 = OncomerStep(
       oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-      message: "lean right",
       desireToHit: true
     )
     step6 = OncomerStep(
       oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-      message: "lean right",
       desireToHit: false
+    )
+    step7 = OncomerStep(
+      oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+      message: "lean right",
+      desireToHit: true
+    )
+    step8 = OncomerStep(
+      oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+      message: "lean right",
+      desireToHit: true
     )
   }
   
