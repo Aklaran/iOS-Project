@@ -1,33 +1,21 @@
-//
-//  EffectTests.swift
-//  ddrTests
-//
-//  Created by Matt Kern on 12/3/19.
-//  Copyright © 2019 the3amigos. All rights reserved.
-//
 
 import XCTest
+import SpriteKit
+@testable import ddr
 
 class EffectTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+  
+  var _game : GameScene?
+  var game = GameScene()
+  
+  override func setUp() {
+    _game = GameScene(size: UIScreen.main.bounds.size)
+    _game?.didMove(to: SKView())
+    game = _game!
+  }
+  
+  func testHideEffect() {
+    // todo
+  }
 
 }
