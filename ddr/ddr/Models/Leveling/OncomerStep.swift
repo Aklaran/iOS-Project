@@ -12,7 +12,7 @@ class OncomerStep: TrainingStep {
   var hasSpawned = false
   var endTime: Date?
   
-  convenience init(oncomer: Oncomer, desireToHit: Bool) {
+  convenience init(oncomer: Oncomer, desireToHit: Bool) throws {
     var desiredPositions: [ScreenThird]
     var tutorialImage: TutorialImage
     if desireToHit {
@@ -22,8 +22,8 @@ class OncomerStep: TrainingStep {
           tutorialImage = TutorialImage(third: 1, rotateRight: false, alternate: false)
         }
         case ScreenThird.MIDDLE: do {
-          print("tutorial images don't support this yet...") // may never come up...
-          tutorialImage = TutorialImage(third: 1, rotateRight: false, alternate: false)
+          print("tutorial images don't support this yet...")
+          throw NSError() // may never come up...
         }
         case ScreenThird.RIGHT: do {
           tutorialImage = TutorialImage(third: 1, rotateRight: true, alternate: false)

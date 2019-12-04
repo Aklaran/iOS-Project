@@ -7,14 +7,7 @@ class OncomerStepTest: XCTestCase {
 
   var _game : GameScene?
   var game = GameScene()
-  var step = OncomerStep(oncomer: Bat.init(), desireToHit: false)
-  var step2 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
-  var step3 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
-  var step4 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
-  var step5 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
-  var step6 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
-  var step7 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
-  var step8 = OncomerStep(oncomer: Bat.init(), desireToHit: false)
+  var step = try! OncomerStep(oncomer: Bat.init(), desireToHit: false)
   var bat = Bat.init()
 
   override func setUp() {
@@ -24,36 +17,6 @@ class OncomerStepTest: XCTestCase {
     bat = Bat.getTrainingBat(position: ScreenThird.RIGHT)
     step = OncomerStep(
       oncomer: bat,
-      message: "lean right",
-      desireToHit: true
-    )
-    step2 = OncomerStep(
-      oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-      desireToHit: false
-    )
-    step3 = OncomerStep(
-      oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
-      desireToHit: false
-    )
-    step4 = OncomerStep(
-      oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-      desireToHit: true
-    )
-    step5 = OncomerStep(
-      oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-      desireToHit: true
-    )
-    step6 = OncomerStep(
-      oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-      desireToHit: false
-    )
-    step7 = OncomerStep(
-      oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-      message: "lean right",
-      desireToHit: true
-    )
-    step8 = OncomerStep(
-      oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
       message: "lean right",
       desireToHit: true
     )
@@ -86,6 +49,64 @@ class OncomerStepTest: XCTestCase {
     bat.zPosition = -3 * GameScene.HORIZON
     XCTAssertFalse(step.shouldWait(game))
     XCTAssertFalse(step.isDone())
+  }
+  
+  func testInit() {
+    do {
+      let _ = try OncomerStep(
+        oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+        desireToHit: false
+      )
+      let _ = try OncomerStep(
+        oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+        desireToHit: false
+      )
+      let _ = try OncomerStep(
+        oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+        desireToHit: true
+      )
+      let _ = try OncomerStep(
+        oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+        desireToHit: true
+      )
+      let _ = try OncomerStep(
+        oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+        desireToHit: false
+      )
+      let _ = OncomerStep(
+        oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+        message: "lean right",
+        desireToHit: false
+      )
+      let _ = OncomerStep(
+        oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+        message: "lean right",
+        desireToHit: false
+      )
+      let _ = OncomerStep(
+        oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+        message: "lean right",
+        desireToHit: true
+      )
+      let _ = OncomerStep(
+        oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+        message: "lean right",
+        desireToHit: true
+      )
+      let _ = OncomerStep(
+        oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+        message: "lean right",
+        desireToHit: true
+      )
+      let _ = OncomerStep(
+        oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+        message: "lean right",
+        desireToHit: false
+      )
+    }
+    catch {
+      XCTAssert(false) // these should not throw
+    }
   }
 
 }
