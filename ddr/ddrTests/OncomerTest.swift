@@ -36,5 +36,11 @@ class OncomerTest: XCTestCase {
     XCTAssertEqual(2, game.rider!.lives)
     XCTAssertEqual(0, game.oncomers.count)
   }
+  
+  func testCollision() {
+    XCTAssertEqual(1, game.oncomers.count)
+    oncomer.applyCollisionEffects(to: game)
+    XCTAssertEqual(0, game.oncomers.count)
+  }
 
 }
