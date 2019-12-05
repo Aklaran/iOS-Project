@@ -83,10 +83,6 @@ class Oncomer: SKSpriteNode, Spawnable {
     fatalError("init(coder:) has not been implemented")
   }
   
-  private func getImage() -> String {
-    return ""
-  }
-  
   func despawn() {
     spawner?.despawn(self)
   }
