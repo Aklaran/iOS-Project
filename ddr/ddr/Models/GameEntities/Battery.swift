@@ -31,7 +31,7 @@ class Battery: Oncomer {
   
   init(spawner: Spawner<Oncomer>? = nil, position: ScreenThird, speed: CGFloat) {
     // my instance vars
-    let texture = SKTexture(imageNamed: "bat") // should be updated somehow whne bats are made to flap
+    let texture = SKTexture(imageNamed: "battery3")
     
     // start flapping
     moving = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Battery.MOVE_FILE, maxZMagnitude: GameScene.HORIZON)
@@ -66,7 +66,7 @@ class Battery: Oncomer {
     
     self.position = CGPoint(
       x: position.getX(),
-      y: Bat.DEFAULT_Y
+      y: Battery.DEFAULT_Y
     )
     
     // these are not set in the first update of z because super has not been inited yet
