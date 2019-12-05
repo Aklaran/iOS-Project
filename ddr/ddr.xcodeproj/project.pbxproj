@@ -34,6 +34,12 @@
 		2C9A7F21237906AA00C01E6D /* background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A7F20237906AA00C01E6D /* background.swift */; };
 		2C9C0190238C2F54006EF685 /* BatteryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C018F238C2F54006EF685 /* BatteryBar.swift */; };
 		2CE73FD52389C5C9008EA915 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE73FD42389C5C9008EA915 /* Cart.swift */; };
+		4D1AC78F23970D55004D6FC6 /* StandardLevelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AC78E23970D55004D6FC6 /* StandardLevelTest.swift */; };
+		4D1AC79123971526004D6FC6 /* TrainingLevelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AC79023971526004D6FC6 /* TrainingLevelTest.swift */; };
+		4D1AC79323971D79004D6FC6 /* SpawnerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AC79223971D79004D6FC6 /* SpawnerTest.swift */; };
+		4D1AC795239721A1004D6FC6 /* OncomerStepTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AC794239721A1004D6FC6 /* OncomerStepTest.swift */; };
+		4D1AC797239749BA004D6FC6 /* EffectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AC796239749BA004D6FC6 /* EffectTests.swift */; };
+		4D1AC79923974A67004D6FC6 /* OncomerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AC79823974A67004D6FC6 /* OncomerTest.swift */; };
 		4D3801C82371FBE80081D336 /* RiderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3801C72371FBE80081D336 /* RiderTest.swift */; };
 		4D3801CA237320FF0081D336 /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801C9237320FF0081D336 /* swoosh.mp3 */; };
 		4D3801CE2373255D0081D336 /* tracks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801CD2373255C0081D336 /* tracks.mp3 */; };
@@ -105,6 +111,12 @@
 		2C9A7F20237906AA00C01E6D /* background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = background.swift; sourceTree = "<group>"; };
 		2C9C018F238C2F54006EF685 /* BatteryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryBar.swift; sourceTree = "<group>"; };
 		2CE73FD42389C5C9008EA915 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		4D1AC78E23970D55004D6FC6 /* StandardLevelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardLevelTest.swift; sourceTree = "<group>"; };
+		4D1AC79023971526004D6FC6 /* TrainingLevelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLevelTest.swift; sourceTree = "<group>"; };
+		4D1AC79223971D79004D6FC6 /* SpawnerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnerTest.swift; sourceTree = "<group>"; };
+		4D1AC794239721A1004D6FC6 /* OncomerStepTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OncomerStepTest.swift; sourceTree = "<group>"; };
+		4D1AC796239749BA004D6FC6 /* EffectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectTests.swift; sourceTree = "<group>"; };
+		4D1AC79823974A67004D6FC6 /* OncomerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OncomerTest.swift; sourceTree = "<group>"; };
 		4D3801C72371FBE80081D336 /* RiderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderTest.swift; sourceTree = "<group>"; };
 		4D3801C9237320FF0081D336 /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
 		4D3801CD2373255C0081D336 /* tracks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tracks.mp3; sourceTree = "<group>"; };
@@ -198,6 +210,12 @@
 				4DE33442236F8A5000A179DB /* BatTest.swift */,
 				4DE33446236F953700A179DB /* AudioManagerTest.swift */,
 				4D3801C72371FBE80081D336 /* RiderTest.swift */,
+				4D1AC78E23970D55004D6FC6 /* StandardLevelTest.swift */,
+				4D1AC79023971526004D6FC6 /* TrainingLevelTest.swift */,
+				4D1AC79223971D79004D6FC6 /* SpawnerTest.swift */,
+				4D1AC794239721A1004D6FC6 /* OncomerStepTest.swift */,
+				4D1AC796239749BA004D6FC6 /* EffectTests.swift */,
+				4D1AC79823974A67004D6FC6 /* OncomerTest.swift */,
 			);
 			path = ddrTests;
 			sourceTree = "<group>";
@@ -475,9 +493,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E4487BF236E29BC0080AA21 /* ddrTests.swift in Sources */,
+				4D1AC78F23970D55004D6FC6 /* StandardLevelTest.swift in Sources */,
+				4D1AC797239749BA004D6FC6 /* EffectTests.swift in Sources */,
+				4D1AC79323971D79004D6FC6 /* SpawnerTest.swift in Sources */,
+				4D1AC79123971526004D6FC6 /* TrainingLevelTest.swift in Sources */,
+				4D1AC79923974A67004D6FC6 /* OncomerTest.swift in Sources */,
 				4DE33443236F8A5000A179DB /* BatTest.swift in Sources */,
 				4DE33447236F953700A179DB /* AudioManagerTest.swift in Sources */,
 				4D3801C82371FBE80081D336 /* RiderTest.swift in Sources */,
+				4D1AC795239721A1004D6FC6 /* OncomerStepTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
