@@ -79,10 +79,18 @@ class Oncomer: SKSpriteNode, Spawnable {
     self.collisionEffects = self.collisionEffects + [ KillOncomerEffect(oncomer: self) ]
     self.passEffects = self.passEffects + [ HideEffect(nodeToHide: self) ]
     self.goneEffects = self.goneEffects + [ KillOncomerEffect(oncomer: self) ]
+    animate()
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  func animate(){
+    if self.textures.count > 1 {
+      let backgroundAnimation = SKAction.repeatForever(SKAction.animate(with: self.textures, timePerFrame: 0.1))
+      self.run(backgroundAnimation)
+    }
   }
   
   func despawn() {

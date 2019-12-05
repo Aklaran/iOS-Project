@@ -53,7 +53,7 @@ class Battery: Oncomer {
       passEffects: [
       ],
       goneEffects: [],
-      texture: texture,
+      textures: [texture],
       color: SKColor.clear,
       size: texture.size(),
       lightingBitMask: 0b0001,

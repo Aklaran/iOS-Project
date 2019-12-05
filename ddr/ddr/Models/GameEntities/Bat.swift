@@ -39,7 +39,9 @@ class Bat: Oncomer {
   
   init(spawner: Spawner<Oncomer>? = nil, position: ScreenThird, speed: CGFloat) {
     // my instance vars
-    let texture = SKTexture(imageNamed: "bat") // should be updated somehow whne bats are made to flap
+    let texture1 = SKTexture(imageNamed: "bat1")
+    let texture2 = SKTexture(imageNamed: "bat2")
+    let texture3 = SKTexture(imageNamed: "bat3")
     
     // start flapping
     flapping = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.FLAP_FILE, maxZMagnitude: GameScene.HORIZON)
@@ -66,9 +68,9 @@ class Bat: Oncomer {
         ScoreEffect(delta: speed * GameScene.BAT_SPEED_POINT_CONVERSION)
       ],
       goneEffects: [],
-      textures: [texture],
+      textures: [texture1,texture2,texture3],
       color: SKColor.clear,
-      size: texture.size(),
+      size: texture1.size(),
       lightingBitMask: 0b0001,
       collisionThird: position
     )
