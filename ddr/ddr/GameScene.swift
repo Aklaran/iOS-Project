@@ -49,6 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             maxConcurrent: 1,
             cooldown: 0.5,
             expectedDuration: 600,
+            getNewBattery: Battery.spawningFunc(),
             getNewSpawn: Bat.spawningFunc())
         ],
         cartSpeed: 0.1,
@@ -56,7 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       ),
       StandardLevel(
         spawners: [
-          Spawner(maxSpawned: -1, minSpawned: 0, maxConcurrent: 3, cooldown: 0.75, getNewSpawn: Bat.spawningFunc(speed: 1.5), pSpawn: 0.015)
+          Spawner(maxSpawned: -1, minSpawned: 0, maxConcurrent: 3, cooldown: 0.75, getNewBattery: Battery.spawningFunc(speed: 1.5), getNewSpawn: Bat.spawningFunc(speed: 1.5), pSpawn: 0.015)
         ],
         cartSpeed: 0.15,
         flashlightDecay: 0.007

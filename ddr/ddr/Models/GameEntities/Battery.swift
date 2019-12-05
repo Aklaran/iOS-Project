@@ -5,11 +5,14 @@ import SpriteKit
 class Battery: Oncomer {
   
   static let IMPACT_FILE = Bundle.main.path(forResource: "charge.mp3", ofType: nil)!
-  static let FLAP_VELOCITY_CONVERSION: CGFloat = 1
+  static let MOVE_FILE = Bundle.main.path(forResource: "electricity.wav", ofType: nil)!
+  
+  static let MOVE_VELOCITY_CONVERSION: CGFloat = 1
   static let DEFAULT_SPEED: CGFloat = 1
   static let DEFAULT_Y: CGFloat = GameScene.HEIGHT * 3 / 4
 
   let impact: Emitter
+  let moving: Emitter
   
   // factory method
   static func getTrainingBattery(position: ScreenThird, speed: CGFloat = Battery.DEFAULT_SPEED) -> Battery{
@@ -37,6 +40,12 @@ class Battery: Oncomer {
     // my instance vars
     let texture = SKTexture(imageNamed: "bat") // should be updated somehow whne bats are made to flap
     
+    // start flapping
+    moving = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Battery.MOVE_FILE, maxZMagnitude: GameScene.HORIZON)
+    moving.isRepeated = true
+    moving.speed = speed / Battery.MOVE_VELOCITY_CONVERSION
+    moving.start()
+    
     // create emitters for whoosh and splat sounds
     impact = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Battery.IMPACT_FILE, maxZMagnitude: GameScene.HORIZON)
     impact.volume = 0.5
@@ -45,10 +54,10 @@ class Battery: Oncomer {
     // init super vars
     super.init(
       spawner: spawner,
-      emitters: [impact],
+      emitters: [impact, moving],
       collisionEffects: [
         SoundEffect(emitter: impact),
-        LoseLifeEffect()
+        AddBatteryEffect()
       ],
       passEffects: [
       ],
@@ -78,6 +87,7 @@ class Battery: Oncomer {
   }
   
   override func despawn() {
+    moving.stop();
     super.despawn()
   }
 }
