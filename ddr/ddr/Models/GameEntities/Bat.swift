@@ -66,7 +66,7 @@ class Bat: Oncomer {
         ScoreEffect(delta: speed * GameScene.BAT_SPEED_POINT_CONVERSION)
       ],
       goneEffects: [],
-      texture: texture,
+      textures: [texture],
       color: SKColor.clear,
       size: texture.size(),
       lightingBitMask: 0b0001,
