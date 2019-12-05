@@ -13,14 +13,7 @@ class Battery: Oncomer {
 
   let impact: Emitter
   let moving: Emitter
-  
-  // factory method
-  static func getTrainingBattery(position: ScreenThird, speed: CGFloat = Battery.DEFAULT_SPEED) -> Battery{
-    let battery = Battery(position: position, speed: speed)
-    battery.collisionEffects = [] // training bats can't actually hurt you
-    return battery
-  }
-  
+   
   static func spawningFunc(speed: CGFloat = Bat.DEFAULT_SPEED) -> (Spawner<Oncomer>?) -> Battery {
     return { spawner in {
         Battery(spawner: spawner, speed: speed)
