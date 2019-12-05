@@ -21,6 +21,7 @@ class Oncomer: SKSpriteNode, Spawnable {
   
   let spawner: Spawner<Oncomer>?
   let emitters: [Emitter]
+  let textures: [SKTexture]
   var collisionEffects: [Effect]
   var passEffects: [Effect]
   var goneEffects: [Effect]
@@ -60,7 +61,7 @@ class Oncomer: SKSpriteNode, Spawnable {
     collisionEffects: [Effect],
     passEffects: [Effect],
     goneEffects: [Effect],
-    texture: SKTexture?,
+    textures: [SKTexture],
     color: UIColor,
     size: CGSize,
     lightingBitMask: UInt32,
@@ -70,9 +71,10 @@ class Oncomer: SKSpriteNode, Spawnable {
     self.collisionEffects = collisionEffects
     self.passEffects = passEffects
     self.goneEffects = goneEffects
+    self.textures = textures
     self.emitters = emitters
     self.collisionThird = collisionThird
-    super.init(texture: texture, color: color, size: size)
+    super.init(texture: try? self.textures[0], color: color, size: size)
     super.lightingBitMask = lightingBitMask
     self.collisionEffects = self.collisionEffects + [ KillOncomerEffect(oncomer: self) ]
     self.passEffects = self.passEffects + [ HideEffect(nodeToHide: self) ]
@@ -118,6 +120,10 @@ class Oncomer: SKSpriteNode, Spawnable {
   
   func applyGoneEffects(to game: GameScene) {
     Oncomer.applyAllEffects(goneEffects, to: game)
+  }
+  
+  func animate(timePerFrame: TimeInterval = 0.1) {
+    self.run(SKAction.repeatForever(SKAction.animate(with: self.textures, timePerFrame: timePerFrame)))
   }
   
   private static func applyAllEffects(_ effects: [Effect], to game: GameScene) {
