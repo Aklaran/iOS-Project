@@ -12,7 +12,6 @@ class Spawner<T: Spawnable>{
   private let minSpawned: Int
   private let maxConcurrent: Int
   private let cooldown: TimeInterval
-  private let getNewBattery: (Spawner) -> T
   private let getNewSpawn: (Spawner) -> T
   
   private var canSpawnAfter: Date
@@ -29,14 +28,12 @@ class Spawner<T: Spawnable>{
     minSpawned: Int,
     maxConcurrent: Int,
     cooldown: TimeInterval,
-    getNewBattery: @escaping (Spawner) -> T,
     getNewSpawn: @escaping (Spawner) -> T,
     pSpawn: CGFloat
   ) {
     self.maxSpawned = maxSpawned
     self.minSpawned = minSpawned
     self.maxConcurrent = maxConcurrent
-    self.getNewBattery = getNewBattery
     self.getNewSpawn = getNewSpawn
     self.cooldown = cooldown
     self.pSpawn = pSpawn
@@ -46,7 +43,7 @@ class Spawner<T: Spawnable>{
     self.totalSpawned = 0
   }
   
-  convenience init(maxSpawned: Int = -1, minSpawned: Int = 0, maxConcurrent: Int = 1, cooldown: TimeInterval = 1, expectedDuration: TimeInterval = 15, getNewBattery: @escaping (Spawner) -> T, getNewSpawn: @escaping (Spawner) -> T) throws {
+  convenience init(maxSpawned: Int = -1, minSpawned: Int = 0, maxConcurrent: Int = 1, cooldown: TimeInterval = 1, expectedDuration: TimeInterval = 15, getNewSpawn: @escaping (Spawner) -> T) throws {
     
     let pSpawn: CGFloat
     
@@ -73,7 +70,6 @@ class Spawner<T: Spawnable>{
       minSpawned: minSpawned,
       maxConcurrent: maxConcurrent,
       cooldown: cooldown,
-      getNewBattery: getNewBattery,
       getNewSpawn: getNewSpawn,
       pSpawn: pSpawn
     )
@@ -87,8 +83,6 @@ class Spawner<T: Spawnable>{
       canSpawnAfter = Date().addingTimeInterval(cooldown)
       let newSpawn = getNewSpawn(self)
       currentlySpawned.insert(newSpawn)
-      let newBattery = getNewBattery(self)
-      currentlySpawned.insert(newBattery)
       totalSpawned = totalSpawned + 1
       return newSpawn
     }
