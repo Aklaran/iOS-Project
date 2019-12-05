@@ -35,11 +35,12 @@ class Bat: Oncomer {
       position: ScreenThird.allCases.randomElement()!,
       speed: speed
     )
+    animate()
   }
   
   init(spawner: Spawner<Oncomer>? = nil, position: ScreenThird, speed: CGFloat) {
     // my instance vars
-    let texture = SKTexture(imageNamed: "bat") // should be updated somehow whne bats are made to flap
+    let texture = SKTexture(imageNamed: "bat1") // should be updated somehow whne bats are made to flap
     
     // start flapping
     flapping = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.FLAP_FILE, maxZMagnitude: GameScene.HORIZON)
