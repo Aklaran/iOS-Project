@@ -74,7 +74,7 @@ class Oncomer: SKSpriteNode, Spawnable {
     self.textures = textures
     self.emitters = emitters
     self.collisionThird = collisionThird
-    super.init(texture: try? self.textures[0], color: color, size: size)
+    super.init(texture: self.textures.first(where: { _ in true }), color: color, size: size)
     super.lightingBitMask = lightingBitMask
     self.collisionEffects = self.collisionEffects + [ KillOncomerEffect(oncomer: self) ]
     self.passEffects = self.passEffects + [ HideEffect(nodeToHide: self) ]

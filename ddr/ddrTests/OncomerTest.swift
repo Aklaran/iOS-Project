@@ -8,7 +8,7 @@ class OncomerTest: XCTestCase {
 
   var _game : GameScene?
   var game = GameScene()
-  var oncomer = Oncomer(spawner: nil, emitters: [], collisionEffects: [], passEffects: [], goneEffects: [], texture: nil, color: UIColor.red, size: CGSize(width: 10, height: 10), lightingBitMask: 0, collisionThird: ScreenThird.MIDDLE)
+  var oncomer = Oncomer(spawner: nil, emitters: [], collisionEffects: [], passEffects: [], goneEffects: [], textures: [], color: UIColor.red, size: CGSize(width: 10, height: 10), lightingBitMask: 0, collisionThird: ScreenThird.MIDDLE)
 
   override func setUp() {
     _game = GameScene(size: UIScreen.main.bounds.size)
@@ -20,7 +20,7 @@ class OncomerTest: XCTestCase {
       collisionEffects: [],
       passEffects: [],
       goneEffects: [LoseLifeEffect()],
-      texture: nil,
+      textures: [],
       color: UIColor.red,
       size: CGSize(width: 10, height: 10),
       lightingBitMask: 0,
