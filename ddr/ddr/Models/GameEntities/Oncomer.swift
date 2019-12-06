@@ -40,6 +40,15 @@ class Oncomer: SKSpriteNode, Spawnable {
       xScale =  zProgress
       yScale = xScale
       
+      // and hide iff they have passed 0
+      // Note: this makes HideEffect obselete
+      if (zPosition < 0) {
+        self.isHidden = true
+      }
+      else {
+        self.isHidden = false
+      }
+      
       // update visual - screen position
       // oncomers move from vanishing pt in middle of screen
       // and progress to either edge of screen or the middle
