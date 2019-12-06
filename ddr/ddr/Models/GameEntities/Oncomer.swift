@@ -79,6 +79,9 @@ class Oncomer: SKSpriteNode, Spawnable {
     self.collisionEffects = self.collisionEffects + [ KillOncomerEffect(oncomer: self) ]
     self.passEffects = self.passEffects + [ HideEffect(nodeToHide: self) ]
     self.goneEffects = self.goneEffects + [ KillOncomerEffect(oncomer: self) ]
+    if self.textures.count > 1 {
+      animate();
+    }
   }
   
   required init?(coder aDecoder: NSCoder) {
