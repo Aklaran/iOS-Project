@@ -21,7 +21,7 @@ class GameOverScene: SKScene {
     
     presentScore((Int(score!)))
     
-    let restartButton = SKSpriteNode(imageNamed: "restart_btn")
+    let restartButton = SKSpriteNode(imageNamed: "start_over_btndijour.co")
     restartButton.position = CGPoint(x: size.width/2, y: size.height/2 - 100)
     restartButton.name = "restartgame"
     addChild(restartButton)
