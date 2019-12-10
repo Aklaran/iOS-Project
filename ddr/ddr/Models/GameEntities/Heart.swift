@@ -8,6 +8,21 @@ class Heart: Oncomer {
   static let DEFAULT_Y = GameScene.HEIGHT * 3 / 4
   static let TEXTURE_NAME = "heart"
   
+  static func spawningFunc(speed: CGFloat = 1.5) -> (Spawner<Oncomer>?) -> Heart {
+    return { spawner in {
+        Heart(spawner: spawner, speed: speed)
+      }()
+    }
+  }
+  
+  convenience init(spawner: Spawner<Oncomer>? = nil, speed: CGFloat = 1.5) {
+    self.init(
+      spawner: spawner,
+      position: ScreenThird.allCases.randomElement()!,
+      speed: speed
+    )
+  }
+  
   init(spawner: Spawner<Oncomer>? = nil, position: ScreenThird, speed: CGFloat = 1.5) {
     // start heart sound
     // todo
@@ -27,7 +42,7 @@ class Heart: Oncomer {
       textures: [texture],
       color: SKColor.clear,
       size: texture.size(),
-      lightingBitMask: 0b0001,
+      lightingBitMask: 0b000,
       collisionThird: position
     )
     
