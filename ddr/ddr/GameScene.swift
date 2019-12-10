@@ -50,7 +50,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             maxConcurrent: 1,
             cooldown: 0.5,
             expectedDuration: 600,
-            getNewSpawn: Bat.spawningFunc())
+            getNewSpawn: Bat.spawningFunc()
+          ),
+          try! Spawner(
+            maxSpawned: 1,
+            minSpawned: 1,
+            maxConcurrent: 1,
+            expectedDuration: 600,
+            getNewSpawn: Heart.spawningFunc()
+          )
         ],
         cartSpeed: 0.1,
         flashlightDecay: 0.0003
@@ -194,13 +202,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func initializeHearts() {
-    for i in 0 ..< rider!.lives {
-      let newHeart = SKSpriteNode(imageNamed: "heart");
-      newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0))
-      newHeart.position = CGPoint(x: CGFloat(newHeart.size.width/2 + CGFloat(i) * 100), y: (GameScene.HEIGHT - newHeart.size.height));
-      lives.append(newHeart)
-      addChild(newHeart)
+    for _ in 0 ..< rider!.lives {
+      drawHeart()
     }
+  }
+  
+  func drawHeart() {
+    let newHeart = SKSpriteNode(imageNamed: "heart");
+    newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0))
+    newHeart.position = CGPoint(x: CGFloat(newHeart.size.width/2 + CGFloat(lives.count) * 100), y: (GameScene.HEIGHT - newHeart.size.height));
+    lives.append(newHeart)
+    addChild(newHeart)
   }
   
   // MARK: builtin scene kit functions

@@ -12,6 +12,7 @@ import CoreMotion
 
 class Rider: SKSpriteNode {
   static let HALF_SCREEN_WIDTH = UIScreen.main.bounds.width / 2
+  static let MAX_LIVES = 3
   
   let audioManager : AudioManager?
   let motionManager : CMMotionManager?
@@ -61,6 +62,14 @@ class Rider: SKSpriteNode {
     if (!invincible) {
       lives -= 1
     }
+  }
+  
+  func gainLife() -> Bool {
+    if (lives < Rider.MAX_LIVES) {
+      lives = lives + 1
+      return true
+    }
+    return false
   }
   
   func isDead() -> Bool {
