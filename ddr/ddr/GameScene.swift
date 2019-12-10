@@ -21,27 +21,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
     return [
-//      TrainingLevel(
-//        id: "BatTraining",
-//        steps: [
-//          MessageStep(text: "Lets practice dodging bats...", duration: 3),
-//          try! OncomerStep(
-//            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-//            desireToHit: false
-//          ),
-//          try! OncomerStep(
-//            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-//            desireToHit: false
-//          ),
-//          try! OncomerStep(
-//            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
-//            desireToHit: false
-//          ),
-//          MessageStep(text: "Alright, here comes the real deal!", duration: 3)
-//        ],
-//        cartSpeed: 0,
-//        flashlightDecay: 0
-//      ),
+      TrainingLevel(
+        id: "BatTraining",
+        steps: [
+          MessageStep(text: "Lets practice dodging bats...", duration: 3),
+          try! OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+            desireToHit: false
+          ),
+          try! OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+            desireToHit: false
+          ),
+          try! OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+            desireToHit: false
+          ),
+          MessageStep(text: "Alright, here comes the real deal!", duration: 3)
+        ],
+        cartSpeed: 0,
+        flashlightDecay: 0
+      ),
       StandardLevel(
         spawners: [
           try! Spawner(
@@ -53,12 +53,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             getNewSpawn: Bat.spawningFunc()
           ),
           try! Spawner(
-            maxSpawned: 100,
-            minSpawned: 100,
+            maxSpawned: 1,
+            minSpawned: 1,
             maxConcurrent: 1,
-            cooldown: 4,
-            getNewSpawn: Heart.spawningFunc(),
-            pSpawn: 1
+            expectedDuration: 600,
+            getNewSpawn: Heart.spawningFunc()
           )
         ],
         cartSpeed: 0.1,
@@ -203,7 +202,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func initializeHearts() {
-    for i in 0 ..< rider!.lives {
+    for _ in 0 ..< rider!.lives {
       drawHeart()
     }
   }
