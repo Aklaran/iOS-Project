@@ -132,7 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func initializeMineCart() {
     cart.anchorPoint = CGPoint(x: 0.5, y: 0);
     cart.position = CGPoint(x: GameScene.WIDTH/2, y: 0);
-    cart.size.height = backgroundSize * 0.90;
+    cart.size.height = backgroundSize;
     cart.zPosition = 1
 
     addChild(cart)
