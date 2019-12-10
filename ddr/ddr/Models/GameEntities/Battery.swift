@@ -10,7 +10,7 @@ class Battery: Oncomer {
   static let TEXTURE = SKTexture(imageNamed: "battery3")
   static let DEFAULT_Y = GameScene.HEIGHT * 5 / 8
   
-  let buzzingSound: Emitter
+  var buzzingSound: Emitter
   let chargeSound: Emitter
   
   static func spawningFunc(speed: CGFloat = 0.5) -> (Spawner<Oncomer>?) -> Battery {

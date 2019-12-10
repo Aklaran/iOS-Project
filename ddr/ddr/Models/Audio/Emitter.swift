@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 import UIKit
 
-class Emitter {
+class Emitter: Hashable {
   
   let player : AVAudioPlayer
   var isRepeated = false
@@ -80,6 +80,14 @@ class Emitter {
     let dz = abs(z) // because the listener is assument to have z = 0
     player.volume = Float((maxZMagnitude - dz) / maxZMagnitude * volume)
     
+  }
+  
+  static func == (lhs: Emitter, rhs: Emitter) -> Bool {
+    return lhs === rhs
+  }
+  
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(player)
   }
   
 }
