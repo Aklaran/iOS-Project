@@ -1,10 +1,3 @@
-//
-//  Light.swift
-//  ddr
-//
-//  Created by Siri  Tembunkiart on 11/23/19.
-//  Copyright © 2019 the3amigos. All rights reserved.
-//
 
 import Foundation
 import SpriteKit
@@ -44,5 +37,12 @@ class Flashlight: SKLightNode {
   
   func drainBattery(amount: CGFloat) {
     batteryLife = batteryLife > 0 ? batteryLife - amount : 0
+  }
+  
+  func chargeBattery(additionalPercent: CGFloat) {
+    batteryLife = batteryLife + (maxBattery * additionalPercent)
+    if batteryLife > maxBattery {
+      batteryLife = maxBattery
+    }
   }
 }
