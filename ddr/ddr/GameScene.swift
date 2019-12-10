@@ -21,41 +21,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
     return [
-      StandardLevel(
-        spawners: [
-          try! Spawner(
-            maxSpawned: 100,
-            minSpawned: 100,
-            maxConcurrent: 1,
-            cooldown: 4,
-            getNewSpawn: Heart.spawningFunc(),
-            pSpawn: 1
-          )
-        ],
-        cartSpeed: 0.15,
-        flashlightDecay: 0.001
-      ),
-      TrainingLevel(
-        id: "BatTraining",
-        steps: [
-          MessageStep(text: "Lets practice dodging bats...", duration: 3),
-          try! OncomerStep(
-            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-            desireToHit: false
-          ),
-          try! OncomerStep(
-            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-            desireToHit: false
-          ),
-          try! OncomerStep(
-            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
-            desireToHit: false
-          ),
-          MessageStep(text: "Alright, here comes the real deal!", duration: 3)
-        ],
-        cartSpeed: 0,
-        flashlightDecay: 0
-      ),
+//      TrainingLevel(
+//        id: "BatTraining",
+//        steps: [
+//          MessageStep(text: "Lets practice dodging bats...", duration: 3),
+//          try! OncomerStep(
+//            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+//            desireToHit: false
+//          ),
+//          try! OncomerStep(
+//            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+//            desireToHit: false
+//          ),
+//          try! OncomerStep(
+//            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+//            desireToHit: false
+//          ),
+//          MessageStep(text: "Alright, here comes the real deal!", duration: 3)
+//        ],
+//        cartSpeed: 0,
+//        flashlightDecay: 0
+//      ),
       StandardLevel(
         spawners: [
           try! Spawner(
@@ -64,7 +50,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             maxConcurrent: 1,
             cooldown: 0.5,
             expectedDuration: 600,
-            getNewSpawn: Bat.spawningFunc())
+            getNewSpawn: Bat.spawningFunc()
+          ),
+          try! Spawner(
+            maxSpawned: 100,
+            minSpawned: 100,
+            maxConcurrent: 1,
+            cooldown: 4,
+            getNewSpawn: Heart.spawningFunc(),
+            pSpawn: 1
+          )
         ],
         cartSpeed: 0.1,
         flashlightDecay: 0.0003
@@ -209,12 +204,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func initializeHearts() {
     for i in 0 ..< rider!.lives {
-      let newHeart = SKSpriteNode(imageNamed: "heart");
-      newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0))
-      newHeart.position = CGPoint(x: CGFloat(newHeart.size.width/2 + CGFloat(i) * 100), y: (GameScene.HEIGHT - newHeart.size.height));
-      lives.append(newHeart)
-      addChild(newHeart)
+      drawHeart()
     }
+  }
+  
+  func drawHeart() {
+    let newHeart = SKSpriteNode(imageNamed: "heart");
+    newHeart.anchorPoint = (CGPoint(x: 0.5, y: 0))
+    newHeart.position = CGPoint(x: CGFloat(newHeart.size.width/2 + CGFloat(lives.count) * 100), y: (GameScene.HEIGHT - newHeart.size.height));
+    lives.append(newHeart)
+    addChild(newHeart)
   }
   
   // MARK: builtin scene kit functions

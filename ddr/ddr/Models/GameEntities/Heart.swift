@@ -36,7 +36,7 @@ class Heart: Oncomer {
     super.init(
       spawner: spawner,
       emitters: [],
-      collisionEffects: [],
+      collisionEffects: [GainLifeEffect()],
       passEffects: [],
       goneEffects: [],
       textures: [texture],
