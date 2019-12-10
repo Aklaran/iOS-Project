@@ -91,6 +91,10 @@ class Oncomer: SKSpriteNode, Spawnable {
     if self.textures.count > 1 {
       animate();
     }
+    
+    // these are not set in the first update of z because super has not been inited yet
+    xScale = 0
+    yScale = 0
   }
   
   required init?(coder aDecoder: NSCoder) {
