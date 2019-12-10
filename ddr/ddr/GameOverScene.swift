@@ -17,12 +17,13 @@ class GameOverScene: SKScene {
   var score: CGFloat?
 
   override func didMove(to view: SKView) {
-    backgroundColor = SKColor(red:0.00, green:0.59, blue:0.63, alpha:1.0)
+    backgroundColor = SKColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.0)
     
     presentScore((Int(score!)))
     
     let restartButton = SKSpriteNode(imageNamed: "start_over_btn")
-    restartButton.position = CGPoint(x: size.width/2, y: size.height/2 - 100)
+    restartButton.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    restartButton.position = CGPoint(x: size.width/2, y: size.height/2)
     restartButton.name = "restartgame"
     addChild(restartButton)
   }
@@ -41,20 +42,20 @@ class GameOverScene: SKScene {
   
   func createNewHighScoreLabel(for value: Int) {
     let newHighScoreLabel = SKLabelNode(text: "NEW HIGH SCORE: \(value) POINTS!")
-    newHighScoreLabel.position = CGPoint(x: size.width/2, y: size.height / 2)
+    newHighScoreLabel.position = CGPoint(x: size.width/2, y: size.height / 2 - 200)
     addChild(newHighScoreLabel)
   }
   
   func createHighScoreLabel(for value: Int) {
     print("high score: \(value)")
     let highScoreLabel = SKLabelNode(text: "High score: \(value) points")
-    highScoreLabel.position = CGPoint(x: size.width/2, y: size.height - size.height / 1.618)
+    highScoreLabel.position = CGPoint(x: size.width/2, y: size.height/2 + 200)
     addChild(highScoreLabel)
   }
 
   func createScoreLabel(for value: Int) {
     let progressLabel = SKLabelNode(text: "You got \(value) points!")
-    progressLabel.position = CGPoint(x: size.width/2, y: size.height - size.height / (2 * 1.618))
+    progressLabel.position = CGPoint(x: size.width/2, y: size.height/2 - 200)
     addChild(progressLabel)
   }
 
