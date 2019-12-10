@@ -21,7 +21,7 @@ class GameOverScene: SKScene {
     
     presentScore((Int(score!)))
     
-    let restartButton = SKSpriteNode(imageNamed: "start_over_btndijour.co")
+    let restartButton = SKSpriteNode(imageNamed: "start_over_btn")
     restartButton.position = CGPoint(x: size.width/2, y: size.height/2 - 100)
     restartButton.name = "restartgame"
     addChild(restartButton)
@@ -51,7 +51,7 @@ class GameOverScene: SKScene {
     highScoreLabel.position = CGPoint(x: size.width/2, y: size.height - size.height / 1.618)
     addChild(highScoreLabel)
   }
-  
+
   func createScoreLabel(for value: Int) {
     let progressLabel = SKLabelNode(text: "You got \(value) points!")
     progressLabel.position = CGPoint(x: size.width/2, y: size.height - size.height / (2 * 1.618))
