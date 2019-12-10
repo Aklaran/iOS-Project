@@ -92,6 +92,7 @@ class Oncomer: SKSpriteNode, Spawnable {
       animate();
     }
     
+    zPosition = GameScene.HORIZON
     // these are not set in the first update of z because super has not been inited yet
     xScale = 0
     yScale = 0

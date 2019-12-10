@@ -75,8 +75,6 @@ class Bat: Oncomer {
       collisionThird: position
     )
     
-    zPosition = GameScene.HORIZON
-    
     self.position = CGPoint(
       x: position.getX(),
       y: Bat.DEFAULT_Y

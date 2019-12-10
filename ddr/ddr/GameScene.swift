@@ -21,6 +21,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
     return [
+      StandardLevel(
+        spawners: [
+          try! Spawner(
+            maxSpawned: 100,
+            minSpawned: 100,
+            maxConcurrent: 1,
+            cooldown: 4,
+            getNewSpawn: Heart.spawningFunc(),
+            pSpawn: 1
+          )
+        ],
+        cartSpeed: 0.15,
+        flashlightDecay: 0.001
+      ),
       TrainingLevel(
         id: "BatTraining",
         steps: [
