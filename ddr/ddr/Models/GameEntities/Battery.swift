@@ -5,7 +5,7 @@ import UIKit
 
 class Battery: Oncomer {
   
-  static let BUZ_FILE = Bundle.main.path(forResource: "beep.mp3", ofType: nil)!
+  static let BUZ_FILE = Bundle.main.path(forResource: "electricity.mp3", ofType: nil)!
   static let CHARGE_FILE = Bundle.main.path(forResource: "charge.mp3", ofType: nil)!
   static let TEXTURE = SKTexture(imageNamed: "battery3")
   static let DEFAULT_Y = GameScene.HEIGHT * 5 / 8
@@ -32,7 +32,7 @@ class Battery: Oncomer {
     
     // start buzzing
     buzzingSound = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Battery.BUZ_FILE, maxZMagnitude: GameScene.HORIZON)
-    buzzingSound.isRepeated = true
+    buzzingSound.isRepeated = false
     buzzingSound.start()
     
     // charge sound
