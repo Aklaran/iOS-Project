@@ -42,6 +42,7 @@
 		4D3801CE2373255D0081D336 /* tracks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801CD2373255C0081D336 /* tracks.mp3 */; };
 		4D76EBD2239F314F00D1E98C /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D76EBD1239F314F00D1E98C /* Heart.swift */; };
 		4D76EBD4239F396700D1E98C /* GainLifeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D76EBD3239F396700D1E98C /* GainLifeEffect.swift */; };
+		4D76EBDA23A1942300D1E98C /* gain-life.flac in Resources */ = {isa = PBXBuildFile; fileRef = 4D76EBD923A1942300D1E98C /* gain-life.flac */; };
 		4DB216FF2380E25300D4EDFC /* Oncomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB216FE2380E25300D4EDFC /* Oncomer.swift */; };
 		4DB217012380E68000D4EDFC /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB217002380E68000D4EDFC /* Spawner.swift */; };
 		4DB217042384753B00D4EDFC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB217032384753B00D4EDFC /* Level.swift */; };
@@ -118,6 +119,7 @@
 		4D3801CD2373255C0081D336 /* tracks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tracks.mp3; sourceTree = "<group>"; };
 		4D76EBD1239F314F00D1E98C /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
 		4D76EBD3239F396700D1E98C /* GainLifeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GainLifeEffect.swift; sourceTree = "<group>"; };
+		4D76EBD923A1942300D1E98C /* gain-life.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = "gain-life.flac"; sourceTree = "<group>"; };
 		4DB216FE2380E25300D4EDFC /* Oncomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oncomer.swift; sourceTree = "<group>"; };
 		4DB217002380E68000D4EDFC /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
 		4DB217032384753B00D4EDFC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		1E4487FE236E2D880080AA21 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				4D76EBD923A1942300D1E98C /* gain-life.flac */,
 				4D3801CD2373255C0081D336 /* tracks.mp3 */,
 				4D3801C9237320FF0081D336 /* swoosh.mp3 */,
 				4DE33440236E5DAC00A179DB /* singleFlap.mp3 */,
@@ -422,6 +425,7 @@
 				4DE3344A236F9A5000A179DB /* singleFlap.mp3 in Resources */,
 				4D3801CA237320FF0081D336 /* swoosh.mp3 in Resources */,
 				1E448800236E2D880080AA21 /* beep.mp3 in Resources */,
+				4D76EBDA23A1942300D1E98C /* gain-life.flac in Resources */,
 				1E4487B1236E29BC0080AA21 /* Assets.xcassets in Resources */,
 				1E4487B4236E29BC0080AA21 /* LaunchScreen.storyboard in Resources */,
 			);
