@@ -12,6 +12,7 @@ import CoreMotion
 
 class Rider: SKSpriteNode {
   static let HALF_SCREEN_WIDTH = UIScreen.main.bounds.width / 2
+  static let MAX_LIVES = 3
   
   let audioManager : AudioManager?
   let motionManager : CMMotionManager?
@@ -40,7 +41,7 @@ class Rider: SKSpriteNode {
     
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
-    self.setScale(0.3)
+    self.setScale(0.5)
     self.headPosition = CGPoint(x: GameScene.WIDTH / 2, y: position.y)
     self.position.x = Rider.HALF_SCREEN_WIDTH
     self.position.y = CGFloat(cartHeight/2);
@@ -61,6 +62,14 @@ class Rider: SKSpriteNode {
     if (!invincible) {
       lives -= 1
     }
+  }
+  
+  func gainLife() -> Bool {
+    if (lives < Rider.MAX_LIVES) {
+      lives = lives + 1
+      return true
+    }
+    return false
   }
   
   func isDead() -> Bool {
@@ -91,7 +100,7 @@ class Rider: SKSpriteNode {
         }
         
         // FIXME: rotation only works for 1 orientation (home button left)
-        let rotation = CGFloat(data.gravity.y)
+        let rotation = CGFloat(-data.gravity.y)
 
         // playerPosition for collision calculations
         // spritePosition for spritenode updates

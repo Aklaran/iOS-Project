@@ -75,16 +75,10 @@ class Bat: Oncomer {
       collisionThird: position
     )
     
-    zPosition = GameScene.HORIZON
-    
     self.position = CGPoint(
       x: position.getX(),
       y: Bat.DEFAULT_Y
     )
-    
-    // these are not set in the first update of z because super has not been inited yet
-    xScale = 0
-    yScale = 0
   }
   
   // annoying but required - doing the minimum to compile
