@@ -40,6 +40,8 @@
 		4D3801C82371FBE80081D336 /* RiderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3801C72371FBE80081D336 /* RiderTest.swift */; };
 		4D3801CA237320FF0081D336 /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801C9237320FF0081D336 /* swoosh.mp3 */; };
 		4D3801CE2373255D0081D336 /* tracks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801CD2373255C0081D336 /* tracks.mp3 */; };
+		4D76EBD723A1917D00D1E98C /* charge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D76EBD523A1917C00D1E98C /* charge.wav */; };
+		4D76EBD823A1917D00D1E98C /* shorter_electricity.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D76EBD623A1917C00D1E98C /* shorter_electricity.mp3 */; };
 		4DAAF731239EB6C000507BA5 /* Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAAF730239EB6C000507BA5 /* Battery.swift */; };
 		4DAAF734239EBB3E00507BA5 /* electricity.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DAAF732239EBB3E00507BA5 /* electricity.mp3 */; };
 		4DAAF735239EBB3E00507BA5 /* charge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DAAF733239EBB3E00507BA5 /* charge.mp3 */; };
@@ -118,6 +120,8 @@
 		4D3801C72371FBE80081D336 /* RiderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderTest.swift; sourceTree = "<group>"; };
 		4D3801C9237320FF0081D336 /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
 		4D3801CD2373255C0081D336 /* tracks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tracks.mp3; sourceTree = "<group>"; };
+		4D76EBD523A1917C00D1E98C /* charge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge.wav; sourceTree = "<group>"; };
+		4D76EBD623A1917C00D1E98C /* shorter_electricity.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shorter_electricity.mp3; sourceTree = "<group>"; };
 		4DAAF730239EB6C000507BA5 /* Battery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Battery.swift; sourceTree = "<group>"; };
 		4DAAF732239EBB3E00507BA5 /* electricity.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = electricity.mp3; sourceTree = "<group>"; };
 		4DAAF733239EBB3E00507BA5 /* charge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = charge.mp3; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 		1E4487FE236E2D880080AA21 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				4D76EBD523A1917C00D1E98C /* charge.wav */,
+				4D76EBD623A1917C00D1E98C /* shorter_electricity.mp3 */,
 				4DAAF733239EBB3E00507BA5 /* charge.mp3 */,
 				4DAAF732239EBB3E00507BA5 /* electricity.mp3 */,
 				4D3801CD2373255C0081D336 /* tracks.mp3 */,
@@ -422,6 +428,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D76EBD723A1917D00D1E98C /* charge.wav in Resources */,
 				4DAAF735239EBB3E00507BA5 /* charge.mp3 in Resources */,
 				1E6435AA2370DCBD00851B2A /* impact-kick.wav in Resources */,
 				4DAAF734239EBB3E00507BA5 /* electricity.mp3 in Resources */,
@@ -429,6 +436,7 @@
 				4D3801CE2373255D0081D336 /* tracks.mp3 in Resources */,
 				4DE3344A236F9A5000A179DB /* singleFlap.mp3 in Resources */,
 				4D3801CA237320FF0081D336 /* swoosh.mp3 in Resources */,
+				4D76EBD823A1917D00D1E98C /* shorter_electricity.mp3 in Resources */,
 				1E448800236E2D880080AA21 /* beep.mp3 in Resources */,
 				1E4487B1236E29BC0080AA21 /* Assets.xcassets in Resources */,
 				1E4487B4236E29BC0080AA21 /* LaunchScreen.storyboard in Resources */,
