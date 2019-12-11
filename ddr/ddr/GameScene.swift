@@ -70,8 +70,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cartSpeed: 0.15,
         flashlightDecay: 0.007
       )
-  ]
-}
+    ]
+  }
   
   // Game Things
   static let AUDIO_MANAGER = AudioManager()
