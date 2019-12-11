@@ -51,15 +51,10 @@ class Battery: Oncomer {
       collisionThird: position
     )
     
-    zPosition = GameScene.HORIZON
-    
     self.position = CGPoint(
       x: position.getX(),
       y: Battery.DEFAULT_Y
     )
-    
-    xScale = 0
-    yScale = 0
   }
   
   // annoying but required - doing the minimum to compile
