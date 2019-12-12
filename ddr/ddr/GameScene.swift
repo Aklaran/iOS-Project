@@ -22,120 +22,120 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
     return [
-//      TrainingLevel(
-//        id: "BatTraining",
-//        steps: [
-//          MessageStep(text: "Lets practice dodging bats...", duration: 3),
-//          try! OncomerStep(
-//            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-//            desireToHit: false
-//          ),
-//          try! OncomerStep(
-//            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-//            desireToHit: false
-//          ),
-//          try! OncomerStep(
-//            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
-//            desireToHit: false
-//          ),
-//          MessageStep(text: "Alright, here they come!", duration: 3)
-//        ],
-//        cartSpeed: 0,
-//        flashlightDecay: 0
-//      ),
-//      StandardLevel(
-//        // simple level to get used to bats
-//        spawners: [
-//          Spawner(
-//            maxSpawned: 3,
-//            minSpawned: 2,
-//            maxConcurrent: 1,
-//            cooldown: 0.3,
-//            getNewSpawn: Bat.spawningFunc(),
-//            pSpawn: 1
-//          )
-//        ],
-//        cartSpeed: 0.1,
-//        flashlightDecay: 0.001
-//      ),
-//      TrainingLevel(
-//        id: "BatteryTraining",
-//        steps: [
-//          MessageStep(lines: ["As your light dims,", "grap batteries to recharge"] , duration: 3),
-//          try! OncomerStep(
-//            oncomer: Battery(position: ScreenThird.RIGHT),
-//            desireToHit: true
-//          ),
-//          MessageStep(text: "Nice work!", duration: 3)
-//        ],
-//        cartSpeed: 0,
-//        flashlightDecay: 0
-//      ),
-//      StandardLevel(
-//        spawners: [
-//          Spawner(
-//            maxSpawned: 4,
-//            minSpawned: 3,
-//            maxConcurrent: 1,
-//            cooldown: 0,
-//            getNewSpawn: Bat.spawningFunc(speed: 1.2),
-//            pSpawn: 0.005
-//          ),
-//          Spawner(
-//            maxSpawned: 1000,
-//            minSpawned: 2,
-//            maxConcurrent: 1,
-//            cooldown: 1,
-//            getNewSpawn: Battery.spawningFunc(),
-//            pSpawn: 0.0015
-//          )
-//        ],
-//        cartSpeed: 0.1,
-//        flashlightDecay: 0.0003
-//      ),
-//      TrainingLevel(
-//        id: "HeartTraining",
-//        steps: [
-//          MessageStep(lines: ["Also collect extra lives!", "(you can store up to 3)"] , duration: 3),
-//          try! OncomerStep(
-//            oncomer: Heart(position: ScreenThird.LEFT),
-//            desireToHit: true
-//          ),
-//          MessageStep(text: "Great job!", duration: 3)
-//        ],
-//        cartSpeed: 0,
-//        flashlightDecay: 0
-//      ),
-//      StandardLevel(
-//        spawners: [
-//          Spawner(
-//            maxSpawned: 6,
-//            minSpawned: 5,
-//            maxConcurrent: 2,
-//            cooldown: 0,
-//            getNewSpawn: Bat.spawningFunc(),
-//            pSpawn: 0.007
-//          ),
-//          Spawner(
-//            maxSpawned: 1,
-//            minSpawned: 1,
-//            maxConcurrent: 1,
-//            cooldown: 0.5,
-//            getNewSpawn: Heart.spawningFunc(),
-//            pSpawn: 0.001
-//          ),
-//          Spawner(
-//            maxSpawned: 3,
-//            minSpawned: 1,
-//            maxConcurrent: 1,
-//            cooldown: 1,
-//            getNewSpawn: Battery.spawningFunc(),
-//            pSpawn: 0.00125
-//          )
-//        ],
-//        cartSpeed: 0.1,
-//        flashlightDecay: 0.0007
-//      ),
+      TrainingLevel(
+        id: "BatTraining",
+        steps: [
+          MessageStep(text: "Lets practice dodging bats...", duration: 3),
+          try! OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+            desireToHit: false
+          ),
+          try! OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+            desireToHit: false
+          ),
+          try! OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+            desireToHit: false
+          ),
+          MessageStep(text: "Alright, here they come!", duration: 3)
+        ],
+        cartSpeed: 0,
+        flashlightDecay: 0
+      ),
+      StandardLevel(
+        // simple level to get used to bats
+        spawners: [
+          Spawner(
+            maxSpawned: 3,
+            minSpawned: 2,
+            maxConcurrent: 1,
+            cooldown: 0.3,
+            getNewSpawn: Bat.spawningFunc(),
+            pSpawn: 1
+          )
+        ],
+        cartSpeed: 0.1,
+        flashlightDecay: 0.001
+      ),
+      TrainingLevel(
+        id: "BatteryTraining",
+        steps: [
+          MessageStep(lines: ["As your light dims,", "grap batteries to recharge"] , duration: 3),
+          try! OncomerStep(
+            oncomer: Battery(position: ScreenThird.RIGHT),
+            desireToHit: true
+          ),
+          MessageStep(text: "Nice work!", duration: 3)
+        ],
+        cartSpeed: 0,
+        flashlightDecay: 0
+      ),
+      StandardLevel(
+        spawners: [
+          Spawner(
+            maxSpawned: 4,
+            minSpawned: 3,
+            maxConcurrent: 1,
+            cooldown: 0,
+            getNewSpawn: Bat.spawningFunc(speed: 1.2),
+            pSpawn: 0.005
+          ),
+          Spawner(
+            maxSpawned: 1000,
+            minSpawned: 2,
+            maxConcurrent: 1,
+            cooldown: 1,
+            getNewSpawn: Battery.spawningFunc(),
+            pSpawn: 0.0015
+          )
+        ],
+        cartSpeed: 0.1,
+        flashlightDecay: 0.0003
+      ),
+      TrainingLevel(
+        id: "HeartTraining",
+        steps: [
+          MessageStep(lines: ["Also collect extra lives!", "(you can store up to 3)"] , duration: 3),
+          try! OncomerStep(
+            oncomer: Heart(position: ScreenThird.LEFT),
+            desireToHit: true
+          ),
+          MessageStep(text: "Great job!", duration: 3)
+        ],
+        cartSpeed: 0,
+        flashlightDecay: 0
+      ),
+      StandardLevel(
+        spawners: [
+          Spawner(
+            maxSpawned: 6,
+            minSpawned: 5,
+            maxConcurrent: 2,
+            cooldown: 0,
+            getNewSpawn: Bat.spawningFunc(),
+            pSpawn: 0.007
+          ),
+          Spawner(
+            maxSpawned: 1,
+            minSpawned: 1,
+            maxConcurrent: 1,
+            cooldown: 0.5,
+            getNewSpawn: Heart.spawningFunc(),
+            pSpawn: 0.001
+          ),
+          Spawner(
+            maxSpawned: 3,
+            minSpawned: 1,
+            maxConcurrent: 1,
+            cooldown: 1,
+            getNewSpawn: Battery.spawningFunc(),
+            pSpawn: 0.00125
+          )
+        ],
+        cartSpeed: 0.1,
+        flashlightDecay: 0.0007
+      ),
       StandardLevel(
         spawners: [
           Spawner(maxSpawned: -1, minSpawned: 0, maxConcurrent: 3, cooldown: 0.75, getNewSpawn: Bat.spawningFunc(speed: 1.5), pSpawn: 0.015),
