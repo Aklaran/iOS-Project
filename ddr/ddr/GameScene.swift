@@ -267,7 +267,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     background.position = CGPoint(x: size.width/2, y: 0)
     background.zPosition = -999
     // Sets background vanishing point to below half the screen for 3D depth
-    background.size.height = self.frame.size.height / (GOLDEN_RATIO * 2);
+    background.size.height = self.frame.size.height / 2
+    background.size.width = self.frame.size.width / 2
     backgroundSize = (background.size.height);
     addChild(background)
     self.backgroundColor = .black

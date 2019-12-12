@@ -15,6 +15,12 @@ class Background: SKSpriteNode {
     let texture = SKTexture(imageNamed: "background1")
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
+//    // adjust the size and position to accomodate larger rider
+//    self.size = CGSize(
+//      width: GameScene.WIDTH / 2,
+//      height: GameScene.HEIGHT / 2
+//    )
+    
     super.lightingBitMask = 0b0001
     
     animate()
