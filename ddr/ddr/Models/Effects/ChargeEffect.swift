@@ -6,7 +6,7 @@ class ChargeEffect: Effect {
   
   let percent: CGFloat
   
-  init(percent: CGFloat = 34) {
+  init(percent: CGFloat = 100) {
     self.percent = percent
   }
   
