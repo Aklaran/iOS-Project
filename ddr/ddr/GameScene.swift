@@ -17,7 +17,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static let HORIZON: CGFloat = 100
   static let CART_SPEED_POINT_CONVERSION: CGFloat = 10
   static let BAT_SPEED_POINT_CONVERSION: CGFloat = 100
-//  static let FONT = UIFont(name: "PressStart2P-Regular", size: UIFont.labelFontSize)
   
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
