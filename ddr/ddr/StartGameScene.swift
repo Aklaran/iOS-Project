@@ -45,10 +45,10 @@ class StartGameScene: SKScene {
     let touchLocation = touch.location(in: self)
     let touchedNode = self.atPoint(touchLocation)
     if touchedNode.name == "startgame" {
-      let newGameScene = GameScene(size: size)
-      newGameScene.scaleMode = scaleMode
+      let headphoneScene = HeadphoneScene(size: size)
+      headphoneScene.scaleMode = scaleMode
       let transitionType = SKTransition.flipHorizontal(withDuration: 1.0)
-      view?.presentScene(newGameScene,transition: transitionType)
+      view?.presentScene(headphoneScene,transition: transitionType)
     }
   }
   
