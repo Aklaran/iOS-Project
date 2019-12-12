@@ -43,6 +43,7 @@
 		4D3801CA237320FF0081D336 /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801C9237320FF0081D336 /* swoosh.mp3 */; };
 		4D3801CE2373255D0081D336 /* tracks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D3801CD2373255C0081D336 /* tracks.mp3 */; };
 		4D70AEC623A1DFB0006102BD /* PressStart2P-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D70AEC523A1DF9C006102BD /* PressStart2P-Regular.ttf */; };
+		4D70AEC823A2F968006102BD /* charge2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D70AEC723A2F967006102BD /* charge2.mp3 */; };
 		4D76EBD2239F314F00D1E98C /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D76EBD1239F314F00D1E98C /* Heart.swift */; };
 		4D76EBD4239F396700D1E98C /* GainLifeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D76EBD3239F396700D1E98C /* GainLifeEffect.swift */; };
 		4D76EBD723A1917D00D1E98C /* charge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D76EBD523A1917C00D1E98C /* charge.wav */; };
@@ -129,6 +130,7 @@
 		4D3801C9237320FF0081D336 /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
 		4D3801CD2373255C0081D336 /* tracks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tracks.mp3; sourceTree = "<group>"; };
 		4D70AEC523A1DF9C006102BD /* PressStart2P-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PressStart2P-Regular.ttf"; sourceTree = "<group>"; };
+		4D70AEC723A2F967006102BD /* charge2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = charge2.mp3; sourceTree = "<group>"; };
 		4D76EBD1239F314F00D1E98C /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
 		4D76EBD3239F396700D1E98C /* GainLifeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GainLifeEffect.swift; sourceTree = "<group>"; };
 		4D76EBD523A1917C00D1E98C /* charge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge.wav; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 		1E4487FE236E2D880080AA21 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				4D70AEC723A2F967006102BD /* charge2.mp3 */,
 				4D76EBD923A1942300D1E98C /* gain-life.flac */,
 				4D76EBD523A1917C00D1E98C /* charge.wav */,
 				4D76EBD623A1917C00D1E98C /* shorter_electricity.mp3 */,
@@ -462,6 +465,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D70AEC823A2F968006102BD /* charge2.mp3 in Resources */,
 				4D76EBD723A1917D00D1E98C /* charge.wav in Resources */,
 				4DAAF735239EBB3E00507BA5 /* charge.mp3 in Resources */,
 				1E6435AA2370DCBD00851B2A /* impact-kick.wav in Resources */,

@@ -52,7 +52,7 @@ class Bat: Oncomer {
     
     // create emitters for whoosh and splat sounds
     whoosh = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.WHOOSH_FILE, maxZMagnitude: GameScene.HORIZON)
-    whoosh.volume = 0.5
+    whoosh.volume = 0.7
     whoosh.speed = 2
     splat = GameScene.AUDIO_MANAGER.createEmitter(soundFile: Bat.SPLAT_FILE, maxZMagnitude: GameScene.HORIZON)
     
