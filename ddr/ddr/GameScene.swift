@@ -21,57 +21,52 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
     return [
+//      TrainingLevel(
+//        id: "BatTraining",
+//        steps: [
+//          MessageStep(text: "Lets practice dodging bats...", duration: 3),
+//          try! OncomerStep(
+//            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+//            desireToHit: false
+//          ),
+//          try! OncomerStep(
+//            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+//            desireToHit: false
+//          ),
+//          try! OncomerStep(
+//            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+//            desireToHit: false
+//          ),
+//          MessageStep(text: "Alright, here comes the real deal!", duration: 3)
+//        ],
+//        cartSpeed: 0,
+//        flashlightDecay: 0
+//      ),
       StandardLevel(
         spawners: [
-          try! Spawner(
-            maxSpawned: 100,
-            minSpawned: 100,
-            maxConcurrent: 1,
-            cooldown: 4,
-            expectedDuration: 300,
-            getNewSpawn: Battery.spawningFunc()
-          )
-        ],
-        cartSpeed: 0.1,
-        flashlightDecay: 0.001
-      ),
-      TrainingLevel(
-        id: "BatTraining",
-        steps: [
-          MessageStep(text: "Lets practice dodging bats...", duration: 3),
-          try! OncomerStep(
-            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-            desireToHit: false
-          ),
-          try! OncomerStep(
-            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-            desireToHit: false
-          ),
-          try! OncomerStep(
-            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
-            desireToHit: false
-          ),
-          MessageStep(text: "Alright, here comes the real deal!", duration: 3)
-        ],
-        cartSpeed: 0,
-        flashlightDecay: 0
-      ),
-      StandardLevel(
-        spawners: [
-          try! Spawner(
+          Spawner(
             maxSpawned: 6,
             minSpawned: 5,
             maxConcurrent: 1,
             cooldown: 0.5,
-            expectedDuration: 600,
-            getNewSpawn: Bat.spawningFunc()
+            getNewSpawn: Bat.spawningFunc(),
+            pSpawn: 0.003
           ),
-          try! Spawner(
+          Spawner(
             maxSpawned: 1,
             minSpawned: 1,
             maxConcurrent: 1,
-            expectedDuration: 600,
-            getNewSpawn: Heart.spawningFunc()
+            cooldown: 0.5,
+            getNewSpawn: Heart.spawningFunc(),
+            pSpawn: 0.0005
+          ),
+          Spawner(
+            maxSpawned: 1000,
+            minSpawned: 2,
+            maxConcurrent: 1,
+            cooldown: 4,
+            getNewSpawn: Battery.spawningFunc(),
+            pSpawn: 0.0015
           )
         ],
         cartSpeed: 0.1,
@@ -313,7 +308,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for node in levelNodes {
       addChild(node)
     }
-    print("now onto next level")
   }
   
   func endGame() {
