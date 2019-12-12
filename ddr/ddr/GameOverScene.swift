@@ -42,19 +42,21 @@ class GameOverScene: SKScene {
   
   func createNewHighScoreLabel(for value: Int) {
     let newHighScoreLabel = SKLabelNode(text: "NEW HIGH SCORE: \(value) POINTS!")
+    newHighScoreLabel.fontName = "PressStart2P-Regular"
     newHighScoreLabel.position = CGPoint(x: size.width/2, y: size.height / 2 - 200)
     addChild(newHighScoreLabel)
   }
   
   func createHighScoreLabel(for value: Int) {
-    print("high score: \(value)")
     let highScoreLabel = SKLabelNode(text: "High score: \(value) points")
+    highScoreLabel.fontName = "PressStart2P-Regular"
     highScoreLabel.position = CGPoint(x: size.width/2, y: size.height/2 + 200)
     addChild(highScoreLabel)
   }
   
   func createScoreLabel(for value: Int) {
     let progressLabel = SKLabelNode(text: "You got \(value) points!")
+    progressLabel.fontName = "PressStart2P-Regular"
     progressLabel.position = CGPoint(x: size.width/2, y: size.height/2 - 200)
     addChild(progressLabel)
   }

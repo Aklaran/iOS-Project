@@ -17,47 +17,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static let HORIZON: CGFloat = 100
   static let CART_SPEED_POINT_CONVERSION: CGFloat = 10
   static let BAT_SPEED_POINT_CONVERSION: CGFloat = 100
+//  static let FONT = UIFont(name: "PressStart2P-Regular", size: UIFont.labelFontSize)
   
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
     return [
-      TrainingLevel(
-        id: "BatTraining",
-        steps: [
-          MessageStep(text: "Lets practice dodging bats...", duration: 3),
-          try! OncomerStep(
-            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-            desireToHit: false
-          ),
-          try! OncomerStep(
-            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-            desireToHit: false
-          ),
-          try! OncomerStep(
-            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
-            desireToHit: false
-          ),
-          MessageStep(text: "Alright, here comes the real deal!", duration: 3)
-        ],
-        cartSpeed: 0,
-        flashlightDecay: 0
-      ),
+//      TrainingLevel(
+//        id: "BatTraining",
+//        steps: [
+//          MessageStep(text: "Lets practice dodging bats...", duration: 3),
+//          try! OncomerStep(
+//            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+//            desireToHit: false
+//          ),
+//          try! OncomerStep(
+//            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+//            desireToHit: false
+//          ),
+//          try! OncomerStep(
+//            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+//            desireToHit: false
+//          ),
+//          MessageStep(text: "Alright, here comes the real deal!", duration: 3)
+//        ],
+//        cartSpeed: 0,
+//        flashlightDecay: 0
+//      ),
       StandardLevel(
         spawners: [
-          try! Spawner(
+          Spawner(
             maxSpawned: 6,
             minSpawned: 5,
             maxConcurrent: 1,
             cooldown: 0.5,
-            expectedDuration: 600,
-            getNewSpawn: Bat.spawningFunc()
+            getNewSpawn: Bat.spawningFunc(),
+            pSpawn: 0.003
           ),
-          try! Spawner(
+          Spawner(
             maxSpawned: 1,
             minSpawned: 1,
             maxConcurrent: 1,
-            expectedDuration: 600,
-            getNewSpawn: Heart.spawningFunc()
+            cooldown: 0.5,
+            getNewSpawn: Heart.spawningFunc(),
+            pSpawn: 0.0005
+          ),
+          Spawner(
+            maxSpawned: 1000,
+            minSpawned: 2,
+            maxConcurrent: 1,
+            cooldown: 4,
+            getNewSpawn: Battery.spawningFunc(),
+            pSpawn: 0.0015
           )
         ],
         cartSpeed: 0.1,
@@ -157,15 +167,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func initializeProgressFeedback() {
     scoreLabel = SKLabelNode(text: "0 points")
+    scoreLabel?.fontName = "PressStart2P-Regular"
+    scoreLabel?.verticalAlignmentMode = SKLabelVerticalAlignmentMode.top
+    scoreLabel?.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
     scoreLabel?.position = CGPoint(
-      x: UIScreen.main.bounds.width / 7 * 6,
-      y: 9 * UIScreen.main.bounds.height / 10
+      x: GameScene.WIDTH,
+      y: GameScene.HEIGHT
     )
     addChild(scoreLabel!)
   }
   
   func initializeSounds() {
     tracksSound.volume = 0.05
+    tracksSound.numberOfLoops = -1
     tracksSound.play()
   }
   
@@ -299,7 +313,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for node in levelNodes {
       addChild(node)
     }
-    print("now onto next level")
   }
   
   func endGame() {

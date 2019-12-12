@@ -1,9 +1,3 @@
-//
-//  DDR
-//
-//  Created by Dean Dijour on 10/25/19.
-//  Copyright © 2019 Dean Dijour. All rights reserved.
-//
 
 import UIKit
 import SpriteKit

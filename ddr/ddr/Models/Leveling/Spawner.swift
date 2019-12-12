@@ -79,7 +79,8 @@ class Spawner<T: Spawnable>{
     if Date() > canSpawnAfter
         && currentlySpawned.count < maxConcurrent
         && (maxSpawned < 0 || totalSpawned < maxSpawned)
-        && CGFloat(Float.random(in: 0...1)) < pSpawn {
+        && (CGFloat(Float.random(in: 0...1)) < pSpawn)
+    {
       canSpawnAfter = Date().addingTimeInterval(cooldown)
       let newSpawn = getNewSpawn(self)
       currentlySpawned.insert(newSpawn)
