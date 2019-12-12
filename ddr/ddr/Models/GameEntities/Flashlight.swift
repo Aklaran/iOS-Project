@@ -40,7 +40,7 @@ class Flashlight: SKLightNode {
   }
   
   func chargeBattery(additionalPercent: CGFloat) {
-    batteryLife = batteryLife + (maxBattery * additionalPercent)
+    batteryLife = batteryLife + (maxBattery * additionalPercent / 100)
     if batteryLife > maxBattery {
       batteryLife = maxBattery
     }
