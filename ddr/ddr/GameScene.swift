@@ -166,6 +166,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func initializeSounds() {
     tracksSound.volume = 0.05
+    tracksSound.numberOfLoops = -1
     tracksSound.play()
   }
   
