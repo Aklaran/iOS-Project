@@ -45,7 +45,7 @@ class Oncomer: SKSpriteNode, Spawnable {
       
       // and hide iff they have passed 0
       // Note: this makes HideEffect obselete
-      if (zPosition < 0) {
+      if (zPosition > 0) {
         self.isHidden = true
       }
       else {
@@ -95,7 +95,7 @@ class Oncomer: SKSpriteNode, Spawnable {
       animate();
     }
     
-    zPosition = GameScene.HORIZON
+    zPosition = -1 * GameScene.HORIZON
     // these are not set in the first update of z because super has not been inited yet
     xScale = 0
     yScale = 0
@@ -119,7 +119,7 @@ class Oncomer: SKSpriteNode, Spawnable {
 //  }
   
   func move(withAdditionalDistance distance : CGFloat = 0) {
-    self.zPosition = self.zPosition - self.speed - distance
+    self.zPosition = self.zPosition + self.speed + distance
   }
   
   func isGone() -> Bool {
