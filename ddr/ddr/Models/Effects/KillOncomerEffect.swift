@@ -11,6 +11,7 @@ class KillOncomerEffect: Effect {
   
   func apply(to game: GameScene) {
     oncomer.despawn()
+    oncomer.zPosition = -1 * GameScene.HORIZON // make sure oncomer isGone()
     oncomer.removeFromParent()
     game.oncomers.remove(oncomer)
   }
