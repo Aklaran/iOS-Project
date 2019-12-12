@@ -89,6 +89,12 @@ class Rider: SKSpriteNode {
   }
   
   func getHit() {
+    var frames = [SKTexture]()
+    
+    frames.append(SKTexture(imageNamed: "rider_hit"))
+    frames.append(SKTexture(imageNamed: "rider"))
+    
+    self.run(SKAction.repeat(SKAction.animate(with: frames, timePerFrame: 0.8), count: 1))
     stars.playAnimation()
   }
   

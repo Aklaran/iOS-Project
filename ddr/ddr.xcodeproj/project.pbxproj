@@ -28,6 +28,7 @@
 		1E6435AA2370DCBD00851B2A /* impact-kick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6435A92370DCBD00851B2A /* impact-kick.wav */; };
 		1E9161612394D38300FCCE76 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9161602394D38300FCCE76 /* PlayerData.swift */; };
 		1E9CC9132374A6580015D6FC /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9CC9122374A6580015D6FC /* GameOverScene.swift */; };
+		1EDB4F9223A2E1CA0043C8D1 /* Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB4F9123A2E1CA0043C8D1 /* Stars.swift */; };
 		2C9A7F21237906AA00C01E6D /* background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A7F20237906AA00C01E6D /* background.swift */; };
 		2C9C0190238C2F54006EF685 /* BatteryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C018F238C2F54006EF685 /* BatteryBar.swift */; };
 		2CE73FD52389C5C9008EA915 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE73FD42389C5C9008EA915 /* Cart.swift */; };
@@ -112,6 +113,7 @@
 		1E6435A92370DCBD00851B2A /* impact-kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "impact-kick.wav"; sourceTree = "<group>"; };
 		1E9161602394D38300FCCE76 /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
 		1E9CC9122374A6580015D6FC /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		1EDB4F9123A2E1CA0043C8D1 /* Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stars.swift; sourceTree = "<group>"; };
 		2C9A7F20237906AA00C01E6D /* background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = background.swift; sourceTree = "<group>"; };
 		2C9C018F238C2F54006EF685 /* BatteryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryBar.swift; sourceTree = "<group>"; };
 		2CE73FD42389C5C9008EA915 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				2C9A7F20237906AA00C01E6D /* background.swift */,
 				1E4487E9236E2A8C0080AA21 /* Bat.swift */,
 				1E4487EA236E2A8C0080AA21 /* Rider.swift */,
+				1EDB4F9123A2E1CA0043C8D1 /* Stars.swift */,
 				2CE73FD42389C5C9008EA915 /* Cart.swift */,
 				1E2B5CC823898C68007D029C /* Flashlight.swift */,
 				1E23DB89237A2C84008B8711 /* TutorialImage.swift */,
@@ -505,6 +508,7 @@
 				4DB2170B2385C87100D4EDFC /* SoundEffect.swift in Sources */,
 				1E4487FB236E2B530080AA21 /* StartGameScene.swift in Sources */,
 				1E4487A4236E29BB0080AA21 /* AppDelegate.swift in Sources */,
+				1EDB4F9223A2E1CA0043C8D1 /* Stars.swift in Sources */,
 				4DAAF731239EB6C000507BA5 /* Battery.swift in Sources */,
 				1E4487EE236E2A8C0080AA21 /* Bat.swift in Sources */,
 				4DB21715238B22B300D4EDFC /* TrainingStep.swift in Sources */,
