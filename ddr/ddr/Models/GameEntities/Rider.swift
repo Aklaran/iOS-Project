@@ -41,7 +41,7 @@ class Rider: SKSpriteNode {
     
     super.init(texture: texture, color: SKColor.clear, size: texture.size())
     
-    self.setScale(0.3)
+    self.setScale(0.5)
     self.headPosition = CGPoint(x: GameScene.WIDTH / 2, y: position.y)
     self.position.x = Rider.HALF_SCREEN_WIDTH
     self.position.y = CGFloat(cartHeight/2);
@@ -100,7 +100,7 @@ class Rider: SKSpriteNode {
         }
         
         // FIXME: rotation only works for 1 orientation (home button left)
-        let rotation = CGFloat(data.gravity.y)
+        let rotation = CGFloat(-data.gravity.y)
 
         // playerPosition for collision calculations
         // spritePosition for spritenode updates
