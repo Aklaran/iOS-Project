@@ -80,6 +80,7 @@ class OncomerStep: TrainingStep {
   
   func shouldWait(_ game: GameScene) -> Bool {
     return game.riderWithinStrikingDistance(of: oncomer)
+      && !oncomer.isGone()
       && !desiredPositions.contains(ScreenThird.of(x: game.rider!.headPosition.x))
       && oncomer.zPosition >= 0 // has not passed the rider
   }

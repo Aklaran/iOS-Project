@@ -25,6 +25,7 @@ class Oncomer: SKSpriteNode, Spawnable {
   var collisionEffects: [Effect]
   var passEffects: [Effect]
   var goneEffects: [Effect]
+  var isDead = false
   
   var collisionThird: ScreenThird
   
@@ -120,7 +121,8 @@ class Oncomer: SKSpriteNode, Spawnable {
   }
   
   func isGone() -> Bool {
-    return abs(zPosition) > GameScene.HORIZON
+    return isDead
+      || abs(zPosition) > GameScene.HORIZON
   }
   
   func applyCollisionEffects(to game: GameScene) {

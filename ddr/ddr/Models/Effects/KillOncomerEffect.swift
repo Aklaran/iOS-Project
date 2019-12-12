@@ -11,6 +11,7 @@ class KillOncomerEffect: Effect {
   
   func apply(to game: GameScene) {
     oncomer.despawn()
+    oncomer.isDead = true // make sure oncomer isGone()
     oncomer.removeFromParent()
     game.oncomers.remove(oncomer)
   }

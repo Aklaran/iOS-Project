@@ -15,10 +15,11 @@ class Bat: Oncomer {
   let whoosh: Emitter
   let splat: Emitter
   
-  // facotry method
+  // factory method
   static func getTrainingBat(position: ScreenThird, speed: CGFloat = Bat.DEFAULT_SPEED) -> Bat{
     let bat = Bat(position: position, speed: speed)
     bat.collisionEffects = [] // training bats can't actually hurt you
+    bat.lightingBitMask = 0 // not affected by flashlight
     return bat
   }
   
