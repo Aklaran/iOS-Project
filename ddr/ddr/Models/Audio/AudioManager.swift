@@ -1,22 +1,15 @@
-//
-//  AudioManager.swift
-//  Space Destgroyers
-//
-//  Created by Matt Kern on 11/2/19.
-//  Copyright © 2019 Matt Kern. All rights reserved.
-//
 
 import Foundation
 import SpriteKit
 
 class AudioManager {
   
-  var emitters = [Emitter]()
+  var emitters: Set<Emitter> = Set()
   private var listenerPosition = CGPoint(x: 0, y: 0)
   
   func createEmitter(soundFile: String, maxZMagnitude: CGFloat) -> Emitter {
     let emitter = Emitter(soundFile: soundFile, maxZMagnitude: maxZMagnitude)
-    emitters.append(emitter)
+    emitters.insert(emitter)
     return emitter
   }
   
@@ -26,5 +19,13 @@ class AudioManager {
       emitter.updateDestination(listenerPosition)
     }
   }
+  
+  func deleteEmitter(_ emitter: Emitter) {
+    emitters.remove(emitter)
+  }
+  
+//  func deleteEmitters(emittersToDelete: [Emitter]) {
+//    emitters = emitters.filter({ x in emittersToDelete.contains(where: {y in x === y})})
+//  }
   
 }
