@@ -4,6 +4,8 @@ import SpriteKit
 
 class MessageStep: TrainingStep {
   
+  static let MARGIN: CGFloat = 5
+  
   let nodes: [SKNode]
   let duration: TimeInterval
   
@@ -20,6 +22,27 @@ class MessageStep: TrainingStep {
     node.fontSize = 28
     node.position = position
     self.init(messageNodes: [node], duration: duration)
+  }
+  
+  convenience init(
+    lines: [String],
+    duration: TimeInterval = 3,
+    position: CGPoint = CGPoint(x: GameScene.WIDTH / 2, y: GameScene.HEIGHT / 2))
+  {
+    var nodes: [SKLabelNode] = []
+    for i in 0..<lines.count {
+      let node = SKLabelNode()
+      node.text = lines[i]
+      node.fontName = "PressStart2P-Regular"
+      node.fontSize = 28
+      let offset: CGFloat = (node.fontSize + MessageStep.MARGIN) * CGFloat(lines.count - i - 1)
+      node.position = CGPoint(
+        x: position.x,
+        y: position.y + offset
+      )
+      nodes.append(node)
+    }
+    self.init(messageNodes: nodes, duration: duration)
   }
   
   init(messageNodes: [SKNode], duration: TimeInterval) {
