@@ -25,6 +25,11 @@ class PlayerData {
     UserDefaults.standard.synchronize()
   }
   
+  func resetHighScore() {
+    UserDefaults.standard.set(0, forKey: HIGH_SCORE)
+    UserDefaults.standard.synchronize()
+  }
+  
   func getTrainingsSeen() -> [String] {
     return UserDefaults.standard.object(forKey: TRAININGS_SEEN) as? [String] ?? [String]()
   }
@@ -34,9 +39,17 @@ class PlayerData {
     
     seenTrainings.append(levelId)
     
-    print(seenTrainings)
-    
     UserDefaults.standard.set(seenTrainings, forKey: TRAININGS_SEEN)
     UserDefaults.standard.synchronize()
+  }
+  
+  func resetTrainingsSeen() {
+    UserDefaults.standard.set([], forKey: TRAININGS_SEEN)
+    UserDefaults.standard.synchronize()
+  }
+  
+  func resetAll() {
+    resetHighScore()
+    resetTrainingsSeen()
   }
 }
