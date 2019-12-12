@@ -4,10 +4,6 @@ import SpriteKit
 
 class TrainingLevel: Level {
   
-  // stores the trainings that have been completed
-  // todo: replace with core data for persistence
-  static var completedLevels: [String] = []
-  
   let id: String
   let cartSpeed: CGFloat
   let flashlightDecay: CGFloat
@@ -60,14 +56,10 @@ class TrainingLevel: Level {
     return currentStep.shouldWait(game)
   }
   
-  // this is a hacky place to increment the current step
-  // sorry, as a whole levels could have been designed better
-  // but this is what we have now and this is the best place
-  // I can think of to put this logic
   func isDone() -> Bool {
     
     // skip level if user has already completed it
-    if TrainingLevel.completedLevels.contains(id) {
+    if PlayerData.singleton.getTrainingsSeen().contains(id) {
       return true
     }
     
@@ -75,7 +67,7 @@ class TrainingLevel: Level {
       currentStep.alertNotWaiting() // just to make sure this gets called
       currentStepIndex = currentStepIndex + 1
       if currentStepIndex >= steps.count {
-        TrainingLevel.completedLevels.append(id) // skip this training in the future
+        PlayerData.singleton.addToTrainingsSeen(levelId: id) // skip this training in the future
         return true
       }
     }
