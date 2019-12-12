@@ -19,6 +19,8 @@ enum ScreenThird: Int, CaseIterable {
 
 class Oncomer: SKSpriteNode, Spawnable {
   
+  static let MARGIN_FACTOR: CGFloat = 0.67
+  
   let spawner: Spawner<Oncomer>?
   let emitters: [Emitter]
   let textures: [SKTexture]
@@ -54,7 +56,7 @@ class Oncomer: SKSpriteNode, Spawnable {
       // oncomers move from vanishing pt in middle of screen
       // and progress to either edge of screen or the middle
       let modifier = 1 + CGFloat(self.collisionThird.rawValue - 1) * zProgress
-      self.position.x = (GameScene.WIDTH / 2) * modifier
+      self.position.x = ((GameScene.WIDTH / 2) * modifier * Oncomer.MARGIN_FACTOR) + (GameScene.WIDTH  * (1 - Oncomer.MARGIN_FACTOR) * 0.5)
     }
   }
   

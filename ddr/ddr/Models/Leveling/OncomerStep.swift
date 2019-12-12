@@ -68,6 +68,9 @@ class OncomerStep: TrainingStep {
   init(oncomer: Oncomer, instructions: [SKNode], desiredPositions: [ScreenThird], cooldown: TimeInterval = 1) {
     self.oncomer = oncomer
     self.instructionNodes = instructions
+    for node in self.instructionNodes {
+      node.zPosition = GameScene.HORIZON * 3
+    }
     self.desiredPositions = desiredPositions // the position or positions that we want the rider to be in
     self.cooldown = cooldown
     

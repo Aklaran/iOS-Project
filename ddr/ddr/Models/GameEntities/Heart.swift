@@ -5,7 +5,7 @@ import SpriteKit
 
 class Heart: Oncomer {
   
-  static let DEFAULT_Y = GameScene.HEIGHT * 3 / 4
+  static let DEFAULT_Y = GameScene.HEIGHT * 0.7
   static let TEXTURE_NAME = "heart"
   static let HIT_FILE = Bundle.main.path(forResource: "gain-life.flac", ofType: nil)
   
@@ -40,7 +40,10 @@ class Heart: Oncomer {
       goneEffects: [],
       textures: [texture],
       color: SKColor.clear,
-      size: texture.size(),
+      size: CGSize(
+        width: texture.size().width * 3,
+        height: texture.size().height * 3
+      ),
       lightingBitMask: 0b000,
       collisionThird: position
     )

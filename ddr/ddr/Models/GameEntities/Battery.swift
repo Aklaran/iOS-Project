@@ -57,7 +57,10 @@ class Battery: Oncomer {
       goneEffects: [],
       textures: [Battery.TEXTURE],
       color: SKColor.clear,
-      size: Battery.TEXTURE.size(),
+      size: CGSize(
+        width: Battery.TEXTURE.size().width * 0.5,
+        height: Battery.TEXTURE.size().height * 0.5
+      ),
       lightingBitMask: 000000,
       collisionThird: position
     )

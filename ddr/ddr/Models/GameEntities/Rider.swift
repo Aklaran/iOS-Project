@@ -58,6 +58,9 @@ class Rider: SKSpriteNode {
     self.addChild(stars)
     
     beginMotionUpdates()
+    
+    // trying to fix overlapping bats
+    self.zPosition = GameScene.HORIZON * 2
   }
   
   required init?(coder aDecoder: NSCoder) {
