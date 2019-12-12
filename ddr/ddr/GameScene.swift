@@ -233,13 +233,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func touchDown(atPoint pos : CGPoint) {}
   func touchMoved(toPoint pos : CGPoint) {}
   func touchUp(atPoint pos : CGPoint) {}
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    for family in UIFont.familyNames.sorted() {
-        let names = UIFont.fontNames(forFamilyName: family)
-        print("Family: \(family) Font names: \(names)")
-    }
-
-  }
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {}
   override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {}
   
