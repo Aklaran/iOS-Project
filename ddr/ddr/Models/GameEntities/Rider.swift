@@ -29,7 +29,7 @@ class Rider: SKSpriteNode {
   
   private var invincible = false
   
-  private var hitTextures: [SKTexture] = []
+  private let stars = Stars()
   
   var lives:Int = 3
   
@@ -53,11 +53,9 @@ class Rider: SKSpriteNode {
     self.flashlight?.lightColor = .white
     addChild(self.flashlight!)
     
-    // prepare hit animation
-    for i in 1...3 {
-      hitTextures.append(SKTexture(imageNamed: "rider_hit\(i)"))
-    }
-    hitTextures.append(self.texture!)
+    // prepare stars for hit animation
+    stars.anchorPoint = CGPoint(x: 0.5, y: -1.25)
+    self.addChild(stars)
     
     beginMotionUpdates()
   }
@@ -91,9 +89,7 @@ class Rider: SKSpriteNode {
   }
   
   func getHit() {
-    let animateAction = SKAction.animate(with: hitTextures, timePerFrame: 0.3)
-    
-    self.run(SKAction.repeat(animateAction, count: 1))
+    stars.playAnimation()
   }
   
 // MARK: - Core Motion
