@@ -17,6 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static let HORIZON: CGFloat = 100
   static let CART_SPEED_POINT_CONVERSION: CGFloat = 10
   static let BAT_SPEED_POINT_CONVERSION: CGFloat = 100
+//  static let FONT = UIFont(name: "PressStart2P-Regular", size: UIFont.labelFontSize)
   
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
@@ -166,15 +167,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func initializeProgressFeedback() {
     scoreLabel = SKLabelNode(text: "0 points")
+    scoreLabel?.fontName = "PressStart2P-Regular"
+    scoreLabel?.verticalAlignmentMode = SKLabelVerticalAlignmentMode.top
+    scoreLabel?.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
     scoreLabel?.position = CGPoint(
-      x: UIScreen.main.bounds.width / 7 * 6,
-      y: 9 * UIScreen.main.bounds.height / 10
+      x: GameScene.WIDTH,
+      y: GameScene.HEIGHT
     )
     addChild(scoreLabel!)
   }
   
   func initializeSounds() {
     tracksSound.volume = 0.05
+    tracksSound.numberOfLoops = -1
     tracksSound.play()
   }
   
@@ -228,7 +233,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func touchDown(atPoint pos : CGPoint) {}
   func touchMoved(toPoint pos : CGPoint) {}
   func touchUp(atPoint pos : CGPoint) {}
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    for family in UIFont.familyNames.sorted() {
+        let names = UIFont.fontNames(forFamilyName: family)
+        print("Family: \(family) Font names: \(names)")
+    }
+
+  }
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {}
   override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {}
   
