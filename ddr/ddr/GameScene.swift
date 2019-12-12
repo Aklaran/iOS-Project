@@ -83,7 +83,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           ),
           Spawner(
             maxSpawned: 1000,
-            minSpawned: 2,
+            minSpawned: 1,
             maxConcurrent: 1,
             cooldown: 1,
             getNewSpawn: Battery.spawningFunc(),
@@ -145,7 +145,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             maxConcurrent: 1,
             cooldown: 0.5,
             getNewSpawn: Heart.spawningFunc(),
-            pSpawn: 0.001
+            pSpawn: 0.0006
           ),
           Spawner(
             maxSpawned: -1,
@@ -153,7 +153,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             maxConcurrent: 1,
             cooldown: 1,
             getNewSpawn: Battery.spawningFunc(),
-            pSpawn: 0.005
+            pSpawn: 0.003
           )
         ],
         cartSpeed: 0.15,
