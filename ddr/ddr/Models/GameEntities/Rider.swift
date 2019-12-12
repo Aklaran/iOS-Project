@@ -123,7 +123,7 @@ class Rider: SKSpriteNode {
 
         // playerPosition for collision calculations
         // spritePosition for spritenode updates
-        let playerPosition = Rider.HALF_SCREEN_WIDTH + (rotation * Rider.HALF_SCREEN_WIDTH)
+        let playerPosition = Rider.HALF_SCREEN_WIDTH + (rotation * 1.5 * Rider.HALF_SCREEN_WIDTH)
         let spritePosition = Rider.HALF_SCREEN_WIDTH + ((rotation / 2) * Rider.HALF_SCREEN_WIDTH)
         DispatchQueue.main.async {
           
