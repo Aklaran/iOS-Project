@@ -53,7 +53,7 @@ class GameOverScene: SKScene {
     highScoreLabel.position = CGPoint(x: size.width/2, y: size.height/2 + 200)
     addChild(highScoreLabel)
   }
-  
+
   func createScoreLabel(for value: Int) {
     let progressLabel = SKLabelNode(text: "You got \(value) points!")
     progressLabel.fontName = "PressStart2P-Regular"
