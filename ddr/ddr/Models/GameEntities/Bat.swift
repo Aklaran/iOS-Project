@@ -9,7 +9,7 @@ class Bat: Oncomer {
   static let FLAP_FILE = Bundle.main.path(forResource: "singleFlap.mp3", ofType: nil)!
   static let FLAP_VELOCITY_CONVERSION: CGFloat = 1
   static let DEFAULT_SPEED: CGFloat = 1
-  static let DEFAULT_Y: CGFloat = GameScene.HEIGHT * 3 / 4
+  static let DEFAULT_Y: CGFloat = GameScene.HEIGHT * 0.6
   
   let flapping: Emitter
   let whoosh: Emitter
@@ -71,7 +71,9 @@ class Bat: Oncomer {
       goneEffects: [],
       textures: [texture1,texture2,texture3],
       color: SKColor.clear,
-      size: texture1.size(),
+      size: CGSize(
+        width: texture1.size().width * 1.75,
+        height: texture1.size().height * 1.75),
       lightingBitMask: 0b0001,
       collisionThird: position
     )

@@ -17,7 +17,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   static let HORIZON: CGFloat = 100
   static let CART_SPEED_POINT_CONVERSION: CGFloat = 10
   static let BAT_SPEED_POINT_CONVERSION: CGFloat = 100
-//  static let FONT = UIFont(name: "PressStart2P-Regular", size: UIFont.labelFontSize)
   
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
@@ -25,7 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       TrainingLevel(
         id: "BatTraining",
         steps: [
-          
+
           MessageStep(lines: ["Let's practice dodging bats.", "Use your hearing to tilt away from them!"], duration: 3),
           try! OncomerStep(
             oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
@@ -290,9 +289,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     flashlight.position.y = GameScene.HEIGHT
     
     rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager, flashlight: flashlight, cartHeight: Int(cart.size.height))
-    rider!.zPosition = 2
     addChild(rider!)
-//    rider?.isHidden = true // no sight by default
   }
   
   func initializeHearts() {
