@@ -290,9 +290,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     flashlight.position.y = GameScene.HEIGHT
     
     rider = Rider(audioManager: GameScene.AUDIO_MANAGER, motionManager: motionManager, flashlight: flashlight, cartHeight: Int(cart.size.height))
-    rider!.zPosition = 2
     addChild(rider!)
-//    rider?.isHidden = true // no sight by default
   }
   
   func initializeHearts() {
