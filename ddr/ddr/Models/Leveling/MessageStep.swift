@@ -16,6 +16,7 @@ class MessageStep: TrainingStep {
   {
     let node = SKLabelNode()
     node.text = text
+    node.fontName = "PressStart2P-Regular"
     node.position = position
     self.init(messageNodes: [node], duration: duration)
   }
