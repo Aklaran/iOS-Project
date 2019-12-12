@@ -6,7 +6,7 @@ import UIKit
 class Battery: Oncomer {
   
   static let BUZ_FILE = Bundle.main.path(forResource: "electricity.mp3", ofType: nil)!
-  static let CHARGE_FILE = Bundle.main.path(forResource: "charge2.mp3", ofType: nil)!
+  static let CHARGE_FILE = Bundle.main.path(forResource: "charge3.mp3", ofType: nil)!
   static let TEXTURE = SKTexture(imageNamed: "battery3")
   static let DEFAULT_Y = GameScene.HEIGHT * 5 / 8
   
