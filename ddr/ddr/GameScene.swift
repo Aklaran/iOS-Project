@@ -106,18 +106,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        cartSpeed: 0,
 //        flashlightDecay: 0
 //      ),
+//      StandardLevel(
+//        spawners: [
+//          Spawner(
+//            maxSpawned: 6,
+//            minSpawned: 5,
+//            maxConcurrent: 2,
+//            cooldown: 0,
+//            getNewSpawn: Bat.spawningFunc(),
+//            pSpawn: 0.007
+//          ),
+//          Spawner(
+//            maxSpawned: 1,
+//            minSpawned: 1,
+//            maxConcurrent: 1,
+//            cooldown: 0.5,
+//            getNewSpawn: Heart.spawningFunc(),
+//            pSpawn: 0.001
+//          ),
+//          Spawner(
+//            maxSpawned: 3,
+//            minSpawned: 1,
+//            maxConcurrent: 1,
+//            cooldown: 1,
+//            getNewSpawn: Battery.spawningFunc(),
+//            pSpawn: 0.00125
+//          )
+//        ],
+//        cartSpeed: 0.1,
+//        flashlightDecay: 0.0007
+//      ),
       StandardLevel(
         spawners: [
+          Spawner(maxSpawned: -1, minSpawned: 0, maxConcurrent: 3, cooldown: 0.75, getNewSpawn: Bat.spawningFunc(speed: 1.5), pSpawn: 0.015),
           Spawner(
-            maxSpawned: 6,
-            minSpawned: 5,
-            maxConcurrent: 2,
-            cooldown: 0,
-            getNewSpawn: Bat.spawningFunc(),
-            pSpawn: 0.007
-          ),
-          Spawner(
-            maxSpawned: 1,
+            maxSpawned: -1,
             minSpawned: 1,
             maxConcurrent: 1,
             cooldown: 0.5,
@@ -125,23 +148,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             pSpawn: 0.001
           ),
           Spawner(
-            maxSpawned: 3,
+            maxSpawned: -1,
             minSpawned: 1,
             maxConcurrent: 1,
             cooldown: 1,
             getNewSpawn: Battery.spawningFunc(),
-            pSpawn: 0.00125
+            pSpawn: 0.005
           )
         ],
-        cartSpeed: 0.1,
-        flashlightDecay: 0.0007
-      ),
-      StandardLevel(
-        spawners: [
-          Spawner(maxSpawned: -1, minSpawned: 0, maxConcurrent: 3, cooldown: 0.75, getNewSpawn: Bat.spawningFunc(speed: 1.5), pSpawn: 0.015)
-        ],
         cartSpeed: 0.15,
-        flashlightDecay: 0.007
+        flashlightDecay: 0.0015
       )
     ]
   }
