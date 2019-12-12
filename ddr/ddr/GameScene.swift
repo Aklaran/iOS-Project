@@ -25,7 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       TrainingLevel(
         id: "BatTraining",
         steps: [
-          
+
           MessageStep(lines: ["Let's practice dodging bats.", "Use your hearing to tilt away from them!"], duration: 3),
           try! OncomerStep(
             oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
