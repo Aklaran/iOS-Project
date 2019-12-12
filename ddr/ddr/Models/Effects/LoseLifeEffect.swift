@@ -9,5 +9,6 @@ class LoseLifeEffect: Effect {
     
     // record it in rider
     game.rider?.loseLife()
+    game.rider?.getHit()
   }
 }

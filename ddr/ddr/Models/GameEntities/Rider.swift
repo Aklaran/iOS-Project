@@ -29,6 +29,8 @@ class Rider: SKSpriteNode {
   
   private var invincible = false
   
+  private let stars = Stars()
+  
   var lives:Int = 3
   
   init(audioManager: AudioManager, motionManager: CMMotionManager, flashlight: Flashlight, cartHeight: Int) {
@@ -50,6 +52,10 @@ class Rider: SKSpriteNode {
     self.flashlight?.categoryBitMask = 0b0001
     self.flashlight?.lightColor = .white
     addChild(self.flashlight!)
+    
+    // prepare stars for hit animation
+    stars.anchorPoint = CGPoint(x: 0.5, y: -1.25)
+    self.addChild(stars)
     
     beginMotionUpdates()
     
@@ -83,6 +89,16 @@ class Rider: SKSpriteNode {
   
   func rotate(rotationMultiplier:CGFloat) {
     self.zRotation = CGFloat(-Double.pi) * rotationMultiplier * 0.5
+  }
+  
+  func getHit() {
+    var frames = [SKTexture]()
+    
+    frames.append(SKTexture(imageNamed: "rider_hit"))
+    frames.append(SKTexture(imageNamed: "rider"))
+    
+    self.run(SKAction.repeat(SKAction.animate(with: frames, timePerFrame: 0.8), count: 1))
+    stars.playAnimation()
   }
   
 // MARK: - Core Motion
