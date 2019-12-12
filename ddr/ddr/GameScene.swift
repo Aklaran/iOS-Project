@@ -74,6 +74,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       StandardLevel(
         spawners: [
           Spawner(
+            maxSpawned: 4,
+            minSpawned: 3,
+            maxConcurrent: 1,
+            cooldown: 0,
+            getNewSpawn: Bat.spawningFunc(speed: 1.2),
+            pSpawn: 0.005
+          ),
+          Spawner(
+            maxSpawned: 1000,
+            minSpawned: 2,
+            maxConcurrent: 1,
+            cooldown: 1,
+            getNewSpawn: Battery.spawningFunc(),
+            pSpawn: 0.0015
+          )
+        ],
+        cartSpeed: 0.1,
+        flashlightDecay: 0.0003
+      ),
+      StandardLevel(
+        spawners: [
+          Spawner(
             maxSpawned: 6,
             minSpawned: 5,
             maxConcurrent: 1,
