@@ -159,9 +159,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func initializeProgressFeedback() {
     scoreLabel = SKLabelNode(text: "0 points")
     scoreLabel?.fontName = "PressStart2P-Regular"
+    scoreLabel?.verticalAlignmentMode = SKLabelVerticalAlignmentMode.top
+    scoreLabel?.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
     scoreLabel?.position = CGPoint(
-      x: UIScreen.main.bounds.width / 7 * 6,
-      y: 9 * UIScreen.main.bounds.height / 10
+      x: GameScene.WIDTH,
+      y: GameScene.HEIGHT
     )
     addChild(scoreLabel!)
   }
