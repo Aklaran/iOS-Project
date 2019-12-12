@@ -20,30 +20,14 @@ class HeadphoneScene: SKScene {
     headphones.name = "headphones"
     addChild(headphones)
     
-    let text1 = SKLabelNode()
-    text1.text = "This is a hearing game!"
-    text1.fontName = "PressStart2P-Regular"
-    text1.fontSize = 16
-    text1.horizontalAlignmentMode = .center
-    text1.position = CGPoint(x: size.width/2, y: size.height/3 + 20)
-    addChild(text1)
+    let text = "This is a hearing game!\nMake sure you have your headphones on\nin the right orientation,\nthen press OK to continue."
+    let headphoneLabel = MultilineLabel(text: text)
     
-    let text2 = SKLabelNode()
-    text2.text = "Make sure you have your headphones on in the right direction,"
-    text2.fontName = "PressStart2P-Regular"
-    text2.fontSize = 16
-    text2.horizontalAlignmentMode = .center
-    text2.position = CGPoint(x: size.width/2, y: size.height/3)
-    addChild(text2)
-    
-    let text3 = SKLabelNode()
-    text3.text = "then press OK to continue."
-    text3.fontName = "PressStart2P-Regular"
-    text3.fontSize = 16
-    text3.horizontalAlignmentMode = .center
-    text3.position = CGPoint(x: size.width/2, y: size.height/3 - 20)
-    addChild(text3)
-    
+    headphoneLabel.fontName = "PressStart2P-Regular"
+    headphoneLabel.fontSize = 16
+    headphoneLabel.position = CGPoint(x: size.width/2, y: size.height/3)
+    headphoneLabel.parentToScene(scene: self)
+
     let okButton = SKSpriteNode(imageNamed: "ok_button")
     okButton.position = CGPoint(x: size.width/2, y: size.height/8)
     okButton.name = "ok"
