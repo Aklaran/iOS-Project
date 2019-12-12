@@ -13,6 +13,15 @@ class Battery: Oncomer {
   var buzzingSound: Emitter
   let chargeSound: Emitter
   
+  // hacky fix
+  override var isDead: Bool {
+    didSet {
+      if isDead {
+        buzzingSound.stop()
+      }
+    }
+  }
+  
   static func spawningFunc(speed: CGFloat = 0.5) -> (Spawner<Oncomer>?) -> Battery {
     return { spawner in {
         Battery(spawner: spawner, speed: speed)

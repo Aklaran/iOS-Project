@@ -22,42 +22,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // function to allow game levels to be reset
   static func getLevels() -> [Level] {
     return [
-//      TrainingLevel(
-//        id: "BatTraining",
-//        steps: [
-//          MessageStep(text: "Lets practice dodging bats...", duration: 3),
-//          try! OncomerStep(
-//            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
-//            desireToHit: false
-//          ),
-//          try! OncomerStep(
-//            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
-//            desireToHit: false
-//          ),
-//          try! OncomerStep(
-//            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
-//            desireToHit: false
-//          ),
-//          MessageStep(text: "Alright, here they come!", duration: 3)
-//        ],
-//        cartSpeed: 0,
-//        flashlightDecay: 0
-//      ),
-//      StandardLevel(
-//        // simple level to get used to bats
-//        spawners: [
-//          Spawner(
-//            maxSpawned: 3,
-//            minSpawned: 2,
-//            maxConcurrent: 1,
-//            cooldown: 0.3,
-//            getNewSpawn: Bat.spawningFunc(),
-//            pSpawn: 1
-//          )
-//        ],
-//        cartSpeed: 0.1,
-//        flashlightDecay: 0.001
-//      ),
+      TrainingLevel(
+        id: "BatTraining",
+        steps: [
+          MessageStep(text: "Lets practice dodging bats...", duration: 3),
+          try! OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
+            desireToHit: false
+          ),
+          try! OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.MIDDLE),
+            desireToHit: false
+          ),
+          try! OncomerStep(
+            oncomer: Bat.getTrainingBat(position: ScreenThird.RIGHT),
+            desireToHit: false
+          ),
+          MessageStep(text: "Alright, here they come!", duration: 3)
+        ],
+        cartSpeed: 0,
+        flashlightDecay: 0
+      ),
+      StandardLevel(
+        // simple level to get used to bats
+        spawners: [
+          Spawner(
+            maxSpawned: 3,
+            minSpawned: 2,
+            maxConcurrent: 1,
+            cooldown: 0.3,
+            getNewSpawn: Bat.spawningFunc(),
+            pSpawn: 1
+          )
+        ],
+        cartSpeed: 0.1,
+        flashlightDecay: 0.001
+      ),
       TrainingLevel(
         id: "BatteryTraining",
         steps: [
