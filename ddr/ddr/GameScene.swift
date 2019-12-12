@@ -25,7 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         id: "BatTraining",
         steps: [
 
-          MessageStep(lines: ["Let's practice dodging bats.", "Use your hearing to tilt away from them!"], duration: 3),
+          MessageStep(lines: ["Let's practice dodging bats.", "Tilt your device to avoid them."], duration: 3),
           try! OncomerStep(
             oncomer: Bat.getTrainingBat(position: ScreenThird.LEFT),
             desireToHit: false
@@ -61,7 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       TrainingLevel(
         id: "BatteryTraining",
         steps: [
-          MessageStep(lines: ["As your light dims,", "grab batteries to recharge the flashlight!"] , duration: 3),
+          MessageStep(lines: ["As your headlight dims,", "grab batteries to recharge!"] , duration: 3),
           try! OncomerStep(
             oncomer: Battery(position: ScreenThird.RIGHT),
             desireToHit: true
